@@ -8,8 +8,15 @@ namespace IDAL
         {
 
         }
+        struct Parcel
+        {
+            public int id { get; set; }
+
+        }
     }
 
 }
-    
+
+
+
 
