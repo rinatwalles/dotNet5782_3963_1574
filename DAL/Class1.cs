@@ -1,8 +1,15 @@
 ﻿using System;
 
-namespace DAL
+namespace IDAL
 {
-    public class Class1
+    namespace DO
     {
+        public struct
+        {
+
+        }
     }
+
 }
+    
+
