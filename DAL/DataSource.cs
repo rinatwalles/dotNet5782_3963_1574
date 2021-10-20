@@ -38,5 +38,19 @@ namespace DalObject
             };
             }
         }
-    }ח
+        private static void creatCustomer(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                customers[i] = new Customer
+                {
+                    Id = rand.Next(100, 200),
+                    //איתחול ניימס 
+                    //איתחול טלפונים
+                    Longitude=rand.NextDouble()*(33.5-29.3)+29.3,
+                    Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
+                };
+            }
+        }
+    }
 }
