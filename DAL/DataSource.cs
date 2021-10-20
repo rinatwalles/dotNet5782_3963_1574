@@ -23,7 +23,7 @@ namespace DalObject
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        private static void Initialize(int num)
+        private static void Initialize(int num)// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
             for (int i = 0; i < num; i++)
             {
@@ -64,6 +64,15 @@ namespace DalObject
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
             }
+            for (int i = 0; i < num; i++)
+            {
+                parcels[i] = new Parcel
+                {
+                    Id = rand.Next(1000, 2000),
+                    SenderId= rand.Next(1000, 2000),
+                    TargetId = rand.Next(1000, 2000),
+                    Weight=
+                }
 
         }
 
