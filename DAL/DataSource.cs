@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -35,8 +34,26 @@ namespace DalObject
                     MaxWeight=(WeightCategories)rand.Next(0, 3),
                     Status=(DroneStatuses)rand.Next(0, 3),
                     Battery= rand.NextDouble()//לא יתן 1, רק קטן מ1!
-            };
+                };
+               config.droneCounter++;
             }
         }
-    }ח
+
+        private static void createStation(int num)
+        {
+            for (int i = 0; i < num; i++)
+            {
+                stations[i] = new Station
+                {
+                    Id = rand.Next(10, 20),
+                    //איתחול מודלים סמהאו
+                    //אתחול שם string
+                    Longitude = rand.Next(0, 3),
+                    Latitude = rand.Next(0, 3),
+                    ChargeSlots = rand.NextDouble()//לא יתן 1, רק קטן מ1!
+                };
+                config.stationCounter++;
+            }
+        }
+    }
 }
