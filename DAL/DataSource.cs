@@ -50,12 +50,11 @@ namespace DalObject
                     //אתחול שם string
                     Longitude = rand.Next(0, 3),
                     Latitude = rand.Next(0, 3),
-                    ChargeSlots = rand.NextDouble()//לא יתן 1, רק קטן מ1!
+                    ChargeSlots = rand.Next()//לא יתן 1, רק קטן מ1!
                 };
                 config.stationCounter++;
             }
         }
-    }
         private static void creatCustomer(int num)
         {
             for (int i = 0; i < num; i++)
@@ -65,10 +64,10 @@ namespace DalObject
                     Id = rand.Next(100, 200),
                     //איתחול ניימס 
                     //איתחול טלפונים
-                    Longitude=rand.NextDouble()*(33.5-29.3)+29.3,
+                    Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
             }
         }
     }
-}
+
