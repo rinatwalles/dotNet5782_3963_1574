@@ -13,7 +13,7 @@ namespace IDAL
             public int ChargeSlots { get; set; }
         }
 
-        struct Drone
+        public struct Drone
         {
             public int Id { get; set; }
             public string Model { get; set; }
