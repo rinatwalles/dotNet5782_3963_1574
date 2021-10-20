@@ -23,7 +23,7 @@ namespace DalObject
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        private static void createDrones(int num)
+        private static void Initialize(int num)
         {
             for (int i = 0; i < num; i++)
             {
@@ -31,16 +31,14 @@ namespace DalObject
                 {
                     Id = rand.Next(10, 20),
                     //איתחול מודלים סמהאו
-                    MaxWeight=(WeightCategories)rand.Next(0, 3),
-                    Status=(DroneStatuses)rand.Next(0, 3),
-                    Battery= rand.NextDouble()//לא יתן 1, רק קטן מ1!
+                    MaxWeight = (WeightCategories)rand.Next(0, 3),
+                    Status = (DroneStatuses)rand.Next(0, 3),
+                    Battery = rand.NextDouble()//לא יתן 1, רק קטן מ1!
                 };
-               config.droneCounter++;
+                config.droneCounter++;
             }
-        }
 
-        private static void createStation(int num)
-        {
+
             for (int i = 0; i < num; i++)
             {
                 stations[i] = new Station
@@ -48,16 +46,13 @@ namespace DalObject
                     Id = rand.Next(10, 20),
                     //איתחול מודלים סמהאו
                     //אתחול שם string
-                    Longitude = rand.Next(0, 3),
-                    Latitude = rand.Next(0, 3),
-                    ChargeSlots = rand.NextDouble()//לא יתן 1, רק קטן מ1!
+                    Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
+                    Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
+                    ChargeSlots = rand.Next(0, 100)//יצטרכו לשנות 
                 };
                 config.stationCounter++;
             }
-        }
-    }
-        private static void creatCustomer(int num)
-        {
+
             for (int i = 0; i < num; i++)
             {
                 customers[i] = new Customer
@@ -65,10 +60,12 @@ namespace DalObject
                     Id = rand.Next(100, 200),
                     //איתחול ניימס 
                     //איתחול טלפונים
-                    Longitude=rand.NextDouble()*(33.5-29.3)+29.3,
+                    Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
             }
+
         }
-    }
+
+    } 
 }
