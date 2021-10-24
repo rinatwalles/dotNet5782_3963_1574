@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DalObject;
 using IDAL.DO;
+using static DalObject.DataSource;
 
 namespace DAL
 {
@@ -63,6 +64,34 @@ namespace DAL
                     Delivered = newDelivered,//איתחול דליברד
                 };
             }
+
+            public int searchCustomer(int newId)
+            {
+                for (int i = 0; i < config.customerCounter++; i++)
+                {
+                    if(DataSource.customers[i].Id==newId)
+                        return i;
+                }
+                return -1;
+            }
+
+            public int searchParcel(int newId)
+            {
+                for (int i = 0; i < config.parcelsCounter++; i++)
+                {
+                    if (DataSource.parcels[i].Id == newId)
+                        return i;
+                }
+                return -1;
+            }
+
+            public void printCustomer(int newId)
+            {
+                Console.WriteLine();
+            }
+
+
+
         }
     }
 }
