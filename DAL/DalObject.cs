@@ -101,13 +101,13 @@ namespace DAL
                 DataSource.parcels[indexP].Scheduled= DateTime.Now;
             }
 
-           
+
 
             public int searchCustomer(int newId)
             {
                 for (int i = 0; i < config.customerCounter++; i++)
                 {
-                    if(DataSource.customers[i].Id==newId)
+                    if (DataSource.customers[i].Id == newId)
                         return i;
                 }
                 return -1;
@@ -123,8 +123,9 @@ namespace DAL
                 return -1;
             }
 
+
             public void printCustomer(int newId)
-            { 
+            {
                 int temp = searchCustomer(newId);
                 Console.WriteLine(DataSource.customers[temp]);
             }
@@ -175,6 +176,16 @@ namespace DAL
                 for (int i = 0; i < config.droneCounter++; i++)
                     Console.WriteLine(DataSource.drones[i]);
             }
+
+            public void printEmptyCargeSlots()
+            {
+                for (int i = 0; i < config.stationCounter++; i++)
+                { 
+                    if(DataSource.stations[i].ChargeSlots>0)
+                        Console.WriteLine(DataSource.stations[i]);
+                }
+            }
+
         }
     }
 }
