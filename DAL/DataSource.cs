@@ -69,12 +69,20 @@ namespace DalObject
                 parcels[i] = new Parcel
                 {
                     Id = rand.Next(1000, 2000),
-                    SenderId= rand.Next(1000, 2000),
+                    SenderId = rand.Next(1000, 2000),
                     TargetId = rand.Next(1000, 2000),
-                    Weight=
-                }
+                    Weight = (WeightCategories)rand.Next(1, 3),
+                    Priority = (Priorities)rand.Next(1, 3),
+                    //איתחול ריקוסטד
+                    DroneId = rand.Next(10, 20),
+                    //איתחול סקדולד
+                    //איתחול פיקד אפ
+                    //איתחול דליברד
+                };
+            }
 
         }
 
-    } 
+    }
 }
+
