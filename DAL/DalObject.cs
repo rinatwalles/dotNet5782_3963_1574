@@ -82,11 +82,7 @@ namespace DAL
                 }
                 return -1;
             }
-            public void joinDroneToParcel(int Id)
-            {
-                
-            }
-
+            
             public int searchCustomer(int newId)
             {
                 for (int i = 0; i < config.customerCounter++; i++)
@@ -107,13 +103,64 @@ namespace DAL
                 return -1;
             }
 
-            public void printCustomer(int newId)
+            public void joinDroneToParcel(int Id)
             {
-                Console.WriteLine();
+
+            }
+
+
+            public void printCustomer(int newId)
+            { 
+                int temp = searchCustomer(newId);
+                Console.WriteLine(DataSource.customers[temp]);
+            }
+
+            public void printAllCustomer()
+            {
+                for (int i = 0; i < config.customerCounter++; i++)
+                    Console.WriteLine(DataSource.customers[i]);
             }
 
 
 
+            public void printParcel(int newId)
+            {
+                int temp = searchParcel(newId);
+                Console.WriteLine(DataSource.parcels[temp]);
+            }
+
+            public void printAllParcels()
+            {
+                for (int i = 0; i < config.parcelsCounter++; i++)
+                    Console.WriteLine(DataSource.parcels[i]);
+            }
+
+
+
+            public void printStation(int newId)
+            {
+                int temp = searchStation(newId);
+                Console.WriteLine(DataSource.stations[temp]);
+            }
+
+            public void printAllStation()
+            {
+                for (int i = 0; i < config.stationCounter++; i++)
+                    Console.WriteLine(DataSource.stations[i]);
+            }
+
+
+            public void printDrones(int newId)
+            {
+                int temp = searchDrone(newId);
+                Console.WriteLine(DataSource.drones[temp]);
+            }
+
+            public void printAllDrones()
+            {
+                for (int i = 0; i < config.droneCounter++; i++)
+                    Console.WriteLine(DataSource.drones[i]);
+            }
         }
     }
 }
