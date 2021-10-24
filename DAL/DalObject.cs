@@ -86,6 +86,34 @@ namespace DAL
             {
                 
             }
+
+            public int searchCustomer(int newId)
+            {
+                for (int i = 0; i < config.customerCounter++; i++)
+                {
+                    if(DataSource.customers[i].Id==newId)
+                        return i;
+                }
+                return -1;
+            }
+
+            public int searchParcel(int newId)
+            {
+                for (int i = 0; i < config.parcelsCounter++; i++)
+                {
+                    if (DataSource.parcels[i].Id == newId)
+                        return i;
+                }
+                return -1;
+            }
+
+            public void printCustomer(int newId)
+            {
+                Console.WriteLine();
+            }
+
+
+
         }
     }
 }
