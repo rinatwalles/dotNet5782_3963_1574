@@ -24,7 +24,7 @@ namespace DalObject
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        internal static void Initialize(int num)// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
+        internal static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
             for (int i = 0; i < 10; i++)
             {
