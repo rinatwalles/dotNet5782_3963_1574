@@ -23,9 +23,9 @@ namespace DalObject
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        private static void Initialize(int num)// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
+        static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < 10; i++)
             {
                 drones[i] = new Drone
                 {
@@ -33,13 +33,13 @@ namespace DalObject
                     //איתחול מודלים סמהאו
                     MaxWeight = (WeightCategories)rand.Next(0, 3),
                     Status = (DroneStatuses)rand.Next(0, 3),
-                    Battery = rand.NextDouble()//לא יתן 1, רק קטן מ1!
+                    Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
                 };
                 config.droneCounter++;
             }
 
 
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < 5; i++)
             {
                 stations[i] = new Station
                 {
@@ -53,7 +53,7 @@ namespace DalObject
                 config.stationCounter++;
             }
 
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < 100; i++)
             {
                 customers[i] = new Customer
                 {
@@ -64,7 +64,7 @@ namespace DalObject
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
             }
-            for (int i = 0; i < num; i++)
+            for (int i = 0; i < 1000; i++)
             {
                 parcels[i] = new Parcel
                 {
@@ -73,11 +73,11 @@ namespace DalObject
                     TargetId = rand.Next(1000, 2000),
                     Weight = (WeightCategories)rand.Next(1, 3),
                     Priority = (Priorities)rand.Next(1, 3),
-                    //איתחול ריקוסטד
+                    Requested = DateTime.Now,//איתחול ריקוסטד
                     DroneId = rand.Next(10, 20),
-                    //איתחול סקדולד
-                    //איתחול פיקד אפ
-                    //איתחול דליברד
+                    Scheduled= DateTime.Now,//איתחול סקדולד
+                    PickedUp= DateTime.Now,//איתחול פיקד אפ
+                    Delivered= DateTime.Now,//איתחול דליברד
                 };
             }
 
