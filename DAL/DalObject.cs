@@ -98,8 +98,7 @@ namespace DAL
             public void collecting(int id)//איסוף חבילה ע''י רחפן
             {
                 int indexP = searchParcel(id);//חיפוש חבילה עם התז התואם
-                int indexD = searchDrone(DataSource.parcels[indexP].DroneId);
-                DataSource.drones[indexD].Status.DroneStatuses
+                DataSource.parcels[indexP].Scheduled= DateTime.Now;
             }
 
            
@@ -123,12 +122,6 @@ namespace DAL
                 }
                 return -1;
             }
-
-            public void joinDroneToParcel(int Id)
-            {
-
-            }
-
 
             public void printCustomer(int newId)
             { 
