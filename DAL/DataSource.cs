@@ -16,6 +16,7 @@ namespace DalObject
             internal static int customerCounter = 0;
             internal static int parcelsCounter = 0;
         }
+
         internal static Drone[] drones = new Drone[10];
         internal static Station[] stations = new Station[5];
         internal static Customer[] customers = new Customer[100];
@@ -23,7 +24,7 @@ namespace DalObject
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
+        internal static void Initialize(int num)// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
             for (int i = 0; i < 10; i++)
             {
@@ -63,6 +64,7 @@ namespace DalObject
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
+                config.customerCounter++;
             }
             for (int i = 0; i < 1000; i++)
             {
