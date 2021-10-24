@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using DalObject;
 using IDAL.DO;
+using static DalObject.DataSource;
 
 namespace DAL
 {
@@ -62,6 +63,28 @@ namespace DAL
                     PickedUp = newPickedUp,//איתחול פיקד אפ
                     Delivered = newDelivered,//איתחול דליברד
                 };
+            }
+            public int searchDrone(int id)
+            {
+                for (int i = 0; i < config.droneCounter; i++)
+                {
+                    if (DataSource.drones[i].Id == id)
+                        return i;
+                }
+                return -1;
+            }
+            public int searchStation(int id)
+            {
+                for (int i = 0; i < config.droneCounter; i++)
+                {
+                    if (DataSource.stations[i].Id == id)
+                        return i;
+                }
+                return -1;
+            }
+            public void joinDroneToParcel(int Id)
+            {
+                
             }
         }
     }
