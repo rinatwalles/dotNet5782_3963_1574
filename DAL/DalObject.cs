@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using DalObject;
 
 namespace DAL
 {
@@ -10,7 +11,7 @@ namespace DAL
     {
         public class DalObject
         {
-            //DalObject() { DataSource.Initialize()}
+            DalObject() { DataSource.Initialize(); }
         }
     }
 }
