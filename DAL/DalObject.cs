@@ -82,10 +82,27 @@ namespace DAL
                 }
                 return -1;
             }
-            public void joinDroneToParcel(int Id)
+            public void joinDroneToParcel(int id)//שיוך חבילה לרחפן
             {
-                
+                int index = searchParcel(id);//חיפוש חבילה עם התז התואם
+                for (int i = 0; i < DataSource.drones.Length; i++)
+                {
+                    if (DataSource.drones[i].Status == DroneStatuses.Available)
+                    {
+                        DataSource.drones[i].Status = DroneStatuses.Delivery;
+                        DataSource.parcels[index].DroneId = DataSource.drones[i].Id;//חיפוש רחפן פנוי לחבילה ושיוך
+                        return;
+                    }
+                }
             }
+            public void collecting(int id)//איסוף חבילה ע''י רחפן
+            {
+                int indexP = searchParcel(id);//חיפוש חבילה עם התז התואם
+                int indexD = searchDrone(DataSource.parcels[indexP].DroneId);
+                DataSource.drones[indexD].Status.DroneStatuses
+            }
+
+           
 
             public int searchCustomer(int newId)
             {
