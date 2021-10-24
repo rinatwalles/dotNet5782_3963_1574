@@ -51,7 +51,7 @@ namespace DalObject
                     //אתחול שם string
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
-                    ChargeSlots = rand.Next(0, 100)//יצטרכו לשנות 
+                    ChargeSlots = rand.Next(0, 10)   //number of empty charge slots in each station
                 };
                 config.stationCounter++;
                 numS++;
