@@ -15,6 +15,7 @@ namespace DalObject
             internal static int stationCounter = 0;
             internal static int customerCounter = 0;
             internal static int parcelsCounter = 0;
+            internal static int droneChargeCounter = 0;
         }
 
         internal static Drone[] drones = new Drone[10];
@@ -34,8 +35,8 @@ namespace DalObject
                 {
                     Id = numD,
                     //איתחול מודלים סמהאו
-                    MaxWeight = (WeightCategories)rand.Next(0, 3),
-                    Status = (DroneStatuses)rand.Next(0, 3),
+                    MaxWeight = (WeightCategories)rand.Next(0, 2),
+                    Status = (DroneStatuses)rand.Next(0, 1),
                     Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
                 };
                 config.droneCounter++;
@@ -45,7 +46,7 @@ namespace DalObject
             int numS = 10;
             for (int i = 0; i < 2; i++)
             {
-                stations[i] = new Station
+                stations[i] = new Station()
                 {
                     Id = numS,
                     //איתחול מודלים סמהאו
@@ -61,7 +62,7 @@ namespace DalObject
             int numC = 100;
             for (int i = 0; i < 10; i++)
             {
-                customers[i] = new Customer
+                customers[i] = new Customer()
                 {
                     Id = numC,
                     //איתחול ניימס 
@@ -76,13 +77,13 @@ namespace DalObject
             int numP = 1;
             for (int i = 0; i < 10; i++)
             {
-                parcels[i] = new Parcel
+                parcels[i] = new Parcel()
                 {
                     Id = numP,
                     SenderId = rand.Next(1000, 2000),
                     TargetId = rand.Next(1000, 2000),
-                    Weight = (WeightCategories)rand.Next(1, 3),
-                    Priority = (Priorities)rand.Next(1, 3),
+                    Weight = (WeightCategories)rand.Next(0, 2),
+                    Priority = (Priorities)rand.Next(0, 2),
                     Requested = DateTime.Now,//איתחול ריקוסטד
                     DroneId = rand.Next(10, 20),
                     Scheduled= DateTime.Now,//איתחול סקדולד

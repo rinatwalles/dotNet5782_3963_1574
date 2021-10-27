@@ -1,5 +1,4 @@
 ﻿using System;
-using DAL;
 using DalObject;
 using IDAL.DO;
 namespace ConsoleUI
