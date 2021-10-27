@@ -16,7 +16,7 @@ namespace DAL
             static DalObject() { DataSource.Initialize(); }
             public void droneAddition(int newId, WeightCategories newMaxWeight, DroneStatuses newStatus, double newBattery)
             {
-                DataSource.drones[DataSource.config.droneCounter] = new Drone
+                DataSource.drones[DataSource.config.droneCounter] = new Drone ()
                 {
                     Id = newId,
                     //איתחול מודלים סמהאו
@@ -27,7 +27,7 @@ namespace DAL
             }
             public void stationAddition(int newId, double newLongitude, double newLatitude, int newChargeSlots)
             {
-                DataSource.stations[DataSource.config.stationCounter] = new Station
+                DataSource.stations[DataSource.config.stationCounter] = new Station ()
                 {
                     Id = newId,
                     //איתחול מודלים סמהאו
@@ -39,7 +39,7 @@ namespace DAL
             }
             public void customerAddition(int newId, double newLongitude, double newLatitude)
             {
-                DataSource.customers[DataSource.config.customerCounter] = new Customer
+                DataSource.customers[DataSource.config.customerCounter] = new Customer()
                 {
                     Id = newId,
                     //איתחול ניימס 
@@ -50,7 +50,7 @@ namespace DAL
             }
             public void parcelAddition(int newId, int newSenderId, int newTargetId, WeightCategories newWeight, Priorities newPriorities, DateTime newRequested, int NewDroneId, DateTime newScheduled, DateTime newPickedUp, DateTime newDelivered)
             {
-                DataSource.parcels[DataSource.config.parcelsCounter] = new Parcel
+                DataSource.parcels[DataSource.config.parcelsCounter] = new Parcel()
                 {
                     Id = newId,
                     SenderId = newSenderId,
