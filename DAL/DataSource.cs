@@ -21,6 +21,7 @@ namespace DalObject
         internal static Station[] stations = new Station[5];
         internal static Customer[] customers = new Customer[100];
         internal static Parcel[] parcels = new Parcel[1000];
+        internal static DroneCharge[] droneCharges = new DroneCharge[10];
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
@@ -29,7 +30,7 @@ namespace DalObject
             int numD = 10;
             for (int i = 0; i < 5; i++)
             {
-                drones[i] = new Drone
+                drones[i] = new Drone ()
                 {
                     Id = numD,
                     //איתחול מודלים סמהאו

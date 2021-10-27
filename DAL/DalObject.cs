@@ -95,13 +95,24 @@ namespace DAL
                     }
                 }
             }
-            public void collecting(int id)//איסוף חבילה ע''י רחפן
+            public void droneCollecting(int id)//איסוף חבילה ע''י רחפן
             {
                 int indexP = searchParcel(id);//חיפוש חבילה עם התז התואם
                 DataSource.parcels[indexP].Scheduled= DateTime.Now;
             }
 
+            public void customerCollecting(int id)//איסוף חבילה ע''י לקוח
+            {
+                int indexP = searchParcel(id);//חיפוש חבילה עם התז התואם
+                DataSource.parcels[indexP].PickedUp = DateTime.Now;
+            }
 
+
+            public void chargingDrone(int parcelId, int stationId)
+            {
+                int indexP = searchParcel(parcelId);//חיפוש חבילה עם התז התואם
+               
+            }
 
             public int searchCustomer(int newId)
             {
