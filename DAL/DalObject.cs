@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 using IDAL.DO;
-//using static DalObject.DataSource;
+using static DalObject.DataSource;
 
 
     namespace DalObject
@@ -77,25 +77,28 @@ using IDAL.DO;
         }
 
 
-        public static void ChargingDrone(Drone d, Station s)//שליחת רחפן לטעינה
+        public static void ChargingDrone(Drone d, Station s, DroneCharge dc)//שליחת רחפן לטעינה
         {
             d.Status = DroneStatuses.Maintenance;
-            droneCharges[config.droneChargeCounter] = new DroneCharge()
-            {
-                DroneId = d.Id,
-                StationId = s.Id
-            };
+            droneCharges[config.droneChargeCounter] = dc;
             config.droneChargeCounter++;
             s.ChargeSlots--;
             d.Battery = 100;
         }
-    public static void ReleaseDrone(Drone d, Station s)//שליחת רחפן לטעינה
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="d"></param>>
+        /// <param name="s"></param>
+        /// <param name="dc"></param>
+    public static void ReleaseDrone(Drone d, Station s, DroneCharge dc)//שליחת רחפן לטעינה
     {
-        d.Status = DroneStatuses.Available;
-        delete droneCharges[config.droneChargeCounter];
-        config.droneChargeCounter--;
-        s.ChargeSlots++;
-        d.Battery = 100;
+        if (d.Battery == 100)
+        {
+            d.Status = DroneStatuses.Available;
+            config.droneChargeCounter--;
+            s.ChargeSlots++;
+        }
     }
 
     public int searchCustomer(int newId)
