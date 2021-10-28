@@ -27,9 +27,27 @@ namespace ConsoleUI
                     {
                         case Add.Station:
                             Console.WriteLine("Insert id, name, langitude, latitude, charge slot");
+                            Station station = new Station
+                            {
+                                Id = int.Parse(System.Console.ReadLine()),
+                                Name= System.Console.ReadLine(),
+                                Longitude= int.Parse(System.Console.ReadLine()),
+                                Latitude= int.Parse(System.Console.ReadLine()),
+                                ChargeSlots= int.Parse(System.Console.ReadLine()),
+                            };
+                            stationAddition(station);
                             break;
                         case Add.Dron:
                             Console.WriteLine("Insert id, model, maximum wight, drone status, battery");
+                            Drone drone = new Drone
+                            {
+                                Id = int.Parse(System.Console.ReadLine()),
+                                Model = System.Console.ReadLine(),
+                                MaxWeight=(WeightCategories)System.Console.Read(),
+                                Status=(DroneStatuses)System.Console.Read(),
+                                Battery= int.Parse(System.Console.ReadLine()),
+                            };
+                            DroneAddition(drone);
                             break;
                         case Add.Customer:
                             Console.WriteLine("insert id, longitude, latitude");
