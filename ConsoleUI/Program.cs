@@ -26,7 +26,10 @@ namespace ConsoleUI
                     {
                         Console.WriteLine("insert: 0 for adding Station,\n 1 for adding Dron\n  2 for adding Customer\n 3 for adding Parcel");
                         st = Console.ReadLine();
-                        Add a = (Add)int.Parse(st);
+                        Option a;
+                        int y;
+                        bool b = int.TryParse(st,out y);
+                        a = (Option)y;
                         switch (a)
                         {
                             case Add.Station:
