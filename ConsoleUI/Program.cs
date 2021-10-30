@@ -1,18 +1,23 @@
-﻿using System; m,
-using DalObject;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using IDAL.DO;
+using DalObject;
+using static DalObject.DalObject;
 namespace ConsoleUI
 {
-    class Program
+    public class Program
     {
-        enum Option { Add, Update,Display,Show };
+        enum Option { Add, Update, Display, Show };
         enum Add { Station, Dron, Customer, Parcel };
-        enum Update {Join,Collect,Supply,SendDrone, ReleaseDrone, };
+        enum Update {Join,Collect,Supply, ChargeDrone, ReleaseDrone, };
         enum Display { Station,Drone, Costumer,Parcel};
         enum Show{ Station, Drone, Costumer, Parcel ,ParcelWithoutDrone,AvilabaleStations};
-        public static void addition(string[] args)
+        static void Main(string[] args)
         {
-            Console.WriteLine("insert: ADD for addtion\n Update for update\n Display for display\n Show for showing");
+            Console.WriteLine("insert: Add for addtion\n Update for update\n Display for display\n Show for showing");
             Option x;
 
             string st = Console.ReadLine();
@@ -20,118 +25,192 @@ namespace ConsoleUI
             switch (x)
             {
                 case Option.Add:
-                    Console.WriteLine("adding Station: Station\n adding Dron: Drone\n adding Customer: Customer\n adding Parcel: Parcel");
-                    st = Console.ReadLine();
-                    Add a = (Add)int.Parse(st);
-                    switch (a)
                     {
-                        case Add.Station:
-                            Console.WriteLine("Insert id, name, langitude, latitude, charge slot");
-                            Station station = new Station
+                        Console.WriteLine("adding Station: Station\n adding Dron: Drone\n adding Customer: Customer\n adding Parcel: Parcel");
+                        st = Console.ReadLine();
+                        Add a = (Add)int.Parse(st);
+                        switch (a)
+                        { case Add.Station:
                             {
-                                Id = int.Parse(System.Console.ReadLine()),
-                                Name= System.Console.ReadLine(),
-                                Longitude= int.Parse(System.Console.ReadLine()),
-                                Latitude= int.Parse(System.Console.ReadLine()),
-                                ChargeSlots= int.Parse(System.Console.ReadLine()),
-                            };
-                            stationAddition(station);
-                            break;
+                                Console.WriteLine("Insert id, name, langitude, latitude, charge slot");
+                                Station sstation = new Station()
+                                {
+                                    Id = int.Parse(System.Console.ReadLine()),
+                                    Name = System.Console.ReadLine(),
+                                    Longitude = int.Parse(System.Console.ReadLine()),
+                                    Latitude = int.Parse(System.Console.ReadLine()),
+                                    ChargeSlots = int.Parse(System.Console.ReadLine())
+                                };
+                                stationAddition(sstation);
+                                break;
+                            }
                         case Add.Dron:
-                            Console.WriteLine("Insert id, model, maximum wight, drone status, battery");
-                            Drone drone = new Drone
                             {
-                                Id = int.Parse(System.Console.ReadLine()),
-                                Model = System.Console.ReadLine(),
-                                MaxWeight=(WeightCategories)System.Console.Read(),
-                                Status=(DroneStatuses)System.Console.Read(),
-                                Battery= int.Parse(System.Console.ReadLine()),
-                            };
-                            DroneAddition(drone);
-                            break;
+                                Console.WriteLine("Insert id, model, maximum wight");
+                                Drone ddrone = new Drone()
+                                {
+                                    Id = int.Parse(System.Console.ReadLine()),
+                                    Model = System.Console.ReadLine(),
+                                    MaxWeight = (WeightCategories)System.Console.Read(),
+                                    Status = DroneStatuses.Available,
+                                    Battery = 100,
+                                };
+                                droneAddition(ddrone);
+                                break;
+                            }
                         case Add.Customer:
-                            Console.WriteLine("insert id, longitude, latitude");
-                            customerAddition(System.Console.Read(), System.Console.Read(), System.Console.Read(), System.Console.Read());
-                            break;
+                            {
+                                Console.WriteLine("insert id, longitude, latitude");
+                                Customer customer = new Customer()
+                                {
+                                    Id = int.Parse(System.Console.ReadLine()),
+                                    Name = System.Console.ReadLine(),
+                                    Phone = System.Console.ReadLine(),
+                                    Longitude = int.Parse(System.Console.ReadLine()),
+                                    Latitude = int.Parse(System.Console.ReadLine())
+                                };
+                                customerAddition(customer);
+                                break;
+                            }
                         case Add.Parcel:
-                            Console.WriteLine("insert id, weight, priority, requested, scheduled time, pickedUp time, delivered time");
-                            break;
+                            {
+                                Console.WriteLine("insert id, SenderId, TargetId, weight, Priority");
+                                Parcel parcel = new Parcel()
+                                {
+                                    Id = int.Parse(System.Console.ReadLine()),
+                                    SenderId = int.Parse(System.Console.ReadLine()),
+                                    TargetId = int.Parse(System.Console.ReadLine()),
+                                    Weight = (WeightCategories)System.Console.Read(),
+                                    Priority = (Priorities)System.Console.Read(),
+                                    Requested = DateTime.Now,
+                                    DroneId = 0
+                                };
+                                break;
+                            }
                         default:
                             break;
+                        }
+                        break;
                     }
-                    break;
                 case Option.Update:
-                    st = Console.ReadLine();
-                    Update u = (Update)int.Parse(st);
-                    switch (u)
                     {
-                        case Update.Join:
-                            break;
-                        case Update.Collect:
-                            break;
-                        case Update.Supply:
-                            break;
-                        case Update.SendDrone:
-                            break;
-                        case Update.ReleaseDrone:
-                            break;
-                        default:
-                            break;
-                    }
+                        st = Console.ReadLine();
+                        Update u = (Update)int.Parse(st);
+                        switch (u)
+                        {
+                            case Update.Join:
+                                {
+                                    Console.WriteLine("insert an id of a parcel");
+                                    int parcelId = int.Parse(System.Console.ReadLine());
+                                    joinDroneToParcel(parcelId);
+                                    break;
+                                }
+                            case Update.Collect:
+                                {
+                                    Console.WriteLine("insert an id of a parcel");
+                                    int parcelId = int.Parse(System.Console.ReadLine());
+                                    droneCollecting(parcelId);
+                                    break;
+                                }
+                            case Update.Supply:
+                                {
+                                    Console.WriteLine("insert an id of a parcel");
+                                    int parcelId = int.Parse(System.Console.ReadLine());
+                                    customerCollecting(parcelId);
+                                    break;
+                                }
 
-                    break;
+                            case Update.ChargeDrone:
+                                {
+                                    //ChargingDrone();
+                                    break;
+                                }
+                            case Update.ReleaseDrone:
+                                {
+                                    //ReleaseDrone();
+                                    break;
+                                }
+                            default:
+                                break;
+                        }
+                        break;
+                    }
                 case Option.Display:
-                    st = Console.ReadLine();
-                    Display d = (Display)int.Parse(st);
-                    switch (d)
-                    {
-                        case Display.Station:
-                            break;
-                        case Display.Drone:
-                            break;
-                        case Display.Costumer:
-                            break;
-                        case Display.Parcel:
-                            break;
-                        default:
-                            break;
+                    { st = Console.ReadLine();
+                        Display d = (Display)int.Parse(st);
+                        Console.WriteLine($"insert an id of a {d}" );
+                        int id = int.Parse(System.Console.ReadLine());
+                        switch (d)
+                        {
+                            case Display.Station:
+                                {
+                                    printStation(id);
+                                    break;
+                                }
+                            case Display.Drone:
+                                {
+                                    printDrone(id);
+                                    break;
+                                }
+                            case Display.Costumer:
+                                {
+                                    printCustomer(id);
+                                    break;
+                                }
+                            case Display.Parcel:
+                                {
+                                    printParcel(id);
+                                    break;
+                                }
+                            default:
+                                break;
+                        }
+                        break;
                     }
-                    break;
                 case Option.Show:
-                    st = Console.ReadLine();
-                    Show s = (Show)int.Parse(st);
-                    switch (s)
                     {
-                        case Show.Station:
-                            break;
-                        case Show.Drone:
-                            break;
-                        case Show.Costumer:
-                            break;
-                        case Show.Parcel:
-                            break;
-                        case Show.ParcelWithoutDrone:
-                            break;
-                        case Show.AvilabaleStations:
-                            break;
-                        default:
-                            break;
+                        st = Console.ReadLine();
+                        Show s = (Show)int.Parse(st);
+                        switch (s)
+                        {
+                            case Show.Station:
+                                {
+                                    printAllStation();
+                                    break;
+                                }
+                            case Show.Drone:
+                                {
+                                    printAllDrones();
+                                    break;
+                                }
+                            case Show.Costumer:
+                                {
+                                    printAllCustomer();
+                                    break;
+                                }
+                            case Show.Parcel:
+                                {
+                                    printAllParcels();
+                                    break;
+                                }
+                            case Show.ParcelWithoutDrone:
+                                {
+                                    ParcelWithoutDrone();
+                                    break;
+                                }
+                            case Show.AvilabaleStations:
+                                {
+                                    printEmptyCargeSlots();
+                                    break;
+                                }
+                            default:
+                                break;
+                        }
+                        break;
                     }
-                    break;
-                default:
-                    break;
+                    default:     
+                       break;
             }
-
-            
-
         }
-
-
-        static void Main(string[] args)
-        {
-
-            Console.WriteLine("Hello World!");
-        }
-      
-}
+    }
 }
