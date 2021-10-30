@@ -103,7 +103,7 @@ namespace DalObject
 
     public static int searchCustomer(int newId)
         {
-            for (int i = 0; i < config.customerCounter++; i++)
+            for (int i = 0; i < config.customerCounter; i++)
             {
                 if (DataSource.customers[i].Id == newId)
                     return i;
@@ -113,7 +113,7 @@ namespace DalObject
 
         public static int searchParcel(int newId)
         {
-            for (int i = 0; i < config.parcelsCounter++; i++)
+            for (int i = 0; i < config.parcelsCounter; i++)
             {
                 if (DataSource.parcels[i].Id == newId)
                     return i;
@@ -134,7 +134,7 @@ namespace DalObject
 
         public static void printAllCustomer()
         {
-            for (int i = 0; i < config.customerCounter++; i++)
+            for (int i = 0; i < config.customerCounter; i++)
                 Console.WriteLine(DataSource.customers[i]);
         }
 
@@ -146,7 +146,7 @@ namespace DalObject
 
         public static void printAllParcels()
         {
-            for (int i = 0; i < config.parcelsCounter++; i++)
+            for (int i = 0; i < config.parcelsCounter; i++)
                 Console.WriteLine(DataSource.parcels[i]);
         }
 
@@ -158,7 +158,7 @@ namespace DalObject
 
         public static void printAllStation()
         {
-            for (int i = 0; i < config.stationCounter++; i++)
+            for (int i = 0; i < config.stationCounter; i++)
                 Console.WriteLine(DataSource.stations[i]);
         }
 
@@ -171,13 +171,13 @@ namespace DalObject
 
         public static void printAllDrones()
         {
-            for (int i = 0; i < config.droneCounter++; i++)
+            for (int i = 0; i < config.droneCounter; i++)
                 Console.WriteLine(DataSource.drones[i]);
         }
 
         public static void printEmptyCargeSlots()
         {
-            for (int i = 0; i < config.stationCounter++; i++)
+            for (int i = 0; i < config.stationCounter; i++)
             { 
                 if(DataSource.stations[i].ChargeSlots>0)
                     Console.WriteLine(DataSource.stations[i]);
@@ -186,7 +186,7 @@ namespace DalObject
 
         public static void ParcelWithoutDrone()
         {
-            for (int i = 0; i < config.parcelsCounter++; i++)
+            for (int i = 0; i < config.parcelsCounter; i++)
             {
                 if (DataSource.parcels[i].DroneId == 0)
                     Console.WriteLine(DataSource.parcels[i]);
