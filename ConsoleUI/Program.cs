@@ -179,7 +179,7 @@ namespace ConsoleUI
                         }
                     case Option.Show:
                         {
-                            Console.WriteLine("Station-0, Drone-1, Costumer-2, Parcel-3 ,ParcelWithoutDrone-4, AvilabaleStations-5\n");
+                            Console.WriteLine("Station-0, Drone-1, Costumer-2, Parcel-3 ,ParcelWithoutDrone-4, AvilabaleStations-5");
                             st = Console.ReadLine();
                             Show s = (Show)int.Parse(st);
                             switch (s)
