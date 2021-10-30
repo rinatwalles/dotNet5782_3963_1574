@@ -33,14 +33,13 @@ namespace DalObject
             {
                 drones[i] = new Drone ()
                 {
-                    Id = numD,
-                    //איתחול מודלים סמהאו
+                    Id = numD++,
+                    Model= "abc",
                     MaxWeight = (WeightCategories)rand.Next(0, 2),
                     Status = (DroneStatuses)rand.Next(0, 1),
                     Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
                 };
                 config.droneCounter++;
-                numD++;
             }
 
             int numS = 10;
@@ -48,15 +47,13 @@ namespace DalObject
             {
                 stations[i] = new Station()
                 {
-                    Id = numS,
-                    //איתחול מודלים סמהאו
-                    //אתחול שם string
+                    Id = numS++,
+                    Name = "ghi",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                     ChargeSlots = rand.Next(0, 10)   //number of empty charge slots in each station
                 };
                 config.stationCounter++;
-                numS++;
             }
 
             int numC = 100;
@@ -64,14 +61,13 @@ namespace DalObject
             {
                 customers[i] = new Customer()
                 {
-                    Id = numC,
-                    //איתחול ניימס 
-                    //איתחול טלפונים
+                    Id = numC++,
+                    Name="def",
+                    Phone= "12345678",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
                 config.customerCounter++;
-                numC++;
             }
 
             int numP = 1;
@@ -79,7 +75,7 @@ namespace DalObject
             {
                 parcels[i] = new Parcel()
                 {
-                    Id = numP,
+                    Id = numP++,
                     SenderId = rand.Next(1000, 2000),
                     TargetId = rand.Next(1000, 2000),
                     Weight = (WeightCategories)rand.Next(0, 2),
@@ -91,7 +87,6 @@ namespace DalObject
                     Delivered= DateTime.Now,//איתחול דליברד
                 };
                 config.parcelsCounter++;
-                numP++;
             }
 
         }

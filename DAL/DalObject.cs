@@ -77,27 +77,30 @@ namespace DalObject
         }
 
 
-        public static void ChargingDrone(Drone d, Station s, DroneCharge dc)//שליחת רחפן לטעינה
+        public static void ChargingDrone(int droneId , int stationId)//שליחת רחפן לטעינה
         {
-            d.Status = DroneStatuses.Maintenance;
+            int indexD = searchDrone(droneId);
+            drones[indexD].Status = DroneStatuses.Maintenance;
+
+            DroneCharge dc = new DroneCharge() { DroneId = droneId, StationId = stationId };
             droneCharges[config.droneChargeCounter] = dc;
             config.droneChargeCounter++;
-            s.ChargeSlots--;
-            d.Battery = 100;
+
+            int indexS = searchDrone(stationId);
+            stations[indexS].ChargeSlots--;
+            drones[indexD].Battery = 100;
         }
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <param name="d"></param>>
-        /// <param name="s"></param>
-        /// <param name="dc"></param>
-    public static void ReleaseDrone(Drone d, Station s, DroneCharge dc)//שליחת רחפן לטעינה
+
+    public static void ReleaseDrone(int droneId, int stationId)//שליחת רחפן לטעינה
     {
-        if (d.Battery == 100)
+        int indexD = searchDrone(droneId);
+        if (drones[indexD].Battery == 100)
         {
-            d.Status = DroneStatuses.Available;
+            drones[indexD].Status = DroneStatuses.Available;
             config.droneChargeCounter--;
-            s.ChargeSlots++;
+
+            int indexS = searchDrone(stationId);
+            stations[indexS].ChargeSlots++;
         }
     }
 
