@@ -4,109 +4,57 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
-
 using static DalObject.DataSource;
+
 
 namespace DalObject
 {
     public class DalObject
     {
 
-        static DalObject() { DataSource.Initialize(); }
-        public static void droneAddition(Drone d)
+        public DalObject() { DataSource.Initialize(); }
+        public void DroneAddition(Drone d)
         {
-            drones[config.droneCounter] = d;
-            config.droneCounter++;      
+            DataSource.drones[DataSource.config.droneCounter] = d;
+            DataSource.config.droneCounter++;
         }
-        public static void stationAddition(Station s)
+        public void StationAddition(Station s)
         {
-            stations[config.stationCounter] = s;
-            config.stationCounter++;
+            DataSource.stations[DataSource.config.stationCounter] = s;
+            DataSource.config.stationCounter++;
         }
-        public static void customerAddition(Customer c)
+        public void CustomerAddition(Customer c)
         {
-            customers[config.customerCounter] = c;
-            config.customerCounter++;
+            DataSource.customers[DataSource.config.customerCounter] = c;
+            DataSource.config.customerCounter++;
         }
-        public static void parcelAddition(Parcel p)
+        public void ParcelAddition(Parcel p)
         {
-            parcels[config.parcelsCounter] = p;
-            config.parcelsCounter++;
+            DataSource.parcels[DataSource.config.parcelsCounter] = p;
+            DataSource.config.parcelsCounter++;
         }
-        public static int searchDrone(int id)
+        public int SearchDrone(int id)
         {
-            for (int i = 0; i < config.droneCounter; i++)
+            for (int i = 0; i < DataSource.config.droneCounter; i++)
             {
-                if (drones[i].Id == id)
+                if (DataSource.drones[i].Id == id)
                     return i;
             }
             return -1;
         }
-        public static int searchStation(int id)
+        public int SearchStation(int id)
         {
-            for (int i = 0; i < config.droneCounter; i++)
+            for (int i = 0; i < DataSource.config.droneCounter; i++)
             {
-                if (stations[i].Id == id)
+                if (DataSource.stations[i].Id == id)
                     return i;
             }
             return -1;
         }
-        public static void joinDroneToParcel(int parcelId)//שיוך חבילה לרחפן
+
+        public int SearchCustomer(int newId)
         {
-            int index = searchParcel(parcelId);//חיפוש חבילה עם התז התואם
-            for (int i = 0; i < config.droneCounter; i++)
-            {
-                if (drones[i].Status == DroneStatuses.Available)
-                {
-                    drones[i].Status = DroneStatuses.Delivery;
-                    parcels[index].DroneId = DataSource.drones[i].Id;//חיפוש רחפן פנוי לחבילה ושיוך
-                    return;
-                }
-            }
-        }
-        public static void droneCollecting(int parcelId)//איסוף חבילה ע''י רחפן
-        {
-            int indexP = searchParcel(parcelId);//חיפוש חבילה עם התז התואם
-            parcels[indexP].Scheduled= DateTime.Now;
-        }
-
-        public static void customerCollecting(int parcelId)//איסוף חבילה ע''י לקוח
-        {
-            int indexP = searchParcel(parcelId);//חיפוש חבילה עם התז התואם
-            parcels[indexP].PickedUp = DateTime.Now;
-        }
-
-
-        public static void ChargingDrone(int droneId , int stationId)//שליחת רחפן לטעינה
-        {
-            int indexD = searchDrone(droneId);
-            drones[indexD].Status = DroneStatuses.Maintenance;
-
-            DroneCharge dc = new DroneCharge() { DroneId = droneId, StationId = stationId };
-            droneCharges[config.droneChargeCounter] = dc;
-            config.droneChargeCounter++;
-
-            int indexS = searchDrone(stationId);
-            stations[indexS].ChargeSlots--;
-            drones[indexD].Battery = 100;
-        }
-
-    public static void ReleaseDrone(int droneId, int stationId)//שליחת רחפן לטעינה
-    {
-        int indexD = searchDrone(droneId);
-        if (drones[indexD].Battery == 100)
-        {
-            drones[indexD].Status = DroneStatuses.Available;
-            config.droneChargeCounter--;
-
-            int indexS = searchDrone(stationId);
-            stations[indexS].ChargeSlots++;
-        }
-    }
-
-    public static int searchCustomer(int newId)
-        {
-            for (int i = 0; i < config.customerCounter; i++)
+            for (int i = 0; i < DataSource.config.customerCounter; i++)
             {
                 if (DataSource.customers[i].Id == newId)
                     return i;
@@ -114,9 +62,9 @@ namespace DalObject
             return -1;
         }
 
-        public static int searchParcel(int newId)
+        public int SearchParcel(int newId)
         {
-            for (int i = 0; i < config.parcelsCounter; i++)
+            for (int i = 0; i < DataSource.config.parcelsCounter; i++)
             {
                 if (DataSource.parcels[i].Id == newId)
                     return i;
@@ -124,78 +72,143 @@ namespace DalObject
             return -1;
         }
 
-        //public static void print<T>(T c)
-        // {
-        //     Console.WriteLine(c);
-        // }
-
-        public static void printCustomer(int newId)
+        public void JoinDroneToParcel(int parcelId)//שיוך חבילה לרחפן
         {
-            int temp = searchCustomer(newId);
+            int index = SearchParcel(parcelId);//חיפוש חבילה עם התז התואם
+            for (int i = 0; i < DataSource.config.droneCounter; i++)
+            {
+                if (DataSource.drones[i].Status == DroneStatuses.Available)
+                {
+                    DataSource.drones[i].Status = DroneStatuses.Delivery;
+                    DataSource.parcels[index].DroneId = DataSource.drones[i].Id;//חיפוש רחפן פנוי לחבילה ושיוך
+                    return;
+                }
+            }
+        }
+        public void DroneCollecting(int parcelId)//איסוף חבילה ע''י רחפן
+        {
+            int indexP = SearchParcel(parcelId);//חיפוש חבילה עם התז התואם
+            DataSource.parcels[indexP].Scheduled = DateTime.Now;
+        }
+
+        public void CustomerCollecting(int parcelId)//איסוף חבילה ע''י לקוח
+        {
+            int indexP = SearchParcel(parcelId);//חיפוש חבילה עם התז התואם
+            DataSource.parcels[indexP].PickedUp = DateTime.Now;
+        }
+
+        public void ChargingDrone(int droneId, int stationId)//שליחת רחפן לטעינה
+        {
+            int indexD = SearchDrone(droneId);
+            DataSource.drones[indexD].Status = DroneStatuses.Maintenance;
+
+            DroneCharge dc = new DroneCharge() { DroneId = droneId, StationId = stationId };
+            DataSource.droneCharges[DataSource.config.droneChargeCounter] = dc;
+            DataSource.config.droneChargeCounter++;
+
+            int indexS = SearchDrone(stationId);
+            DataSource.stations[indexS].ChargeSlots--;
+            DataSource.drones[indexD].Battery = 100;
+        }
+
+        public void ReleaseDrone(int droneId, int stationId)//שליחת רחפן לטעינה
+        {
+            int indexD = SearchDrone(droneId);
+            if (DataSource.drones[indexD].Battery == 100)
+            {
+                DataSource.drones[indexD].Status = DroneStatuses.Available;
+                DataSource.config.droneChargeCounter--;
+
+                int indexS = SearchDrone(stationId);
+                DataSource.stations[indexS].ChargeSlots++;
+            }
+        }
+
+        public void PrintCustomer(int newId)
+        {
+            int temp = SearchCustomer(newId);
             Console.WriteLine(DataSource.customers[temp]);
         }
 
-        public static void printAllCustomer()
+        public void PrintAllCustomer()
         {
-            for (int i = 0; i < config.customerCounter; i++)
+            for (int i = 0; i < DataSource.config.customerCounter; i++)
                 Console.WriteLine(DataSource.customers[i]);
         }
 
-        public static void printParcel(int newId)
+        public void PrintParcel(int newId)
         {
-            int temp = searchParcel(newId);
+            int temp = SearchParcel(newId);
             Console.WriteLine(DataSource.parcels[temp]);
         }
 
-        public static void printAllParcels()
+        public void PrintAllParcels()
         {
-            for (int i = 0; i < config.parcelsCounter; i++)
+            for (int i = 0; i < DataSource.config.parcelsCounter; i++)
                 Console.WriteLine(DataSource.parcels[i]);
         }
 
-        public static void printStation(int newId)
+        public void PrintStation(int newId)
         {
-            int temp = searchStation(newId);
+            int temp = SearchStation(newId);
             Console.WriteLine(DataSource.stations[temp]);
         }
 
-        public static void printAllStation()
+        public void PrintAllStation()
         {
-            for (int i = 0; i < config.stationCounter; i++)
+            for (int i = 0; i < DataSource.config.stationCounter; i++)
                 Console.WriteLine(DataSource.stations[i]);
         }
 
 
-        public static void printDrone(int newId)
+        public void PrintDrone(int newId)
         {
-            int temp = searchDrone(newId);
+            int temp = SearchDrone(newId);
             Console.WriteLine(DataSource.drones[temp]);
         }
 
-        public static void printAllDrones()
+        public void PrintAllDrones()
         {
-            for (int i = 0; i < config.droneCounter; i++)
+            for (int i = 0; i < DataSource.config.droneCounter; i++)
                 Console.WriteLine(DataSource.drones[i]);
         }
 
-        public static void printEmptyCargeSlots()
+        public void PrintEmptyCargeSlots()
         {
-            for (int i = 0; i < config.stationCounter; i++)
-            { 
-                if(DataSource.stations[i].ChargeSlots>0)
+            for (int i = 0; i < DataSource.config.stationCounter; i++)
+            {
+                if (DataSource.stations[i].ChargeSlots > 0)
                     Console.WriteLine(DataSource.stations[i]);
             }
         }
 
-        public static void ParcelWithoutDrone()
+        public void ParcelWithoutDrone()
         {
-            for (int i = 0; i < config.parcelsCounter; i++)
+            for (int i = 0; i < DataSource.config.parcelsCounter; i++)
             {
                 if (DataSource.parcels[i].DroneId == 0)
                     Console.WriteLine(DataSource.parcels[i]);
             }
         }
 
-    }
-}
+        public void DistanceFromStation(int id, double x1, double y1)
+        {
+            int temp = SearchStation(id);
+            double longy = DataSource.stations[temp].Longitude;
+            double latx = DataSource.stations[temp].Latitude;
+            Console.WriteLine(DistanceCalculate(x1, y1, longy, latx));
+        }
+        public void DistanceFromCustomer(int id, double x1, double y1)
+        {
+            int temp = SearchCustomer(id);
+            double longy = DataSource.customers[temp].Longitude;
+            double latx = DataSource.customers[temp].Latitude;
+            Console.WriteLine(DistanceCalculate(x1, y1, longy, latx));
+        }
 
+        public double DistanceCalculate(double x1, double y1, double longy, double latx)
+        {
+            return (Math.Sqrt(Math.Pow(x1-latx, 2)+Math.Pow(y1-longy,2)));
+        }
+    };
+}

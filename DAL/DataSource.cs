@@ -7,7 +7,7 @@ using IDAL.DO;
 
 namespace DalObject
 {
-    class DataSource
+    public class DataSource
     {
         internal class config
         {
@@ -26,7 +26,7 @@ namespace DalObject
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        internal static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
+        public static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
             int numD = 10;
             for (int i = 0; i < 5; i++)
