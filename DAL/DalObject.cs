@@ -11,28 +11,47 @@ namespace DalObject
 {
     public class DalObject
     {
-
+        /// <summary>
+        /// create initialized arrays
+        /// </summary>
         public DalObject() { DataSource.Initialize(); }
         public void DroneAddition(Drone d)
         {
             DataSource.drones[DataSource.config.droneCounter] = d;
             DataSource.config.droneCounter++;
         }
+        /// <summary>
+        /// add new station
+        /// </summary>
+        /// <param name="s">new station</param>
         public void StationAddition(Station s)
         {
             DataSource.stations[DataSource.config.stationCounter] = s;
             DataSource.config.stationCounter++;
         }
+        /// <summary>
+        /// add new customer
+        /// </summary>
+        /// <param name="c">new customer</param>
         public void CustomerAddition(Customer c)
         {
             DataSource.customers[DataSource.config.customerCounter] = c;
             DataSource.config.customerCounter++;
         }
+        /// <summary>
+        /// add new parcel
+        /// </summary>
+        /// <param name="p">new parcel</param>
         public void ParcelAddition(Parcel p)
         {
             DataSource.parcels[DataSource.config.parcelsCounter] = p;
             DataSource.config.parcelsCounter++;
         }
+        /// <summary>
+        /// search drone accroding to its id in the array
+        /// </summary>
+        /// <param name="id">drone id to search for</param>
+        /// <returns>return the index of the drone in the array</returns>
         public int SearchDrone(int id)
         {
             for (int i = 0; i < DataSource.config.droneCounter; i++)
@@ -42,6 +61,11 @@ namespace DalObject
             }
             return -1;
         }
+        /// <summary>
+        /// search for station according to its id in the array
+        /// </summary>
+        /// <param name="id">station id to search for in the array</param>
+        /// <returns>return the index of the station in the array</returns>
         public int SearchStation(int id)
         {
             for (int i = 0; i < DataSource.config.droneCounter; i++)
@@ -51,7 +75,11 @@ namespace DalObject
             }
             return -1;
         }
-
+        /// <summary>
+        /// search for customer according to its id in the array
+        /// </summary>
+        /// <param name="newId">costuner id to search for in the array</param>
+        /// <returns>return the index of the costuner in the array</returns>
         public int SearchCustomer(int newId)
         {
             for (int i = 0; i < DataSource.config.customerCounter; i++)
@@ -61,7 +89,11 @@ namespace DalObject
             }
             return -1;
         }
-
+        /// <summary>
+        /// search for parcel according to its id in the array
+        /// </summary>
+        /// <param name="newId">parcel id to search for in the array</param>
+        /// <returns>return the index of the costuner in the array</returns>
         public int SearchParcel(int newId)
         {
             for (int i = 0; i < DataSource.config.parcelsCounter; i++)
@@ -71,108 +103,152 @@ namespace DalObject
             }
             return -1;
         }
-
-        public void JoinDroneToParcel(int parcelId)//שיוך חבילה לרחפן
+        /// <summary>
+        /// join drone to parcel
+        /// </summary>
+        /// <param name="parcelId">parcel id to connect to drone</param>
+        public void JoinDroneToParcel(int parcelId)
         {
-            int index = SearchParcel(parcelId);//חיפוש חבילה עם התז התואם
+            int index = SearchParcel(parcelId);//search the parcel with the requested id
             for (int i = 0; i < DataSource.config.droneCounter; i++)
             {
-                if (DataSource.drones[i].Status == DroneStatuses.Available)
+                if (DataSource.drones[i].Status == DroneStatuses.Available)//search for avilable drone
                 {
-                    DataSource.drones[i].Status = DroneStatuses.Delivery;
-                    DataSource.parcels[index].DroneId = DataSource.drones[i].Id;//חיפוש רחפן פנוי לחבילה ושיוך
+                    DataSource.drones[i].Status = DroneStatuses.Delivery;//change the drone status
+                    DataSource.parcels[index].DroneId = DataSource.drones[i].Id;//parcel drone id= avilable id
                     return;
                 }
             }
         }
-        public void DroneCollecting(int parcelId)//איסוף חבילה ע''י רחפן
+        /// <summary>
+        /// collecting the parcel by drone
+        /// </summary>
+        /// <param name="parcelId">parcel id to collect</param>
+        public void DroneCollecting(int parcelId)
         {
-            int indexP = SearchParcel(parcelId);//חיפוש חבילה עם התז התואם
-            DataSource.parcels[indexP].Scheduled = DateTime.Now;
+            int indexP = SearchParcel(parcelId);//search  for parcel with the given id
+            DataSource.parcels[indexP].PickedUp = DateTime.Now;//change time
         }
 
-        public void CustomerCollecting(int parcelId)//איסוף חבילה ע''י לקוח
+        /// <summary>
+        /// collecting the parcel cy the costumer
+        /// </summary>
+        /// <param name="parcelId">parcel id to collect</param>
+        public void CustomerCollecting(int parcelId)
         {
-            int indexP = SearchParcel(parcelId);//חיפוש חבילה עם התז התואם
-            DataSource.parcels[indexP].PickedUp = DateTime.Now;
+            int indexP = SearchParcel(parcelId);//search  for parcel with the given id
+            DataSource.parcels[indexP].Delivered = DateTime.Now;//change time
         }
 
-        public void ChargingDrone(int droneId, int stationId)//שליחת רחפן לטעינה
+        /// <summary>
+        /// charging the drone
+        /// </summary>
+        /// <param name="droneId">drone id to charge</param>
+        /// <param name="stationId">station id to charge in</param>
+        public void ChargingDrone(int droneId, int stationId)
         {
-            int indexD = SearchDrone(droneId);
-            DataSource.drones[indexD].Status = DroneStatuses.Maintenance;
+            int indexD = SearchDrone(droneId);//search drone
+            DataSource.drones[indexD].Status = DroneStatuses.Maintenance;//change drone status
 
-            DroneCharge dc = new DroneCharge() { DroneId = droneId, StationId = stationId };
-            DataSource.droneCharges[DataSource.config.droneChargeCounter] = dc;
+            DroneCharge dc = new DroneCharge() { DroneId = droneId, StationId = stationId };//new drone charge
+            DataSource.droneCharges[DataSource.config.droneChargeCounter] = dc;//adding to drone chrge array
             DataSource.config.droneChargeCounter++;
 
-            int indexS = SearchDrone(stationId);
-            DataSource.stations[indexS].ChargeSlots--;
-            DataSource.drones[indexD].Battery = 100;
+            int indexS = SearchStation(stationId);//search station
+            DataSource.stations[indexS].ChargeSlots--;//decresing charge slots number
+            DataSource.drones[indexD].Battery = 100;//full battery
         }
-
+        /// <summary>
+        /// releasing drone from charging 
+        /// </summary>
+        /// <param name="droneId">drone id</param>
+        /// <param name="stationId">station id</param>
         public void ReleaseDrone(int droneId, int stationId)//שליחת רחפן לטעינה
         {
             int indexD = SearchDrone(droneId);
-            if (DataSource.drones[indexD].Battery == 100)
+            if (DataSource.drones[indexD].Battery == 100)//battery is full
             {
-                DataSource.drones[indexD].Status = DroneStatuses.Available;
+                DataSource.drones[indexD].Status = DroneStatuses.Available;//change status
                 DataSource.config.droneChargeCounter--;
 
                 int indexS = SearchDrone(stationId);
-                DataSource.stations[indexS].ChargeSlots++;
+                DataSource.stations[indexS].ChargeSlots++;//increasing charge number number
             }
         }
 
+        /// <summary>
+        /// print customer by id
+        /// </summary>
+        /// <param name="newId">costumer id to print</param>
         public void PrintCustomer(int newId)
         {
             int temp = SearchCustomer(newId);
             Console.WriteLine(DataSource.customers[temp]);
         }
-
+        /// <summary>
+        /// print all customers
+        /// </summary>
         public void PrintAllCustomer()
         {
             for (int i = 0; i < DataSource.config.customerCounter; i++)
                 Console.WriteLine(DataSource.customers[i]);
         }
-
+        /// <summary>
+        /// print parcel by id
+        /// </summary>
+        /// <param name="newId">parcel id to print</param>
         public void PrintParcel(int newId)
         {
             int temp = SearchParcel(newId);
             Console.WriteLine(DataSource.parcels[temp]);
         }
-
+        /// <summary>
+        /// print all parcels
+        /// </summary>
         public void PrintAllParcels()
         {
             for (int i = 0; i < DataSource.config.parcelsCounter; i++)
                 Console.WriteLine(DataSource.parcels[i]);
         }
-
+        /// <summary>
+        /// print station by id
+        /// </summary>
+        /// <param name="newId">station id to print</param>
         public void PrintStation(int newId)
         {
             int temp = SearchStation(newId);
             Console.WriteLine(DataSource.stations[temp]);
         }
 
+        /// <summary>
+        /// print all stations
+        /// </summary>
         public void PrintAllStation()
         {
             for (int i = 0; i < DataSource.config.stationCounter; i++)
                 Console.WriteLine(DataSource.stations[i]);
         }
 
-
+        /// <summary>
+        /// print drone by id   
+        /// </summary>
+        /// <param name="newId">drone id to print</param>
         public void PrintDrone(int newId)
         {
             int temp = SearchDrone(newId);
             Console.WriteLine(DataSource.drones[temp]);
         }
-
+        /// <summary>
+        /// print all drones
+        /// </summary>
         public void PrintAllDrones()
         {
             for (int i = 0; i < DataSource.config.droneCounter; i++)
                 Console.WriteLine(DataSource.drones[i]);
         }
-
+        /// <summary>
+        /// print the empty charge slots
+        /// </summary>
         public void PrintEmptyCargeSlots()
         {
             for (int i = 0; i < DataSource.config.stationCounter; i++)
@@ -181,7 +257,9 @@ namespace DalObject
                     Console.WriteLine(DataSource.stations[i]);
             }
         }
-
+        /// <summary>
+        /// print parcel without drones
+        /// </summary>
         public void ParcelWithoutDrone()
         {
             for (int i = 0; i < DataSource.config.parcelsCounter; i++)
@@ -190,25 +268,43 @@ namespace DalObject
                     Console.WriteLine(DataSource.parcels[i]);
             }
         }
-
+        /// <summary>
+        /// current distance fron station
+        /// </summary>
+        /// <param name="id">station id</param>
+        /// <param name="x1">current x coordinate</param>
+        /// <param name="y1">current y coordinate</param>
         public void DistanceFromStation(int id, double x1, double y1)
         {
             int temp = SearchStation(id);
-            double longy = DataSource.stations[temp].Longitude;
+            double longy = DataSource.stations[temp].Longitude;//station coordinates
             double latx = DataSource.stations[temp].Latitude;
-            Console.WriteLine(DistanceCalculate(x1, y1, longy, latx));
+            Console.WriteLine(DistanceCalculate(x1, y1, longy, latx));//print the distance
         }
+        /// <summary>
+        /// current distance fron customer
+        /// </summary>
+        /// <param name="id">costuner id</param>
+        /// <param name="x1">current x coordinate</param>
+        /// <param name="y1">current y coordinate</param>
         public void DistanceFromCustomer(int id, double x1, double y1)
         {
             int temp = SearchCustomer(id);
-            double longy = DataSource.customers[temp].Longitude;
+            double longy = DataSource.customers[temp].Longitude;//custoner coordinates
             double latx = DataSource.customers[temp].Latitude;
-            Console.WriteLine(DistanceCalculate(x1, y1, longy, latx));
+            Console.WriteLine(DistanceCalculate(x1, y1, longy, latx));//print the distance
         }
-
+        /// <summary>
+        /// calaulates distance between coordinates
+        /// </summary>
+        /// <param name="x1">x coordinate</param>
+        /// <param name="y1">y coordinate</param>
+        /// <param name="longy">coordinate</param>
+        /// <param name="latx">coordinate</param>
+        /// <returns></returns>
         public double DistanceCalculate(double x1, double y1, double longy, double latx)
         {
-            return (Math.Sqrt(Math.Pow(x1-latx, 2)+Math.Pow(y1-longy,2)));
+            return (Math.Sqrt(Math.Pow(x1-latx, 2)+Math.Pow(y1-longy,2)));//distance calculation
         }
     };
 }

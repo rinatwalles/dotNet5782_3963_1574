@@ -9,6 +9,9 @@ namespace DalObject
 {
     public class DataSource
     {
+        /// <summary>
+        /// function that create static arrays for drones, stations, customers, parcels and drone charges
+        /// </summary>
         internal class config
         {
             internal static int droneCounter = 0;
@@ -26,6 +29,11 @@ namespace DalObject
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
+        public static DateTime Requested { get; private set; }
+
+        /// <summary>
+        /// The function initialize the arrays
+        /// </summary>
         public static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
             int numD = 10;
@@ -82,9 +90,9 @@ namespace DalObject
                     Priority = (Priorities)rand.Next(0, 2),
                     Requested = DateTime.Now,//איתחול ריקוסטד
                     DroneId = rand.Next(10, 20),
-                    Scheduled= DateTime.Now,//איתחול סקדולד
-                    PickedUp= DateTime.Now,//איתחול פיקד אפ
-                    Delivered= DateTime.Now,//איתחול דליברד
+                    Scheduled= parcels[i].Requested.AddHours(1),//איתחול סקדולד
+                    PickedUp= parcels[i].Requested.AddHours(1),//איתחול פיקד אפ
+                    Delivered= parcels[i].Requested.AddHours(1),//איתחול דליברד
                 };
                 config.parcelsCounter++;
             }

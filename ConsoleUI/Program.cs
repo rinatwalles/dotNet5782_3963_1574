@@ -21,8 +21,9 @@ namespace ConsoleUI
             DalObject.DalObject dall = new DalObject.DalObject();
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
             string st = Console.ReadLine();
-            Option x = (Option)int.Parse(st);
-            while (x!=(Option)5)
+            Option x;
+            bool b = Option.TryParse(st, out x);
+            while (x!=Option.Exit)
             {
                 switch (x)
                 {
@@ -30,7 +31,8 @@ namespace ConsoleUI
                         {
                             Console.WriteLine("insert: adding Station-0,\n adding Dron-1\n adding Customer-2\n adding Parce-3");
                             st = Console.ReadLine();
-                            Add a = (Add)int.Parse(st);
+                            Add a;
+                            b = Add.TryParse(st, out a);
                             switch (a)
                             {
                                 case Add.Station:
@@ -100,7 +102,8 @@ namespace ConsoleUI
                         {
                             Console.WriteLine("insert: Join-0, Collect=1, Supply=2, ChargeDrone=3, ReleaseDrone=4");
                             st = Console.ReadLine();
-                            Update u = (Update)int.Parse(st);
+                            Update u;
+                            b = Update.TryParse(st, out u);
                             switch (u)
                             {
                                 case Update.Join:
@@ -150,7 +153,8 @@ namespace ConsoleUI
                         {
                             Console.WriteLine("Station-0, Drone-1, Costumer-2, Parcel-3");
                             st = Console.ReadLine();
-                            Display d = (Display)int.Parse(st);
+                            Display d;
+                            b = Display.TryParse(st, out d);
                             Console.WriteLine("insert id");
                             int id = int.Parse(System.Console.ReadLine());
                             switch (d)
@@ -184,7 +188,8 @@ namespace ConsoleUI
                         {
                             Console.WriteLine("Station-0, Drone-1, Costumer-2, Parcel-3 ,ParcelWithoutDrone-4, AvilabaleStations-5");
                             st = Console.ReadLine();
-                            Show s = (Show)int.Parse(st);
+                            Show s ;
+                            b = Show.TryParse(st, out s);
                             switch (s)
                             {
                                 case Show.Station:
@@ -208,12 +213,15 @@ namespace ConsoleUI
                         {
                             Console.WriteLine("insert a cordinate");
                             st = Console.ReadLine();
-                            double x1  = double.Parse(st);
+                            double x1; 
+                            b = double.TryParse(st,out x1);
                             st = Console.ReadLine();
-                            double y1 = double.Parse(st);
+                            double y1;
+                            b = double.TryParse(st,out y1);
                             Console.WriteLine("choose distance from: Station-0, Costumer-1,");
                             st = Console.ReadLine();
-                            Distance ds = (Distance)int.Parse(st);
+                            Distance ds;
+                            b= Distance.TryParse(st,out ds);
                             switch (ds)
                             {
                                 case Distance.Station:
@@ -242,7 +250,7 @@ namespace ConsoleUI
                 }
              Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
              st = Console.ReadLine();
-             x = (Option)int.Parse(st);
+             b = Option.TryParse(st, out x);
             }
         }
     }
