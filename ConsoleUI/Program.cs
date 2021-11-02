@@ -8,7 +8,7 @@ using DalObject;
 
 namespace ConsoleUI
 {
-    public class Program
+    public class ProgramA
     {
         enum Option { Add, Update, Display, Show, Distance, Exit };
         enum Add { Station, Dron, Customer, Parcel };

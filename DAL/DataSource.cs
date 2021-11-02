@@ -82,9 +82,9 @@ namespace DalObject
                     Priority = (Priorities)rand.Next(0, 2),
                     Requested = DateTime.Now,//איתחול ריקוסטד
                     DroneId = rand.Next(10, 20),
-                    Scheduled= DateTime.Now,//איתחול סקדולד
-                    PickedUp= DateTime.Now,//איתחול פיקד אפ
-                    Delivered= DateTime.Now,//איתחול דליברד
+                    Scheduled= DateTime.Today,//איתחול סקדולד
+                    PickedUp= DateTime.Today.AddDays(10),//איתחול פיקד אפ
+                    Delivered= DateTime.Today.AddHours(3),//איתחול דליברד
                 };
                 config.parcelsCounter++;
             }
