@@ -19,6 +19,7 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             DalObject.DalObject dall = new DalObject.DalObject();
+            DalObject.DataSource dat = new DalObject.DataSource();
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
             string st = Console.ReadLine();
             Option x;
@@ -197,17 +198,53 @@ namespace ConsoleUI
                             switch (s)
                             {
                                 case Show.Station://print all stations
-                                    { dall.PrintAllStation(); break; }
+                                    {
+                                        Station[] arrStations = dall.AllStation();
+                                        for (int i = 0; i < arrStations.Length; i++)
+                                            Console.WriteLine(arrStations[i]);
+                                        break;
+                                    }
                                 case Show.Drone://print all drones
-                                    { dall.PrintAllDrones(); break; }
+                                    { 
+                                        Drone[] arrDrones= dall.AllDrones();
+                                        for (int i = 0; i < arrDrones.Length; i++)
+                                            Console.WriteLine(arrDrones[i]);
+                                        break; 
+                                    }
                                 case Show.Customer://print all Customer
-                                    { dall.PrintAllCustomer(); break; }
+                                    {
+                                        Customer[] arrCustomers = dall.AllCustomer();
+                                        for (int i = 0; i < arrCustomers.Length; i++)
+                                            Console.WriteLine(arrCustomers[i]);
+                                        break;
+                                    }
                                 case Show.Parcel://print all parcels
-                                    { dall.PrintAllParcels(); break; }
+                                    {
+                                        Parcel[] arrParcel = dall.AllParcels();
+                                        for (int i = 0; i < arrParcel.Length; i++)
+                                            Console.WriteLine(arrParcel[i]);
+                                        break;
+                                    }
                                 case Show.ParcelWithoutDrone://orint all parcels without drones
-                                    { dall.ParcelWithoutDrone(); break; }
+                                    {
+                                        Parcel[] arrParcel = dall.AllParcels();
+                                        for (int i = 0; i < arrParcel.Length; i++)
+                                        {
+                                            if (arrParcel[i].DroneId == 0)
+                                                Console.WriteLine(arrParcel[i]);
+                                        }
+                                       break;
+                                    }
                                 case Show.AvilabaleStations://print all avilable stations
-                                    { dall.PrintEmptyCargeSlots(); break; }
+                                    {
+                                        Station[] arrStation = dall.AllStation();
+                                        for (int i = 0; i < arrStation.Length; i++)
+                                        {
+                                            if (arrStation[i].ChargeSlots > 0)
+                                                Console.WriteLine(arrStation[i]);
+                                        }
+                                       break; 
+                                    }
                                 default:
                                     break;
                             }
@@ -236,7 +273,7 @@ namespace ConsoleUI
                                         Console.WriteLine(dall.DistanceFromStation(id, x1, y1));
                                         break;
                                     }
-                                case Distance.Costumer:
+                                case Distance.Customer:
                                     {
                                         Console.WriteLine("insert an id of a customer");
                                         st = Console.ReadLine();

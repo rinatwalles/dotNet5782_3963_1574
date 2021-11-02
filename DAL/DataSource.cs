@@ -29,12 +29,10 @@ namespace DalObject
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        public static DateTime Requested { get; private set; }
-
         /// <summary>
         /// The function initialize the arrays
         /// </summary>
-        public static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
+        internal static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
             for (int i = 0; i < 5; i++)
             {

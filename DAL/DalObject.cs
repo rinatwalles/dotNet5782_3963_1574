@@ -186,12 +186,11 @@ namespace DalObject
             return DataSource.customers[temp];
         }
         /// <summary>
-        /// print all customers
+        /// returning array of all customers
         /// </summary>
-        public void PrintAllCustomer()
+        public Customer[] AllCustomer()
         {
-            for (int i = 0; i < DataSource.config.customerCounter; i++)
-                Console.WriteLine(DataSource.customers[i]);
+            return DataSource.customers;
         }
         /// <summary>
         /// print parcel by id
@@ -203,12 +202,11 @@ namespace DalObject
             return DataSource.parcels[temp];
         }
         /// <summary>
-        /// print all parcels
+        ///  returning array of all parcels
         /// </summary>
-        public void PrintAllParcels()
+        public Parcel[] AllParcels()
         {
-            for (int i = 0; i < DataSource.config.parcelsCounter; i++)
-                Console.WriteLine(DataSource.parcels[i]);
+            return DataSource.parcels;
         }
         /// <summary>
         /// print station by id
@@ -221,12 +219,11 @@ namespace DalObject
         }
 
         /// <summary>
-        /// print all stations
+        /// returning array of all stations
         /// </summary>
-        public void PrintAllStation()
+        public Station[] AllStation()
         {
-            for (int i = 0; i < DataSource.config.stationCounter; i++)
-                Console.WriteLine(DataSource.stations[i]);
+            return DataSource.stations;
         }
 
         /// <summary>
@@ -239,34 +236,11 @@ namespace DalObject
             return DataSource.drones[temp];
         }
         /// <summary>
-        /// print all drones
+        ///  returning array of all drones
         /// </summary>
-        public void PrintAllDrones()
+        public Drone[] AllDrones()
         {
-            for (int i = 0; i < DataSource.config.droneCounter; i++)
-                Console.WriteLine(DataSource.drones[i]);
-        }
-        /// <summary>
-        /// print the empty charge slots
-        /// </summary>
-        public void PrintEmptyCargeSlots()
-        {
-            for (int i = 0; i < DataSource.config.stationCounter; i++)
-            {
-                if (DataSource.stations[i].ChargeSlots > 0)
-                    Console.WriteLine(DataSource.stations[i]);
-            }
-        }
-        /// <summary>
-        /// print parcel without drones
-        /// </summary>
-        public void ParcelWithoutDrone()
-        {
-            for (int i = 0; i < DataSource.config.parcelsCounter; i++)
-            {
-                if (DataSource.parcels[i].DroneId == 0)
-                    Console.WriteLine(DataSource.parcels[i]);
-            }
+            return DataSource.drones;
         }
         /// <summary>
         /// current distance fron station
