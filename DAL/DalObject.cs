@@ -274,12 +274,12 @@ namespace DalObject
         /// <param name="id">station id</param>
         /// <param name="x1">current x coordinate</param>
         /// <param name="y1">current y coordinate</param>
-        public void DistanceFromStation(int id, double x1, double y1)
+        public double DistanceFromStation(int id, double x1, double y1)
         {
             int temp = SearchStation(id);
             double longy = DataSource.stations[temp].Longitude;//station coordinates
             double latx = DataSource.stations[temp].Latitude;
-            Console.WriteLine(DistanceCalculate(x1, y1, longy, latx));//print the distance
+            return DistanceCalculate(x1, y1, longy, latx);//print the distance
         }
         /// <summary>
         /// current distance fron customer
@@ -287,12 +287,12 @@ namespace DalObject
         /// <param name="id">costuner id</param>
         /// <param name="x1">current x coordinate</param>
         /// <param name="y1">current y coordinate</param>
-        public void DistanceFromCustomer(int id, double x1, double y1)
+        public double DistanceFromCustomer(int id, double x1, double y1)
         {
             int temp = SearchCustomer(id);
             double longy = DataSource.customers[temp].Longitude;//custoner coordinates
             double latx = DataSource.customers[temp].Latitude;
-            Console.WriteLine(DistanceCalculate(x1, y1, longy, latx));//print the distance
+            return DistanceCalculate(x1, y1, longy, latx);//print the distance
         }
         /// <summary>
         /// calaulates distance between coordinates

@@ -36,54 +36,51 @@ namespace DalObject
         /// </summary>
         public static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
-            int numD = 10;
             for (int i = 0; i < 5; i++)
             {
+                config.droneCounter++;
                 drones[i] = new Drone ()
                 {
-                    Id = numD++,
-                    Model= "abc",
+                    Id = config.droneCounter,
+                    Model = "abc",
                     MaxWeight = (WeightCategories)rand.Next(0, 2),
                     Status = (DroneStatuses)rand.Next(0, 1),
                     Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
                 };
-                config.droneCounter++;
             }
 
-            int numS = 10;
             for (int i = 0; i < 2; i++)
             {
+                config.stationCounter++;
                 stations[i] = new Station()
                 {
-                    Id = numS++,
+                    Id = config.stationCounter,
                     Name = "ghi",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                     ChargeSlots = rand.Next(0, 10)   //number of empty charge slots in each station
                 };
-                config.stationCounter++;
             }
 
-            int numC = 100;
             for (int i = 0; i < 10; i++)
             {
+                config.customerCounter++;
                 customers[i] = new Customer()
                 {
-                    Id = numC++,
-                    Name="def",
+                    Id = config.customerCounter,
+                    Name ="def",
                     Phone= "12345678",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
-                config.customerCounter++;
             }
 
-            int numP = 1;
             for (int i = 0; i < 10; i++)
             {
+                config.parcelsCounter++;
                 parcels[i] = new Parcel()
                 {
-                    Id = numP++,
+                    Id = config.parcelsCounter,
                     SenderId = rand.Next(1000, 2000),
                     TargetId = rand.Next(1000, 2000),
                     Weight = (WeightCategories)rand.Next(0, 2),
@@ -94,7 +91,6 @@ namespace DalObject
                     PickedUp= parcels[i].Requested.AddHours(1),//איתחול פיקד אפ
                     Delivered= parcels[i].Requested.AddHours(1),//איתחול דליברד
                 };
-                config.parcelsCounter++;
             }
 
         }

@@ -229,7 +229,7 @@ namespace ConsoleUI
                                         Console.WriteLine("insert an id of a station");
                                         st = Console.ReadLine();
                                         int id = int.Parse(st);
-                                        dall.DistanceFromStation(id, x1, y1);
+                                        Console.WriteLine(dall.DistanceFromStation(id, x1, y1));
                                         break;
                                     }
                                 case Distance.Costumer:
@@ -237,7 +237,7 @@ namespace ConsoleUI
                                         Console.WriteLine("insert an id of a customer");
                                         st = Console.ReadLine();
                                         int id = int.Parse(st);
-                                        dall.DistanceFromCustomer(id, x1, y1);
+                                        Console.WriteLine(dall.DistanceFromCustomer(id, x1, y1));
                                         break;
                                     }
                                 default:
