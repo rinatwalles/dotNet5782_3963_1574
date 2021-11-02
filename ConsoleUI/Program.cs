@@ -10,12 +10,12 @@ namespace ConsoleUI
 {
     public class ProgramA
     {
-        enum Option { Add, Update, Display, Show, Distance, Exit };
-        enum Add { Station, Dron, Customer, Parcel };
-        enum Update { Join, Collect, Supply, ChargeDrone, ReleaseDrone };
-        enum Display { Station, Drone, Costumer, Parcel };
-        enum Show { Station, Drone, Costumer, Parcel, ParcelWithoutDrone, AvilabaleStations };
-        enum Distance { Station, Costumer }
+        enum Option { Add, Update, Display, Show, Distance, Exit };//enum  for options
+        enum Add { Station, Dron, Customer, Parcel };//enum for add options
+        enum Update { Join, Collect, Supply, ChargeDrone, ReleaseDrone };//enum for update options
+        enum Display { Station, Drone, Customer, Parcel };//enum for display options
+        enum Show { Station, Drone, Customer, Parcel, ParcelWithoutDrone, AvilabaleStations };//enum for show options
+        enum Distance { Station, Customer }//enum for distance options
         static void Main(string[] args)
         {
             DalObject.DalObject dall = new DalObject.DalObject();
@@ -23,11 +23,11 @@ namespace ConsoleUI
             string st = Console.ReadLine();
             Option x;
             bool b = Option.TryParse(st, out x);
-            while (x!=Option.Exit)
+            while (x!=Option.Exit)//while not exit
             {
                 switch (x)
                 {
-                    case Option.Add:
+                    case Option.Add://addint new object
                         {
                             Console.WriteLine("insert: adding Station-0,\n adding Dron-1\n adding Customer-2\n adding Parce-3");
                             st = Console.ReadLine();
@@ -35,7 +35,7 @@ namespace ConsoleUI
                             b = Add.TryParse(st, out a);
                             switch (a)
                             {
-                                case Add.Station:
+                                case Add.Station://add station
                                     {
                                         Console.WriteLine("Insert id, name, langitude, latitude, charge slot");
                                         IDAL.DO.Station sstation = new IDAL.DO.Station()
@@ -49,7 +49,7 @@ namespace ConsoleUI
                                         dall.StationAddition(sstation);
                                         break;
                                     }
-                                case Add.Dron:
+                                case Add.Dron://add drone
                                     {
                                         Console.WriteLine("Insert id, model, maximum wight");
                                         Drone ddrone = new Drone()
@@ -63,7 +63,7 @@ namespace ConsoleUI
                                         dall.DroneAddition(ddrone);
                                         break;
                                     }
-                                case Add.Customer:
+                                case Add.Customer://add drone
                                     {
                                         Console.WriteLine("insert id, longitude, latitude");
                                         Customer customer = new Customer()
@@ -77,7 +77,7 @@ namespace ConsoleUI
                                         dall.CustomerAddition(customer);
                                         break;
                                     }
-                                case Add.Parcel:
+                                case Add.Parcel://add parcel
                                     {
                                         Console.WriteLine("insert id, SenderId, TargetId, weight, Priority");
                                         Parcel parcel = new Parcel()
@@ -98,7 +98,7 @@ namespace ConsoleUI
                             }
                             break;
                         }
-                    case Option.Update:
+                    case Option.Update://upadte the objects
                         {
                             Console.WriteLine("insert: Join-0, Collect=1, Supply=2, ChargeDrone=3, ReleaseDrone=4");
                             st = Console.ReadLine();
@@ -106,21 +106,21 @@ namespace ConsoleUI
                             b = Update.TryParse(st, out u);
                             switch (u)
                             {
-                                case Update.Join:
+                                case Update.Join:// join drone to parcel
                                     {
                                         Console.WriteLine("insert an id of a parcel");
                                         int parcelId = int.Parse(System.Console.ReadLine());
                                         dall.JoinDroneToParcel(parcelId);
                                         break;
                                     }
-                                case Update.Collect:
+                                case Update.Collect://parcel collecting by drine 
                                     {
                                         Console.WriteLine("insert an id of a parcel");
                                         int parcelId = int.Parse(System.Console.ReadLine());
                                         dall.DroneCollecting(parcelId);
                                         break;
                                     }
-                                case Update.Supply:
+                                case Update.Supply://customer collecting the parcel
                                     {
                                         Console.WriteLine("insert an id of a parcel");
                                         int parcelId = int.Parse(System.Console.ReadLine());
@@ -128,7 +128,7 @@ namespace ConsoleUI
                                         break;
                                     }
 
-                                case Update.ChargeDrone:
+                                case Update.ChargeDrone://chraging the drone
                                     {
                                         Console.WriteLine("insert an id of a drone and station");
                                         int droneId = int.Parse(System.Console.ReadLine());
@@ -136,7 +136,7 @@ namespace ConsoleUI
                                         dall.ChargingDrone(droneId, stationId);
                                         break;
                                     }
-                                case Update.ReleaseDrone:
+                                case Update.ReleaseDrone://releasing the drone
                                     {
                                         Console.WriteLine("insert an id of a drone and station");
                                         int droneId = int.Parse(System.Console.ReadLine());
@@ -149,9 +149,9 @@ namespace ConsoleUI
                             }
                             break;
                         }
-                    case Option.Display:
+                    case Option.Display://display
                         {
-                            Console.WriteLine("Station-0, Drone-1, Costumer-2, Parcel-3");
+                            Console.WriteLine("Station-0, Drone-1, Customer-2, Parcel-3");
                             st = Console.ReadLine();
                             Display d;
                             b = Display.TryParse(st, out d);
@@ -159,24 +159,28 @@ namespace ConsoleUI
                             int id = int.Parse(System.Console.ReadLine());
                             switch (d)
                             {
-                                case Display.Station:
+                                case Display.Station://print the station
                                     {
-                                        dall.PrintStation(id);
+                                        Station s=dall.PrintStation(id);
+                                        Console.WriteLine(s);
                                         break;
                                     }
-                                case Display.Drone:
+                                case Display.Drone://print the drone
                                     {
-                                        dall.PrintDrone(id);
+                                        Drone dr=dall.PrintDrone(id);
+                                        Console.WriteLine(dr);
                                         break;
                                     }
-                                case Display.Costumer:
+                                case Display.Customer://print the Customer
                                     {
-                                        dall.PrintCustomer(id);
+                                        Customer c=dall.PrintCustomer(id);
+                                        Console.WriteLine(c);
                                         break;
                                     }
-                                case Display.Parcel:
+                                case Display.Parcel://print the parcel
                                     {
-                                        dall.PrintParcel(id);
+                                        Parcel p=dall.PrintParcel(id);
+                                        Console.WriteLine(p);
                                         break;
                                     }
                                 default:
@@ -184,25 +188,25 @@ namespace ConsoleUI
                             }
                             break;
                         }
-                    case Option.Show:
+                    case Option.Show://show
                         {
-                            Console.WriteLine("Station-0, Drone-1, Costumer-2, Parcel-3 ,ParcelWithoutDrone-4, AvilabaleStations-5");
+                            Console.WriteLine("Station-0, Drone-1, Customer-2, Parcel-3 ,ParcelWithoutDrone-4, AvilabaleStations-5");
                             st = Console.ReadLine();
                             Show s ;
                             b = Show.TryParse(st, out s);
                             switch (s)
                             {
-                                case Show.Station:
+                                case Show.Station://print all stations
                                     { dall.PrintAllStation(); break; }
-                                case Show.Drone:
+                                case Show.Drone://print all drones
                                     { dall.PrintAllDrones(); break; }
-                                case Show.Costumer:
+                                case Show.Customer://print all Customer
                                     { dall.PrintAllCustomer(); break; }
-                                case Show.Parcel:
+                                case Show.Parcel://print all parcels
                                     { dall.PrintAllParcels(); break; }
-                                case Show.ParcelWithoutDrone:
+                                case Show.ParcelWithoutDrone://orint all parcels without drones
                                     { dall.ParcelWithoutDrone(); break; }
-                                case Show.AvilabaleStations:
+                                case Show.AvilabaleStations://print all avilable stations
                                     { dall.PrintEmptyCargeSlots(); break; }
                                 default:
                                     break;

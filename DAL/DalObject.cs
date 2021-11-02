@@ -180,10 +180,10 @@ namespace DalObject
         /// print customer by id
         /// </summary>
         /// <param name="newId">costumer id to print</param>
-        public void PrintCustomer(int newId)
+        public Customer PrintCustomer(int newId)
         {
             int temp = SearchCustomer(newId);
-            Console.WriteLine(DataSource.customers[temp]);
+            return DataSource.customers[temp];
         }
         /// <summary>
         /// print all customers
@@ -197,10 +197,10 @@ namespace DalObject
         /// print parcel by id
         /// </summary>
         /// <param name="newId">parcel id to print</param>
-        public void PrintParcel(int newId)
+        public Parcel PrintParcel(int newId)
         {
             int temp = SearchParcel(newId);
-            Console.WriteLine(DataSource.parcels[temp]);
+            return DataSource.parcels[temp];
         }
         /// <summary>
         /// print all parcels
@@ -214,10 +214,10 @@ namespace DalObject
         /// print station by id
         /// </summary>
         /// <param name="newId">station id to print</param>
-        public void PrintStation(int newId)
+        public Station PrintStation(int newId)
         {
             int temp = SearchStation(newId);
-            Console.WriteLine(DataSource.stations[temp]);
+            return DataSource.stations[temp];
         }
 
         /// <summary>
@@ -233,10 +233,10 @@ namespace DalObject
         /// print drone by id   
         /// </summary>
         /// <param name="newId">drone id to print</param>
-        public void PrintDrone(int newId)
+        public Drone PrintDrone(int newId)
         {
             int temp = SearchDrone(newId);
-            Console.WriteLine(DataSource.drones[temp]);
+            return DataSource.drones[temp];
         }
         /// <summary>
         /// print all drones
