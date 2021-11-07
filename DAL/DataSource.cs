@@ -12,47 +12,54 @@ namespace DalObject
         /// <summary>
         /// function that create static arrays for drones, stations, customers, parcels and drone charges
         /// </summary>
-        internal class config
-        {
-            internal static int droneCounter = 0;
-            internal static int stationCounter = 0;
-            internal static int customerCounter = 0;
-            internal static int parcelsCounter = 0;
-            internal static int droneChargeCounter = 0;
-        }
+        //internal class config
+        //{
+        //    internal static int droneCounter = 0;
+        //    internal static int stationCounter = 0;
+        //    internal static int customerCounter = 0;
+        //    internal static int parcelsCounter = 0;
+        //    internal static int droneChargeCounter = 0;
+        //}
 
-        internal static Drone[] drones = new Drone[10];
-        internal static Station[] stations = new Station[5];
-        internal static Customer[] customers = new Customer[100];
-        internal static Parcel[] parcels = new Parcel[1000];
-        internal static DroneCharge[] droneCharges = new DroneCharge[10];
+        //internal static Drone[] drones = new Drone[10];
+        //internal static Station[] stations = new Station[5];
+        //internal static Customer[] customers = new Customer[100];
+        //internal static Parcel[] parcels = new Parcel[1000];
+        //internal static DroneCharge[] droneCharges = new DroneCharge[10];
+
+        internal static List<Drone> drones = new List<Drone>();
+        internal static List<Station> stations = new List<Station>();
+        internal static List<Customer> customers = new List<Customer>();
+        internal static List<Parcel> parcels = new List<Parcel>();
+        internal static List<DroneCharge> droneCharges = new List<DroneCharge>();
 
         static Random rand = new Random(DateTime.Now.Millisecond);
-
+        
         /// <summary>
         /// The function initialize the arrays
         /// </summary>
         internal static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
+            int num = 0;
             for (int i = 0; i < 5; i++)
             {
-                config.droneCounter++;
+                //config.droneCounter++;
                 drones[i] = new Drone ()
                 {
-                    Id = config.droneCounter,
+                    Id =num++,
                     Model = "abc",
                     MaxWeight = (WeightCategories)rand.Next(0, 2),
-                    Status = (DroneStatuses)rand.Next(0, 1),
-                    Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
+                   // Status = (DroneStatuses)rand.Next(0, 1),
+                   // Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
                 };
             }
 
             for (int i = 0; i < 2; i++)
             {
-                config.stationCounter++;
+                //config.stationCounter++;
                 stations[i] = new Station()
                 {
-                    Id = config.stationCounter,
+                    Id = num++,
                     Name = "ghi",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
@@ -62,10 +69,10 @@ namespace DalObject
 
             for (int i = 0; i < 10; i++)
             {
-                config.customerCounter++;
+                //config.customerCounter++;
                 customers[i] = new Customer()
                 {
-                    Id = config.customerCounter,
+                    Id = num++,
                     Name ="def",
                     Phone= "12345678",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
@@ -75,10 +82,10 @@ namespace DalObject
 
             for (int i = 0; i < 10; i++)
             {
-                config.parcelsCounter++;
+                //config.parcelsCounter++;
                 parcels[i] = new Parcel()
                 {
-                    Id = config.parcelsCounter,
+                    Id = num++,
                     SenderId = rand.Next(1000, 2000),
                     TargetId = rand.Next(1000, 2000),
                     Weight = (WeightCategories)rand.Next(0, 2),
