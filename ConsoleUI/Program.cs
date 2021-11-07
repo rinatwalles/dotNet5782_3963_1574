@@ -250,7 +250,7 @@ namespace ConsoleUI
                             }
                             break;
                         }
-                    case Option.Distance:
+                    case Option.Distance://distance calculation
                         {
                             Console.WriteLine("insert a cordinate");
                             st = Console.ReadLine();
@@ -265,7 +265,7 @@ namespace ConsoleUI
                             b= Distance.TryParse(st,out ds);
                             switch (ds)
                             {
-                                case Distance.Station:
+                                case Distance.Station://distance from station
                                     {
                                         Console.WriteLine("insert an id of a station");
                                         st = Console.ReadLine();
@@ -273,7 +273,7 @@ namespace ConsoleUI
                                         Console.WriteLine(dall.DistanceFromStation(id, x1, y1));
                                         break;
                                     }
-                                case Distance.Customer:
+                                case Distance.Customer://distance fron customer
                                     {
                                         Console.WriteLine("insert an id of a customer");
                                         st = Console.ReadLine();

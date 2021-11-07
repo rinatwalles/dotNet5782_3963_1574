@@ -156,7 +156,7 @@ namespace DalObject
         /// </summary>
         /// <param name="droneId">drone id</param>
         /// <param name="stationId">station id</param>
-        public void ReleaseDrone(int droneId, int stationId)//שליחת רחפן לטעינה
+        public void ReleaseDrone(int droneId, int stationId)
         {
             int indexD = SearchDrone(droneId);
             if (DataSource.drones[indexD].Battery == 100)//battery is full

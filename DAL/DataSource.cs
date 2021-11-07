@@ -90,11 +90,11 @@ namespace DalObject
                     TargetId = rand.Next(1000, 2000),
                     Weight = (WeightCategories)rand.Next(0, 2),
                     Priority = (Priorities)rand.Next(0, 2),
-                    Requested = DateTime.Now,//איתחול ריקוסטד
+                    Requested = DateTime.Now,
                     DroneId = rand.Next(10, 20),
-                    Scheduled= parcels[i].Requested.AddHours(1),//איתחול סקדולד
-                    PickedUp= parcels[i].Requested.AddHours(1),//איתחול פיקד אפ
-                    Delivered= parcels[i].Requested.AddHours(1),//איתחול דליברד
+                    Scheduled= parcels[i].Requested.AddHours(1),
+                    PickedUp= parcels[i].Requested.AddHours(1),
+                    Delivered= parcels[i].Requested.AddHours(1),
                 };
             }
 
