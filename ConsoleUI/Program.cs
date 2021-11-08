@@ -162,13 +162,13 @@ namespace ConsoleUI
                             {
                                 case Display.Station://print the station
                                     {
-                                        Station s=dall.PrintStation(id);
+                                        Station s=dall.GetStation(id);
                                         Console.WriteLine(s);
                                         break;
                                     }
                                 case Display.Drone://print the drone
                                     {
-                                        Drone dr=dall.PrintDrone(id);
+                                        Drone dr=dall.GetDrone(id);
                                         Console.WriteLine(dr);
                                         break;
                                     }
@@ -199,30 +199,30 @@ namespace ConsoleUI
                             {
                                 case Show.Station://print all stations
                                     {
-                                        Station[] arrStations = dall.AllStation();
-                                        for (int i = 0; i < arrStations.Length; i++)
-                                            Console.WriteLine(arrStations[i]);
+                                        List<Station> lstStation = (List<Station>)dall.AllStation();
+                                        foreach (Station item in lstStation)
+                                            Console.WriteLine(item);
                                         break;
                                     }
                                 case Show.Drone://print all drones
-                                    { 
-                                        Drone[] arrDrones= dall.AllDrones();
-                                        for (int i = 0; i < arrDrones.Length; i++)
-                                            Console.WriteLine(arrDrones[i]);
+                                    {
+                                        List<Drone> lstDrone = (List<Drone>)dall.AllDrones();
+                                        foreach (Drone item in lstDrone)
+                                            Console.WriteLine(item);
                                         break; 
                                     }
                                 case Show.Customer://print all Customer
                                     {
-                                        Customer[] arrCustomers = dall.AllCustomer();
-                                        for (int i = 0; i < arrCustomers.Length; i++)
-                                            Console.WriteLine(arrCustomers[i]);
+                                        List<Customer> lstCustomer = (List<Customer>)dall.AllCustomers();
+                                        foreach (Customer item in lstCustomer)
+                                            Console.WriteLine(item);
                                         break;
                                     }
                                 case Show.Parcel://print all parcels
                                     {
-                                        Parcel[] arrParcel = dall.AllParcels();
-                                        for (int i = 0; i < arrParcel.Length; i++)
-                                            Console.WriteLine(arrParcel[i]);
+                                        List<Parcel> lstParcel = (List<Parcel>)dall.AllParcels();
+                                        foreach (Parcel item in lstParcel)
+                                            Console.WriteLine(item);
                                         break;
                                     }
                                 case Show.ParcelWithoutDrone://orint all parcels without drones
