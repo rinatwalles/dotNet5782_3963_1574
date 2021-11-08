@@ -58,8 +58,8 @@ namespace ConsoleUI
                                             Id = int.Parse(System.Console.ReadLine()),
                                             Model = System.Console.ReadLine(),
                                             MaxWeight = (WeightCategories)System.Console.Read(),
-                                            Status = DroneStatuses.Available,
-                                            Battery = 100,
+                                            //Status = DroneStatuses.Available,
+                                            //Battery = 100,
                                         };
                                         dall.DroneAddition(ddrone);
                                         break;
@@ -174,13 +174,13 @@ namespace ConsoleUI
                                     }
                                 case Display.Customer://print the Customer
                                     {
-                                        Customer c=dall.PrintCustomer(id);
+                                        Customer c=dall.GetCustomer(id);
                                         Console.WriteLine(c);
                                         break;
                                     }
                                 case Display.Parcel://print the parcel
                                     {
-                                        Parcel p=dall.PrintParcel(id);
+                                        Parcel p=dall.GetParcel(id);
                                         Console.WriteLine(p);
                                         break;
                                     }
@@ -227,21 +227,21 @@ namespace ConsoleUI
                                     }
                                 case Show.ParcelWithoutDrone://orint all parcels without drones
                                     {
-                                        Parcel[] arrParcel = dall.AllParcels();
-                                        for (int i = 0; i < arrParcel.Length; i++)
+                                        List<Parcel> lstParcel = (List<Parcel>)dall.AllParcels();
+                                        foreach (Parcel item in lstParcel)
                                         {
-                                            if (arrParcel[i].DroneId == 0)
-                                                Console.WriteLine(arrParcel[i]);
+                                            if (item.DroneId == 0)
+                                                Console.WriteLine(item);
                                         }
                                        break;
                                     }
                                 case Show.AvilabaleStations://print all avilable stations
                                     {
-                                        Station[] arrStation = dall.AllStation();
-                                        for (int i = 0; i < arrStation.Length; i++)
+                                        List<Station> lstStation = (List<Station>)dall.AllStation();
+                                        foreach (Station item in lstStation)
                                         {
-                                            if (arrStation[i].ChargeSlots > 0)
-                                                Console.WriteLine(arrStation[i]);
+                                            if (item.ChargeSlots > 0)
+                                                Console.WriteLine(item);
                                         }
                                        break; 
                                     }

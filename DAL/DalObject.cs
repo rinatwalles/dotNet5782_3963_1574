@@ -158,14 +158,12 @@ namespace DalObject
         /// <param name="stationId">station id</param>
         public void ReleaseDrone(int droneId, int stationId)
         {
-            int indexD = SearchDrone(droneId);
-            if (DataSource.drones[indexD].Battery == 100)//battery is full
+            Drone d = GetDrone(droneId);
+            //if (d.Battery == 100)//battery is full
             {
-                DataSource.drones[indexD].Status = DroneStatuses.Available;//change status
-                DataSource.config.droneChargeCounter--;
-
-                int indexS = SearchDrone(stationId);
-                DataSource.stations[indexS].ChargeSlots++;//increasing charge number number
+                //d.Status = DroneStatuses.Available;//change status
+                Station s = GetStation(stationId);
+               s.ChargeSlots++;//increasing charge number number
             }
         }
 
