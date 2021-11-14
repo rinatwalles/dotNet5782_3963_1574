@@ -9,7 +9,7 @@ using static DalObject.DataSource;
 
 namespace DalObject
 {
-    public class DalObject
+    public partial class DalObject
     {
         /// <summary>
         /// create initialized arrays
@@ -21,36 +21,7 @@ namespace DalObject
             //DataSource.config.droneCounter++;
             DataSource.drones.Add(d);
         }
-        /// <summary>
-        /// add new station
-        /// </summary>
-        /// <param name="s">new station</param>
-        public void StationAddition(Station s)
-        {
-            //DataSource.stations[DataSource.config.stationCounter] = s;
-            //DataSource.config.stationCounter++;
-            DataSource.stations.Add(s);
-        }
-        /// <summary>
-        /// add new customer
-        /// </summary>
-        /// <param name="c">new customer</param>
-        public void CustomerAddition(Customer c)
-        {
-            //DataSource.customers[DataSource.config.customerCounter] = c;
-            //DataSource.config.customerCounter++;
-            DataSource.customers.Add(c);
-        }
-        /// <summary>
-        /// add new parcel
-        /// </summary>
-        /// <param name="p">new parcel</param>
-        public void ParcelAddition(Parcel p)
-        {
-            //DataSource.parcels[DataSource.config.parcelsCounter] = p;
-            //DataSource.config.parcelsCounter++;
-            DataSource.parcels.Add(p);
-        }
+
         /// <summary>
         /// search drone accroding to its id in the array
         /// </summary>
@@ -60,30 +31,7 @@ namespace DalObject
         {
             return DataSource.drones.Find(d => d.Id == id);
         }
-        /// <summary>
-        /// search for station according to its id in the array
-        /// </summary>
-        /// <param name="id">station id to search for in the array</param>
-        /// <returns>return the index of the station in the array</returns>
-        public Station GetStation(int id)
-        {
-            //for (int i = 0; i < DataSource.config.droneCounter; i++)
-            //{
-            //    if (DataSource.stations[i].Id == id)
-            //        return i;
-            //}
-            //return -1;
-            return DataSource.stations.Find(s => s.Id == id);
-        }
-        /// <summary>
-        /// search for customer according to its id in the array
-        /// </summary>
-        /// <param name="id">costuner id to search for in the array</param>
-        /// <returns>return the index of the costuner in the array</returns>
-        public Customer GetCustomer(int id)
-        {
-            return DataSource.customers.Find(s => s.Id == id);
-        }
+
         /// <summary>
         /// search for parcel according to its id in the array
         /// </summary>
@@ -106,7 +54,7 @@ namespace DalObject
                // if (DataSource.drones[i].Status == DroneStatuses.Available)//search for avilable drone
                 {
                   //  DataSource.drones[i].Status = DroneStatuses.Delivery;//change the drone status
-                    p.DroneId = DataSource.drones[i].Id;//parcel drone id= avilable id
+                    //p.DroneId = DataSource.drones.Id;//parcel drone id= avilable id    לשנות!!!!!
                     return;
                 }
             }
