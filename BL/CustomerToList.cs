@@ -13,7 +13,10 @@ namespace BL
             public int Id { get; set; }
             public string Name { get; set; }
             public string Phone { get; set; }
-            public int NumOfParcels
+            public int NumOfParcelsSentNotSupplied { get; set; }
+            public int NumOfParcelsSentAndSupplied { get; set; }
+            public int NumOfParcelsReceived { get; set; }
+            public int NumOfParcelsDelivered { get; set; }
         }
     }
 }
