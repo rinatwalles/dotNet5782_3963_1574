@@ -20,7 +20,7 @@ namespace DAL
             public BadDroneIdExcption(int id,string message) : base(message) => Id = id;
             public BadDroneIdExcption(int id,string message, Exception inner) : base(message, inner) => Id = id;
 
-            override public string ToString() => base.ToString() + $",bad Drone id:{Id}";
+            override public string ToString() => base.ToString() + $",exicting Drone id:{Id}";
         }
 
     }
