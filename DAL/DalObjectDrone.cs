@@ -215,5 +215,35 @@ namespace DalObject
         {
             return (Math.Sqrt(Math.Pow(x1-latx, 2)+Math.Pow(y1-longy,2)));//distance calculation
         }
+        public void DroneDelete(Drone d)
+        {
+            //DataSource.drones[DataSource.config.droneCounter] = d;
+            //DataSource.config.droneCounter++;
+            DataSource.drones.Remove(d);
+        }
+        public void ParcelDelete(Parcel p)
+        {
+            //DataSource.drones[DataSource.config.droneCounter] = d;
+            //DataSource.config.droneCounter++;
+            DataSource.parcels.Remove(p);
+        }
+        public void StationDelete(Station s)
+        {
+            //DataSource.drones[DataSource.config.droneCounter] = d;
+            //DataSource.config.droneCounter++;
+            DataSource.stations.Remove(s);
+        }
+        public void CustomerDelete(Customer c)
+        {
+            //DataSource.drones[DataSource.config.droneCounter] = d;
+            //DataSource.config.droneCounter++;
+            DataSource.customers.Remove(c);
+        }
+        public void DroneChargesDelete(DroneCharge d)
+        {
+            //DataSource.drones[DataSource.config.droneCounter] = d;
+            //DataSource.config.droneCounter++;
+            DataSource.droneCharges.Remove(d);
+        }
     };
 }
