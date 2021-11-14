@@ -16,8 +16,6 @@ namespace DalObject
         /// <param name="s">new station</param>
         public void StationAddition(Station s)
         {
-            //DataSource.stations[DataSource.config.stationCounter] = s;
-            //DataSource.config.stationCounter++;
             DataSource.stations.Add(s);
         }
 
@@ -28,14 +26,37 @@ namespace DalObject
         /// <returns>return the index of the station in the array</returns>
         public Station GetStation(int id)
         {
-            //for (int i = 0; i < DataSource.config.droneCounter; i++)
-            //{
-            //    if (DataSource.stations[i].Id == id)
-            //        return i;
-            //}
-            //return -1;
             return DataSource.stations.Find(s => s.Id == id);
         }
 
+        /// <summary>
+        /// returning array of all stations
+        /// </summary>
+        public IEnumerable<Station> AllStation()
+        {
+            List<Station> newList = new List<Station>();
+            foreach (Station item in DataSource.stations)
+            {
+                newList.Add(item);
+            }
+            return newList;
+        }
+        /// <summary>
+        /// current distance fron station
+        /// </summary>
+        /// <param name="id">station id</param>
+        /// <param name="x1">current x coordinate</param>
+        /// <param name="y1">current y coordinate</param>
+        public double DistanceFromStation(int id, double x1, double y1)
+        {
+            Station s = GetStation(id);
+            double longy = s.Longitude;//station coordinates
+            double latx = s.Latitude;
+            return DistanceCalculate(x1, y1, longy, latx);//print the distance
+        }
+        public void StationDelete(Station s)
+        {
+            DataSource.stations.Remove(s);
+        }
     }
 }
