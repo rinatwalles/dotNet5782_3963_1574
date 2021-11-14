@@ -34,15 +34,6 @@ namespace DalObject
         }
 
         /// <summary>
-        /// search for parcel according to its id in the array
-        /// </summary>
-        /// <param name="id">parcel id to search for in the array</param>
-        /// <returns>return the index of the costuner in the array</returns>
-        public Parcel GetParcel(int id)
-        {
-            return DataSource.parcels.Find(p => p.Id == id);
-        }
-        /// <summary>
         /// join drone to parcel
         /// </summary>
         /// <param name="parcelId">parcel id to connect to drone</param>
@@ -71,16 +62,6 @@ namespace DalObject
             p.PickedUp = DateTime.Now;//change time
         }
 
-        /// <summary>
-        /// collecting the parcel cy the costumer
-        /// </summary>
-        /// <param name="parcelId">parcel id to collect</param>
-        public void CustomerCollecting(int parcelId)
-        {
-            Parcel p = GetParcel(parcelId);
-           // int indexP = SearchParcel(parcelId);//search  for parcel with the given id
-            p.Delivered = DateTime.Now;//change time
-        }
 
         /// <summary>
         /// charging the drone
@@ -112,74 +93,11 @@ namespace DalObject
             {
                 //d.Status = DroneStatuses.Available;//change status
                 Station s = GetStation(stationId);
-               s.ChargeSlots++;//increasing charge number number
+                s.ChargeSlots++;//increasing charge number number
             }
         }
 
-        /// <summary>
-        /// print customer by id
-        /// </summary>
-        /// <param name="newId">costumer id to print</param>
-        //public Customer PrintCustomer(int newId)
-        //{
-        //    int temp = SearchCustomer(newId);
-        //    return DataSource.customers[temp];
-        //}
-        /// <summary>
-        /// returning array of all customers
-        /// </summary>
-        public IEnumerable<Customer> AllCustomer()
-        {
-            return DataSource.customers;
-        }
-        /// <summary>
-        /// print parcel by id
-        /// </summary>
-        /// <param name="newId">parcel id to print</param>
-        //public Parcel PrintParcel(int newId)
-        //{
-        //    int temp = SearchParcel(newId);
-        //    return DataSource.parcels[temp];
-        //}
-        /// <summary>
-        ///  returning array of all parcels
-        /// </summary>
-        public IEnumerable<Parcel> AllParcels()
-        {
-            return DataSource.parcels;
-        }
-        /// <summary>
-        /// print station by id
-        /// </summary>
-        /// <param name="newId">station id to print</param>
-        //public Station PrintStation(int newId)
-        //{
-        //    int temp = SearchStation(newId);
-        //    return DataSource.stations[temp];
-        //}
 
-        /// <summary>
-        /// returning array of all stations
-        /// </summary>
-        public IEnumerable<Station> AllStation()
-        {
-            List<Station> newList = new List<Station>(); 
-            foreach(Station item in DataSource.stations )
-            {
-                newList.Add(item);
-            }
-            return newList;
-        }
-
-        /// <summary>
-        /// print drone by id   
-        /// </summary>
-        /// <param name="newId">drone id to print</param>
-        //public Drone GetDrone(int newId)
-        //{
-        //    int temp = SearchDrone(newId);
-        //    return  DataSource.drones.Find(Drone.Id==newId);
-        //}
         /// <summary>
         ///  returning array of all drones
         /// </summary>
@@ -187,32 +105,7 @@ namespace DalObject
         {
             return DataSource.drones;
         }
-        /// <summary>
-        /// current distance fron station
-        /// </summary>
-        /// <param name="id">station id</param>
-        /// <param name="x1">current x coordinate</param>
-        /// <param name="y1">current y coordinate</param>
-        public double DistanceFromStation(int id, double x1, double y1)
-        {
-            Station s = GetStation(id);
-            double longy = s.Longitude;//station coordinates
-            double latx = s.Latitude;
-            return DistanceCalculate(x1, y1, longy, latx);//print the distance
-        }
-        /// <summary>
-        /// current distance fron customer
-        /// </summary>
-        /// <param name="id">costuner id</param>
-        /// <param name="x1">current x coordinate</param>
-        /// <param name="y1">current y coordinate</param>
-        public double DistanceFromCustomer(int id, double x1, double y1)
-        {
-            Customer c = GetCustomer(id);
-            double longy = c.Longitude;//custoner coordinates
-            double latx = c.Latitude;
-            return DistanceCalculate(x1, y1, longy, latx);//print the distance
-        }
+
         /// <summary>
         /// calaulates distance between coordinates
         /// </summary>
@@ -230,30 +123,6 @@ namespace DalObject
             //DataSource.drones[DataSource.config.droneCounter] = d;
             //DataSource.config.droneCounter++;
             DataSource.drones.Remove(d);
-        }
-        public void ParcelDelete(Parcel p)
-        {
-            //DataSource.drones[DataSource.config.droneCounter] = d;
-            //DataSource.config.droneCounter++;
-            DataSource.parcels.Remove(p);
-        }
-        public void StationDelete(Station s)
-        {
-            //DataSource.drones[DataSource.config.droneCounter] = d;
-            //DataSource.config.droneCounter++;
-            DataSource.stations.Remove(s);
-        }
-        public void CustomerDelete(Customer c)
-        {
-            //DataSource.drones[DataSource.config.droneCounter] = d;
-            //DataSource.config.droneCounter++;
-            DataSource.customers.Remove(c);
-        }
-        public void DroneChargesDelete(DroneCharge d)
-        {
-            //DataSource.drones[DataSource.config.droneCounter] = d;
-            //DataSource.config.droneCounter++;
-            DataSource.droneCharges.Remove(d);
         }
     };
 }
