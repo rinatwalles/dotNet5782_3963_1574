@@ -23,7 +23,7 @@ namespace IDAL
 
             public override string ToString()
             {
-                return $"Parcel: Id: {Id}\n SenderId: {SenderId}\n TargetId: {TargetId}\n Weight: {Weight}\n Priority: {Priority}\n Requested: {Requested}\n ";
+                return this.ToStringProperty();
             }
         }
     }

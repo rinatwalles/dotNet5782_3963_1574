@@ -13,7 +13,7 @@ namespace IDAL
            // public double Battery { get; set; }
             public override string ToString()
             {
-                return $"Id:{Id}\n Model:{Model}\n MaxWeight:{MaxWeight}\n";
+                return this.ToStringProperty();
             }
         }
 
