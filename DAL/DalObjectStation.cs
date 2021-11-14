@@ -8,7 +8,7 @@ using static DalObject.DataSource;
 
 namespace DalObject
 {
-    public partial class DalObject
+    public partial class DalObject : DAL.IDAL.IDAL
     {
         /// <summary>
         /// add new station

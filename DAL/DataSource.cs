@@ -19,11 +19,11 @@ namespace DalObject
             //internal static int customerCounter = 0;
             //internal static int parcelsCounter = 0;
             //internal static int droneChargeCounter = 0;
-            static public bool Avilable { get; set; }
-            static public bool Light { get; set; }
-            static public bool Medium { get; set; }
-            static public bool Heavy { get; set; }
-            static public int ChargePrecent { get; set; }
+            static public double Avilable { get; set; }
+            static public double Light { get; set; }
+            static public double Medium { get; set; }
+            static public double Heavy { get; set; }
+            static public double ChargePrecent { get; set; }
         }
 
         //internal static Drone[] drones = new Drone[10];
