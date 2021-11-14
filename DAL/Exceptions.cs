@@ -33,7 +33,7 @@ namespace DAL
         public BadParcelIdExcption(int id, string message) : base(message) => Id = id;
         public BadParcelIdExcption(int id, string message, Exception inner) : base(message, inner) => Id = id;
 
-        override public string ToString() => base.ToString() + $",bad Parcel id:{Id}";
+        override public string ToString() => base.ToString() + $",exicting Parcel id:{Id}";
     }
     public class BadStationIdExcption : Exception
     {
@@ -44,7 +44,7 @@ namespace DAL
         public BadStationIdExcption(int id, string message) : base(message) => Id = id;
         public BadStationIdExcption(int id, string message, Exception inner) : base(message, inner) => Id = id;
 
-        override public string ToString() => base.ToString() + $",bad Station id:{Id}";
+        override public string ToString() => base.ToString() + $",exicting Station id:{Id}";
     }
     public class BadCustomerIdExcption : Exception
     {
@@ -55,9 +55,19 @@ namespace DAL
         public BadCustomerIdExcption(int id, string message) : base(message) => Id = id;
         public BadCustomerIdExcption(int id, string message, Exception inner) : base(message, inner) => Id = id;
 
-        override public string ToString() => base.ToString() + $",bad Station id:{Id}";
+        override public string ToString() => base.ToString() + $",exicting Station id:{Id}";
     }
+    public class NotExcitingIdExcption : Exception
+    {
 
+        public int Id;
+
+        public NotExcitingIdExcption(int id) : base() => Id = id;
+        public NotExcitingIdExcption(int id, string message) : base(message) => Id = id;
+        public NotExcitingIdExcption(int id, string message, Exception inner) : base(message, inner) => Id = id;
+
+        override public string ToString() => base.ToString() + $",not exicting Drone id:{Id}";
+    }
 
 }
 
