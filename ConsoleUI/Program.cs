@@ -213,7 +213,7 @@ namespace ConsoleUI
                                     }
                                 case Show.Customer://print all Customer
                                     {
-                                        List<Customer> lstCustomer = (List<Customer>)dall.AllCustomers();
+                                        List<Customer> lstCustomer = (List<Customer>)dall.AllCustomer();
                                         foreach (Customer item in lstCustomer)
                                             Console.WriteLine(item);
                                         break;
