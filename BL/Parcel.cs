@@ -13,6 +13,13 @@ namespace BL
             public int Id { get; set; }
             public CustomerOfParcel Sender { get; set; }
             public CustomerOfParcel Receiver { get; set; }
+            public WeightCategories Weight { get; set; }
+            public Priorities Priority { get; set; }
+            public DateTime CreatingParcel { get; set; }
+            public DateTime Requested { get; set; }    //יצירת חבילה
+            public DateTime Scheduled { get; set; }   //שיוך
+            public DateTime PickedUp { get; set; }   //איסוף
+            public DateTime Delivered { get; set; }   //אספקה
 
         }
     }
