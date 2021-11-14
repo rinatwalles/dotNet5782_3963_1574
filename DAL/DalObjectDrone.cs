@@ -33,15 +33,6 @@ namespace DalObject
         }
 
         /// <summary>
-        /// search for parcel according to its id in the array
-        /// </summary>
-        /// <param name="id">parcel id to search for in the array</param>
-        /// <returns>return the index of the costuner in the array</returns>
-        public Parcel GetParcel(int id)
-        {
-            return DataSource.parcels.Find(p => p.Id == id);
-        }
-        /// <summary>
         /// join drone to parcel
         /// </summary>
         /// <param name="parcelId">parcel id to connect to drone</param>
