@@ -19,6 +19,7 @@ namespace DalObject
         {
             //DataSource.drones[DataSource.config.droneCounter] = d;
             //DataSource.config.droneCounter++;
+
             DataSource.drones.Add(d);
         }
 
