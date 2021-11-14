@@ -9,7 +9,7 @@ using static DalObject.DataSource;
 
 namespace DalObject
 {
-    public partial class DalObject
+    public partial class DalObject: DAL.IDAL.IDAL
     {
         /// <summary>
         /// create initialized arrays
@@ -57,9 +57,19 @@ namespace DalObject
         /// <param name="parcelId">parcel id to collect</param>
         public void DroneCollecting(int parcelId)
         {
-            Parcel p = GetParcel(parcelId);
+            //Parcel p = GetParcel(parcelId);
             //int indexP = SearchParcel(parcelId);//search  for parcel with the given id
-            p.PickedUp = DateTime.Now;//change time
+            //p.PickedUp = DateTime.Now;//change time
+            for (int i = 0; i < parcels.Count; i++)
+            {
+                if (parcels[i].Id == parcelId)
+                {
+                    Parcel p = parcels[i];
+                    p.PickedUp = DateTime.Now;
+                    parcels[i] = p;
+                }
+
+            }
         }
 
 
@@ -77,9 +87,19 @@ namespace DalObject
             DataSource.droneCharges.Add (dc);//adding to drone chrge array
            // DataSource.config.droneChargeCounter++;
 
-            Station s = GetStation(stationId);//search station
-            s.ChargeSlots--;//decresing charge slots number
-           // DataSource.drones[indexD].Battery = 100;//full battery
+            //Station s = GetStation(stationId);//search station
+            //s.ChargeSlots--;//decresing charge slots number
+                            // DataSource.drones[indexD].Battery = 100;//full battery
+            for (int i = 0; i < stations.Count; i++)
+            {
+                if(stations[i].Id== stationId)
+                {
+                    Station st = stations[i];
+                    st.ChargeSlots--;
+                    stations[i] = st;
+                }
+
+            }
         }
         /// <summary>
         /// releasing drone from charging 
@@ -92,8 +112,18 @@ namespace DalObject
             //if (d.Battery == 100)//battery is full
             {
                 //d.Status = DroneStatuses.Available;//change status
-                Station s = GetStation(stationId);
-                s.ChargeSlots++;//increasing charge number number
+                //Station s = GetStation(stationId);
+                //s.ChargeSlots++;//increasing charge number number
+                for (int i = 0; i < stations.Count; i++)
+                {
+                    if (stations[i].Id == stationId)
+                    {
+                        Station st = stations[i];
+                        st.ChargeSlots++;
+                        stations[i] = st;
+                    }
+
+                }
             }
         }
 
@@ -124,5 +154,5 @@ namespace DalObject
             //DataSource.config.droneCounter++;
             DataSource.drones.Remove(d);
         }
-    };
+       
 }
