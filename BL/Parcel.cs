@@ -16,6 +16,7 @@ namespace BL
             public CustomerOfParcel Receiver { get; set; }
             public WeightCategories Weight { get; set; }
             public Priorities Priority { get; set; }
+            public IEnumerable<DroneInParcel> ParcelsDrones { get; set; }
             public DateTime CreatingParcel { get; set; }
             public DateTime Requested { get; set; }    //יצירת חבילה
             public DateTime Scheduled { get; set; }   //שיוך

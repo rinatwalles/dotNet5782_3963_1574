@@ -8,8 +8,11 @@ namespace BL
 {
     namespace IBL.BO
     {
-            interface IBL
-            {
+        public interface IBL
+        {
+            BO.ParcelToList GetStudent(int id);
+
+            IEnumerable<BO.ParcelToList> GetAllStudents();
             //CRUD location
             #region Location
             #endregion

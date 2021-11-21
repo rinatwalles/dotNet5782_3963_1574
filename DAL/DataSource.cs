@@ -14,23 +14,12 @@ namespace DalObject
         /// </summary>
         internal class config
         {
-            //internal static int droneCounter = 0;
-            //internal static int stationCounter = 0;
-            //internal static int customerCounter = 0;
-            //internal static int parcelsCounter = 0;
-            //internal static int droneChargeCounter = 0;
             static public double Avilable { get; set; }
             static public double Light { get; set; }
             static public double Medium { get; set; }
             static public double Heavy { get; set; }
             static public double ChargePrecent { get; set; }
         }
-
-        //internal static Drone[] drones = new Drone[10];
-        //internal static Station[] stations = new Station[5];
-        //internal static Customer[] customers = new Customer[100];
-        //internal static Parcel[] parcels = new Parcel[1000];
-        //internal static DroneCharge[] droneCharges = new DroneCharge[10];
 
         internal static List<Drone> drones = new List<Drone>();
         internal static List<Station> stations = new List<Station>();

@@ -9,20 +9,22 @@ using static DalObject.DataSource;
 
 namespace DalObject
 {
-    public partial class DalObject: DAL.IDAL.IDAL
+    public partial class DalObject : DAL.IDAL.IDAL
     {
         /// <summary>
         /// create initialized arrays
         /// </summary>
         public DalObject() { DataSource.Initialize(); }
+        public bool CheckDrone(int id)
+        {
+            return DataSource.drones.Any(d => d.Id == id);
+        }
         public void DroneAddition(Drone d)
         {
-            //DataSource.drones[DataSource.config.droneCounter] = d;
-            //DataSource.config.droneCounter++;
-
+            if (CheckDrone(d.Id))
+                throw new DAL.DuplicateIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
-
         /// <summary>
         /// search drone accroding to its id in the array
         /// </summary>
@@ -30,6 +32,8 @@ namespace DalObject
         /// <returns>return the index of the drone in the array</returns>
         public Drone GetDrone(int id)
         {
+            if (CheckDrone(id))
+                throw new DAL.MissingIdException(id, "Drone");
             return DataSource.drones.Find(d => d.Id == id);
         }
 
@@ -40,12 +44,12 @@ namespace DalObject
         public void JoinDroneToParcel(int parcelId)
         {
             Parcel p = GetParcel(parcelId);
-           // int index = SearchParcel(parcelId);//search the parcel with the requested id
-           // for (int i = 0; i < DataSource.config.droneCounter; i++)
+            // int index = SearchParcel(parcelId);//search the parcel with the requested id
+            // for (int i = 0; i < DataSource.config.droneCounter; i++)
             {
-               // if (DataSource.drones[i].Status == DroneStatuses.Available)//search for avilable drone
+                // if (DataSource.drones[i].Status == DroneStatuses.Available)//search for avilable drone
                 {
-                  //  DataSource.drones[i].Status = DroneStatuses.Delivery;//change the drone status
+                    //  DataSource.drones[i].Status = DroneStatuses.Delivery;//change the drone status
                     //p.DroneId = DataSource.drones.Id;//parcel drone id= avilable id    לשנות!!!!!
                     return;
                 }
@@ -84,15 +88,15 @@ namespace DalObject
             //DataSource.drones[indexD].Status = DroneStatuses.Maintenance;//change drone status
 
             DroneCharge dc = new DroneCharge() { DroneId = droneId, StationId = stationId };//new drone charge
-            DataSource.droneCharges.Add (dc);//adding to drone chrge array
-           // DataSource.config.droneChargeCounter++;
+            DataSource.droneCharges.Add(dc);//adding to drone chrge array
+                                            // DataSource.config.droneChargeCounter++;
 
             //Station s = GetStation(stationId);//search station
             //s.ChargeSlots--;//decresing charge slots number
-                            // DataSource.drones[indexD].Battery = 100;//full battery
+            // DataSource.drones[indexD].Battery = 100;//full battery
             for (int i = 0; i < stations.Count; i++)
             {
-                if(stations[i].Id== stationId)
+                if (stations[i].Id == stationId)
                 {
                     Station st = stations[i];
                     st.ChargeSlots--;
@@ -133,7 +137,12 @@ namespace DalObject
         /// </summary>
         public IEnumerable<Drone> AllDrones()
         {
-            return DataSource.drones;
+            List<Drone> newList = new List<Drone>();
+            foreach (Drone item in DataSource.drones)
+            {
+                newList.Add(item);
+            }
+            return newList;
         }
 
         /// <summary>
@@ -146,13 +155,14 @@ namespace DalObject
         /// <returns></returns>
         public double DistanceCalculate(double x1, double y1, double longy, double latx)
         {
-            return (Math.Sqrt(Math.Pow(x1-latx, 2)+Math.Pow(y1-longy,2)));//distance calculation
+            return (Math.Sqrt(Math.Pow(x1 - latx, 2) + Math.Pow(y1 - longy, 2)));//distance calculation
         }
         public void DroneDelete(Drone d)
         {
-            //DataSource.drones[DataSource.config.droneCounter] = d;
-            //DataSource.config.droneCounter++;
+            if (CheckDrone(d.Id))
+                throw new DAL.MissingIdException(d.Id, "Drone");
             DataSource.drones.Remove(d);
         }
-       
+
+    }
 }

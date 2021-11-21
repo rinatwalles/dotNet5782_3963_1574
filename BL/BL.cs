@@ -4,15 +4,23 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using DalObject;
-using IDAL.DO;
+using DAL.IDAL;
 
 namespace BL
 {
-    public class BL
+    namespace IBL.BO
     {
-        //IDAL.DalObject idal = new IDAL.DalObject();
-        DalObject.DalObject dall = new DalObject.DalObject();
 
-        
+        public class BL : IBL
+        {
+            DAL.IDAL.IDAL idal;
+            public BL()
+            {
+                 idal = new DalObject.DalObject();
+            }
+            // DalObject.DalObject dall = new DalObject.DalObject();
+
+
+        }
     }
 }
