@@ -10,7 +10,7 @@ namespace DAL
 {
     namespace IDAL
     {
-        interface IDAL
+        public interface IDAL
         {
             #region Drone
             //CRUD Drone

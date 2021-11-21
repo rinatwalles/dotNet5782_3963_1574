@@ -133,7 +133,9 @@ namespace DalObject
         /// </summary>
         public IEnumerable<Drone> AllDrones()
         {
-            return DataSource.drones;
+            return from dr in DataSource.drones
+                   select dr;
+            //return DataSource.drones;
         }
 
         /// <summary>
