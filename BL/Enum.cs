@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
-{
+//namespace BL
+//{
     namespace IBL.BO
     {
         public enum WeightCategories { Light, Medium, Heavy }
@@ -13,4 +13,4 @@ namespace BL
         public enum Priorities { Regular, Fast, Emergency }
         public enum ParcelStates { Requested, Scheduled, PickedUp, Delivered }
     }
-}
+//}

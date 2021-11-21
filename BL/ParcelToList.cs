@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-namespace BL
-{
+//namespace BL
+//{
     namespace IBL.BO
     {
         public class ParcelToList
@@ -22,4 +22,4 @@ namespace BL
 
         }
     }
-}
+//}

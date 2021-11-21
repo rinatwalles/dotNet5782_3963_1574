@@ -1,8 +1,8 @@
 ﻿using System;
-using IDAL.DO;
+using IBL.BO;
 
-namespace BL
-{
+//namespace BL
+//{
     namespace IBL.BO
     {
         public class Location
@@ -15,4 +15,4 @@ namespace BL
             }
         }
     }
-}
+//}

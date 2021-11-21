@@ -37,8 +37,8 @@ namespace DalObject
         }
         public void ParcelDelete(Parcel p)
         {
-            if (CheckParcel(id))
-                throw new DAL.MissingIdException(id, "Parcel");
+            if (CheckParcel(p.Id))
+                throw new DAL.MissingIdException(p.Id, "Parcel");
             DataSource.parcels.Remove(p);
         }
 

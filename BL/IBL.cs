@@ -3,19 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IBL.BO;
 
-namespace BL
+namespace IBL
 {
-    namespace IBL.BO
+    public interface IBL
     {
-        public interface IBL
-        {
-            BO.ParcelToList GetStudent(int id);
+       //public BO.ParcelToList GetStudent(int id);
 
-            IEnumerable<BO.ParcelToList> GetAllStudents();
-            //CRUD location
-            #region Location
-            #endregion
-        }
+       // public IEnumerable<BO.ParcelToList> GetAllStudents();
+        //CRUD location
+        #region Location
+        #endregion
     }
 }
