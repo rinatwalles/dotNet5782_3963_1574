@@ -9,12 +9,17 @@ using IDAL;
 using BL.IBL.BO;
 namespace BL
 {
-    public class BL
+    namespace IBL.BO
     {
-        DAL.IDAL.IDAL dl;
 
-        ////IDAL.DalObject idal = new IDAL.DalObject();
-        //DalObject.DalObject dall = new DalObject.DalObject();
+        public class BL : IBL
+        {
+            DAL.IDAL.IDAL idal;
+            public BL()
+            {
+                 idal = new DalObject.DalObject();
+            }
+            // DalObject.DalObject dall = new DalObject.DalObject();
 
         public BL ()
         {

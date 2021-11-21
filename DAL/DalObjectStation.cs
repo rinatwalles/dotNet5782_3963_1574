@@ -10,12 +10,18 @@ namespace DalObject
 {
     public partial class DalObject : DAL.IDAL.IDAL
     {
+        public bool CheckStation(int id)
+        {
+            return DataSource.stations.Any(s => s.Id == id);
+        }
         /// <summary>
         /// add new station
         /// </summary>
         /// <param name="s">new station</param>
         public void StationAddition(Station s)
         {
+            if (CheckStation(s.Id))
+                throw new DAL.DuplicateIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }
 
@@ -26,6 +32,8 @@ namespace DalObject
         /// <returns>return the index of the station in the array</returns>
         public Station GetStation(int id)
         {
+            if (CheckStation(id))
+                throw new DAL.MissingIdException(id, "Station");
             return DataSource.stations.Find(s => s.Id == id);
         }
 
@@ -56,6 +64,8 @@ namespace DalObject
         }
         public void StationDelete(Station s)
         {
+            if (CheckStation(s.Id))
+                throw new DAL.MissingIdException(s.Id, "Station");
             DataSource.stations.Remove(s);
         }
     }

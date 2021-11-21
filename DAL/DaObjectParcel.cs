@@ -10,14 +10,18 @@ namespace DalObject
 {
     public partial class DalObject : DAL.IDAL.IDAL
     {
+        public bool CheckParcel(int id)
+        {
+            return DataSource.parcels.Any(p => p.Id == id);
+        }
         /// <summary>
         /// add new parcel
         /// </summary>
         /// <param name="s">new parcel</param>
         public void ParcelAddition(Parcel p)
         {
-            //DataSource.stations[DataSource.config.stationCounter] = s;
-            //DataSource.config.stationCounter++;
+            if (CheckParcel(p.Id))
+                throw new DAL.DuplicateIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
         /// <summary>
@@ -27,10 +31,14 @@ namespace DalObject
         /// <returns>return the index of the costuner in the array</returns>
         public Parcel GetParcel(int id)
         {
+            if (CheckParcel (id))
+                throw new DAL.MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.Id == id);
         }
         public void ParcelDelete(Parcel p)
         {
+            if (CheckParcel(id))
+                throw new DAL.MissingIdException(id, "Parcel");
             DataSource.parcels.Remove(p);
         }
 

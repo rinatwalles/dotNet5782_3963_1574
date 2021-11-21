@@ -10,12 +10,18 @@ namespace DalObject
 {
     public partial class DalObject : DAL.IDAL.IDAL
     {
+        public bool CheckCustomer(int id)      
+        {
+            return DataSource.customers.Any(c => c.Id == id);
+        }
         /// <summary>
         /// add new customer
         /// </summary>
         /// <param name="c">new customer</param>
         public void CustomerAddition(Customer c)
         {
+            if (CheckCustomer(c.Id))
+                throw new DAL.DuplicateIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }
 
@@ -26,6 +32,8 @@ namespace DalObject
         /// <returns>return the index of the station in the array</returns>
         public Customer GetCustomer(int id)
         {
+            if (CheckCustomer(id))
+                throw new DAL.MissingIdException(id, "Customer");
             return DataSource.customers.Find(c => c.Id == id);
         }
         /// <summary>
@@ -42,7 +50,12 @@ namespace DalObject
         /// </summary>
         public IEnumerable<Customer> AllCustomer()
         {
-            return DataSource.customers;
+            List<Customer> newList = new List<Customer>();
+            foreach (Customer item in DataSource.customers)
+            {
+                newList.Add(item);
+            }
+            return newList;
         }
         /// <summary>
         /// current distance fron customer
@@ -59,6 +72,8 @@ namespace DalObject
         }
         public void CustomerDelete(Customer c)
         {
+            if (CheckCustomer(c.Id))
+                throw new DAL.MissingIdException(c.Id, "Customer");
             DataSource.customers.Remove(c);
         }
     }

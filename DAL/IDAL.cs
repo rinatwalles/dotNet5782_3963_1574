@@ -14,6 +14,7 @@ namespace DAL
         {
             #region Drone
             //CRUD Drone
+            bool CheckDrone(int id);
             void DroneAddition(Drone d);
             Drone GetDrone(int id);
             void JoinDroneToParcel(int parcelId);
@@ -27,6 +28,7 @@ namespace DAL
 
             #region Customer
             //CRUD Customer
+            bool CheckCustomer(int id);
             void CustomerAddition(Customer c);
             Customer GetCustomer(int id);
             void CustomerCollecting(int parcelId);
@@ -37,6 +39,7 @@ namespace DAL
 
             #region Station
             //CRUD Station
+            bool CheckStation(int id);
             void StationAddition(Station s);
             Station GetStation(int id);
             IEnumerable<Station> AllStation();
@@ -46,6 +49,7 @@ namespace DAL
 
             #region Parcel
             //CRUD Parcel
+            bool CheckParcel(int id);
             void ParcelAddition(Parcel p);
             Parcel GetParcel(int id);
             void ParcelDelete(Parcel p);
@@ -53,6 +57,7 @@ namespace DAL
 
             #region DroneCharge
             //CRUD DroneCharge
+            bool CheckDroneCharge(int id);
             void DroneChargesDelete(DroneCharge d);
             #endregion
         }
