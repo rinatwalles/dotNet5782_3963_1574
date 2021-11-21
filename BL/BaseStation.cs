@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IDAL.DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,10 @@ namespace BL
             public Location location { get; set; }
             public int avilableChargeSlotsNumber { get; set; }
             public List<DroneCharging> droneCharging { get; set; }
+            public override string ToString()
+            {
+                return this.ToStringProperty();
+            }
         }
     }
 }

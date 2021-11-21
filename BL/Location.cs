@@ -1,4 +1,5 @@
 ﻿using System;
+using IDAL.DO;
 
 namespace BL
 {
@@ -8,6 +9,10 @@ namespace BL
         {
             public double Longitude { get; set; }
             public double Latitude { get; set; }
+            public override string ToString()
+            {
+                return this.ToStringProperty();
+            }
         }
     }
 }

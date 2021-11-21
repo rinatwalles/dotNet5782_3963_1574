@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDAL.DO;
 
 namespace BL
 {
@@ -20,7 +21,10 @@ namespace BL
             public DateTime Scheduled { get; set; }   //שיוך
             public DateTime PickedUp { get; set; }   //איסוף
             public DateTime Delivered { get; set; }   //אספקה
-
+            public override string ToString()
+            {
+                return this.ToStringProperty();
+            }
         }
     }
 }

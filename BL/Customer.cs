@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using IDAL.DO;
 
 namespace BL
 {
@@ -16,6 +17,10 @@ namespace BL
             public Location Place { get; set; }
             public List<Parcel> ParcelsFromCustomer { get; set; }
             public List<Parcel> ParcelsToCustomer { get; set; }
+            public override string ToString()
+            {
+                return this.ToStringProperty();
+            }
 
         }
     }
