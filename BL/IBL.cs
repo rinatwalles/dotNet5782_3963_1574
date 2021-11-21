@@ -8,14 +8,11 @@ namespace BL
 {
     namespace IBL.BO
     {
-        namespace IBL.BO
-        {
             interface IBL
             {
-                //CRUD location
-                #region Location
-
-            }
+            //CRUD location
+            #region Location
+            #endregion
         }
     }
 }
