@@ -5,8 +5,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace BL
-{
+//namespace BL
+//{
     namespace IBL.BO
     {
         class BaseStation
@@ -22,4 +22,4 @@ namespace BL
             }
         }
     }
-}
+//}

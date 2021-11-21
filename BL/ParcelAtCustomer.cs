@@ -5,8 +5,8 @@ using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
 
-namespace BL
-{
+//namespace BL
+//{
     namespace IBL.BO
     {
         public class ParcelAtCustomer
@@ -22,4 +22,4 @@ namespace BL
             }
         }
     }
-}
+//}
