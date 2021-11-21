@@ -137,12 +137,9 @@ namespace DalObject
         /// </summary>
         public IEnumerable<Drone> AllDrones()
         {
-            List<Drone> newList = new List<Drone>();
-            foreach (Drone item in DataSource.drones)
-            {
-                newList.Add(item);
-            }
-            return newList;
+            return from dr in DataSource.drones
+                   select dr;
+            //return DataSource.drones;
         }
 
         /// <summary>

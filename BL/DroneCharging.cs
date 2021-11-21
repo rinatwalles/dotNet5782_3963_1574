@@ -9,7 +9,7 @@ using IDAL.DO;
 //{
     namespace IBL.BO
     {
-        class DroneCharging
+        public class DroneCharging
         {
             public int id { get; set; }
             public int battaryStatus { get; set; }
