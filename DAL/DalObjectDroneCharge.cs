@@ -10,10 +10,10 @@ namespace DalObject
 {
     public partial class DalObject : DAL.IDAL.IDAL
     {
-      public  bool CheckDroneCharge(int id)
-        {
-          //  return DataSource.droneCharges.Any(c => c.Id == id);
-        }
+      //public  bool CheckDroneCharge(int id)
+      //  {
+      //      return DataSource.droneCharges.Any(c => c.Id == id);
+      //  }
 
         public void DroneChargesDelete(DroneCharge d)
         {

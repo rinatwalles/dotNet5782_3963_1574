@@ -11,9 +11,9 @@ namespace BL
     {
          public class DroneInParcel
         {
-            public int id { get; set; }
-            public int battaryStatus { get; set; }
-            public Location location { get; set; }
+            public int Id { get; set; }
+            public int BattaryStatus { get; set; }
+            public Location Location { get; set; }
             public override string ToString()
             {
                 return this.ToStringProperty();

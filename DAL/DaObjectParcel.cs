@@ -20,7 +20,7 @@ namespace DalObject
         /// <param name="s">new parcel</param>
         public void ParcelAddition(Parcel p)
         {
-            if (CheckParcel(p.Id))
+            if (!CheckParcel(p.Id))
                 throw new DAL.DuplicateIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
@@ -31,14 +31,28 @@ namespace DalObject
         /// <returns>return the index of the costuner in the array</returns>
         public Parcel GetParcel(int id)
         {
-            if (CheckParcel (id))
+            if (!CheckParcel (id))
                 throw new DAL.MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.Id == id);
         }
+        public IEnumerable<Parcel> AllParcel()
+        {
+            //List<Station> newList = new List<Station>();
+            //foreach (Station item in DataSource.stations)
+            //{
+            //    newList.Add(item);
+            //}
+            //return newList;
+            return from parc in DataSource.parcels
+                   select parc;
+        }
         public void ParcelDelete(Parcel p)
         {
-            if (CheckParcel(id))
-                throw new DAL.MissingIdException(id, "Parcel");
+            int count = DataSource.parcels.RemoveAll(parc => parc.Id == p.Id);
+
+            if (count == 0)
+                //if (!CheckParcel(p.Id))
+                throw new DAL.MissingIdException(p.Id, "Parcel");
             DataSource.parcels.Remove(p);
         }
 

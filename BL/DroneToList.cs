@@ -11,13 +11,13 @@ namespace BL
     {
         class DroneToList
         {
-            public int id { get; set; }
-            public string droneModel { get; set; }
-            public WeightCategories weight { get; set; }
+            public int Id { get; set; }
+            public string DroneModel { get; set; }
+            public WeightCategories Weight { get; set; }
             public int batteryStatus { get; set; }
-            public DroneStatuses droneStatus { get; set; }
-            public Location location { get; set; }
-            public int passedParcelNumber { get; set; }
+            public DroneStatuses DroneStatus { get; set; }
+            public Location Location { get; set; }
+            public int PassedParcelNumber { get; set; }
             public override string ToString()
             {
                 return this.ToStringProperty();

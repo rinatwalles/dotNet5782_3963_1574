@@ -52,6 +52,7 @@ namespace DAL
             bool CheckParcel(int id);
             void ParcelAddition(Parcel p);
             Parcel GetParcel(int id);
+            public IEnumerable<Parcel> AllParcel();
             void ParcelDelete(Parcel p);
             #endregion
 

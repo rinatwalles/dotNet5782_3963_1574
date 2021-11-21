@@ -21,7 +21,7 @@ namespace DalObject
         }
         public void DroneAddition(Drone d)
         {
-            if (CheckDrone(d.Id))
+            if (!CheckDrone(d.Id))
                 throw new DAL.DuplicateIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
@@ -32,7 +32,7 @@ namespace DalObject
         /// <returns>return the index of the drone in the array</returns>
         public Drone GetDrone(int id)
         {
-            if (CheckDrone(id))
+            if (!CheckDrone(id))
                 throw new DAL.MissingIdException(id, "Drone");
             return DataSource.drones.Find(d => d.Id == id);
         }
@@ -156,9 +156,12 @@ namespace DalObject
         }
         public void DroneDelete(Drone d)
         {
-            if (CheckDrone(d.Id))
+            int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
+
+            //if (CheckDrone(d.Id))
+            if(count==0)
                 throw new DAL.MissingIdException(d.Id, "Drone");
-            DataSource.drones.Remove(d);
+            //DataSource.drones.Remove(d);
         }
 
     }

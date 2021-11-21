@@ -11,8 +11,8 @@ namespace BL
     {
         public class DroneCharging
         {
-            public int id { get; set; }
-            public int battaryStatus { get; set; }
+            public int Id { get; set; }
+            public int BattaryStatus { get; set; }
             public override string ToString()
             {
                 return this.ToStringProperty();

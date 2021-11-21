@@ -20,7 +20,7 @@ namespace DalObject
         /// <param name="c">new customer</param>
         public void CustomerAddition(Customer c)
         {
-            if (CheckCustomer(c.Id))
+            if (!CheckCustomer(c.Id))
                 throw new DAL.DuplicateIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }
@@ -32,7 +32,7 @@ namespace DalObject
         /// <returns>return the index of the station in the array</returns>
         public Customer GetCustomer(int id)
         {
-            if (CheckCustomer(id))
+            if (!CheckCustomer(id))
                 throw new DAL.MissingIdException(id, "Customer");
             return DataSource.customers.Find(c => c.Id == id);
         }
@@ -50,12 +50,14 @@ namespace DalObject
         /// </summary>
         public IEnumerable<Customer> AllCustomer()
         {
-            List<Customer> newList = new List<Customer>();
-            foreach (Customer item in DataSource.customers)
-            {
-                newList.Add(item);
-            }
-            return newList;
+            //List<Customer> newList = new List<Customer>();
+            //foreach (Customer item in DataSource.customers)
+            //{
+            //    newList.Add(item);
+            //}
+            return from custo in DataSource.customers
+                   select custo;
+            //return newList;
         }
         /// <summary>
         /// current distance fron customer
@@ -72,7 +74,10 @@ namespace DalObject
         }
         public void CustomerDelete(Customer c)
         {
-            if (CheckCustomer(c.Id))
+            int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);
+
+            if (count == 0)
+                //if (CheckCustomer(c.Id))
                 throw new DAL.MissingIdException(c.Id, "Customer");
             DataSource.customers.Remove(c);
         }

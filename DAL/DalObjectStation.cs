@@ -20,7 +20,7 @@ namespace DalObject
         /// <param name="s">new station</param>
         public void StationAddition(Station s)
         {
-            if (CheckStation(s.Id))
+            if (!CheckStation(s.Id))
                 throw new DAL.DuplicateIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }
@@ -32,7 +32,7 @@ namespace DalObject
         /// <returns>return the index of the station in the array</returns>
         public Station GetStation(int id)
         {
-            if (CheckStation(id))
+            if (!CheckStation(id))
                 throw new DAL.MissingIdException(id, "Station");
             return DataSource.stations.Find(s => s.Id == id);
         }
@@ -42,12 +42,14 @@ namespace DalObject
         /// </summary>
         public IEnumerable<Station> AllStation()
         {
-            List<Station> newList = new List<Station>();
-            foreach (Station item in DataSource.stations)
-            {
-                newList.Add(item);
-            }
-            return newList;
+            //List<Station> newList = new List<Station>();
+            //foreach (Station item in DataSource.stations)
+            //{
+            //    newList.Add(item);
+            //}
+            //return newList;
+            return from stat in DataSource.stations
+                   select stat;
         }
         /// <summary>
         /// current distance fron station
@@ -64,9 +66,13 @@ namespace DalObject
         }
         public void StationDelete(Station s)
         {
-            if (CheckStation(s.Id))
+            int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
+
+            if (count == 0)
                 throw new DAL.MissingIdException(s.Id, "Station");
-            DataSource.stations.Remove(s);
+            //if (CheckStation(s.Id))
+            //    throw new DAL.MissingIdException(s.Id, "Station");
+            //DataSource.stations.Remove(s);
         }
     }
 }
