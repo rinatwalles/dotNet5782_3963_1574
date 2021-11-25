@@ -20,6 +20,7 @@ namespace DalObject
         /// <param name="s">new parcel</param>
         public void ParcelAddition(Parcel p)
         {
+            p.Id = Config.ParcelId++;
             if (!CheckParcel(p.Id))
                 throw new DAL.DuplicateIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
@@ -49,11 +50,16 @@ namespace DalObject
         public void ParcelDelete(Parcel p)
         {
             int count = DataSource.parcels.RemoveAll(parc => parc.Id == p.Id);
-
             if (count == 0)
-                //if (!CheckParcel(p.Id))
                 throw new DAL.MissingIdException(p.Id, "Parcel");
-            DataSource.parcels.Remove(p);
+        }
+
+        public void ParcelUpdate(Parcel p)
+        {
+            int count = DataSource.parcels.RemoveAll(parc => parc.Id == p.Id);
+            if (count == 0)
+                throw new DAL.MissingIdException(p.Id, "Parcel");
+            DataSource.parcels.Add(p);
         }
 
     }

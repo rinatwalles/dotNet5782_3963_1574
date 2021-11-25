@@ -9,12 +9,12 @@ using IDAL.DO;
 //{
     namespace IBL.BO
     {
-        class DroneToList
+       public class DroneToList
         {
             public int Id { get; set; }
-            public string DroneModel { get; set; }
+            public string Model { get; set; }
             public WeightCategories Weight { get; set; }
-            public int batteryStatus { get; set; }
+            public double BatteryStatus { get; set; }
             public DroneStatuses DroneStatus { get; set; }
             public Location Location { get; set; }
             public int PassedParcelNumber { get; set; }

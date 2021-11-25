@@ -157,12 +157,16 @@ namespace DalObject
         public void DroneDelete(Drone d)
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
-
-            //if (CheckDrone(d.Id))
             if(count==0)
                 throw new DAL.MissingIdException(d.Id, "Drone");
-            //DataSource.drones.Remove(d);
         }
 
+        public void DroneUpdate(Drone d)
+        {
+            int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
+            if (count == 0)
+                throw new DAL.MissingIdException(d.Id, "Drone");
+            DataSource.drones.Add(d);
+        }
     }
 }

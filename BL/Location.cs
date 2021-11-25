@@ -1,9 +1,15 @@
 ﻿using System;
 using IBL.BO;
+using IDAL.DO;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
 
 //namespace BL
 //{
-    namespace IBL.BO
+namespace IBL.BO
     {
         public class Location
         {

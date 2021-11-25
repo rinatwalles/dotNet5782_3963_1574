@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBL.BO;
+using System;
 
 namespace ConsoleUI_BL
 {
@@ -13,8 +14,56 @@ namespace ConsoleUI_BL
         static void Main(string[] args)
      {
             IBL.IBL ibl = new BL.BL();
-          // BLApi.IBL bl = new BL.BLImp();
-     }
+            //קליטת תחנת בסיס, קודם כל מיקום
+            IBL.BO.Location locate = new IBL.BO.Location()
+            {
+                Longitude = 0, Latitude = 0
+            };
+
+            Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber");
+            IBL.BO.BaseStation sstation = new IBL.BO.BaseStation()
+            {
+                Id = int.Parse(System.Console.ReadLine()),
+                Name = System.Console.ReadLine(),
+                AvilableChargeSlotsNumber = int.Parse(System.Console.ReadLine()),
+                DroneCharging = new System.Collections.Generic.List<DroneCharging>()//בטוח צריך?זה זה מה שהתכוונו?
+            };
+            locate.Longitude = double.Parse(Console.ReadLine());
+            locate.Latitude = double.Parse(Console.ReadLine());
+            sstation.SLocation = locate;
+            ibl.AddBaseStation(sstation);
+            //קליטת רחפן
+            Console.WriteLine("Insert id, model, maximum wight");
+            IBL.BO.Drone ddrone = new IBL.BO.Drone()
+            {
+                Id = int.Parse(System.Console.ReadLine()),
+                Model = System.Console.ReadLine(),
+                Weight = (WeightCategories)System.Console.Read(),
+            };
+            int sId = int.Parse(System.Console.ReadLine());
+            ibl.AddDrone(ddrone, sId);
+            //קליטת לקוח
+            Console.WriteLine("Insert id, name, number, location");
+            IBL.BO.Customer ccustomer = new IBL.BO.Customer()
+            {
+                Id = int.Parse(System.Console.ReadLine()),
+                Name = System.Console.ReadLine(),
+                Phone = System.Console.ReadLine(),
+            };
+            locate.Longitude = double.Parse(Console.ReadLine());
+            locate.Latitude = double.Parse(Console.ReadLine());
+            ccustomer.Place = locate;
+            ibl.AddCustomer(ccustomer);
+            //קליטת חבילה
+            Console.WriteLine("Insert id, name, number, location");
+            IBL.BO.Parcel pparcel = new IBL.BO.Parcel()
+            {
+                //לעשות תת תפריט למשקל ועדיפות
+            };
+            int IdSender = int.Parse(System.Console.ReadLine());
+            int IdReceiver = int.Parse(System.Console.ReadLine());
+            ibl.AddParcel(pparcel, IdSender, IdReceiver);
+        }
     }
 }     
 

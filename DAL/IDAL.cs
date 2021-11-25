@@ -24,6 +24,7 @@ namespace DAL
             IEnumerable<Drone> AllDrones();
             double DistanceCalculate(double x1, double y1, double longy, double latx);
             void DroneDelete(Drone d);
+            void DroneUpdate(Drone d);
             #endregion
 
             #region Customer
@@ -35,6 +36,8 @@ namespace DAL
             IEnumerable<Customer> AllCustomer();
             double DistanceFromCustomer(int id, double x1, double y1);
             void CustomerDelete(Customer c);
+            void CustomerUpdate(Customer c);
+
             #endregion
 
             #region Station
@@ -45,6 +48,7 @@ namespace DAL
             IEnumerable<Station> AllStation();
             double DistanceFromStation(int id, double x1, double y1);
             void StationDelete(Station s);
+            void StationUpdate(Station s);
             #endregion
 
             #region Parcel
@@ -54,12 +58,14 @@ namespace DAL
             Parcel GetParcel(int id);
             public IEnumerable<Parcel> AllParcel();
             void ParcelDelete(Parcel p);
+            void ParcelUpdate(Parcel p);
             #endregion
 
             #region DroneCharge
             //CRUD DroneCharge
-            bool CheckDroneCharge(int id);
+            bool CheckDroneCharge(int dId, int sId);
             void DroneChargesDelete(DroneCharge d);
+            DroneCharge GetDroneCharge(int dId, int sId);
             #endregion
         }
 

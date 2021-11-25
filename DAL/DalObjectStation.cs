@@ -67,12 +67,16 @@ namespace DalObject
         public void StationDelete(Station s)
         {
             int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
-
             if (count == 0)
                 throw new DAL.MissingIdException(s.Id, "Station");
-            //if (CheckStation(s.Id))
-            //    throw new DAL.MissingIdException(s.Id, "Station");
-            //DataSource.stations.Remove(s);
+        }
+
+        public void StationUpdate(Station s)
+        {
+            int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
+            if (count == 0)
+                throw new DAL.MissingIdException(s.Id, "Station");
+            DataSource.stations.Add(s);
         }
     }
 }

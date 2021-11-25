@@ -12,13 +12,14 @@ namespace DalObject
         /// <summary>
         /// function that create static arrays for drones, stations, customers, parcels and drone charges
         /// </summary>
-        internal class config
+        internal class Config
         {
+            static public int ParcelId = 0;
             static public double Avilable { get; set; }
             static public double Light { get; set; }
             static public double Medium { get; set; }
             static public double Heavy { get; set; }
-            static public double ChargePrecent { get; set; }
+            static public double ChargePrecent { get; set; }   //קצב טעינת רחפן
         }
 
         internal static List<Drone> drones = new List<Drone>();
@@ -79,7 +80,7 @@ namespace DalObject
                 //config.parcelsCounter++;
                 parcels[i] = new Parcel()
                 {
-                    Id = num++,
+                    Id = Config.ParcelId++,
                     SenderId = rand.Next(1000, 2000),
                     TargetId = rand.Next(1000, 2000),
                     Weight = (WeightCategories)rand.Next(0, 2),

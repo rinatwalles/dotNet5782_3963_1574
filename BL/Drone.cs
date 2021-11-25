@@ -9,15 +9,16 @@ using IDAL.DO;
 //{
     namespace IBL.BO
     {
-        class Drone
+        public class Drone
         {
-            public int id { get; set; }
-            public string model { get; set; }
-            public WeightCategories weight { get; set; }
-            public int batteryStatus { get; set; }
-            public DroneStatuses droneStatus { get; set; }
-            public ParcelInDelivery parcelInDelivery { get; set; }
-            public Location location { get; set; }
+            public int Id { get; set; }
+            public string Model { get; set; }
+            public WeightCategories Weight { get; set; }
+            public double BatteryStatus { get; set; }
+            public DroneStatuses DroneStatus { get; set; }
+            public ParcelInDelivery ParcelInDelivery { get; set; }
+            public Location Location { get; set; }
+
             public override string ToString()
             {
                 return this.ToStringProperty();

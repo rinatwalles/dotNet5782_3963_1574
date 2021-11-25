@@ -75,11 +75,16 @@ namespace DalObject
         public void CustomerDelete(Customer c)
         {
             int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);
-
             if (count == 0)
-                //if (CheckCustomer(c.Id))
                 throw new DAL.MissingIdException(c.Id, "Customer");
-            DataSource.customers.Remove(c);
+        }
+
+        public void CustomerUpdate(Customer c)
+        {
+            int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);
+            if (count == 0)
+                throw new DAL.MissingIdException(c.Id, "Customer");
+            DataSource.customers.Add(c);
         }
     }
 }
