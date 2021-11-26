@@ -67,7 +67,7 @@ namespace BL
             try
             {
                 //בדיקה האם הרחפן קיים כבר
-                if (idal.CheckStation(s.Id))
+                if (idal.CheckStation(s.Id))               //למה צריך לבדוק גם פה? זה נבדק גם בפונקצית הוספה בDAL?????
                     throw new DuplicateIdException(s.Id, "Drone");// מסכים רק DAL
 
                 //הצבת ערכים בשביל לשמור את האוביקט בDAL
@@ -136,6 +136,88 @@ namespace BL
             {
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
+        }
+
+        public void UpdateDrone(int id, string model)
+        {//מסתמכים שאם הוא נמצר בDAL כבר הוספנו אותו לBL. לא להסתמך על זה?
+            try
+            {//שינוי הרחפן בDAL
+                IDAL.DO.Drone doDrone = new IDAL.DO.Drone();
+                doDrone = idal.GetDrone(id);   //הצבה בין שדות?
+                //IDAL.DO.Drone doDrone = idal.GetDrone(id);     השורה הזאת יכולה להחליף את 145, 146? כי יכול להיות שמאחורי הקלעים יש new
+                doDrone.Model = model;
+                idal.DroneUpdate(doDrone);
+
+                //שינוי רחפן ברישמת רחפנים BL
+                DroneToList dl = ListBLDrones.Find(d => d.Id == id);        //יצרנו העתק
+                int count = ListBLDrones.RemoveAll(dr => dr.Id == id); //מוחקים את הישן
+                dl.Model = model;  // changing the model name
+                ListBLDrones.Add(dl); //adding the new one
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
+
+        public void UpdateCustomer(int id, string name, string phone )
+        {
+            try
+            {
+                IDAL.DO.Customer doCustomer  = new IDAL.DO.Customer();
+                doCustomer = idal.GetCustomer(id);
+                if (name != "")                  //בדיקה אם הוא הכניב ערכים או ENTER
+                    doCustomer.Name = name; 
+                if (phone != "")
+                    doCustomer.Phone = phone;
+                idal.CustomerUpdate(doCustomer);
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
+
+
+
+
+
+
+
+
+        //תצגוגת של רשימות
+        public IEnumerable<BaseStationToList> GetAllBaseStations()
+        {
+            return from dostat in idal.AllStation()
+                   select new BaseStationToList()
+                   {
+                       Id = dostat.Id,
+                       Name = dostat.Name,
+                       AvailableCharginggSlotsNumber = dostat.ChargeSlots,
+                       RservedCharginggSlotsNumber = idal.CountDroneCharge()
+                   };
+        }
+
+        public IEnumerable<DroneToList> GetAllDrones()
+        {
+            return from dodrone in ListBLDrones
+                   select new DroneToList();
+        }
+
+
+        public IEnumerable<CustomerToList> GetAllCustomers()
+        {
+            return from docust in idal.AllCustomer()
+                   select new CustomerToList()
+                   {
+                       Id = docust.Id,
+                       Name = docust.Name,
+                       Phone = docust.Phone,
+                       //NumOfParcelsSentNotSupplied
+                       //NumOfParcelsSentAndSupplied
+                       //NumOfParcelsDelivered
+                       //NumOfParcelsReceived
+                   };
         }
 
 

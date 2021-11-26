@@ -12,14 +12,14 @@ namespace ConsoleUI_BL
         enum Show { Station, Drone, Customer, Parcel, ParcelWithoutDrone, AvilabaleStations };//enum for show options
         enum Distance { Station, Customer }//enum for distance options
         static void Main(string[] args)
-     {
+        {
             IBL.IBL ibl = new BL.BL();
-            //קליטת תחנת בסיס, קודם כל מיקום
+            // קודם כל מיקום בשביל כמה אוביקטים
             IBL.BO.Location locate = new IBL.BO.Location()
             {
                 Longitude = 0, Latitude = 0
             };
-
+            //קליטת תחנת בסיס,
             Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber");
             IBL.BO.BaseStation sstation = new IBL.BO.BaseStation()
             {
@@ -63,6 +63,22 @@ namespace ConsoleUI_BL
             int IdSender = int.Parse(System.Console.ReadLine());
             int IdReceiver = int.Parse(System.Console.ReadLine());
             ibl.AddParcel(pparcel, IdSender, IdReceiver);
+
+
+            // אפשרויות עדכון
+
+            //עדכון רחפן
+            Console.WriteLine("Insert id of drone and its new name");
+            int idS = int.Parse(System.Console.ReadLine());
+            string modelS = System.Console.ReadLine();
+            ibl.UpdateDrone(idS, modelS);
+
+            //update customer
+            Console.WriteLine("Insert id of drone and its new name");
+            int idC = int.Parse(System.Console.ReadLine());
+            string nameC = System.Console.ReadLine();
+            string phoneC = System.Console.ReadLine();
+            ibl.UpdateCustomer(idC,nameC, phoneC);
         }
     }
 }     

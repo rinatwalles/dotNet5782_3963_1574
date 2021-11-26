@@ -66,6 +66,8 @@ namespace DAL
             bool CheckDroneCharge(int dId, int sId);
             void DroneChargesDelete(DroneCharge d);
             DroneCharge GetDroneCharge(int dId, int sId);
+            int CountDroneCharge();
+          //  IEnumerable<DroneCharge> AllDroneCharges();
             #endregion
         }
 
