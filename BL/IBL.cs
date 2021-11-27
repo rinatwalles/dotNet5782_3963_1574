@@ -29,5 +29,7 @@ namespace IBL
         IEnumerable<CustomerToList> GetAllCustomers();
 
 
+        CustomerOfParcel getCustomerOfParcel(int id);
+
     }
 }

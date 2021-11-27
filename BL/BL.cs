@@ -17,11 +17,17 @@ namespace BL
         public BL()
         {
             idal = new DalObject.DalObject();
-            // double ChargePrecent = DalObject.DataSource.Config.ChargePrecent; בגלל המערך שאנחנו צריכות לעשות בDALOBJECT
-            //השדה של צריכת חשמל 
+
+            double[] array = idal.AskingElectricityUse();
+            double Available = array[0];
+            double Light = array[1];
+            double Medium = array[2];
+            double Heavy = array[3];
+            double ChargePrecent = array[4];
+
             IEnumerable<IDAL.DO.Drone> drones = idal.AllDrones();
         }
-        List<IBL.BO.DroneToList> ListBLDrones { get; set; }  //למה בלי pyblic????????????
+        public List<IBL.BO.DroneToList> ListBLDrones { get; set; }  
 
         public void AddDrone(Drone d, int sId)
         {
@@ -124,10 +130,10 @@ namespace BL
                     Weight = (IDAL.DO.WeightCategories)p.Weight,
                     Priority = (IDAL.DO.Priorities)p.Priority,
                     DroneId = 0,
-                    Requested = DateTime.MinValue,
-                    Scheduled = DateTime.MinValue,
-                    PickedUp = DateTime.MinValue,
-                    Delivered = DateTime.MinValue
+                    RequestedTime = DateTime.MinValue,
+                    ScheduledTime = DateTime.MinValue,
+                    PickedUpTime = DateTime.MinValue,
+                    DeliveredTime = DateTime.MinValue
                 };
                 idal.ParcelAddition(doParcel);
             }
@@ -194,7 +200,7 @@ namespace BL
                        Id = dostat.Id,
                        Name = dostat.Name,
                        AvailableCharginggSlotsNumber = dostat.ChargeSlots,
-                       RservedCharginggSlotsNumber = idal.CountDroneCharge()
+                       RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
                    };
         }
 
@@ -220,6 +226,32 @@ namespace BL
                    };
         }
 
+        //פןנקציה פרטית שתחזיר לי אוביקט ממש מהסןג הזה 
+        //בנוסף היא יכולה להיות PRIVATE לבדוק את הנושא כי זכור לי משהו שדן כתב
+        //יש דרך אחרת??
+       public CustomerOfParcel getCustomerOfParcel(int id)
+        {
+            CustomerOfParcel cp = new CustomerOfParcel();
+            IDAL.DO.Customer doCast = new IDAL.DO.Customer();
+            doCast=idal.GetCustomer(id);
+            cp.Name = doCast.Name;
+            cp.Id = id;
+            return cp;
+        }
+
+        public IEnumerable<ParcelToList> GetAllParcels()
+        {
+            return from doparc in idal.AllParcel()
+                   select new ParcelToList()
+                   {
+                       Id = doparc.Id,
+                       Sender = getCustomerOfParcel(doparc.SenderId),
+                       Receiver = getCustomerOfParcel(doparc.TargetId),
+                       Weight = (WeightCategories)doparc.Weight,
+                       Priority = (Priorities)doparc.Priority,
+                       //ParcelState=doparc.
+                    };
+        }
 
     }
 }
