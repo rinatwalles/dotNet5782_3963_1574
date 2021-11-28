@@ -66,7 +66,6 @@ namespace BL
             {
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
-
         }
         public void AddBaseStation(BaseStation s)
         {
