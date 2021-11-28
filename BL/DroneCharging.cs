@@ -12,7 +12,7 @@ using IDAL.DO;
         public class DroneCharging
         {
             public int Id { get; set; }
-            public int BattaryStatus { get; set; }
+            public double BattaryStatus { get; set; }
             public override string ToString()
             {
                 return this.ToStringProperty();

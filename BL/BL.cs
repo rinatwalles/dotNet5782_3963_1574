@@ -152,8 +152,13 @@ namespace BL
                     Longitude = doStation.Longitude
                 };
                 boBaseStation.AvilableChargeSlotsNumber = doStation.ChargeSlots;
-                boBaseStation
+                boBaseStation.DroneCharging = GetDroneChargingPerStation(id);
             }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+            return boBaseStation;
         }
         public Drone GetDrone(int id)
         {
@@ -175,6 +180,97 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
             return boDrone;
+        }
+        Customer GetCustomer(int id)
+        {
+            IBL.BO.Customer boCustomer = new IBL.BO.Customer();
+            try
+            {
+                IDAL.DO.Customer doCustomerd= idal.GetCustomer(id);
+                boCustomer.Id = doCustomerd.Id;
+                boCustomer.Name = doCustomerd.Name;
+                boCustomer.Phone = doCustomerd.Phone;//באיידאל זה מקסימום וויט ואיי בי אל זה סתם וויט בלי מקסימום 
+                IBL.BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
+                boCustomer.Place = new Location
+                {
+                    Latitude = doCustomerd.Latitude,
+                    Longitude = doCustomerd.Longitude
+                };
+                boDrone.BatteryStatus = dtl.BatteryStatus;
+                boDrone.DroneStatus = dtl.DroneStatus;
+                boDrone.Location = dtl.Location;
+                //boDrone.ParcelInDelivery מה עם זה
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+            return boDrone;
+        }
+
+        private IEnumerable<Parcel> GetParcelsFromCustomer(int id)
+        {
+            IDAL.DO.Customer c = idal.GetCustomer(id);
+            return
+            from item in DalObject.DataSource.parcels
+            where item.SenderId == id
+            let cstReceiver = idal.GetCustomer(item.TargetId)
+            let droneInParcel= ListBLDrones.Find(d => d.Id == id)
+            select new Parcel
+            {
+                Id = item.Id,
+                Sender = new CustomerOfParcel
+                {
+                    Id = id,
+                    Name = c.Name
+                },
+               
+                Receiver = new CustomerOfParcel
+                {
+                    Id = cstReceiver.Id,
+                    Name = cstReceiver.Name
+                },
+                Weight=(IBL.BO.WeightCategories)item.Weight,
+                Priority= (IBL.BO.Priorities)item.Priority,
+                ParcelsDrones = new DroneInParcel
+                {
+                    Id = droneInParcel.Id,
+                    BattaryStatus= droneInParcel.BatteryStatus
+
+                },
+            };
+        }
+
+   
+    //Parcel getParcel ()
+    //{
+    //    {
+    //        Id = item.Id,
+    //            Sender = new CustomerOfParcel
+    //            {
+    //                Id = id,
+    //                Name = c.Name
+    //            },
+               
+    //            Receiver = new CustomerOfParcel
+    //            {
+    //                Id = cstReceiver.Id,
+    //                Name = cstReceiver.Name
+    //            },
+    //            Weight = (IBL.BO.WeightCategories)item.Weight,
+    //            Priority = (IBL.BO.Priorities)item.Priority,
+    //}
+        private IEnumerable<Parcel> GetDroneChargingPerStation(int id)
+        {
+            return
+            from item in DalObject.DataSource.droneCharges
+            where item.DroneId == id
+            select new DroneCharging
+            {
+                Id = id,
+                BattaryStatus = ListBLDrones.Find(d => id == item.DroneId).BatteryStatus
+            };
+
         }
 
     }

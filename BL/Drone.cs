@@ -14,7 +14,7 @@ using IDAL.DO;
             public int Id { get; set; }
             public string Model { get; set; }
             public WeightCategories Weight { get; set; }
-            public double BatteryStatus { get; set; }
+            public double BatteryStatus { get; set; }//האם זה אכן דאבל או אינט
             public DroneStatuses DroneStatus { get; set; }
             public ParcelInDelivery ParcelInDelivery { get; set; }
             public Location Location { get; set; }

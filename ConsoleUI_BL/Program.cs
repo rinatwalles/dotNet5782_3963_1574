@@ -130,6 +130,8 @@ namespace ConsoleUI_BL
                             Console.WriteLine(dr);
                             break;
                         case Display.Customer:
+                            Customer c = ibl.GetCustomer(id);
+                            Console.WriteLine(c);
                             break;
                         case Display.Parcel:
                             break;
