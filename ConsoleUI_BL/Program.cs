@@ -122,8 +122,8 @@ namespace ConsoleUI_BL
                     switch (d)
                     {
                         case Display.Station:
-                            
-
+                            BaseStation bs = ibl.getBaseStation(id);
+                            Console.WriteLine(bs);
                             break;
                         case Display.Drone:
                             Drone dr = ibl.getDrone(id);

@@ -138,6 +138,23 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
+        public BaseStation getBaseStation(int id)
+        {
+            IBL.BO.BaseStation boBaseStation = new IBL.BO.BaseStation();
+            try
+            {
+                IDAL.DO.Station doStation = idal.GetStation(id);
+                boBaseStation.Id = doStation.Id;
+                boBaseStation.Name = doStation.Name;
+                boBaseStation.SLocation = new Location
+                {
+                    Latitude = doStation.Latitude,
+                    Longitude = doStation.Longitude
+                };
+                boBaseStation.AvilableChargeSlotsNumber = doStation.ChargeSlots;
+                boBaseStation
+            }
+        }
         public Drone GetDrone(int id)
         {
             IBL.BO.Drone boDrone = new IBL.BO.Drone();
