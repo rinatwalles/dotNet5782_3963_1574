@@ -35,5 +35,6 @@ namespace DalObject
             return DataSource.droneCharges.Where(dc => dc.StationId == id);
         }
 
+       
     }
 }

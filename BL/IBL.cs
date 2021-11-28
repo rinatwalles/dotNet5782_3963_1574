@@ -31,5 +31,8 @@ namespace IBL
 
         CustomerOfParcel getCustomerOfParcel(int id);
 
+        Drone getDrone(int id);
+        BaseStation getBaseStation(int id);
+        Customer GetCustomer(int id);
     }
 }
