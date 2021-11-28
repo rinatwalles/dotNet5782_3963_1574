@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DalObject;
 using IBL.BO;
 using BL;
+using static DalObject.DataSource;
 
 namespace BL
 {
@@ -137,7 +138,27 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
-
+        public Drone GetDrone(int id)
+        {
+            IBL.BO.Drone boDrone = new IBL.BO.Drone();
+            try
+            {
+                IDAL.DO.Drone doDrone = idal.GetDrone(id);
+                boDrone.Id = doDrone.Id;
+                boDrone.Model = doDrone.Model;
+                boDrone.Weight = (IBL.BO.WeightCategories)doDrone.MaxWeight;//באיידאל זה מקסימום וויט ואיי בי אל זה סתם וויט בלי מקסימום 
+                IBL.BO.DroneToList dtl= ListBLDrones.Find(d => d.Id == id);
+                boDrone.BatteryStatus = dtl.BatteryStatus;
+                boDrone.DroneStatus = dtl.DroneStatus;
+                boDrone.Location = dtl.Location;
+                //boDrone.ParcelInDelivery מה עם זה
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+            return boDrone;
+        }
 
     }
 }

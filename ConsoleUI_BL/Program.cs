@@ -115,11 +115,19 @@ namespace ConsoleUI_BL
                     st = Console.ReadLine();
                     Display d;
                     b = Display.TryParse(st, out d);
+                    int id;
+                    Console.WriteLine("insert station id number");
+                    st = Console.ReadLine();
+                    b = Display.TryParse(st, out id);
                     switch (d)
                     {
                         case Display.Station:
+                            
+
                             break;
                         case Display.Drone:
+                            Drone dr = ibl.getDrone(id);
+                            Console.WriteLine(dr);
                             break;
                         case Display.Customer:
                             break;

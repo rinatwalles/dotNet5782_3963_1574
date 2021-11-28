@@ -19,5 +19,6 @@ namespace IBL
         void AddBaseStation(BaseStation s);
         void AddCustomer(Customer c);
         void AddParcel(Parcel p, int IdSender,  int IdReceiver);
+        public Drone GetDrone(int id);
     }
 }
