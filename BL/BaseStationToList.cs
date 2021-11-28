@@ -9,12 +9,12 @@ using IDAL.DO;
 //{
     namespace IBL.BO
     {
-        class BaseStationToList
+       public class BaseStationToList
         {
-            public int id { get; set; }
-            public string name { get; set; }
-            public int availableCharginggSlotsNumber { get; set; }
-            public int reservedCharginggSlotsNumber { get; set; }
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public int AvailableCharginggSlotsNumber { get; set; }
+            public int RservedCharginggSlotsNumber { get; set; }
             public override string ToString()
             {
                 return this.ToStringProperty();

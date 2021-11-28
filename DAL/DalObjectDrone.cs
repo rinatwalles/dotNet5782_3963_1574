@@ -168,5 +168,16 @@ namespace DalObject
                 throw new DAL.MissingIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
+
+       public double[] AskingElectricityUse()
+        {
+            double[] arr= new double[5];
+            arr[0] = DataSource.Config.Availavble;
+            arr[1] = DataSource.Config.Light;
+            arr[2] = DataSource.Config.Medium;
+            arr[3] = DataSource.Config.Heavy;
+            arr[4] = DataSource.Config.ChargePrecent;
+            return arr;
+        }
     }
 }

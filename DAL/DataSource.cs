@@ -15,7 +15,7 @@ namespace DalObject
         internal class Config
         {
             static public int ParcelId = 0;
-            static public double Avilable { get; set; }
+            static public double Availavble { get; set; }
             static public double Light { get; set; }
             static public double Medium { get; set; }
             static public double Heavy { get; set; }
@@ -38,7 +38,6 @@ namespace DalObject
             int num = 0;
             for (int i = 0; i < 5; i++)
             {
-                //config.droneCounter++;
                 drones[i] = new Drone ()
                 {
                     Id =num++,
@@ -51,7 +50,6 @@ namespace DalObject
 
             for (int i = 0; i < 2; i++)
             {
-                //config.stationCounter++;
                 stations[i] = new Station()
                 {
                     Id = num++,
@@ -64,7 +62,6 @@ namespace DalObject
 
             for (int i = 0; i < 10; i++)
             {
-                //config.customerCounter++;
                 customers[i] = new Customer()
                 {
                     Id = num++,
@@ -77,7 +74,6 @@ namespace DalObject
 
             for (int i = 0; i < 10; i++)
             {
-                //config.parcelsCounter++;
                 parcels[i] = new Parcel()
                 {
                     Id = Config.ParcelId++,
@@ -85,11 +81,11 @@ namespace DalObject
                     TargetId = rand.Next(1000, 2000),
                     Weight = (WeightCategories)rand.Next(0, 2),
                     Priority = (Priorities)rand.Next(0, 2),
-                    Requested = DateTime.Now,
                     DroneId = rand.Next(10, 20),
-                    Scheduled= parcels[i].Requested.AddHours(1),
-                    PickedUp= parcels[i].Requested.AddHours(1),
-                    Delivered= parcels[i].Requested.AddHours(1),
+                    RequestedTime = DateTime.Now,
+                    ScheduledTime = parcels[i].RequestedTime.AddHours(1),
+                    PickedUpTime = parcels[i].RequestedTime.AddHours(1),
+                    DeliveredTime = parcels[i].RequestedTime.AddHours(1),
                 };
             }
 

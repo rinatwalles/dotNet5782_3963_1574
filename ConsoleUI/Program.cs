@@ -88,7 +88,7 @@ namespace ConsoleUI
                                             TargetId = int.Parse(System.Console.ReadLine()),
                                             Weight = (WeightCategories)System.Console.Read(),
                                             Priority = (Priorities)System.Console.Read(),
-                                            Requested = DateTime.Now,
+                                            RequestedTime = DateTime.Now,
                                             DroneId = 0
                                         };
                                         dall.ParcelAddition(parcel);
@@ -220,14 +220,14 @@ namespace ConsoleUI
                                     }
                                 case Show.Parcel://print all parcels
                                     {
-                                        List<Parcel> lstParcel = (List<Parcel>)dall.AllParcels();
+                                        List<Parcel> lstParcel = (List<Parcel>)dall.AllParcel();
                                         foreach (Parcel item in lstParcel)
                                             Console.WriteLine(item);
                                         break;
                                     }
                                 case Show.ParcelWithoutDrone://orint all parcels without drones
                                     {
-                                        List<Parcel> lstParcel = (List<Parcel>)dall.AllParcels();
+                                        List<Parcel> lstParcel = (List<Parcel>)dall.AllParcel();
                                         foreach (Parcel item in lstParcel)
                                         {
                                             if (item.DroneId == 0)

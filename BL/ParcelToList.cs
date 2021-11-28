@@ -10,8 +10,8 @@ using System.Threading.Tasks;
         public class ParcelToList
         {
             public int Id { get; set; }
-            public CustomerOfParcel SenderName { get; set; }
-            public CustomerOfParcel ReceiverName { get; set; }
+            public CustomerOfParcel Sender { get; set; }
+            public CustomerOfParcel Receiver { get; set; }
             public WeightCategories Weight { get; set; }
             public Priorities Priority { get; set; }
             public ParcelStates ParcelState { get; set; }

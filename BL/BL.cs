@@ -18,11 +18,17 @@ namespace BL
         public BL()
         {
             idal = new DalObject.DalObject();
-            // double ChargePrecent = DalObject.DataSource.Config.ChargePrecent; בגלל המערך שאנחנו צריכות לעשות בDALOBJECT
-            //השדה של צריכת חשמל 
+
+            double[] array = idal.AskingElectricityUse();
+            double Available = array[0];
+            double Light = array[1];
+            double Medium = array[2];
+            double Heavy = array[3];
+            double ChargePrecent = array[4];
+
             IEnumerable<IDAL.DO.Drone> drones = idal.AllDrones();
         }
-        List<IBL.BO.DroneToList> ListBLDrones { get; set; }  //למה בלי pyblic????????????
+        public List<IBL.BO.DroneToList> ListBLDrones { get; set; }  
 
         public void AddDrone(Drone d, int sId)
         {
@@ -68,7 +74,7 @@ namespace BL
             try
             {
                 //בדיקה האם הרחפן קיים כבר
-                if (idal.CheckStation(s.Id))
+                if (idal.CheckStation(s.Id))               //למה צריך לבדוק גם פה? זה נבדק גם בפונקצית הוספה בDAL?????
                     throw new DuplicateIdException(s.Id, "Drone");// מסכים רק DAL
 
                 //הצבת ערכים בשביל לשמור את האוביקט בDAL
@@ -125,10 +131,10 @@ namespace BL
                     Weight = (IDAL.DO.WeightCategories)p.Weight,
                     Priority = (IDAL.DO.Priorities)p.Priority,
                     DroneId = 0,
-                    Requested = DateTime.MinValue,
-                    Scheduled = DateTime.MinValue,
-                    PickedUp = DateTime.MinValue,
-                    Delivered = DateTime.MinValue
+                    RequestedTime = DateTime.MinValue,
+                    ScheduledTime = DateTime.MinValue,
+                    PickedUpTime = DateTime.MinValue,
+                    DeliveredTime = DateTime.MinValue
                 };
                 idal.ParcelAddition(doParcel);
             }
@@ -208,6 +214,72 @@ namespace BL
             return boDrone;
         }
 
+        public void UpdateDrone(int id, string model)
+        {//מסתמכים שאם הוא נמצר בDAL כבר הוספנו אותו לBL. לא להסתמך על זה?
+            try
+            {//שינוי הרחפן בDAL
+                IDAL.DO.Drone doDrone = new IDAL.DO.Drone();
+                doDrone = idal.GetDrone(id);   //הצבה בין שדות?
+                //IDAL.DO.Drone doDrone = idal.GetDrone(id);     השורה הזאת יכולה להחליף את 145, 146? כי יכול להיות שמאחורי הקלעים יש new
+                doDrone.Model = model;
+                idal.DroneUpdate(doDrone);
+
+                //שינוי רחפן ברישמת רחפנים BL
+                DroneToList dl = ListBLDrones.Find(d => d.Id == id);        //יצרנו העתק
+                int count = ListBLDrones.RemoveAll(dr => dr.Id == id); //מוחקים את הישן
+                dl.Model = model;  // changing the model name
+                ListBLDrones.Add(dl); //adding the new one
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
+
+        public void UpdateCustomer(int id, string name, string phone )
+        {
+            try
+            {
+                IDAL.DO.Customer doCustomer  = new IDAL.DO.Customer();
+                doCustomer = idal.GetCustomer(id);
+                if (name != "")                  //בדיקה אם הוא הכניב ערכים או ENTER
+                    doCustomer.Name = name; 
+                if (phone != "")
+                    doCustomer.Phone = phone;
+                idal.CustomerUpdate(doCustomer);
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
+
+
+
+
+
+
+
+
+        //תצגוגת של רשימות
+        public IEnumerable<BaseStationToList> GetAllBaseStations()
+        {
+            return from dostat in idal.AllStation()
+                   select new BaseStationToList()
+                   {
+                       Id = dostat.Id,
+                       Name = dostat.Name,
+                       AvailableCharginggSlotsNumber = dostat.ChargeSlots,
+                       RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
+                   };
+        }
+
+        public IEnumerable<DroneToList> GetAllDrones()
+        {
+            return from dodrone in ListBLDrones
+                   select new DroneToList();
+        }
+
         private IEnumerable<Parcel> GetParcelsFromCustomer(int id)
         {
             IDAL.DO.Customer c = idal.GetCustomer(id);
@@ -271,6 +343,48 @@ namespace BL
                 BattaryStatus = ListBLDrones.Find(d => id == item.DroneId).BatteryStatus
             };
 
+        }
+
+        public IEnumerable<CustomerToList> GetAllCustomers()
+        {
+            return from docust in idal.AllCustomer()
+                   select new CustomerToList()
+                   {
+                       Id = docust.Id,
+                       Name = docust.Name,
+                       Phone = docust.Phone,
+                       //NumOfParcelsSentNotSupplied
+                       //NumOfParcelsSentAndSupplied
+                       //NumOfParcelsDelivered
+                       //NumOfParcelsReceived
+                   };
+        }
+
+        //פןנקציה פרטית שתחזיר לי אוביקט ממש מהסןג הזה 
+        //בנוסף היא יכולה להיות PRIVATE לבדוק את הנושא כי זכור לי משהו שדן כתב
+        //יש דרך אחרת??
+       public CustomerOfParcel getCustomerOfParcel(int id)
+        {
+            CustomerOfParcel cp = new CustomerOfParcel();
+            IDAL.DO.Customer doCast = new IDAL.DO.Customer();
+            doCast=idal.GetCustomer(id);
+            cp.Name = doCast.Name;
+            cp.Id = id;
+            return cp;
+        }
+
+        public IEnumerable<ParcelToList> GetAllParcels()
+        {
+            return from doparc in idal.AllParcel()
+                   select new ParcelToList()
+                   {
+                       Id = doparc.Id,
+                       Sender = getCustomerOfParcel(doparc.SenderId),
+                       Receiver = getCustomerOfParcel(doparc.TargetId),
+                       Weight = (WeightCategories)doparc.Weight,
+                       Priority = (Priorities)doparc.Priority,
+                       //ParcelState=doparc.
+                    };
         }
 
     }

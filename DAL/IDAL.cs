@@ -25,6 +25,8 @@ namespace DAL
             double DistanceCalculate(double x1, double y1, double longy, double latx);
             void DroneDelete(Drone d);
             void DroneUpdate(Drone d);
+
+            double[] AskingElectricityUse();
             #endregion
 
             #region Customer
@@ -66,6 +68,8 @@ namespace DAL
             bool CheckDroneCharge(int dId, int sId);
             void DroneChargesDelete(DroneCharge d);
             DroneCharge GetDroneCharge(int dId, int sId);
+            IEnumerable<DroneCharge> CountDroneCharge(int id);
+          //  IEnumerable<DroneCharge> AllDroneCharges();
             #endregion
         }
 

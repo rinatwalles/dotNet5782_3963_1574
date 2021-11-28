@@ -29,6 +29,12 @@ namespace DalObject
                 throw new DAL.MissingIdException(dId, "DroneCharge");
             return DataSource.droneCharges.Find(c => ((c.DroneId == dId) && (c.StationId == sId)));
         }
+        //function that returns a list of DroneCharges in specific station
+        public IEnumerable<DroneCharge> CountDroneCharge(int id)
+        {
+            return DataSource.droneCharges.Where(dc => dc.StationId == id);
+        }
+
        
     }
 }
