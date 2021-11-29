@@ -13,7 +13,7 @@ namespace ConsoleUI_BL
         enum Distance { Station, Customer }//enum for distance options
         static void Main(string[] args)
         {
-            IBL.IBL ibl = new BL.BL();
+            IBL.IBL ibl = new BL.BLAdd();
             Option o;
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
             string st = Console.ReadLine();
