@@ -15,8 +15,8 @@ using IDAL.DO;
             public string Name { get; set; }
             public string Phone { get; set; }
             public Location Place { get; set; }
-            public List<ParcelAtCustomer> ParcelsFromCustomer { get; set; }
-            public List<ParcelAtCustomer> ParcelsToCustomer { get; set; }
+            public IEnumerable<ParcelAtCustomer> ParcelsFromCustomer { get; set; }
+            public IEnumerable<ParcelAtCustomer> ParcelsToCustomer { get; set; }
             public override string ToString()
             {
                 return this.ToStringProperty();

@@ -34,6 +34,7 @@ namespace IBL
         Drone getDrone(int id);
         BaseStation getBaseStation(int id);
         Customer GetCustomer(int id);
+        Parcel getParcel(int id);
     }
     
 }

@@ -15,6 +15,7 @@ namespace BL
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         internal DAL.IDAL.IDAL idal;
+        List<IBL.BO.DroneToList> ListBLDrones;
         public BL()
         {
             idal = new DalObject.DalObject();
@@ -29,7 +30,7 @@ namespace BL
            // IEnumerable<IDAL.DO.Drone> drones = idal.AllDrones();
         //    public List<IBL.BO.DroneToList> ListBLDrones { get; set; }
 
-         List<IBL.BO.DroneToList> ListBLDrones=
+         ListBLDrones=
                    from doparc in idal.AllDrones()
                    select new DroneToList()
                    {

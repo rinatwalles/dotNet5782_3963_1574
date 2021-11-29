@@ -134,6 +134,8 @@ namespace ConsoleUI_BL
                             Console.WriteLine(c);
                             break;
                         case Display.Parcel:
+                            Parcel p = ibl.getParcel(id);
+                            Console.WriteLine(p);
                             break;
                         default:
                             break;

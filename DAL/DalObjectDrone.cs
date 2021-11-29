@@ -150,7 +150,7 @@ namespace DalObject
         /// <param name="longy">coordinate</param>
         /// <param name="latx">coordinate</param>
         /// <returns></returns>
-        private double DistanceCalculate(double long1, double lat1, double long2, double lat2)
+        public double DistanceCalculate(double long1, double lat1, double long2, double lat2)
         {
             int r = 6371;
             double dLat = deg2rad(lat2 - lat1);
@@ -187,6 +187,12 @@ namespace DalObject
             arr[3] = DataSource.Config.Heavy;
             arr[4] = DataSource.Config.ChargePrecent;
             return arr;
+        }
+        public IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate)
+        {
+            return from dr in DataSource.drones
+                   where predicate(dr)
+                   select dr;
         }
     }
 }
