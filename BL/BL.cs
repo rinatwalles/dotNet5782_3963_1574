@@ -307,7 +307,7 @@ namespace BL
                 ParcelsDrones = new DroneInParcel
                 {
                     Id = droneInParcel.Id,
-                    BattaryStatus= droneInParcel.BatteryStatus
+                    BattaryStatus= ListBLDrones.BatteryStatus
 
                 },
             };
