@@ -58,8 +58,9 @@ namespace DAL
             bool CheckParcel(int id);
             void ParcelAddition(Parcel p);
             Parcel GetParcel(int id);
-            public IEnumerable<Parcel> AllParcel();
+            IEnumerable<Parcel> AllParcel();
             void ParcelDelete(Parcel p);
+            Parcel getParcelByDroneId(int id);
             void ParcelUpdate(Parcel p);
             #endregion
 

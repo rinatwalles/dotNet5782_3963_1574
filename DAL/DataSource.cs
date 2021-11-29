@@ -84,8 +84,8 @@ namespace DalObject
                     DroneId = rand.Next(10, 20),
                     RequestedTime = DateTime.Now,
                     ScheduledTime = parcels[i].RequestedTime.AddHours(1),
-                    PickedUpTime = parcels[i].RequestedTime.AddHours(1),
-                    DeliveredTime = parcels[i].RequestedTime.AddHours(1),
+                    PickedUpTime = parcels[i].RequestedTime.AddHours(2),
+                    DeliveredTime = parcels[i].RequestedTime.AddHours(3),
                 };
             }
 

@@ -12,7 +12,7 @@ using IDAL.DO;
         public class ParcelInDelivery
         {
             public int Id { get; set; }
-            public bool ParcelState { get; set; }
+            public bool ParcelState { get; set; }//true- in delivery false not
             public CustomerOfParcel SenderName { get; set; }
             public CustomerOfParcel ReceiverName { get; set; }
             public WeightCategories Weight { get; set; }
