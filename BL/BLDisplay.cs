@@ -10,9 +10,9 @@ namespace BL
     public partial class BL : IBL.IBL
     {
         
-        public BaseStation getBaseStation(int id)
+        public Station getBaseStation(int id)
         {
-            IBL.BO.BaseStation boBaseStation = new IBL.BO.BaseStation();
+            IBL.BO.Station boBaseStation = new IBL.BO.Station();
             try
             {
                 IDAL.DO.Station doStation = BLAdd.idal.GetStation(id);

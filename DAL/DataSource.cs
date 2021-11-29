@@ -35,12 +35,11 @@ namespace DalObject
         /// </summary>
         internal static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
-            int num = 0;
-            for (int i = 0; i < 5; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 Drone d = new Drone ()
                 {
-                    Id =num++,
+                    Id =i,
                     Model = "abc",
                     Weight = (WeightCategories)rand.Next(0, 2),
                    // Status = (DroneStatuses)rand.Next(0, 1),
@@ -49,11 +48,11 @@ namespace DalObject
                 drones.Add(d);
             }
 
-            for (int i = 0; i < 2; i++)
+            for (int i = 1; i <= 2; i++)
             {
                 Station s = new Station()
                 {
-                    Id = num++,
+                    Id = i,
                     Name = "ghi",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
@@ -62,11 +61,11 @@ namespace DalObject
                 stations.Add(s);
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 1; i <=10; i++)
             {
                 Customer c = new Customer()
                 {
-                    Id = num++,
+                    Id = i,
                     Name ="def",
                     Phone= "12345678",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
@@ -80,15 +79,15 @@ namespace DalObject
                Parcel p= new Parcel()
                 {
                     Id = Config.ParcelId++,
-                    SenderId = rand.Next(1000, 2000),
-                    TargetId = rand.Next(1000, 2000),
+                    SenderId = rand.Next(1,10),
+                    TargetId = rand.Next(1, 10),
                     Weight = (WeightCategories)rand.Next(0, 2),
                     Priority = (Priorities)rand.Next(0, 2),
-                    DroneId = rand.Next(10, 20),
+                    DroneId = rand.Next(1, 5),
                     RequestedTime = DateTime.Now,
-                    //ScheduledTime = parcels[i].RequestedTime.AddHours(1),
-                    //PickedUpTime = parcels[i].RequestedTime.AddHours(1),
-                    //DeliveredTime = parcels[i].RequestedTime.AddHours(1),
+                    ScheduledTime = DateTime.MinValue,
+                    PickedUpTime = DateTime.MinValue,
+                    DeliveredTime = DateTime.MinValue
                 };
                 parcels.Add(p);
             }

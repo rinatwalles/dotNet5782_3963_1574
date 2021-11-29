@@ -36,7 +36,7 @@ namespace ConsoleUI_BL
                             };
 
                             Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber");
-                            IBL.BO.BaseStation sstation = new IBL.BO.BaseStation()
+                            IBL.BO.Station sstation = new IBL.BO.Station()
                             {
                                 Id = int.Parse(System.Console.ReadLine()),
                                 Name = System.Console.ReadLine(),
@@ -122,7 +122,7 @@ namespace ConsoleUI_BL
                     switch (d)
                     {
                         case Display.Station:
-                            BaseStation bs = ibl.getBaseStation(id);
+                            Station bs = ibl.getBaseStation(id);
                             Console.WriteLine(bs);
                             break;
                         case Display.Drone:
@@ -247,7 +247,7 @@ namespace ConsoleUI_BL
             };
             //קליטת תחנת בסיס,
             Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber");
-            IBL.BO.BaseStation sstation = new IBL.BO.BaseStation()
+            IBL.BO.Station sstation = new IBL.BO.Station()
             {
                 Id = int.Parse(System.Console.ReadLine()),
                 Name = System.Console.ReadLine(),

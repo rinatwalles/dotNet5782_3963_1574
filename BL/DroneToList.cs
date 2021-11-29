@@ -17,7 +17,7 @@ using IDAL.DO;
             public double BatteryStatus { get; set; }
             public DroneStatuses DroneStatus { get; set; }
             public Location Location { get; set; }
-            public int PassedParcelNumber { get; set; }
+            public int ParcelNumber { get; set; }  //number of parcel in delivery
             public override string ToString()
             {
                 return this.ToStringProperty();

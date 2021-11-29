@@ -16,7 +16,7 @@ namespace IBL
         #region Location
         #endregion
         void AddDrone(Drone ddrone, int sId);
-        void AddBaseStation(BaseStation s);
+        void AddBaseStation(Station s);
         void AddCustomer(Customer c);
         void AddParcel(Parcel p, int IdSender,  int IdReceiver);
 
@@ -32,7 +32,7 @@ namespace IBL
         CustomerOfParcel getCustomerOfParcel(int id);
 
         Drone getDrone(int id);
-        BaseStation getBaseStation(int id);
+        Station getBaseStation(int id);
         Customer GetCustomer(int id);
     }
     

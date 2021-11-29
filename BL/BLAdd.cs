@@ -15,6 +15,7 @@ namespace BL
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         internal static DAL.IDAL.IDAL idal;
+        public List<IBL.BO.DroneToList> ListBLDrones;
         public BL()
         {
             idal = new DalObject.DalObject();
@@ -26,18 +27,81 @@ namespace BL
             double Heavy = array[3];
             double ChargePrecent = array[4];
 
-           // IEnumerable<IDAL.DO.Drone> drones = idal.AllDrones();
-        //    public List<IBL.BO.DroneToList> ListBLDrones { get; set; }
+            ListBLDrones = (List<DroneToList>)(from dodron in idal.AllDrones()
+                                               select new DroneToList()
+                                               {
+                                                   Id = dodron.Id,
+                                                   Model=dodron.Model,
+                                                   Weight= (WeightCategories)dodron.Weight
+                                               }) ;
+            DateTime t = DateTime.MinValue;
+            Location locat = new Location();
+            foreach (DroneToList item in ListBLDrones)
+            {
+                if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == t))))
+                {
+                    item.DroneStatus = DroneStatuses.Delivery;
+                    IDAL.DO.Parcel parc = idal.GetParcel(item.ParcelNumber);
+                    IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
+                    if(parc.PickedUpTime==t)    //parcel schduled but not PickedUp
+                        item.Location = MinDistance(cust);    //the location is the closest station
+                    if (parc.DeliveredTime== t)   //the parcel not deliverd so the location is the sender location
+                    {
+                        locat.Latitude = cust.Latitude;
+                        locat.Longitude = cust.Longitude;
+                        item.Location = locat;
+                    }
+                   double calculate= idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude)
+                    Location closeStation = MinDistance(cust);
+                    calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+                    item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
 
-         List<IBL.BO.DroneToList> ListBLDrones=
-                   from doparc in idal.AllDrones()
-                   select new DroneToList()
-                   {
-
-                   };
+                }
+                else if (!idal.AllParcel().Any(parc => (parc.DroneId == item.Id)))    //not doing a delivery now
+                    item.DroneStatus = (DroneStatuses)(rand.Next(0, 1) * 2);    //0 or 2
+                else if(item.DroneStatus== DroneStatuses.Maintenance)   //drone in maintance
+                {
+                    int id = rand.Next(1, 2);
+                    IDAL.DO.Station stat = idal.GetStation(id);
+                    locat.Longitude = stat.Longitude;
+                    locat.Latitude=stat.Latitude;
+                    item.Location = locat;
+                    item.BatteryStatus = rand.NextDouble() * 20;
+                }
+                else if(item.DroneStatus == DroneStatuses.Available)   //the drone is available
+                {
+                    foreach (IDAL.DO.Parcel parc in idal.AllParcel())
+                    {
+                        if (parc.DeliveredTime != t)
+                        {
+                            IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
+                            locat.Latitude = cust.Latitude;
+                            locat.Longitude = cust.Longitude;
+                            Location closeStation = MinDistance(cust);
+                            double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+                            item.BatteryStatus = rand.NextDouble()+rand.Next((int)calculate, 100);
+                        }
+                    }
+                }
+            }
         }
-
-      
+        //function thay gets a customer and return the closest station
+        private Location MinDistance(IDAL.DO.Customer cust)
+        {
+            Location locat=new Location();
+            double minDistance = 1000;
+            foreach (IDAL.DO.Station stat in idal.AllStation())  //searching the closest station to the sender
+            {
+                double dist = idal.DistanceCalculate(stat.Longitude, stat.Latitude, cust.Longitude, cust.Latitude);
+                if (dist < minDistance)
+                {
+                    locat.Latitude = stat.Latitude;
+                    locat.Longitude = stat.Longitude;
+                    minDistance = dist;
+                }
+            }
+            return locat;
+        }
 
         public void AddDrone(Drone d, int sId)
         {
@@ -66,8 +130,7 @@ namespace BL
                     BatteryStatus = d.BatteryStatus,
                     DroneStatus = d.DroneStatus,
                     Location = d.Location,
-                    Weight = d.Weight,
-                    PassedParcelNumber = 0
+                    Weight = d.Weight
                 };
                 ListBLDrones.Add(Dl);
             }
@@ -77,7 +140,7 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
-        public void AddBaseStation(BaseStation s)
+        public void AddBaseStation(Station s)
         {
             try
             {
@@ -123,7 +186,7 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
-       public void AddParcel(Parcel p, int IdSender, int IdReceiver)
+        public void AddParcel(Parcel p, int IdSender, int IdReceiver)
         {
             try
             {
@@ -154,3 +217,7 @@ namespace BL
         }
     }
 }
+
+
+
+

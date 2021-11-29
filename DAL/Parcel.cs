@@ -19,7 +19,7 @@ namespace IDAL
             public DateTime RequestedTime { get; set; }   // זמן יצירת חבילה למשלוח
             public DateTime ScheduledTime { get; set; }  // זמן שיוך החבילה לרחפן 
             public DateTime PickedUpTime { get; set; }   // זמן איסוף חבילה על ידי הרחפן
-            public DateTime DeliveredTime { get; set; }  //זמן הגעת החבילה למקבל
+            public DateTime DeliveredTime { get; set; }  //זמן הגעת החבילה למקבל/אספקה
 
             public override string ToString()
             {

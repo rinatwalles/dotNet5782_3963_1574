@@ -22,7 +22,7 @@ namespace DAL
             void ChargingDrone(int droneId, int stationId);
             void ReleaseDrone(int droneId, int stationId);
             IEnumerable<Drone> AllDrones();
-            double DistanceCalculate(double x1, double y1, double longy, double latx);
+            double DistanceCalculate(double long1, double lat1, double long2, double lat2);
             void DroneDelete(Drone d);
             void DroneUpdate(Drone d);
 
