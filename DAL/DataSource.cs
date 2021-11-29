@@ -14,12 +14,12 @@ namespace DalObject
         /// </summary>
         internal class Config
         {
-            static public int ParcelId = 0;
-            static public double Availavble { get; set; }
-            static public double Light { get; set; }
-            static public double Medium { get; set; }
-            static public double Heavy { get; set; }
-            static public double ChargePrecent { get; set; }   //קצב טעינת רחפן
+            static public int ParcelId = 1;
+            static public double Availavble = 0.1;
+            static public double Light = 0.3;
+            static public double Medium =0.4;
+            static public double Heavy= 0.5;
+            static public double ChargePrecent= 0.35;  //קצב טעינת רחפן
         }
 
         internal static List<Drone> drones = new List<Drone>();
