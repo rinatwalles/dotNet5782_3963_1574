@@ -10,12 +10,12 @@ using static DalObject.DataSource;
 
 namespace BL
 {
-    public partial class BLAdd : IBL.IBL
+    public partial class BL : IBL.IBL
     {
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         internal static DAL.IDAL.IDAL idal;
-        public BLAdd()
+        public BL()
         {
             idal = new DalObject.DalObject();
 
@@ -28,6 +28,7 @@ namespace BL
 
             IEnumerable<IDAL.DO.Drone> drones = idal.AllDrones();
         }
+
         public List<IBL.BO.DroneToList> ListBLDrones { get; set; }  
 
         public void AddDrone(Drone d, int sId)
@@ -143,22 +144,5 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
-
-        
-
-        public IEnumerable<ParcelToList> GetAllParcels()
-        {
-            return from doparc in idal.AllParcel()
-                   select new ParcelToList()
-                   {
-                       Id = doparc.Id,
-                       Sender = getCustomerOfParcel(doparc.SenderId),
-                       Receiver = getCustomerOfParcel(doparc.TargetId),
-                       Weight = (WeightCategories)doparc.Weight,
-                       Priority = (Priorities)doparc.Priority,
-                       //ParcelState=doparc.
-                    };
-        }
-
     }
 }

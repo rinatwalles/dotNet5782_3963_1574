@@ -6,9 +6,8 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BLShow : IBL.IBL
+    public partial class BL : IBL.IBL
     {
-        DAL.IDAL.IDAL idal;
         //תצגוגת של רשימות
         public IEnumerable<BaseStationToList> GetAllBaseStations()
         {
@@ -26,6 +25,21 @@ namespace BL
             return from dodrone in ListBLDrones
                    select new DroneToList();
         }
+
+        public IEnumerable<ParcelToList> GetAllParcels()
+        {
+            return from doparc in idal.AllParcel()
+                   select new ParcelToList()
+                   {
+                       Id = doparc.Id,
+                       Sender = getCustomerOfParcel(doparc.SenderId),
+                       Receiver = getCustomerOfParcel(doparc.TargetId),
+                       Weight = (WeightCategories)doparc.Weight,
+                       Priority = (Priorities)doparc.Priority,
+                       //ParcelState=doparc.
+                   };
+        }
+
         public IEnumerable<CustomerToList> GetAllCustomers()
         {
             return from docust in idal.AllCustomer()

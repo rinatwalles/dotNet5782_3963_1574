@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BLDisplay : IBL.IBL
+    public partial class BL : IBL.IBL
     {
         
         public BaseStation getBaseStation(int id)
