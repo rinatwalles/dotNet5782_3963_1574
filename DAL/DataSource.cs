@@ -38,31 +38,33 @@ namespace DalObject
             int num = 0;
             for (int i = 0; i < 5; i++)
             {
-                drones[i] = new Drone ()
+                Drone d = new Drone ()
                 {
                     Id =num++,
                     Model = "abc",
-                    MaxWeight = (WeightCategories)rand.Next(0, 2),
+                    Weight = (WeightCategories)rand.Next(0, 2),
                    // Status = (DroneStatuses)rand.Next(0, 1),
                    // Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
                 };
+                drones.Add(d);
             }
 
             for (int i = 0; i < 2; i++)
             {
-                stations[i] = new Station()
+                Station s = new Station()
                 {
                     Id = num++,
                     Name = "ghi",
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
-                    ChargeSlots = rand.Next(0, 10)   //number of empty charge slots in each station
+                    AvailableChargeSlots = rand.Next(0, 10)   //number of empty charge slots in each station
                 };
+                stations.Add(s);
             }
 
             for (int i = 0; i < 10; i++)
             {
-                customers[i] = new Customer()
+                Customer c = new Customer()
                 {
                     Id = num++,
                     Name ="def",
@@ -70,11 +72,12 @@ namespace DalObject
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
+                customers.Add(c);
             }
 
             for (int i = 0; i < 10; i++)
             {
-                parcels[i] = new Parcel()
+               Parcel p= new Parcel()
                 {
                     Id = Config.ParcelId++,
                     SenderId = rand.Next(1000, 2000),
@@ -83,10 +86,11 @@ namespace DalObject
                     Priority = (Priorities)rand.Next(0, 2),
                     DroneId = rand.Next(10, 20),
                     RequestedTime = DateTime.Now,
-                    ScheduledTime = parcels[i].RequestedTime.AddHours(1),
-                    PickedUpTime = parcels[i].RequestedTime.AddHours(1),
-                    DeliveredTime = parcels[i].RequestedTime.AddHours(1),
+                    //ScheduledTime = parcels[i].RequestedTime.AddHours(1),
+                    //PickedUpTime = parcels[i].RequestedTime.AddHours(1),
+                    //DeliveredTime = parcels[i].RequestedTime.AddHours(1),
                 };
+                parcels.Add(p);
             }
 
         }

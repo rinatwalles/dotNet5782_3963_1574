@@ -14,7 +14,7 @@ using IBL.BO;
             public int Id { get; set; }
             public string Name { get; set; }
             public Location SLocation { get; set; }
-            public int AvilableChargeSlotsNumber { get; set; }
+            public int AvailableChargeSlots { get; set; }
             public IEnumerable<DroneCharging> DroneCharging { get; set; }
             public override string ToString()
             {

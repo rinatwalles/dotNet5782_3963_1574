@@ -99,7 +99,7 @@ namespace DalObject
                 if (stations[i].Id == stationId)
                 {
                     Station st = stations[i];
-                    st.ChargeSlots--;
+                    st.AvailableChargeSlots--;
                     stations[i] = st;
                 }
 
@@ -123,7 +123,7 @@ namespace DalObject
                     if (stations[i].Id == stationId)
                     {
                         Station st = stations[i];
-                        st.ChargeSlots++;
+                        st.AvailableChargeSlots++;
                         stations[i] = st;
                     }
 
@@ -150,9 +150,18 @@ namespace DalObject
         /// <param name="longy">coordinate</param>
         /// <param name="latx">coordinate</param>
         /// <returns></returns>
-        public double DistanceCalculate(double x1, double y1, double longy, double latx)
+        private double DistanceCalculate(double long1, double lat1, double long2, double lat2)
         {
-            return (Math.Sqrt(Math.Pow(x1 - latx, 2) + Math.Pow(y1 - longy, 2)));//distance calculation
+            int r = 6371;
+            double dLat = deg2rad(lat2 - lat1);
+            double dlong = deg2rad(lat2 - lat1);
+            double a = Math.Sin(dLat / 2) * Math.Sin(dLat / 2) + Math.Cos(deg2rad(lat1)) * Math.Cos(deg2rad(lat2)) * Math.Sin(dlong / 2) * Math.Sin(dlong / 2);
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+            return r * c;
+        }
+        private double deg2rad(double deg)
+        {
+            return deg * (Math.PI / 180);
         }
         public void DroneDelete(Drone d)
         {

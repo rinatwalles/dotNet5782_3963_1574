@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -16,7 +17,7 @@ namespace BL
                    {
                        Id = dostat.Id,
                        Name = dostat.Name,
-                       AvailableCharginggSlotsNumber = dostat.ChargeSlots,
+                       AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
                        RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
                    };
         }
