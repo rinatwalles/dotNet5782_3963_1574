@@ -28,6 +28,7 @@ namespace BL
 
             IEnumerable<IDAL.DO.Drone> drones = idal.AllDrones();
         }
+
         public List<IBL.BO.DroneToList> ListBLDrones { get; set; }  
 
         public void AddDrone(Drone d, int sId)
@@ -143,22 +144,5 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
-
-        
-
-        public IEnumerable<ParcelToList> GetAllParcels()
-        {
-            return from doparc in idal.AllParcel()
-                   select new ParcelToList()
-                   {
-                       Id = doparc.Id,
-                       Sender = getCustomerOfParcel(doparc.SenderId),
-                       Receiver = getCustomerOfParcel(doparc.TargetId),
-                       Weight = (WeightCategories)doparc.Weight,
-                       Priority = (Priorities)doparc.Priority,
-                       //ParcelState=doparc.
-                    };
-        }
-
     }
 }
