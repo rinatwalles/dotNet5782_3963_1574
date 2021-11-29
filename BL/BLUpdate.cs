@@ -31,5 +31,22 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+        public void UpdateCustomer(int id, string name, string phone)
+        {
+            try
+            {
+                IDAL.DO.Customer doCustomer = new IDAL.DO.Customer();
+                doCustomer = idal.GetCustomer(id);
+                if (name != "")                  //בדיקה אם הוא הכניב ערכים או ENTER
+                    doCustomer.Name = name;
+                if (phone != "")
+                    doCustomer.Phone = phone;
+                idal.CustomerUpdate(doCustomer);
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
     }
 }

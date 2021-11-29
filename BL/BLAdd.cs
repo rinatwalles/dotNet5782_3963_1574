@@ -26,10 +26,18 @@ namespace BL
             double Heavy = array[3];
             double ChargePrecent = array[4];
 
-            IEnumerable<IDAL.DO.Drone> drones = idal.AllDrones();
+           // IEnumerable<IDAL.DO.Drone> drones = idal.AllDrones();
+        //    public List<IBL.BO.DroneToList> ListBLDrones { get; set; }
+
+         List<IBL.BO.DroneToList> ListBLDrones=
+                   from doparc in idal.AllDrones()
+                   select new DroneToList()
+                   {
+
+                   };
         }
 
-        public List<IBL.BO.DroneToList> ListBLDrones { get; set; }  
+      
 
         public void AddDrone(Drone d, int sId)
         {
@@ -47,7 +55,7 @@ namespace BL
                 IDAL.DO.Drone doDrone = new IDAL.DO.Drone();
                 doDrone.Id = d.Id;
                 doDrone.Model = d.Model;
-                doDrone.MaxWeight = (IDAL.DO.WeightCategories)d.Weight;
+                doDrone.Weight = (IDAL.DO.WeightCategories)d.Weight;
                 idal.DroneAddition(doDrone);
 
                 //addtp bl list
@@ -83,7 +91,7 @@ namespace BL
                 doStation.Name = s.Name;
                 doStation.Latitude = s.SLocation.Latitude;
                 doStation.Longitude = s.SLocation.Longitude;
-                doStation.ChargeSlots = s.AvilableChargeSlotsNumber;
+                doStation.AvailableChargeSlots = s.AvailableChargeSlots;
                 idal.StationAddition(doStation);
             }
             //catch DO.exc

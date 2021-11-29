@@ -43,7 +43,7 @@ namespace DalObject
         public void CustomerCollecting(int parcelId)
         {
             Parcel p = GetParcel(parcelId);
-            p.Delivered = DateTime.Now;//change time
+            p.DeliveredTime = DateTime.Now;//change time
         }
         /// <summary>
         /// returning array of all customers
@@ -65,12 +65,12 @@ namespace DalObject
         /// <param name="id">costuner id</param>
         /// <param name="x1">current x coordinate</param>
         /// <param name="y1">current y coordinate</param>
-        public double DistanceFromCustomer(int id, double x1, double y1)
+        public double DistanceFromCustomer(int id, double long1, double lat1)
         {
             Customer c = GetCustomer(id);
-            double longy = c.Longitude;//custoner coordinates
-            double latx = c.Latitude;
-            return DistanceCalculate(x1, y1, longy, latx);//print the distance
+            double long2 = c.Longitude;//custoner coordinates
+            double lat2 = c.Latitude;
+            return DistanceCalculate(long1, lat1, long2, lat2);//print the distance
         }
         public void CustomerDelete(Customer c)
         {

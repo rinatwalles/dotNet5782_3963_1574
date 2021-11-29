@@ -18,7 +18,7 @@ namespace BL
                    {
                        Id = dostat.Id,
                        Name = dostat.Name,
-                       AvailableCharginggSlotsNumber = dostat.ChargeSlots,
+                       AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
                        RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
                    };
         }
