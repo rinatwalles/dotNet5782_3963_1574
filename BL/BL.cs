@@ -74,7 +74,7 @@ namespace BL
             {
                 //בדיקה האם הרחפן קיים כבר
                 if (idal.CheckStation(s.Id))               //למה צריך לבדוק גם פה? זה נבדק גם בפונקצית הוספה בDAL?????
-                    throw new DuplicateIdException(s.Id, "Drone");// מסכים רק DAL
+                    throw new DuplicateIdException(s.Id, "Station");// מסכים רק DAL
 
                 //הצבת ערכים בשביל לשמור את האוביקט בDAL
                 IDAL.DO.Station doStation = new IDAL.DO.Station();
@@ -97,7 +97,7 @@ namespace BL
             {
                 //בדיקה האם הרחפן קיים כבר
                 if (idal.CheckCustomer(c.Id))
-                    throw new DuplicateIdException(c.Id, "Drone");// מסכים רק DAL
+                    throw new DuplicateIdException(c.Id, "Customer");// מסכים רק DAL
 
                 //הצבת ערכים בשביל לשמור את האוביקט בDAL
                 IDAL.DO.Customer doCustomer = new IDAL.DO.Customer();
@@ -120,7 +120,7 @@ namespace BL
             {
                 //בדיקה האם הרחפן קיים כבר
                 if (idal.CheckParcel(p.Id))
-                    throw new DuplicateIdException(p.Id, "Drone");// מסכים רק DAL
+                    throw new DuplicateIdException(p.Id, "Parcel");// מסכים רק DAL
 
                 //הצבת ערכים בשביל לשמור את האוביקט בDAL
                 IDAL.DO.Parcel doParcel = new IDAL.DO.Parcel()
@@ -143,6 +143,7 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
+
         public BaseStation getBaseStation(int id)
         {
             IBL.BO.BaseStation boBaseStation = new IBL.BO.BaseStation();
@@ -165,6 +166,7 @@ namespace BL
             }
             return boBaseStation;
         }
+
         public Drone GetDrone(int id)
         {
             IBL.BO.Drone boDrone = new IBL.BO.Drone();
@@ -174,7 +176,7 @@ namespace BL
                 boDrone.Id = doDrone.Id;
                 boDrone.Model = doDrone.Model;
                 boDrone.Weight = (IBL.BO.WeightCategories)doDrone.MaxWeight;//באיידאל זה מקסימום וויט ואיי בי אל זה סתם וויט בלי מקסימום 
-                IBL.BO.DroneToList dtl= ListBLDrones.Find(d => d.Id == id);
+                IBL.BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
                 boDrone.BatteryStatus = dtl.BatteryStatus;
                 boDrone.DroneStatus = dtl.DroneStatus;
                 boDrone.Location = dtl.Location;
@@ -186,7 +188,8 @@ namespace BL
             }
             return boDrone;
         }
-        Customer GetCustomer(int id)
+        
+        public Customer GetCustomer(int id)
         {
             IBL.BO.Customer boCustomer = new IBL.BO.Customer();
             try
@@ -283,7 +286,7 @@ namespace BL
         {
             IDAL.DO.Customer c = idal.GetCustomer(id);
             return
-            from item in DalObject.DataSource.parcels
+            from item in idal.AllParcel()
             where item.SenderId == id
             let cstReceiver = idal.GetCustomer(item.TargetId)
             let droneInParcel= ListBLDrones.Find(d => d.Id == id)
@@ -332,9 +335,9 @@ namespace BL
     //            Priority = (IBL.BO.Priorities)item.Priority,
     //}
         private IEnumerable<Parcel> GetDroneChargingPerStation(int id)
-        {
+        {//עשיתי פונקציה שעושה מה שרצית לעשות פה. אם הבנתי מה רצית
             return
-            from item in DalObject.DataSource.droneCharges
+            from item in idal.CountDroneCharge(id)
             where item.DroneId == id
             select new DroneCharging
             {

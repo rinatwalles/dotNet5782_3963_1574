@@ -69,7 +69,7 @@ namespace DalObject
                 if (parcels[i].Id == parcelId)
                 {
                     Parcel p = parcels[i];
-                    p.PickedUp = DateTime.Now;
+                    p.PickedUpTime = DateTime.Now;
                     parcels[i] = p;
                 }
 
