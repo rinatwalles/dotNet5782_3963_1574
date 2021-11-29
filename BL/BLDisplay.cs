@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BLDisplay : IBL.IBL
+    public partial class BL : IBL.IBL
     {
         
         public BaseStation getBaseStation(int id)
@@ -15,7 +15,7 @@ namespace BL
             IBL.BO.BaseStation boBaseStation = new IBL.BO.BaseStation();
             try
             {
-                IDAL.DO.Station doStation = BLAdd.idal.GetStation(id);
+                IDAL.DO.Station doStation = idal.GetStation(id);
                 boBaseStation.Id = doStation.Id;
                 boBaseStation.Name = doStation.Name;
                 boBaseStation.SLocation = new Location

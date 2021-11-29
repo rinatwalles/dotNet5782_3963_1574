@@ -10,12 +10,12 @@ using static DalObject.DataSource;
 
 namespace BL
 {
-    public partial class BLAdd : IBL.IBL
+    public partial class BL : IBL.IBL
     {
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        internal static DAL.IDAL.IDAL idal;
-        public BLAdd()
+        internal DAL.IDAL.IDAL idal;
+        public BL()
         {
             idal = new DalObject.DalObject();
 

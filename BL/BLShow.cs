@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace BL
 {
-    public partial class BLShow : IBL.IBL
+    public partial class BL : IBL.IBL
     {
-        DAL.IDAL.IDAL idal;
+        
         //תצגוגת של רשימות
         public IEnumerable<BaseStationToList> GetAllBaseStations()
         {
