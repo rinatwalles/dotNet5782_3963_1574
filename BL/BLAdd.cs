@@ -14,7 +14,7 @@ namespace BL
     {
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        DAL.IDAL.IDAL idal;
+        internal static DAL.IDAL.IDAL idal;
         public BLAdd()
         {
             idal = new DalObject.DalObject();
