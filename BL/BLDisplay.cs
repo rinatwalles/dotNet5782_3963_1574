@@ -1,4 +1,5 @@
-﻿using System;
+﻿using IBL.BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,12 +9,13 @@ namespace BL
 {
     public partial class BLDisplay : IBL.IBL
     {
+        
         public BaseStation getBaseStation(int id)
         {
             IBL.BO.BaseStation boBaseStation = new IBL.BO.BaseStation();
             try
             {
-                IDAL.DO.Station doStation = idal.GetStation(id);
+                IDAL.DO.Station doStation = BLAdd.idal.GetStation(id);
                 boBaseStation.Id = doStation.Id;
                 boBaseStation.Name = doStation.Name;
                 boBaseStation.SLocation = new Location
@@ -148,7 +150,7 @@ namespace BL
         //            Weight = (IBL.BO.WeightCategories)item.Weight,
         //            Priority = (IBL.BO.Priorities)item.Priority,
         //}
-        private IEnumerable<Parcel> GetDroneChargingPerStation(int id)
+        private IEnumerable<DroneCharging> GetDroneChargingPerStation(int id)
         {//עשיתי פונקציה שעושה מה שרצית לעשות פה. אם הבנתי מה רצית
             return
             from item in idal.CountDroneCharge(id)

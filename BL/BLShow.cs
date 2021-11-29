@@ -8,6 +8,7 @@ namespace BL
 {
     public partial class BLShow : IBL.IBL
     {
+        DAL.IDAL.IDAL idal;
         //תצגוגת של רשימות
         public IEnumerable<BaseStationToList> GetAllBaseStations()
         {

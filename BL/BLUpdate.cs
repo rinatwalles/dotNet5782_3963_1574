@@ -9,6 +9,7 @@ namespace BL
 {
     public partial class BLUpdate : IBL.IBL
     {
+        DAL.IDAL.IDAL idal;
         public void UpdateDrone(int id, string model)
         {//מסתמכים שאם הוא נמצר בDAL כבר הוספנו אותו לBL. לא להסתמך על זה?
             try
