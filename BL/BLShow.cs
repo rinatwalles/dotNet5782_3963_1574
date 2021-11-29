@@ -9,6 +9,7 @@ namespace BL
 {
     public partial class BL : IBL.IBL
     {
+        
         //תצגוגת של רשימות
         public IEnumerable<BaseStationToList> GetAllBaseStations()
         {

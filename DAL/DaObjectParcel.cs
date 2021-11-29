@@ -61,6 +61,13 @@ namespace DalObject
                 throw new DAL.MissingIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
+        public Parcel getParcelByDroneId (int id)
+        {
+            if (!CheckParcel(id))
+                throw new DAL.MissingIdException(id, "Parcel");
+            return DataSource.parcels.Find(p => p.DroneId == id);
+        }
+
 
     }
 }

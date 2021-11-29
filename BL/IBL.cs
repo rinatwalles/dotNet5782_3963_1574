@@ -9,31 +9,30 @@ namespace IBL
 {
     public interface IBL
     {
-        //public BO.ParcelToList GetStudent(int id);
-
-        // public IEnumerable<BO.ParcelToList> GetAllStudents();
-        //CRUD location
-        #region Location
-        #endregion
+        #region Add
         void AddDrone(Drone ddrone, int sId);
         void AddBaseStation(Station s);
         void AddCustomer(Customer c);
         void AddParcel(Parcel p, int IdSender,  int IdReceiver);
+        #endregion
 
+        #region Upadste
         void UpdateDrone(int id, string model);
         void UpdateCustomer(int id, string name="", string phone="");
+        #endregion
 
-
+        #region Show
         IEnumerable<BaseStationToList> GetAllBaseStations();
         IEnumerable<DroneToList> GetAllDrones();
         IEnumerable<CustomerToList> GetAllCustomers();
+        #endregion
 
-
+        #region Display
         CustomerOfParcel getCustomerOfParcel(int id);
-
         Drone getDrone(int id);
         Station getBaseStation(int id);
         Customer GetCustomer(int id);
+        Parcel getParcel(int id);
+        #endregion
     }
-    
 }

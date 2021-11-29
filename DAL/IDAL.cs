@@ -27,6 +27,7 @@ namespace DAL
             void DroneUpdate(Drone d);
 
             double[] AskingElectricityUse();
+            IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate);
             #endregion
 
             #region Customer
@@ -58,8 +59,9 @@ namespace DAL
             bool CheckParcel(int id);
             void ParcelAddition(Parcel p);
             Parcel GetParcel(int id);
-            public IEnumerable<Parcel> AllParcel();
+            IEnumerable<Parcel> AllParcel();
             void ParcelDelete(Parcel p);
+            Parcel getParcelByDroneId(int id);
             void ParcelUpdate(Parcel p);
             #endregion
 
@@ -69,7 +71,6 @@ namespace DAL
             void DroneChargesDelete(DroneCharge d);
             DroneCharge GetDroneCharge(int dId, int sId);
             IEnumerable<DroneCharge> CountDroneCharge(int id);
-          //  IEnumerable<DroneCharge> AllDroneCharges();
             #endregion
         }
 
