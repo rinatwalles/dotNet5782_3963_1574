@@ -24,6 +24,8 @@ namespace IBL
         void UpdateCustomer(int id, string name="", string phone="");
         void ReleaseDroneFromCharge(int droneId, TimeSpan t );
         void droneToCharge(int idD);
+        void PickedUpParcelByDrone(int droneId);
+
         #endregion
 
         #region Show

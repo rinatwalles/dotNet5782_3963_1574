@@ -50,36 +50,39 @@ namespace BL
         }
 
 
-       public void UpdateStation(int id, string name = "", string allChargingPositions = "")
+       //public void UpdateStation(int id, string name = "", string allChargingPositions = "")
         private IDAL.DO.Station minStationDistance(IBL.BO.Drone boDrone)
         {
             IDAL.DO.Station minStation = new IDAL.DO.Station();
-            double minDistance = 1000000;
-            Location sLocation = new Location { };
-            foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
-            {
-                sLocation.Latitude = item.Latitude;
-                sLocation.Longitude = item.Longitude;
-                double dist = getDistance(sLocation, boDrone.Location);
-                if (dist * array[1 + (int)boDrone.Weight] <= boDrone.BatteryStatus)
-                    if (dist < minDistance)
-                    {
-                        minDistance = dist;
-                        minStation = item;
-                    }
-            }
-            if (minDistance == 1000000)
-                IDAL.DO.Station doStation = new IDAL.DO.Station();
-                doStation = idal.GetStation(id);
-                if (name != "")
-                    doStation.Name = name;
-                if (allChargingPositions != "")
-                    doStation.AvailableChargeSlots = Int32.Parse(allChargingPositions) - idal.CountDroneCharge(id).Count();
-                idal.StationUpdate(doStation);
+            try
+            { 
+                double minDistance = 1000000;
+                Location sLocation = new Location { };
+                foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
+                {
+                    sLocation.Latitude = item.Latitude;
+                    sLocation.Longitude = item.Longitude;
+                    double dist = getDistance(sLocation, boDrone.Location);
+                    if (dist * array[1 + (int)boDrone.Weight] <= boDrone.BatteryStatus)
+                        if (dist < minDistance)
+                        {
+                            minDistance = dist;
+                            minStation = item;
+                        }
+                }
+                if (minDistance == 1000000)
+                    throw new notEnoughFuelInDrone(boDrone.Id, "Drone");
+                //IDAL.DO.Station doStation = new IDAL.DO.Station();
+                //doStation = idal.GetStation(id);
+                ////if (name != "")
+                ////    doStation.Name = name;
+                ////if (allChargingPositions != "")
+                ////    doStation.AvailableChargeSlots = Int32.Parse(allChargingPositions) - idal.CountDroneCharge(id).Count();
+                //idal.StationUpdate(doStation);
             }
             catch (DAL.MissingIdException ex)
             {
-                throw new notEnoughFuelInDrone(boDrone.Id, "Drone");
+                throw new MissingIdException(ex.ID, ex.EntityName);
                 //return
             }
             return minStation;
@@ -167,6 +170,23 @@ namespace BL
             chosenOne.RequestedTime = DateTime.Now;
             idal.ParcelUpdate(chosenOne);
         }
+        public void UpdateStation(int id, string name = "", string allChargingPositions = "")
+        {
+            try
+            {
+                IDAL.DO.Station doStation = new IDAL.DO.Station();
+                doStation = idal.GetStation(id);
+                if (name != "")
+                    doStation.Name = name;
+                if (allChargingPositions != "")
+                    doStation.AvailableChargeSlots = Int32.Parse(allChargingPositions) - idal.CountDroneCharge(id).Count();
+                idal.StationUpdate(doStation);
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
 
         public void ReleaseDroneFromCharge(int droneId, TimeSpan t)
         {
@@ -174,10 +194,24 @@ namespace BL
             dron = ListBLDrones.Find(d => d.Id == droneId);
             if (dron.DroneStatus != IBL.BO.DroneStatuses.Maintenance)   //cant be released
                 throw new DroneNotMaintance(droneId, "Drone");
-            dron.BatteryStatus = array[1 + (int)dron.Weight]*(t.TotalSeconds/60);  //time of charging
+            dron.BatteryStatus = array[1 + (int)dron.Weight] * (t.TotalSeconds / 60);  //time of charging
             dron.DroneStatus = IBL.BO.DroneStatuses.Available;
             IDAL.DO.Station stat = new IDAL.DO.Station();
 
+            //adding one available station
+            IDAL.DO.DroneCharge dc = idal.GetDroneCharge(dron.Id);
+            IDAL.DO.Station stat = idal.GetStation(dc.StationId);
+            stat.AvailableChargeSlots++;
+            idal.StationUpdate(stat);
+
+            //deleteing the drone charge from the list
+            idal.DroneChargesDelete(dc);
         }
+
+        public void PickedUpParcelByDrone(int droneId)
+        {
+
+        }
+
     }
 }
