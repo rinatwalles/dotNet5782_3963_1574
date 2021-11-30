@@ -13,7 +13,7 @@ namespace ConsoleUI_BL
     {
         enum Option { Add, Update, Display, Show, Distance, Exit };//enum  for options
         enum Add { Station, Dron, Customer, Parcel };//enum for add options
-        enum Update { Drone, Customer, Station, Join, Collect, Supply, ChargeDrone, ReleaseDrone };//enum for update options
+        enum Update { Drone, Customer, Station, Join, Collect, Supply, ChargeDrone, ReleaseDrone, PickedUpParcel };//enum for update options
         enum Display { Station, Drone, Customer, Parcel };//enum for display options
         enum Show { Station, Drone, Customer, Parcel, ParcelWithoutDrone, AvilabaleStations };//enum for show options
         enum Distance { Station, Customer }//enum for distance options
@@ -138,6 +138,13 @@ namespace ConsoleUI_BL
                                 int idD = int.Parse(System.Console.ReadLine());
                                 TimeSpan t = TimeSpan.Parse(System.Console.ReadLine());
                                 ibl.ReleaseDroneFromCharge(idD, t);
+                                break;
+                            }
+                        case Update.PickedUpParcel:
+                            {
+                                Console.WriteLine("Insert id of drone");
+                                int idD = int.Parse(System.Console.ReadLine());
+                                ibl.PickedUpParcelByDrone(idD);
                                 break;
                             }
                         default:

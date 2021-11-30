@@ -107,8 +107,21 @@ namespace BL
                 throw new DroneNotMaintance(droneId, "Drone");
             dron.BatteryStatus = array[1 + (int)dron.Weight]*(t.TotalSeconds/60);  //time of charging
             dron.DroneStatus = IBL.BO.DroneStatuses.Available;
-            IDAL.DO.Station stat = new IDAL.DO.Station();
+
+            //adding one available station
+            IDAL.DO.DroneCharge dc = idal.GetDroneCharge(dron.Id);
+            IDAL.DO.Station stat = idal.GetStation(dc.StationId);
+            stat.AvailableChargeSlots++;
+            idal.StationUpdate(stat);
+
+            //deleteing the drone charge from the list
+            idal.DroneChargesDelete(dc);
+        }
+
+        public void PickedUpParcelByDrone(int droneId)
+        {
 
         }
+
     }
 }
