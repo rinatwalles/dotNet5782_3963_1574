@@ -41,24 +41,32 @@ namespace BL
                        ParcelState = getParcelState(doparc.Id)
                    };
         }
-        private int numParcelsSentNotSupplied()
+        private int numParcelsSent(int id, ParcelStates p)
         {
-
-            return 2;
+            int num = 0;
+            foreach (IDAL.DO.Parcel item in idal.AllParcel())
+            {
+                if (getParcelState(item.Id) == p)
+                    num++;
+            }
+            return num;
         }
+                   
+
+
         public IEnumerable<CustomerToList> GetAllCustomers()
         {
-            return from docust in idal.AllCustomer()
-                   select new CustomerToList()
-                   {
-                       Id = docust.Id,
-                       Name = docust.Name,
-                       Phone = docust.Phone,
-                       //NumOfParcelsSentNotSupplied
-                       //NumOfParcelsSentAndSupplied
-                       NumOfParcelsDelivered = GetParcelsFromCustomer(docust.Id).Count(),
-                       NumOfParcelsReceived= GetParcelsToCustomer(docust.Id).Count()
-                   };
+                return from docust in idal.AllCustomer()
+                       select new CustomerToList()
+                       {
+                           Id = docust.Id,
+                           Name = docust.Name,
+                           Phone = docust.Phone,
+                           NumOfParcelsSentAndSupplied= numParcelsSent(docust.Id, ParcelStates.Delivered),
+                           NumOfParcelsSentNotSupplied = numParcelsSent(docust.Id, ParcelStates.PickedUp),
+                           NumOfParcelsDelivered = GetParcelsFromCustomer(docust.Id).Count(),
+                           NumOfParcelsReceived= GetParcelsToCustomer(docust.Id).Count()
+                        };
         }
 
         public IEnumerable<ParcelToList> GetAllParcelsNotScheduled()
