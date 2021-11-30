@@ -48,5 +48,24 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
+
+       public void UpdateStation(int id, string name = "", int allChargingPositions = 0)
+        {
+            try
+            {
+                IDAL.DO.Station doStation = new IDAL.DO.Station();
+                doStation = idal.GetStation(id);
+                if (name != "")
+                    doStation.Name = name;
+                if (allChargingPositions != 0)
+                    doStation.AvailableChargeSlots = allChargingPositions - idal.CountDroneCharge(id).Count();
+                idal.StationUpdate(doStation);
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
     }
 }

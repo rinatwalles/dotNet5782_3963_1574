@@ -5,21 +5,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using IBL.BO;
-//namespace BL
-//{
-    namespace IBL.BO
+
+namespace IBL.BO
+{
+    public class Station
     {
-        public class Station
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public Location Location { get; set; }
+        public int AvailableChargeSlots { get; set; }
+        public IEnumerable<DroneCharging> DroneCharging { get; set; }
+        public override string ToString()
         {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public Location SLocation { get; set; }
-            public int AvailableChargeSlots { get; set; }
-            public IEnumerable<DroneCharging> DroneCharging { get; set; }
-            public override string ToString()
-            {
-                return this.ToStringProperty();
-            }
+            return this.ToStringProperty();
         }
     }
-//}
+}

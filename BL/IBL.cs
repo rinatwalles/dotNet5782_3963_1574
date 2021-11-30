@@ -14,17 +14,21 @@ namespace IBL
         void AddBaseStation(Station s);
         void AddCustomer(Customer c);
         void AddParcel(Parcel p, int IdSender,  int IdReceiver);
+        Location MinDistanceOfSation(Location locat);
+
         #endregion
 
         #region Upadste
         void UpdateDrone(int id, string model);
+        void UpdateStation(int id, string name="", int allChargingPositions=0);
         void UpdateCustomer(int id, string name="", string phone="");
         #endregion
 
         #region Show
-        IEnumerable<BaseStationToList> GetAllBaseStations();
+        IEnumerable<BaseStationToList> GetAllStations();
         IEnumerable<DroneToList> GetAllDrones();
         IEnumerable<CustomerToList> GetAllCustomers();
+        IEnumerable<ParcelToList> GetAllParcels();
         #endregion
 
         #region Display
