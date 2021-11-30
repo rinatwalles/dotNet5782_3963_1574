@@ -86,21 +86,23 @@ namespace BL
             }
         }
         //function that gets a location and returns the closest station
-        private Location MinDistanceOfSation(Location locat)
+        private Station MinDistanceOfSation(Location locat)
         {
-            Location newlocat=new Location();
+            IDAL.DO.Station minStation = new IDAL.DO.Station();
+            //Location newlocat=new Location();
             double minDistance = 1000;
-            foreach (IDAL.DO.Station stat in idal.AllStation())  //searching the closest station to the sender
+            foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
             {
-                double dist = idal.DistanceCalculate(stat.Longitude, stat.Latitude, locat.Longitude, locat.Latitude);
+                double dist = idal.DistanceCalculate(item.Longitude, item.Latitude, locat.Longitude, locat.Latitude);
                 if (dist < minDistance)
                 {
-                    newlocat.Latitude = stat.Latitude;
-                    newlocat.Longitude = stat.Longitude;
-                    minDistance = dist;
+                    minStation = item;
+                    //newlocat.Latitude = item.Latitude;
+                    //newlocat.Longitude = item.Longitude;
+                    //minDistance = dist;
                 }
             }
-            return newlocat;
+            return getBaseStation(minStation.Id);
         }
 
             public void AddDrone(Drone d, int sId)
