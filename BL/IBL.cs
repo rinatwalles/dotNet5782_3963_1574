@@ -18,10 +18,11 @@ namespace IBL
 
         #endregion
 
-        #region Upadste
+        #region Upadate
         void UpdateDrone(int id, string model);
         void UpdateStation(int id, string name="", int allChargingPositions=0);
         void UpdateCustomer(int id, string name="", string phone="");
+        void droneToCharge(int idD);
         #endregion
 
         #region Show
@@ -37,6 +38,7 @@ namespace IBL
         Station getBaseStation(int id);
         Customer GetCustomer(int id);
         Parcel getParcel(int id);
+        
         #endregion
     }
 }

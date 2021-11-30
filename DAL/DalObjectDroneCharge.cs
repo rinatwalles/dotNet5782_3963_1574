@@ -10,7 +10,12 @@ namespace DalObject
 {
     public partial class DalObject : DAL.IDAL.IDAL
     {
-
+        public void DroneChargeAddition(DroneCharge dc)
+        {
+            if (!CheckDroneCharge(dc.DroneId,dc.StationId))
+                throw new DAL.DuplicateIdException(dc.DroneId, "Drone Charge");
+            DataSource.droneCharges.Add(dc);
+        }
         public bool CheckDroneCharge(int dId, int sId)
         {
             return DataSource.droneCharges.Any(d => ((d.DroneId == dId)&&(d.StationId==sId)));
@@ -35,6 +40,6 @@ namespace DalObject
             return DataSource.droneCharges.Where(dc => dc.StationId == id);
         }
 
-       
+      
     }
 }

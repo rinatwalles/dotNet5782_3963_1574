@@ -85,25 +85,44 @@ namespace BL
                 }
             }
         }
-        //function that gets a location and returns the closest station
-        private Station MinDistanceOfSation(Location locat)
+        /function that gets a location and returns the closest station
+        private Location MinDistanceOfSation(Location locat)
         {
-            IDAL.DO.Station minStation = new IDAL.DO.Station();
-            //Location newlocat=new Location();
+            Location newlocat = new Location();
             double minDistance = 1000;
-            foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
+            foreach (IDAL.DO.Station stat in idal.AllStation())  //searching the closest station to the sender
             {
-                double dist = idal.DistanceCalculate(item.Longitude, item.Latitude, locat.Longitude, locat.Latitude);
+                double dist = idal.DistanceCalculate(stat.Longitude, stat.Latitude, locat.Longitude, locat.Latitude);
                 if (dist < minDistance)
                 {
-                    minStation = item;
-                    //newlocat.Latitude = item.Latitude;
-                    //newlocat.Longitude = item.Longitude;
-                    //minDistance = dist;
+                    newlocat.Latitude = stat.Latitude;
+                    newlocat.Longitude = stat.Longitude;
+                    minDistance = dist;
                 }
             }
-            return getBaseStation(minStation.Id);
+            return newlocat;
         }
+        //function that gets a location and returns the closest station
+        //private Station MinDistanceOfSation(Location locat)
+        //{
+        //    double[] array = idal.AskingElectricityUse();
+        //    IDAL.DO.Station minStation = new IDAL.DO.Station();
+        //    //Location newlocat=new Location();
+        //    double minDistance = 1000;
+        //    foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
+        //    {
+        //        double dist = idal.DistanceCalculate(item.Longitude, item.Latitude, locat.Longitude, locat.Latitude);
+        //        if(idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight])
+        //        if (dist < minDistance)
+        //        {
+        //            minStation = item;
+        //            //newlocat.Latitude = item.Latitude;
+        //            //newlocat.Longitude = item.Longitude;
+        //            //minDistance = dist;
+        //        }
+        //    }
+        //    return getBaseStation(minStation.Id);
+        //}
 
             public void AddDrone(Drone d, int sId)
             {
@@ -177,8 +196,8 @@ namespace BL
                 IDAL.DO.Customer doCustomer = new IDAL.DO.Customer();
                 doCustomer.Id = c.Id;
                 doCustomer.Name = c.Name;
-                doCustomer.Latitude = c.Place.Latitude;
-                doCustomer.Longitude = c.Place.Longitude;
+                doCustomer.Latitude = c.Location.Latitude;
+                doCustomer.Longitude = c.Location.Longitude;
                 doCustomer.Phone = c.Phone;
                 idal.CustomerAddition(doCustomer);
             }

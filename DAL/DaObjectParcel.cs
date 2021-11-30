@@ -67,7 +67,13 @@ namespace DalObject
                 throw new DAL.MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.DroneId == id);
         }
-
+        
+        public IEnumerable<Parcel> GetParcelByPredicate(Predicate<Parcel> predicate)
+        {
+            return from par in DataSource.parcels
+                   where predicate(par)
+                   select par;
+        }
 
     }
 }

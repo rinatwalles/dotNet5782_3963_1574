@@ -64,10 +64,12 @@ namespace DAL
             void ParcelDelete(Parcel p);
             Parcel getParcelByDroneId(int id);
             void ParcelUpdate(Parcel p);
+            IEnumerable<Parcel> GetParcelByPredicate(Predicate<Parcel> predicate);
             #endregion
 
             #region DroneCharge
             //CRUD DroneCharge
+            public void DroneChargeAddition(DroneCharge dc);
             bool CheckDroneCharge(int dId, int sId);
             void DroneChargesDelete(DroneCharge d);
             DroneCharge GetDroneCharge(int dId, int sId);
