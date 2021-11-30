@@ -31,9 +31,9 @@ namespace BL
                                                select new DroneToList()
                                                {
                                                    Id = dodron.Id,
-                                                   Model=dodron.Model,
-                                                   Weight= (WeightCategories)dodron.Weight
-                                               }) ;
+                                                   Model = dodron.Model,
+                                                   Weight = (WeightCategories)dodron.Weight
+                                               });
             DateTime t = DateTime.MinValue;
             Location locat = new Location();
             foreach (DroneToList item in ListBLDrones)
@@ -47,32 +47,28 @@ namespace BL
                     locat.Longitude = cust.Longitude;
                     if (parc.PickedUpTime == t)    //parcel schduled but not PickedUp
                         item.Location = MinDistanceOfSation(locat);    //the location is the closest station
-                    if (parc.DeliveredTime== t)   //the parcel not deliverd so the location is the sender location
+                    if (parc.DeliveredTime == t)   //the parcel not deliverd so the location is the sender location
                         item.Location = locat;
-<<<<<<< HEAD
-                    }
-                    double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude);
-                    Location closeStation = MinDistance(cust);
-=======
+
                     double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude);
                     Location closeStation = MinDistanceOfSation(locat);
->>>>>>> 7eb376a56163cb43275c5857d90dab1b467c8b64
+
                     calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
                     item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
 
                 }
                 else if (!idal.AllParcel().Any(parc => (parc.DroneId == item.Id)))    //not doing a delivery now
                     item.DroneStatus = (DroneStatuses)(rand.Next(0, 1) * 2);    //0 or 2
-                else if(item.DroneStatus== DroneStatuses.Maintenance)   //drone in maintance
+                else if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
                 {
                     int id = rand.Next(1, 2);
                     IDAL.DO.Station stat = idal.GetStation(id);
                     locat.Longitude = stat.Longitude;
-                    locat.Latitude=stat.Latitude;
+                    locat.Latitude = stat.Latitude;
                     item.Location = locat;
                     item.BatteryStatus = rand.NextDouble() * 20;
                 }
-                else if(item.DroneStatus == DroneStatuses.Available)   //the drone is available
+                else if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
                 {
                     foreach (IDAL.DO.Parcel parc in idal.AllParcel())
                     {
@@ -83,12 +79,12 @@ namespace BL
                             locat.Longitude = cust.Longitude;
                             Location closeStation = MinDistanceOfSation(locat);
                             double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
-                            item.BatteryStatus = rand.NextDouble()+rand.Next((int)calculate, 100);
+                            item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
                         }
                     }
                 }
             }
-        
+        }
         //function that gets a location and returns the closest station
         private Location MinDistanceOfSation(Location locat)
         {
@@ -107,8 +103,8 @@ namespace BL
             return newlocat;
         }
 
-        public void AddDrone(Drone d, int sId)
-        {
+            public void AddDrone(Drone d, int sId)
+            {
             try
             {
                 d.BatteryStatus = rand.NextDouble() * 100;//לא יתן 1, רק קטן מ1!

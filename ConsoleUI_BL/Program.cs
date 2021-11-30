@@ -122,7 +122,9 @@ namespace ConsoleUI_BL
                                 break;
                             }
                         case Update.Station:
-                            break;
+                            {
+                                break;
+                            }
                         case Update.ChargeDrone:
                             break;
                         case Update.ReleaseDrone:
