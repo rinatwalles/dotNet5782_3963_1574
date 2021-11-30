@@ -11,7 +11,7 @@ using static DalObject.DataSource;
 namespace BL
 {
     public partial class BL : IBL.IBL
-    {
+    { 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         internal static DAL.IDAL.IDAL idal;
