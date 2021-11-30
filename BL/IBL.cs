@@ -25,6 +25,8 @@ namespace IBL
         void ReleaseDroneFromCharge(int droneId, TimeSpan t );
         void droneToCharge(int idD);
         void PickedUpParcelByDrone(int droneId);
+        void joinParcelToDrone(int idD);
+        void supplyParceByDrone(int idD);
 
         #endregion
 
@@ -43,7 +45,7 @@ namespace IBL
         Station getBaseStation(int id);
         Customer GetCustomer(int id);
         Parcel getParcel(int id);
-        
+
         #endregion
     }
 }

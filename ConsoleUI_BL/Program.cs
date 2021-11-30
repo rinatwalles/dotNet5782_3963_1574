@@ -161,11 +161,25 @@ namespace ConsoleUI_BL
                                         ibl.ReleaseDroneFromCharge(idD, t);
                                         break;
                                     }
+                                case Update.Join:
+                                    {
+                                        Console.WriteLine("insert an id of a drone");
+                                        int idD = int.Parse(System.Console.ReadLine());
+                                        ibl.joinParcelToDrone(idD);
+                                        break;
+                                    }
                                 case Update.PickedUpParcel:
                                     {
                                         Console.WriteLine("Insert id of drone");
                                         int idD = int.Parse(System.Console.ReadLine());
                                         ibl.PickedUpParcelByDrone(idD);
+                                        break;
+                                    }
+                                case Update.Supply:
+                                    {
+                                        Console.WriteLine("Insert id of drone");
+                                        int idD = int.Parse(System.Console.ReadLine());
+                                        ibl.supplyParceByDrone(idD);
                                         break;
                                     }
                                 default:
