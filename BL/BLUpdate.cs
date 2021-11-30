@@ -104,7 +104,7 @@ namespace BL
             IBL.BO.DroneToList dron = new IBL.BO.DroneToList();
             dron = ListBLDrones.Find(d => d.Id == droneId);
             if (dron.DroneStatus != IBL.BO.DroneStatuses.Maintenance)   //cant be released
-                throw new DroneNotMaintance(droneId, "Drone");
+                throw new DeliveryProblems(droneId, "Drone not in ,aintance status");
             dron.BatteryStatus = array[1 + (int)dron.Weight]*(t.TotalSeconds/60);  //time of charging
             dron.DroneStatus = IBL.BO.DroneStatuses.Available;
 
@@ -120,6 +120,15 @@ namespace BL
 
         public void PickedUpParcelByDrone(int droneId)
         {
+            DateTime t = DateTime.MinValue;
+            IBL.BO.DroneToList dron = new IBL.BO.DroneToList();
+            dron = ListBLDrones.Find(d => d.Id == droneId);
+            IDAL.DO.Parcel parc = idal.GetParcel(dron.ParcelNumber);
+            if(parc.PickedUpTime!=t)
+                throw new DeliveryProblems(droneId, "Drone already picked up");
+            Location locat = new Location();
+            locat=dron.Location;
+
 
         }
 
