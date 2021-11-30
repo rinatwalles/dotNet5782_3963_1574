@@ -9,7 +9,7 @@ using IDAL.DO;
 //{
     namespace IBL.BO
     {
-       public class BaseStationToList
+       public class StationToList
         {
             public int Id { get; set; }
             public string Name { get; set; }

@@ -156,7 +156,7 @@ namespace BL
             {
                 droneToSender = getDistance(GetCustomer(item.SenderId).Location, boDrone.Location);
                 senderToTarget = getDistance(GetCustomer(item.SenderId).Location, GetCustomer(item.TargetId).Location);
-                targetToStation= getDistance(minStationDistance(GetCustomer(item.TargetId).Location), GetCustomer(item.TargetId).Location));
+                targetToStation= getDistance(minStationDistance(GetCustomer(item.TargetId).Location), GetCustomer(item.TargetId).Location);
                 if (maxPriority < (Priorities)item.Priority)
                     if (droneToSender < minDistance)
                         if (array[1 + (int)boDrone.Weight] * (droneToSender + targetToStation + senderToTarget) <= boDrone.BatteryStatus)
@@ -213,7 +213,7 @@ namespace BL
             IBL.BO.DroneToList dron = new IBL.BO.DroneToList();
             dron = ListBLDrones.Find(d => d.Id == droneId);
             IDAL.DO.Parcel parc = idal.GetParcel(dron.ParcelNumber);
-            if(parc.PickedUpTime!=t)
+            if(parc.PickedUpTime==t)
                 throw new DeliveryProblems(droneId, "Drone already picked up");
             Location locat = new Location();
             locat=dron.Location;              //current location of drone
