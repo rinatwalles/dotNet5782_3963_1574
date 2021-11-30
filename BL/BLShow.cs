@@ -11,10 +11,10 @@ namespace BL
     {
         
         //תצגוגת של רשימות
-        public IEnumerable<BaseStationToList> GetAllStations()
+        public IEnumerable<StationToList> GetAllStations()
         {
             return from dostat in idal.AllStation()
-                   select new BaseStationToList()
+                   select new StationToList()
                    {
                        Id = dostat.Id,
                        Name = dostat.Name,
@@ -38,10 +38,14 @@ namespace BL
                        Receiver = getCustomerOfParcel(doparc.TargetId),
                        Weight = (WeightCategories)doparc.Weight,
                        Priority = (Priorities)doparc.Priority,
-                       //ParcelState=doparc.
+                       ParcelState = getParcelState(doparc.Id)
                    };
         }
+        private int numParcelsSentNotSupplied()
+        {
 
+            return 2;
+        }
         public IEnumerable<CustomerToList> GetAllCustomers()
         {
             return from docust in idal.AllCustomer()
@@ -52,8 +56,36 @@ namespace BL
                        Phone = docust.Phone,
                        //NumOfParcelsSentNotSupplied
                        //NumOfParcelsSentAndSupplied
-                       //NumOfParcelsDelivered
-                       //NumOfParcelsReceived
+                       NumOfParcelsDelivered = GetParcelsFromCustomer(docust.Id).Count(),
+                       NumOfParcelsReceived= GetParcelsToCustomer(docust.Id).Count()
+                   };
+        }
+
+        public IEnumerable<ParcelToList> GetAllParcelsNotScheduled()
+        {
+            return from doparc in idal.AllParcel()
+                   where (getParcelState(doparc.Id)== ParcelStates.Requested)  //requested but not schedualed
+                   select new ParcelToList()
+                   {
+                       Id = doparc.Id,
+                       Sender = getCustomerOfParcel(doparc.SenderId),
+                       Receiver = getCustomerOfParcel(doparc.TargetId),
+                       Weight = (WeightCategories)doparc.Weight,
+                       Priority = (Priorities)doparc.Priority,
+                       ParcelState = getParcelState(doparc.Id)
+                   };
+        }
+
+        public IEnumerable<StationToList> GetAllStationsWithAvailableSlots()
+        {
+            return from dostat in idal.AllStation()
+                   where (dostat.AvailableChargeSlots>0)
+                   select new StationToList()
+                   {
+                       Id = dostat.Id,
+                       Name = dostat.Name,
+                       AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
+                       RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
                    };
         }
     }

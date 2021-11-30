@@ -11,7 +11,7 @@ namespace IBL
     {
         #region Add
         void AddDrone(Drone ddrone, int sId);
-        void AddBaseStation(Station s);
+        void AddStation(Station s);
         void AddCustomer(Customer c);
         void AddParcel(Parcel p, int IdSender,  int IdReceiver);
         Location MinDistanceOfSation(Location locat);
@@ -29,10 +29,12 @@ namespace IBL
         #endregion
 
         #region Show
-        IEnumerable<BaseStationToList> GetAllStations();
+        IEnumerable<StationToList> GetAllStations();
         IEnumerable<DroneToList> GetAllDrones();
         IEnumerable<CustomerToList> GetAllCustomers();
         IEnumerable<ParcelToList> GetAllParcels();
+        IEnumerable<ParcelToList> GetAllParcelsNotScheduled();
+        IEnumerable<StationToList> GetAllStationsWithAvailableSlots();
         #endregion
 
         #region Display

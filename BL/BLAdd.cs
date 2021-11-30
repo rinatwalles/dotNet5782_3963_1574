@@ -86,7 +86,7 @@ namespace BL
                 }
             }
         }
-        /function that gets a location and returns the closest station
+       //function that gets a location and returns the closest station
         private Location MinDistanceOfSation(Location locat)
         {
             Location newlocat = new Location();
@@ -103,27 +103,6 @@ namespace BL
             }
             return newlocat;
         }
-        //function that gets a location and returns the closest station
-        //private Station MinDistanceOfSation(Location locat)
-        //{
-        //    double[] array = idal.AskingElectricityUse();
-        //    IDAL.DO.Station minStation = new IDAL.DO.Station();
-        //    //Location newlocat=new Location();
-        //    double minDistance = 1000;
-        //    foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
-        //    {
-        //        double dist = idal.DistanceCalculate(item.Longitude, item.Latitude, locat.Longitude, locat.Latitude);
-        //        if(idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight])
-        //        if (dist < minDistance)
-        //        {
-        //            minStation = item;
-        //            //newlocat.Latitude = item.Latitude;
-        //            //newlocat.Longitude = item.Longitude;
-        //            //minDistance = dist;
-        //        }
-        //    }
-        //    return getBaseStation(minStation.Id);
-        //}
 
             public void AddDrone(Drone d, int sId)
             {
@@ -162,7 +141,7 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
-        public void AddBaseStation(Station s)
+        public void AddStation(Station s)
         {
             try
             {

@@ -166,7 +166,7 @@ namespace BL
             return
             from item in idal.AllParcel()
             where item.TargetId == id
-            let cstReceiver = idal.GetCustomer(item.TargetId)
+            let cstSender = idal.GetCustomer(item.TargetId)
             let droneInParcel = ListBLDrones.Find(d => d.Id == id)
             select new ParcelAtCustomer
             {
@@ -221,7 +221,7 @@ namespace BL
         //פןנקציה פרטית שתחזיר לי אוביקט ממש מהסןג הזה 
         //בנוסף היא יכולה להיות PRIVATE לבדוק את הנושא כי זכור לי משהו שדן כתב
         //יש דרך אחרת??
-        public CustomerOfParcel getCustomerOfParcel(int id)
+        private CustomerOfParcel getCustomerOfParcel(int id)
         {
             CustomerOfParcel cp = new CustomerOfParcel();
             IDAL.DO.Customer doCast = new IDAL.DO.Customer();
