@@ -14,8 +14,6 @@ namespace IBL
         void AddStation(Station s);
         void AddCustomer(Customer c);
         void AddParcel(Parcel p, int IdSender,  int IdReceiver);
-        Location MinDistanceOfSation(Location locat);
-
         #endregion
 
         #region Upadate
@@ -39,8 +37,7 @@ namespace IBL
         IEnumerable<ParcelToList> GetAllParcels();
         IEnumerable<ParcelToList> GetAllParcelsNotScheduled();
         IEnumerable<StationToList> GetAllStationsWithAvailableSlots();
-        int numParcelsSentNotSupplied();
-        #endregion
+       #endregion
 
         #region Display
         CustomerOfParcel getCustomerOfParcel(int id);

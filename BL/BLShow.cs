@@ -51,8 +51,6 @@ namespace BL
             }
             return num;
         }
-                   
-
 
         public IEnumerable<CustomerToList> GetAllCustomers()
         {
