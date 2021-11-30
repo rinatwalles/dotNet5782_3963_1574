@@ -27,6 +27,8 @@ namespace IBL
         void PickedUpParcelByDrone(int droneId);
         void joinParcelToDrone(int idD);
         void supplyParceByDrone(int idD);
+        IDAL.DO.Station minStationDistance(Drone boDrone);
+        Location minStationDistance(Location location);
 
         #endregion
 
@@ -37,6 +39,7 @@ namespace IBL
         IEnumerable<ParcelToList> GetAllParcels();
         IEnumerable<ParcelToList> GetAllParcelsNotScheduled();
         IEnumerable<StationToList> GetAllStationsWithAvailableSlots();
+        int numParcelsSentNotSupplied();
         #endregion
 
         #region Display
@@ -45,6 +48,12 @@ namespace IBL
         Station getBaseStation(int id);
         Customer GetCustomer(int id);
         Parcel getParcel(int id);
+        double getDistance(Location l1, Location l2);
+        ParcelStates getParcelState(int id);
+        IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id);
+        IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id);
+        IEnumerable<DroneCharging> GetDroneChargingPerStation(int id);
+        IEnumerable<DroneInParcel> GetDroneInParcel(int id);
 
         #endregion
     }
