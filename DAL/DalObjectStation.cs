@@ -78,5 +78,11 @@ namespace DalObject
                 throw new DAL.MissingIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }
+        public IEnumerable<Station> GetStationByPredicate(Predicate<Station> predicate)
+        {
+            return from st in DataSource.stations
+                   where predicate(st)
+                   select st;
+        }
     }
 }

@@ -52,6 +52,7 @@ namespace DAL
             double DistanceFromStation(int id, double x1, double y1);
             void StationDelete(Station s);
             void StationUpdate(Station s);
+            IEnumerable<Station> GetStationByPredicate(Predicate<Station> predicate);
             #endregion
 
             #region Parcel

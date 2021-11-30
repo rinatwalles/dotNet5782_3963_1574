@@ -51,7 +51,7 @@ namespace BL
                         locat.Longitude = cust.Longitude;
                         item.Location = locat;
                     }
-                   double calculate= idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude)
+                    double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude);
                     Location closeStation = MinDistance(cust);
                     calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
                     item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);

@@ -48,5 +48,33 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+        public void droneToCharge (int id)
+        {
+            try 
+            {
+                IBL.BO.Drone boDrone = GetDrone(id);
+                if (boDrone.DroneStatus != DroneStatuses.Available)//אם הרחפן לא פנוי פשוט לצאת??
+                    return;
+                Location sLocation = new Location { };
+                double calculate;
+                foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st=>st.AvailableChargeSlots>0))
+                {
+                    sLocation.Latitude = item.Latitude;
+                    sLocation.Longitude = item.Longitude;
+                    calculate = getDistance(boDrone.Location, sLocation);
+                    if()
+                }
+
+                //    
+                //
+                //calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+
+            }
+           catch(DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+
+        }
     }
 }
