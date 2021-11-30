@@ -51,7 +51,7 @@ namespace BL
                     if (parc.DeliveredTime == t)   //the parcel not deliverd so the location is the sender location
                         item.Location = locat;
 
-                    double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude);
+                    double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
                     Location closeStation = MinDistanceOfSation(locat);
 
                     calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];

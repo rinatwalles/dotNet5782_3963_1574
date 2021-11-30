@@ -216,22 +216,16 @@ namespace BL
             if(parc.PickedUpTime!=t)
                 throw new DeliveryProblems(droneId, "Drone already picked up");
             Location locat = new Location();
-            locat=dron.Location;
+            locat=dron.Location;              //current location of drone
 
+            IDAL.DO.Customer sender = idal.GetCustomer(parc.SenderId);    //the location of the sender
+            dron.BatteryStatus=idal.DistanceCalculate(sender.Longitude, sender.Latitude, locat.Longitude, locat.Latitude) * array[1 + (int)dron.Weight]; //distance between the sender and the current location
+            locat.Latitude = sender.Latitude;
+            locat.Longitude = sender.Longitude;
+            dron.Location = locat;    //updating the place to the sender place
 
-            //adding one available station
-            IDAL.DO.DroneCharge dc = idal.GetDroneCharge(dron.Id);
-            IDAL.DO.Station stat = idal.GetStation(dc.StationId);
-            stat.AvailableChargeSlots++;
-            idal.StationUpdate(stat);
-
-            //deleteing the drone charge from the list
-            idal.DroneChargesDelete(dc);
-        }
-
-        public void PickedUpParcelByDrone(int droneId)
-        {
-
+            parc.PickedUpTime = DateTime.Now;
+            idal.ParcelUpdate(parc);
         }
 
     }
