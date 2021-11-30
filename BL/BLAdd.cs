@@ -16,11 +16,12 @@ namespace BL
 
         internal static DAL.IDAL.IDAL idal;
         public List<IBL.BO.DroneToList> ListBLDrones;
+        double[] array;
         public BL()
         {
             idal = new DalObject.DalObject();
 
-            double[] array = idal.AskingElectricityUse();
+            array = idal.AskingElectricityUse();
             double Available = array[0];
             double Light = array[1];
             double Medium = array[2];

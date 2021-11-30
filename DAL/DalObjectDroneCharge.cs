@@ -17,8 +17,10 @@ namespace DalObject
             DataSource.droneCharges.Add(dc);
         }
         public bool CheckDroneCharge(int dId, int sId)
+
+        public bool CheckDroneCharge(int dId)
         {
-            return DataSource.droneCharges.Any(d => ((d.DroneId == dId)&&(d.StationId==sId)));
+            return DataSource.droneCharges.Any(d => d.DroneId == dId);
         }
 
         public void DroneChargesDelete(DroneCharge dc)
@@ -28,12 +30,13 @@ namespace DalObject
                 throw new DAL.MissingIdException(dc.DroneId, "DroneCharge");
         }
 
-        public DroneCharge GetDroneCharge(int dId, int sId)
+        public DroneCharge GetDroneCharge(int dId)
         {
-            if (!CheckDroneCharge(dId, sId))
+            if (!CheckDroneCharge(dId))
                 throw new DAL.MissingIdException(dId, "DroneCharge");
-            return DataSource.droneCharges.Find(c => ((c.DroneId == dId) && (c.StationId == sId)));
+            return DataSource.droneCharges.Find(c => c.DroneId == dId);
         }
+
         //function that returns a list of DroneCharges in specific station
         public IEnumerable<DroneCharge> CountDroneCharge(int id)
         {

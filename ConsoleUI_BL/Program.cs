@@ -114,7 +114,7 @@ namespace ConsoleUI_BL
                             }
                         case Update.Customer:
                             {
-                                Console.WriteLine("Insert id of drone and its new name");
+                                Console.WriteLine("Insert id of customer and its new name");
                                 int idC = int.Parse(System.Console.ReadLine());
                                 string nameC = System.Console.ReadLine();
                                 string phoneC = System.Console.ReadLine();
@@ -123,6 +123,11 @@ namespace ConsoleUI_BL
                             }
                         case Update.Station:
                             {
+                                Console.WriteLine("Insert id of station and its new name");
+                                int idS = int.Parse(System.Console.ReadLine());
+                                string nameS = System.Console.ReadLine();
+                                string allChargingPositions = System.Console.ReadLine();
+                                ibl.UpdateCustomer(idS, nameS, allChargingPositions);
                                 Console.WriteLine("insert an id of a drone");
                                 int idD= int.Parse(System.Console.ReadLine());
                                 ibl.droneToCharge(idD);
@@ -131,7 +136,13 @@ namespace ConsoleUI_BL
                         case Update.ChargeDrone:
                             break;
                         case Update.ReleaseDrone:
-                            break;
+                            {
+                                Console.WriteLine("Insert id of drone and its time of charging");
+                                int idD = int.Parse(System.Console.ReadLine());
+                                TimeSpan t = TimeSpan.Parse(System.Console.ReadLine());
+                                ibl.ReleaseDroneFromCharge(idD, t);
+                                break;
+                            }
                         default:
                             break;
                     }
