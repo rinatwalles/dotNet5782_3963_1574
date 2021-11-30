@@ -128,12 +128,12 @@ namespace ConsoleUI_BL
                                 string nameS = System.Console.ReadLine();
                                 string allChargingPositions = System.Console.ReadLine();
                                 ibl.UpdateCustomer(idS, nameS, allChargingPositions);
-                                Console.WriteLine("insert an id of a drone");
-                                int idD= int.Parse(System.Console.ReadLine());
-                                ibl.droneToCharge(idD);
                                 break;
                             }
                         case Update.ChargeDrone:
+                            Console.WriteLine("insert an id of a drone");
+                            int idD = int.Parse(System.Console.ReadLine());
+                            ibl.droneToCharge(idD);
                             break;
                         case Update.ReleaseDrone:
                             {

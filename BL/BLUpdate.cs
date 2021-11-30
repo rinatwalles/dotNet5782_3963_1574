@@ -227,6 +227,30 @@ namespace BL
             parc.PickedUpTime = DateTime.Now;
             idal.ParcelUpdate(parc);
         }
-
+        public void supplyParceByDrone(int id)
+        {
+            try
+            {
+                IBL.BO.Drone boDrone = GetDrone(id);
+                IDAL.DO.Parcel doParcel = idal.GetOneParcelByPredicate(p => p.DroneId == id);
+                //IBL.BO.Parcel boParcel = getParcel(doParcel.Id);
+                if (getParcelState(doParcel.Id) == ParcelStates.Delivered)
+                    throw new SupplyProblems(id, "Drone");
+                double senderToTarget = getDistance(GetCustomer(doParcel.SenderId).Location, GetCustomer(doParcel.TargetId).Location);
+                DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
+                ListBLDrones.RemoveAll(d => d.Id == id);
+                dtl.BatteryStatus -= array[1 + (int)boDrone.Weight] * senderToTarget;
+                dtl.Location = GetCustomer(doParcel.TargetId).Location;
+                dtl.DroneStatus = DroneStatuses.Available;
+                doParcel.DeliveredTime = DateTime.Now;
+                idal.ParcelUpdate(doParcel);
+                ListBLDrones.Add(dtl);
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
     }
+   
 }

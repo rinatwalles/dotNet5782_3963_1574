@@ -74,6 +74,7 @@ namespace DAL
             void DroneChargesDelete(DroneCharge d);
             DroneCharge GetDroneCharge(int dId);
             IEnumerable<DroneCharge> CountDroneCharge(int id);
+            Parcel GetOneParcelByPredicate(Predicate<Parcel> predicate);
             #endregion
         }
 
