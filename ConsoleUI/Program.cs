@@ -45,7 +45,7 @@ namespace ConsoleUI
                                             Name = System.Console.ReadLine(),
                                             Longitude = int.Parse(System.Console.ReadLine()),
                                             Latitude = int.Parse(System.Console.ReadLine()),
-                                            ChargeSlots = int.Parse(System.Console.ReadLine())
+                                            AvailableChargeSlots = int.Parse(System.Console.ReadLine())
                                         };
                                         dall.StationAddition(sstation);
                                         break;
@@ -57,7 +57,7 @@ namespace ConsoleUI
                                         {
                                             Id = int.Parse(System.Console.ReadLine()),
                                             Model = System.Console.ReadLine(),
-                                            MaxWeight = (WeightCategories)System.Console.Read(),
+                                            Weight = (WeightCategories)System.Console.Read(),
                                             //Status = DroneStatuses.Available,
                                             //Battery = 100,
                                         };
@@ -240,7 +240,7 @@ namespace ConsoleUI
                                         List<Station> lstStation = (List<Station>)dall.AllStation();
                                         foreach (Station item in lstStation)
                                         {
-                                            if (item.ChargeSlots > 0)
+                                            if (item.AvailableChargeSlots > 0)
                                                 Console.WriteLine(item);
                                         }
                                        break; 

@@ -11,7 +11,7 @@ namespace BL
     {
         
         //תצגוגת של רשימות
-        public IEnumerable<BaseStationToList> GetAllBaseStations()
+        public IEnumerable<BaseStationToList> GetAllStations()
         {
             return from dostat in idal.AllStation()
                    select new BaseStationToList()

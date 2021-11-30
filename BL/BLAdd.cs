@@ -43,16 +43,14 @@ namespace BL
                     item.DroneStatus = DroneStatuses.Delivery;
                     IDAL.DO.Parcel parc = idal.GetParcel(item.ParcelNumber);
                     IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
-                    if(parc.PickedUpTime==t)    //parcel schduled but not PickedUp
-                        item.Location = MinDistance(cust);    //the location is the closest station
+                    locat.Latitude = cust.Latitude;
+                    locat.Longitude = cust.Longitude;
+                    if (parc.PickedUpTime == t)    //parcel schduled but not PickedUp
+                        item.Location = MinDistanceOfSation(locat);    //the location is the closest station
                     if (parc.DeliveredTime== t)   //the parcel not deliverd so the location is the sender location
-                    {
-                        locat.Latitude = cust.Latitude;
-                        locat.Longitude = cust.Longitude;
                         item.Location = locat;
-                    }
                     double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude);
-                    Location closeStation = MinDistance(cust);
+                    Location closeStation = MinDistanceOfSation(locat);
                     calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
                     item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
 
@@ -77,7 +75,7 @@ namespace BL
                             IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
                             locat.Latitude = cust.Latitude;
                             locat.Longitude = cust.Longitude;
-                            Location closeStation = MinDistance(cust);
+                            Location closeStation = MinDistanceOfSation(locat);
                             double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
                             item.BatteryStatus = rand.NextDouble()+rand.Next((int)calculate, 100);
                         }
@@ -85,22 +83,22 @@ namespace BL
                 }
             }
         }
-        //function thay gets a customer and return the closest station
-        private Location MinDistance(IDAL.DO.Customer cust)
+        //function that gets a location and returns the closest station
+        private Location MinDistanceOfSation(Location locat)
         {
-            Location locat=new Location();
+            Location newlocat=new Location();
             double minDistance = 1000;
             foreach (IDAL.DO.Station stat in idal.AllStation())  //searching the closest station to the sender
             {
-                double dist = idal.DistanceCalculate(stat.Longitude, stat.Latitude, cust.Longitude, cust.Latitude);
+                double dist = idal.DistanceCalculate(stat.Longitude, stat.Latitude, locat.Longitude, locat.Latitude);
                 if (dist < minDistance)
                 {
-                    locat.Latitude = stat.Latitude;
-                    locat.Longitude = stat.Longitude;
+                    newlocat.Latitude = stat.Latitude;
+                    newlocat.Longitude = stat.Longitude;
                     minDistance = dist;
                 }
             }
-            return locat;
+            return newlocat;
         }
 
         public void AddDrone(Drone d, int sId)
@@ -152,8 +150,8 @@ namespace BL
                 IDAL.DO.Station doStation = new IDAL.DO.Station();
                 doStation.Id = s.Id;
                 doStation.Name = s.Name;
-                doStation.Latitude = s.SLocation.Latitude;
-                doStation.Longitude = s.SLocation.Longitude;
+                doStation.Latitude = s.Location.Latitude;
+                doStation.Longitude = s.Location.Longitude;
                 doStation.AvailableChargeSlots = s.AvailableChargeSlots;
                 idal.StationAddition(doStation);
             }
