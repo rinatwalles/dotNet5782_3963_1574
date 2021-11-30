@@ -78,7 +78,7 @@ namespace ConsoleUI_BL
                             };
                             locat.Longitude = double.Parse(Console.ReadLine());
                             locat.Latitude = double.Parse(Console.ReadLine());
-                            cust.Place = locat;
+                            cust.Location = locat;
                             ibl.AddCustomer(cust);
                             break;
                         case Add.Parcel:
@@ -128,6 +128,9 @@ namespace ConsoleUI_BL
                                 string nameS = System.Console.ReadLine();
                                 string allChargingPositions = System.Console.ReadLine();
                                 ibl.UpdateCustomer(idS, nameS, allChargingPositions);
+                                Console.WriteLine("insert an id of a drone");
+                                int idD= int.Parse(System.Console.ReadLine());
+                                ibl.droneToCharge(idD);
                                 break;
                             }
                         case Update.ChargeDrone:

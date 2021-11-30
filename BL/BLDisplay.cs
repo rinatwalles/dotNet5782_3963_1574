@@ -117,7 +117,7 @@ namespace BL
                 boCustomer.Name = doCustomerd.Name;
                 boCustomer.Phone = doCustomerd.Phone;//באיידאל זה מקסימום וויט ואיי בי אל זה סתם וויט בלי מקסימום 
                 IBL.BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
-                boCustomer.Place = new Location
+                boCustomer.Location = new Location
                 {
                     Latitude = doCustomerd.Latitude,
                     Longitude = doCustomerd.Longitude
