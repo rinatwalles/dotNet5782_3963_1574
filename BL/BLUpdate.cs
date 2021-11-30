@@ -78,10 +78,13 @@ namespace BL
                 double calculate;
                 foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st=>st.AvailableChargeSlots>0))
                 {
-                    sLocation.Latitude = item.Latitude;
-                    sLocation.Longitude = item.Longitude;
-                    calculate = getDistance(boDrone.Location, sLocation);
-                    if()
+                    double dist = idal.DistanceCalculate(stat.Longitude, stat.Latitude, locat.Longitude, locat.Latitude);
+                    if (dist < minDistance)
+                    {
+                        newlocat.Latitude = stat.Latitude;
+                        newlocat.Longitude = stat.Longitude;
+                        minDistance = dist;
+                    }
                 }
 
                 //    
