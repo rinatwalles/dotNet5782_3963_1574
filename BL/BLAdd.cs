@@ -49,8 +49,14 @@ namespace BL
                         item.Location = MinDistanceOfSation(locat);    //the location is the closest station
                     if (parc.DeliveredTime== t)   //the parcel not deliverd so the location is the sender location
                         item.Location = locat;
+<<<<<<< HEAD
+                    }
+                    double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude);
+                    Location closeStation = MinDistance(cust);
+=======
                     double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude);
                     Location closeStation = MinDistanceOfSation(locat);
+>>>>>>> 7eb376a56163cb43275c5857d90dab1b467c8b64
                     calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
                     item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
 
@@ -82,7 +88,7 @@ namespace BL
                     }
                 }
             }
-        }
+        
         //function that gets a location and returns the closest station
         private Location MinDistanceOfSation(Location locat)
         {
