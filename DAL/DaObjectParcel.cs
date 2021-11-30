@@ -21,7 +21,7 @@ namespace DalObject
         public void ParcelAddition(Parcel p)
         {
             p.Id = Config.ParcelId++;
-            if (!CheckParcel(p.Id))
+            if (CheckParcel(p.Id))
                 throw new DAL.DuplicateIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
@@ -73,6 +73,12 @@ namespace DalObject
             return from par in DataSource.parcels
                    where predicate(par)
                    select par;
+        }
+        public Parcel GetOneParcelByPredicate(Predicate<Parcel> predicate)
+        {
+            //if (!CheckDrone(id))//צריך בדיקה
+            //    throw new DAL.MissingIdException(id, "Parcel");
+            return DataSource.parcels.Find(predicate);
         }
 
     }

@@ -67,4 +67,18 @@ namespace BL
         { ID = id; EntityName = entity; }
         public override string ToString() => base.ToString() + $", {EntityName} - Drone id: {ID}";
     }
+    public class SupplyProblems : Exception
+    {
+        public int ID;
+
+        public string EntityName;
+        public SupplyProblems(int id, string entity) : base() { ID = id; EntityName = entity; }
+        public SupplyProblems(int id, string entity, string message) :
+            base(message)
+        { ID = id; EntityName = entity; }
+        public SupplyProblems(int id, string entity, string message, Exception innerException) :
+            base(message, innerException)
+        { ID = id; EntityName = entity; }
+        public override string ToString() => base.ToString() + $", {EntityName} - Drone id: {ID}";
+    }
 }
