@@ -14,7 +14,7 @@ namespace IBL
         void AddStation(Station s);
         void AddCustomer(Customer c);
         void AddParcel(Parcel p, int IdSender,  int IdReceiver);
-        Location MinDistanceOfSation(Location locat);
+        //Location MinDistanceOfSation(Location locat);
 
         #endregion
 
@@ -27,8 +27,8 @@ namespace IBL
         void PickedUpParcelByDrone(int droneId);
         void joinParcelToDrone(int idD);
         void supplyParceByDrone(int idD);
-        IDAL.DO.Station minStationDistance(Drone boDrone);
-        Location minStationDistance(Location location);
+        //IDAL.DO.Station minStationDistance(Drone boDrone);
+        //Location minStationDistance(Location location);
 
         #endregion
 
@@ -39,21 +39,21 @@ namespace IBL
         IEnumerable<ParcelToList> GetAllParcels();
         IEnumerable<ParcelToList> GetAllParcelsNotScheduled();
         IEnumerable<StationToList> GetAllStationsWithAvailableSlots();
-        int numParcelsSentNotSupplied();
+        //int numParcelsSentNotSupplied();
         #endregion
 
         #region Display
-        CustomerOfParcel getCustomerOfParcel(int id);
+        //CustomerOfParcel getCustomerOfParcel(int id);
         Drone getDrone(int id);
         Station getBaseStation(int id);
         Customer GetCustomer(int id);
         Parcel getParcel(int id);
-        double getDistance(Location l1, Location l2);
-        ParcelStates getParcelState(int id);
-        IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id);
-        IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id);
-        IEnumerable<DroneCharging> GetDroneChargingPerStation(int id);
-        IEnumerable<DroneInParcel> GetDroneInParcel(int id);
+        //double getDistance(Location l1, Location l2);
+        //ParcelStates getParcelState(int id);
+        //IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id);
+        //IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id);
+        //IEnumerable<DroneCharging> GetDroneChargingPerStation(int id);
+        //IEnumerable<DroneInParcel> GetDroneInParcel(int id);
 
         #endregion
     }
