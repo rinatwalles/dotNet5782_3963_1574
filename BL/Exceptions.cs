@@ -37,4 +37,19 @@ namespace BL
         { ID = id; EntityName = entity; }
         public override string ToString() => base.ToString() + $", {EntityName} - duplicate id: {ID}";
     }
+
+    public class DroneNotMaintance : Exception
+    {
+        public int ID;
+
+        public string EntityName;
+        public DroneNotMaintance(int id, string entity) : base() { ID = id; EntityName = entity; }
+        public DroneNotMaintance(int id, string entity, string message) :
+            base(message)
+        { ID = id; EntityName = entity; }
+        public DroneNotMaintance(int id, string entity, string message, Exception innerException) :
+            base(message, innerException)
+        { ID = id; EntityName = entity; }
+        public override string ToString() => base.ToString() + $", {EntityName} - duplicate id: {ID}";
+    }
 }

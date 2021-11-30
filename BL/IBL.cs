@@ -20,8 +20,9 @@ namespace IBL
 
         #region Upadste
         void UpdateDrone(int id, string model);
-        void UpdateStation(int id, string name="", int allChargingPositions=0);
+        void UpdateStation(int id, string name="", string allChargingPositions="");
         void UpdateCustomer(int id, string name="", string phone="");
+        void ReleaseDroneFromCharge(int droneId, TimeSpan t );
         #endregion
 
         #region Show

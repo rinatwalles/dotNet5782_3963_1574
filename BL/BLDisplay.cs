@@ -18,12 +18,12 @@ namespace BL
                 IDAL.DO.Station doStation = idal.GetStation(id);
                 boBaseStation.Id = doStation.Id;
                 boBaseStation.Name = doStation.Name;
-                boBaseStation.SLocation = new Location
+                boBaseStation.Location = new Location
                 {
                     Latitude = doStation.Latitude,
                     Longitude = doStation.Longitude
                 };
-                boBaseStation.AvilableChargeSlotsNumber = doStation.ChargeSlots;
+                boBaseStation.AvailableChargeSlots = doStation.AvailableChargeSlots;
                 boBaseStation.DroneCharging = GetDroneChargingPerStation(id);
             }
             catch (DAL.MissingIdException ex)

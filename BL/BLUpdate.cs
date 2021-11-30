@@ -50,7 +50,7 @@ namespace BL
         }
 
 
-       public void UpdateStation(int id, string name = "", int allChargingPositions = 0)
+       public void UpdateStation(int id, string name = "", string allChargingPositions = "")
         {
             try
             {
@@ -58,8 +58,8 @@ namespace BL
                 doStation = idal.GetStation(id);
                 if (name != "")
                     doStation.Name = name;
-                if (allChargingPositions != 0)
-                    doStation.AvailableChargeSlots = allChargingPositions - idal.CountDroneCharge(id).Count();
+                if (allChargingPositions != "")
+                    doStation.AvailableChargeSlots = Int32.Parse(allChargingPositions) - idal.CountDroneCharge(id).Count();
                 idal.StationUpdate(doStation);
             }
             catch (DAL.MissingIdException ex)
@@ -93,6 +93,18 @@ namespace BL
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
+
+        }
+
+        public void ReleaseDroneFromCharge(int droneId, TimeSpan t)
+        {
+            IBL.BO.DroneToList dron = new IBL.BO.DroneToList();
+            dron = ListBLDrones.Find(d => d.Id == droneId);
+            if (dron.DroneStatus != IBL.BO.DroneStatuses.Maintenance)   //cant be released
+                throw new DroneNotMaintance(droneId, "Drone");
+            dron.BatteryStatus = array[1 + (int)dron.Weight]*(t.TotalSeconds/60);  //time of charging
+            dron.DroneStatus = IBL.BO.DroneStatuses.Available;
+            IDAL.DO.Station stat = new IDAL.DO.Station();
 
         }
     }
