@@ -44,10 +44,10 @@ namespace IBL
 
         #region Display
         //CustomerOfParcel getCustomerOfParcel(int id);
-        Drone getDrone(int id);
-        Station getBaseStation(int id);
+        Drone GetDrone(int id);
+        Station GetStation(int id);
         Customer GetCustomer(int id);
-        Parcel getParcel(int id);
+        Parcel GetParcel(int id);
         //double getDistance(Location l1, Location l2);
         //ParcelStates getParcelState(int id);
         //IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id);

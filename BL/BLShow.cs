@@ -30,16 +30,23 @@ namespace BL
 
         public IEnumerable<ParcelToList> GetAllParcels()
         {
-            return from doparc in idal.AllParcel()
-                   select new ParcelToList()
-                   {
-                       Id = doparc.Id,
-                       Sender = getCustomerOfParcel(doparc.SenderId),
-                       Receiver = getCustomerOfParcel(doparc.TargetId),
-                       Weight = (WeightCategories)doparc.Weight,
-                       Priority = (Priorities)doparc.Priority,
-                       ParcelState = getParcelState(doparc.Id)
-                   };
+            try
+            {
+                return from doparc in idal.AllParcel()
+                       select new ParcelToList()
+                       {
+                           Id = doparc.Id,
+                           Sender = getCustomerOfParcel(doparc.SenderId),
+                           Receiver = getCustomerOfParcel(doparc.TargetId),
+                           Weight = (WeightCategories)doparc.Weight,
+                           Priority = (Priorities)doparc.Priority,
+                           ParcelState = getParcelState(doparc.Id)
+                       };
+            }
+            catch (MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
         }
         private int numParcelsSent(int id, ParcelStates p)
         {
@@ -54,32 +61,46 @@ namespace BL
 
         public IEnumerable<CustomerToList> GetAllCustomers()
         {
+            try
+            {
                 return from docust in idal.AllCustomer()
                        select new CustomerToList()
                        {
                            Id = docust.Id,
                            Name = docust.Name,
                            Phone = docust.Phone,
-                           NumOfParcelsSentAndSupplied= numParcelsSent(docust.Id, ParcelStates.Delivered),
+                           NumOfParcelsSentAndSupplied = numParcelsSent(docust.Id, ParcelStates.Delivered),
                            NumOfParcelsSentNotSupplied = numParcelsSent(docust.Id, ParcelStates.PickedUp),
                            NumOfParcelsDelivered = GetParcelsFromCustomer(docust.Id).Count(),
-                           NumOfParcelsReceived= GetParcelsToCustomer(docust.Id).Count()
-                        };
+                           NumOfParcelsReceived = GetParcelsToCustomer(docust.Id).Count()
+                       };
+            }
+            catch (MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
         }
 
         public IEnumerable<ParcelToList> GetAllParcelsNotScheduled()
         {
-            return from doparc in idal.AllParcel()
-                   where (getParcelState(doparc.Id)== ParcelStates.Requested)  //requested but not schedualed
-                   select new ParcelToList()
-                   {
-                       Id = doparc.Id,
-                       Sender = getCustomerOfParcel(doparc.SenderId),
-                       Receiver = getCustomerOfParcel(doparc.TargetId),
-                       Weight = (WeightCategories)doparc.Weight,
-                       Priority = (Priorities)doparc.Priority,
-                       ParcelState = getParcelState(doparc.Id)
-                   };
+            try
+            {
+                return from doparc in idal.AllParcel()
+                       where (getParcelState(doparc.Id) == ParcelStates.Requested)  //requested but not schedualed
+                       select new ParcelToList()
+                       {
+                           Id = doparc.Id,
+                           Sender = getCustomerOfParcel(doparc.SenderId),
+                           Receiver = getCustomerOfParcel(doparc.TargetId),
+                           Weight = (WeightCategories)doparc.Weight,
+                           Priority = (Priorities)doparc.Priority,
+                           ParcelState = getParcelState(doparc.Id)
+                       };
+            }
+            catch (MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
         }
 
         public IEnumerable<StationToList> GetAllStationsWithAvailableSlots()

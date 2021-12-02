@@ -10,7 +10,7 @@ namespace BL
     public partial class BL : IBL.IBL
     {
         
-        public Station getBaseStation(int id)
+        public Station GetStation(int id)
         {
             IBL.BO.Station boBaseStation = new IBL.BO.Station();
             try
@@ -93,18 +93,22 @@ namespace BL
 
         private ParcelStates getParcelState(int id)
         {
-            IDAL.DO.Parcel doParcel = idal.GetParcel(id);
-            if (DateTime.Now < doParcel.ScheduledTime)
-                return ParcelStates.Requested;
-            else
+            try
             {
-                if (DateTime.Now >= doParcel.ScheduledTime && DateTime.Now < doParcel.PickedUpTime)
-                    return ParcelStates.Scheduled;
-                else
-                    if (DateTime.Now >= doParcel.PickedUpTime && DateTime.Now < doParcel.DeliveredTime)
-                    return ParcelStates.PickedUp;
+                IDAL.DO.Parcel doParcel = idal.GetParcel(id);
+                if (DateTime.Now > doParcel.RequestedTime&& DateTime.MinValue == doParcel.ScheduledTime)
+                    return ParcelStates.Requested;
+                else if (DateTime.Now >= doParcel.ScheduledTime && DateTime.MinValue == doParcel.PickedUpTime)
+                        return ParcelStates.Scheduled;
+                else if (DateTime.Now >= doParcel.PickedUpTime && DateTime.MinValue == doParcel.DeliveredTime)
+                        return ParcelStates.PickedUp;
+                else 
+                    return ParcelStates.Delivered;
             }
-            return ParcelStates.Delivered;
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
         }
 
         public Customer GetCustomer(int id)
@@ -133,76 +137,66 @@ namespace BL
             return boCustomer;
         }
 
-
-
-
-
         private IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id)
         {
-            IDAL.DO.Customer c = idal.GetCustomer(id);
-            return
-            from item in idal.AllParcel()
-            where item.SenderId == id
-            let cstReceiver = idal.GetCustomer(item.TargetId)
-            let droneInParcel = ListBLDrones.Find(d => d.Id == id)
-            select new ParcelAtCustomer
+            try
             {
-                Id = item.Id,//id of parcel
-                Weight = (IBL.BO.WeightCategories)item.Weight,
-                Priority = (IBL.BO.Priorities)item.Priority,
-                ParcelState = getParcelState(item.Id),//החבילה נאספה והיא בדרך
-                customer = new CustomerOfParcel
+                IDAL.DO.Customer c = idal.GetCustomer(id);
+                return
+                from item in idal.AllParcel()
+                where item.SenderId == id
+                let cstReceiver = idal.GetCustomer(item.TargetId)
+                let droneInParcel = ListBLDrones.Find(d => d.Id == id)
+                select new ParcelAtCustomer
                 {
-                    Id = item.TargetId,
-                    Name = idal.GetCustomer(item.TargetId).Name
-                },//צריך לאתחל איי די ושם של הלקוח או השולח הפוך מהלוקח המקורי
+                    Id = item.Id,//id of parcel
+                    Weight = (IBL.BO.WeightCategories)item.Weight,
+                    Priority = (IBL.BO.Priorities)item.Priority,
+                    ParcelState = getParcelState(item.Id),//החבילה נאספה והיא בדרך
+                    customer = new CustomerOfParcel
+                    {
+                        Id = item.TargetId,
+                        Name = idal.GetCustomer(item.TargetId).Name
+                    }//צריך לאתחל איי די ושם של הלקוח או השולח הפוך מהלוקח המקורי
+                };
+            }
 
-            };
-
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
         }
         private IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id)
         {
-            IDAL.DO.Customer c = idal.GetCustomer(id);
-            return
-            from item in idal.AllParcel()
-            where item.TargetId == id
-            let cstSender = idal.GetCustomer(item.TargetId)
-            let droneInParcel = ListBLDrones.Find(d => d.Id == id)
-            select new ParcelAtCustomer
+            try
             {
-                Id = item.Id,//id of parcel
-                Weight = (IBL.BO.WeightCategories)item.Weight,
-                Priority = (IBL.BO.Priorities)item.Priority,
-                ParcelState = getParcelState(item.Id),//החבילה נאספה והיא בדרך
-                customer = new CustomerOfParcel
+                IDAL.DO.Customer c = idal.GetCustomer(id);
+                return
+                from item in idal.AllParcel()
+                where item.TargetId == id
+                let cstSender = idal.GetCustomer(item.TargetId)
+                let droneInParcel = ListBLDrones.Find(d => d.Id == id)
+                select new ParcelAtCustomer
                 {
-                    Id = item.SenderId,
-                    Name = idal.GetCustomer(item.SenderId).Name
-                },//צריך לאתחל איי די ושם של הלקוח או השולח הפוך מהלוקח המקורי
+                    Id = item.Id,//id of parcel
+                Weight = (IBL.BO.WeightCategories)item.Weight,
+                    Priority = (IBL.BO.Priorities)item.Priority,
+                    ParcelState = getParcelState(item.Id),//החבילה נאספה והיא בדרך
+                customer = new CustomerOfParcel
+                    {
+                        Id = item.SenderId,
+                        Name = idal.GetCustomer(item.SenderId).Name
+                    },//צריך לאתחל איי די ושם של הלקוח או השולח הפוך מהלוקח המקורי
 
-            };
+                };
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
 
         }
 
-
-        //Parcel getParcel ()
-        //{
-        //    {
-        //        Id = item.Id,
-        //            Sender = new CustomerOfParcel
-        //            {
-        //                Id = id,
-        //                Name = c.Name
-        //            },
-
-        //            Receiver = new CustomerOfParcel
-        //            {
-        //                Id = cstReceiver.Id,
-        //                Name = cstReceiver.Name
-        //            },
-        //            Weight = (IBL.BO.WeightCategories)item.Weight,
-        //            Priority = (IBL.BO.Priorities)item.Priority,
-        //}
         private IEnumerable<DroneCharging> GetDroneChargingPerStation(int id)
         {//עשיתי פונקציה שעושה מה שרצית לעשות פה. אם הבנתי מה רצית
             return
@@ -215,23 +209,24 @@ namespace BL
             };
 
         }
-
-
-
-        //פןנקציה פרטית שתחזיר לי אוביקט ממש מהסןג הזה 
-        //בנוסף היא יכולה להיות PRIVATE לבדוק את הנושא כי זכור לי משהו שדן כתב
-        //יש דרך אחרת??
         private CustomerOfParcel getCustomerOfParcel(int id)
         {
-            CustomerOfParcel cp = new CustomerOfParcel();
-            IDAL.DO.Customer doCast = new IDAL.DO.Customer();
-            doCast = idal.GetCustomer(id);
-            cp.Name = doCast.Name;
-            cp.Id = id;
-            return cp;
+            try
+            {
+                CustomerOfParcel cp = new CustomerOfParcel();
+                IDAL.DO.Customer doCast = new IDAL.DO.Customer();
+                doCast = idal.GetCustomer(id);
+                cp.Name = doCast.Name;
+                cp.Id = id;
+                return cp;
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
         }
 
-        public Parcel getParcel(int id)
+        public Parcel GetParcel(int id)
         {
             IBL.BO.Parcel boParcel = new IBL.BO.Parcel();
             try

@@ -15,7 +15,7 @@ namespace BL
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         internal static DAL.IDAL.IDAL idal;
-        public List<IBL.BO.DroneToList> ListBLDrones;
+        public List<IBL.BO.DroneToList> ListBLDrones = new List<IBL.BO.DroneToList>();
         double[] array;
         public BL()
         {
@@ -28,62 +28,71 @@ namespace BL
             double Heavy = array[3];
             double ChargePrecent = array[4];
 
+
             ListBLDrones = (List<DroneToList>)(from dodron in idal.AllDrones()
                                                select new DroneToList()
                                                {
                                                    Id = dodron.Id,
                                                    Model = dodron.Model,
-                                                   Weight = (WeightCategories)dodron.Weight
-                                               });
+                                                   Weight = (WeightCategories)dodron.Weight,
+                                                   ParcelNumber= rand.Next(1, 5)
+                                               }).ToList(); ;
             DateTime t = DateTime.MinValue;
             Location locat = new Location();
-            foreach (DroneToList item in ListBLDrones)
+            try
             {
-                if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == t))))
+                foreach (DroneToList item in ListBLDrones)
                 {
-                    item.DroneStatus = DroneStatuses.Delivery;
-                    IDAL.DO.Parcel parc = idal.GetParcel(item.ParcelNumber);
-                    IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
-                    locat.Latitude = cust.Latitude;
-                    locat.Longitude = cust.Longitude;
-                    if (parc.PickedUpTime == t)    //parcel schduled but not PickedUp
-                        item.Location = MinDistanceOfSation(locat);    //the location is the closest station
-                    if (parc.DeliveredTime == t)   //the parcel not deliverd so the location is the sender location
-                        item.Location = locat;
-
-                    double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
-                    Location closeStation = MinDistanceOfSation(locat);
-
-                    calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
-                    item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
-
-                }
-                else if (!idal.AllParcel().Any(parc => (parc.DroneId == item.Id)))    //not doing a delivery now
-                    item.DroneStatus = (DroneStatuses)(rand.Next(0, 1) * 2);    //0 or 2
-                else if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
-                {
-                    int id = rand.Next(1, 2);
-                    IDAL.DO.Station stat = idal.GetStation(id);
-                    locat.Longitude = stat.Longitude;
-                    locat.Latitude = stat.Latitude;
-                    item.Location = locat;
-                    item.BatteryStatus = rand.NextDouble() * 20;
-                }
-                else if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
-                {
-                    foreach (IDAL.DO.Parcel parc in idal.AllParcel())
+                    if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == t))))
                     {
-                        if (parc.DeliveredTime != t)
+                        item.DroneStatus = DroneStatuses.Delivery;
+                        IDAL.DO.Parcel parc = idal.GetParcel(item.ParcelNumber);
+                        IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
+                        locat.Latitude = cust.Latitude;
+                        locat.Longitude = cust.Longitude;
+                        if (parc.PickedUpTime == t)    //parcel schduled but not PickedUp
+                            item.Location = MinDistanceOfSation(locat);    //the location is the closest station
+                        if (parc.DeliveredTime == t)   //the parcel not deliverd so the location is the sender location
+                            item.Location = locat;
+
+                        double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
+                        Location closeStation = MinDistanceOfSation(locat);
+
+                        calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+                        item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
+
+                    }
+                    else if (!idal.AllParcel().Any(parc => (parc.DroneId == item.Id)))    //not doing a delivery now
+                        item.DroneStatus = (DroneStatuses)(rand.Next(0, 1) * 2);    //0 or 2
+                    else if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
+                    {
+                        int id = rand.Next(1, 2);
+                        IDAL.DO.Station stat = idal.GetStation(id);
+                        locat.Longitude = stat.Longitude;
+                        locat.Latitude = stat.Latitude;
+                        item.Location = locat;
+                        item.BatteryStatus = rand.NextDouble() * 20;
+                    }
+                    else if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
+                    {
+                        foreach (IDAL.DO.Parcel parc in idal.AllParcel())
                         {
-                            IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
-                            locat.Latitude = cust.Latitude;
-                            locat.Longitude = cust.Longitude;
-                            Location closeStation = MinDistanceOfSation(locat);
-                            double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
-                            item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
+                            if (parc.DeliveredTime != t)
+                            {
+                                IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
+                                locat.Latitude = cust.Latitude;
+                                locat.Longitude = cust.Longitude;
+                                Location closeStation = MinDistanceOfSation(locat);
+                                double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+                                item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
+                            }
                         }
                     }
                 }
+            }
+            catch (DAL.MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
        //function that gets a location and returns the closest station
@@ -104,14 +113,17 @@ namespace BL
             return newlocat;
         }
 
-            public void AddDrone(Drone d, int sId)
-            {
+        public void AddDrone(Drone d, int sId)
+        {
             try
             {
                 d.BatteryStatus = rand.NextDouble() * 100;//לא יתן 1, רק קטן מ1!
                 d.DroneStatus = DroneStatuses.Maintenance;
-                d.Location.Latitude = idal.GetStation(sId).Latitude;
-                d.Location.Longitude = idal.GetStation(sId).Longitude;
+                Location locat = new Location();
+
+               locat.Latitude = idal.GetStation(sId).Latitude;
+               locat.Longitude = idal.GetStation(sId).Longitude;
+                d.Location = locat;
                 //בדיקה האם הרחפן קיים כבר
                 if (idal.CheckDrone(d.Id))
                     throw new DuplicateIdException(d.Id, "Drone");// מסכים רק DAL
