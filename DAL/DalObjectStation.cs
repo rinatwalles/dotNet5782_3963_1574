@@ -20,7 +20,7 @@ namespace DalObject
         /// <param name="s">new station</param>
         public void StationAddition(Station s)
         {
-            if (!CheckStation(s.Id))
+            if (CheckStation(s.Id))
                 throw new DAL.DuplicateIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }

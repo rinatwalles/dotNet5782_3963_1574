@@ -12,7 +12,7 @@ namespace DalObject
     {
         public void DroneChargeAddition(DroneCharge dc)
         {
-            if (!CheckDroneCharge(dc.DroneId))
+            if (CheckDroneCharge(dc.DroneId))
                 throw new DAL.DuplicateIdException(dc.DroneId, "Drone Charge");
             DataSource.droneCharges.Add(dc);
         }

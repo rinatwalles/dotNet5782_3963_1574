@@ -21,7 +21,7 @@ namespace DalObject
         }
         public void DroneAddition(Drone d)
         {
-            if (!CheckDrone(d.Id))
+            if (CheckDrone(d.Id))
                 throw new DAL.DuplicateIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
