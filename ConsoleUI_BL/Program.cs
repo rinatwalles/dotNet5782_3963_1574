@@ -13,7 +13,7 @@ namespace ConsoleUI_BL
     {
         enum Option { Add, Update, Display, Show, Distance, Exit };//enum  for options
         enum Add { Station, Dron, Customer, Parcel };//enum for add options
-        enum Update { Drone, Customer, Station, Join, Collect, Supply, ChargeDrone, ReleaseDrone, PickedUpParcel };//enum for update options
+        enum Update { Drone, Customer, Station, Join, Supply, ChargeDrone, ReleaseDrone, PickedUpParcel };//enum for update options
         enum Display { Station, Drone, Customer, Parcel };//enum for display options
         enum Show { Station, Drone, Customer, Parcel, ParcelWithoutDrone, AvilabaleStations };//enum for show options
         enum Weigth { Light, Medium, Heavy };
@@ -48,7 +48,7 @@ namespace ConsoleUI_BL
                                 {
                                     case Add.Station:
                                         {
-                                            Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber and location");
+                                            Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber,Longitude, Latitude");
                                             IBL.BO.Station stat = new IBL.BO.Station()
                                             {
                                                 Id = int.Parse(System.Console.ReadLine()),
@@ -79,7 +79,7 @@ namespace ConsoleUI_BL
                                         }
                                     case Add.Customer:
                                         {//קליטת לקוח
-                                            Console.WriteLine("Insert id, name, number, location");
+                                            Console.WriteLine("Insert id, name, phone number, Longitude,Latitude ");
                                             IBL.BO.Customer cust = new IBL.BO.Customer()
                                             {
                                                 Id = int.Parse(System.Console.ReadLine()),
@@ -118,7 +118,7 @@ namespace ConsoleUI_BL
                             }
                         case Option.Update:
                             {
-                                Console.WriteLine("insert: Join-0, Collect=1, Supply=2, ChargeDrone=3, ReleaseDrone=4");
+                                Console.WriteLine("insert\n Updatong Drone-0,\n Updating Customer-1,\n Updating Station-2,\n Joining parcel to drone-3,\n Supply parcel by drone to customer-4,\n Charge Drone-5,\n Release Drone-6,\n Pick Up parcel by drone-7");
                                 st = Console.ReadLine();
                                 Update u;
                                 b = Update.TryParse(st, out u);
@@ -199,31 +199,40 @@ namespace ConsoleUI_BL
                                 Display d;
                                 b = Display.TryParse(st, out d);
                                 int id;
-                                Console.WriteLine("insert station id number");
-                                st = Console.ReadLine();
-                                b = Display.TryParse(st, out id);
                                 switch (d)
                                 {
                                     case Display.Station:
                                         {
+                                            Console.WriteLine("insert station id number");
+                                            st = Console.ReadLine();
+                                            b = int.TryParse(st, out id);
                                             IBL.BO.Station bs = ibl.GetStation(id);
                                             Console.WriteLine(bs);
                                             break;
                                         }
                                     case Display.Drone:
                                         {
+                                            Console.WriteLine("insert drone id number");
+                                            st = Console.ReadLine();
+                                            b = int.TryParse(st, out id);
                                             IBL.BO.Drone dr = ibl.GetDrone(id);
                                             Console.WriteLine(dr);
                                             break;
                                         }
                                     case Display.Customer:
                                         {
+                                            Console.WriteLine("insert customer id number");
+                                            st = Console.ReadLine();
+                                            b = int.TryParse(st, out id);
                                             IBL.BO.Customer c = ibl.GetCustomer(id);
                                             Console.WriteLine(c);
                                             break;
                                         }
                                     case Display.Parcel:
                                         {
+                                            Console.WriteLine("insert parcel id number");
+                                            st = Console.ReadLine();
+                                            b = int.TryParse(st, out id);
                                             IBL.BO.Parcel p = ibl.GetParcel(id);
                                             Console.WriteLine(p);
                                             break;

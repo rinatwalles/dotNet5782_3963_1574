@@ -10,6 +10,9 @@ using static DalObject.DataSource;
 
 namespace BL
 {
+    /// <summary>
+    /// 
+    /// </summary>
     public partial class BL : IBL.IBL
     { 
         static Random rand = new Random(DateTime.Now.Millisecond);

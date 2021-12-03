@@ -201,7 +201,7 @@ namespace BL
         {//עשיתי פונקציה שעושה מה שרצית לעשות פה. אם הבנתי מה רצית
             return
             from item in idal.CountDroneCharge(id)
-            where item.DroneId == id
+            //where item.DroneId == id
             select new DroneCharging
             {
                 Id = id,
