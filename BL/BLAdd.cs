@@ -10,9 +10,6 @@ using static DalObject.DataSource;
 
 namespace BL
 {
-    /// <summary>
-    /// 
-    /// </summary>
     public partial class BL : IBL.IBL
     { 
         static Random rand = new Random(DateTime.Now.Millisecond);
@@ -20,6 +17,10 @@ namespace BL
         internal static DAL.IDAL.IDAL idal;
         public List<IBL.BO.DroneToList> ListBLDrones = new List<IBL.BO.DroneToList>();
         double[] array;
+
+        /// <summary>
+        /// Constructor of BL
+        /// </summary>
         public BL()
         {
             idal = new DalObject.DalObject();
@@ -98,7 +99,11 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
-       //function that gets a location and returns the closest station
+        /// <summary>
+        ///  function that gets a location and returns the closest station
+        /// </summary>
+        /// <param name="locat">a location we want to find the closest station from</param>
+        /// <returns></returns>
         private Location MinDistanceOfSation(Location locat)
         {
             Location newlocat = new Location();
@@ -115,7 +120,11 @@ namespace BL
             }
             return newlocat;
         }
-
+        /// <summary>
+        /// function add drone  to data and to the list in BL
+        /// </summary>
+        /// <param name="d"> a drone of BL layer</param>
+        /// <param name="sId"> id of a station we want to place the drone in</param>
         public void AddDrone(Drone d, int sId)
         {
             try
@@ -127,18 +136,18 @@ namespace BL
                locat.Latitude = idal.GetStation(sId).Latitude;
                locat.Longitude = idal.GetStation(sId).Longitude;
                 d.Location = locat;
-                //בדיקה האם הרחפן קיים כבר
+                //check if the drone is already exists
                 if (idal.CheckDrone(d.Id))
-                    throw new DuplicateIdException(d.Id, "Drone");// מסכים רק DAL
+                    throw new DuplicateIdException(d.Id, "Drone");
 
-                //הצבת ערכים בשביל לשמור את האוביקט בDAL
+                //adding the drone to DAL layer and addupt the feilds
                 IDAL.DO.Drone doDrone = new IDAL.DO.Drone();
                 doDrone.Id = d.Id;
                 doDrone.Model = d.Model;
                 doDrone.Weight = (IDAL.DO.WeightCategories)d.Weight;
                 idal.DroneAddition(doDrone);
 
-                //addtp bl list
+                //addutp bl list
                 DroneToList Dl = new IBL.BO.DroneToList()
                 {
                     Id = d.Id,
@@ -156,15 +165,19 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
+        /// <summary>
+        /// a function that adds a station to the DAL layer
+        /// </summary>
+        /// <param name="s">the station we eant to add</param>
         public void AddStation(Station s)
         {
             try
             {
-                //בדיקה האם הרחפן קיים כבר
+                //check if the station is already exists
                 if (idal.CheckStation(s.Id))               //למה צריך לבדוק גם פה? זה נבדק גם בפונקצית הוספה בDAL?????
-                    throw new DuplicateIdException(s.Id, "Station");// מסכים רק DAL
+                    throw new DuplicateIdException(s.Id, "Station");
 
-                //הצבת ערכים בשביל לשמור את האוביקט בDAL
+                //adding the station to DAL layer and addupt the feilds
                 IDAL.DO.Station doStation = new IDAL.DO.Station();
                 doStation.Id = s.Id;
                 doStation.Name = s.Name;
@@ -179,15 +192,19 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
+        /// <summary>
+        /// a function that adds a customer to the DAL layer
+        /// </summary>
+        /// <param name="c">the customer we want to add</param>
         public void AddCustomer(Customer c)
         {
             try
             {
-                //בדיקה האם הרחפן קיים כבר
+                //check if the customer is already exists
                 if (idal.CheckCustomer(c.Id))
-                    throw new DuplicateIdException(c.Id, "Customer");// מסכים רק DAL
+                    throw new DuplicateIdException(c.Id, "Customer");
 
-                //הצבת ערכים בשביל לשמור את האוביקט בDAL
+                //adding the customer to DAL layer and addupt the feilds
                 IDAL.DO.Customer doCustomer = new IDAL.DO.Customer();
                 doCustomer.Id = c.Id;
                 doCustomer.Name = c.Name;
@@ -202,15 +219,21 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
+        /// <summary>
+        /// a function that adds a parcel to the DAL layer
+        /// </summary>
+        /// <param name="p">the parcel we want to add to the dal</param>
+        /// <param name="IdSender">the id of the customer who sent the parcel</param>
+        /// <param name="IdReceiver">the id of the customer who receive the parcel</param>
         public void AddParcel(Parcel p, int IdSender, int IdReceiver)
         {
             try
             {
-                //בדיקה האם הרחפן קיים כבר
+                //check if the parcel is already exists
                 if (idal.CheckParcel(p.Id))
-                    throw new DuplicateIdException(p.Id, "Parcel");// מסכים רק DAL
+                    throw new DuplicateIdException(p.Id, "Parcel");
 
-                //הצבת ערכים בשביל לשמור את האוביקט בDAL
+                //adding the parcel to DAL layer and addupt the feilds
                 IDAL.DO.Parcel doParcel = new IDAL.DO.Parcel()
                 {
                     SenderId = IdSender,

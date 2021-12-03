@@ -159,17 +159,29 @@ namespace DalObject
             double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
             return r * c;
         }
+        /// <summary>
+        /// private help function to DistanceCalculate
+        /// </summary>
+        /// <param name="deg">a degree</param>
+        /// <returns></returns>
         private double deg2rad(double deg)
         {
             return deg * (Math.PI / 180);
         }
+        /// <summary>
+        /// function that gets a drone and delete it from the list
+        /// </summary>
+        /// <param name="d">a drone</param>
         public void DroneDelete(Drone d)
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
             if(count==0)
                 throw new DAL.MissingIdException(d.Id, "Drone");
         }
-
+        /// <summary>
+        /// function that gets a drone , delete it from the list by its id and insert a new  one
+        /// </summary>
+        /// <param name="d">a drone</param>
         public void DroneUpdate(Drone d)
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
@@ -177,7 +189,10 @@ namespace DalObject
                 throw new DAL.MissingIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
-
+        /// <summary>
+        /// a function that returns the data about electricity of drones 
+        /// </summary>
+        /// <returns></returns>
        public double[] AskingElectricityUse()
         {
             double[] arr= new double[5];

@@ -9,7 +9,11 @@ namespace BL
 {
     public partial class BL : IBL.IBL
     {
-        
+        /// <summary>
+        ///  a function that gets an id of a station returns the station
+        /// </summary>
+        /// <param name="id">id of a station</param>
+        /// <returns></returns>
         public Station GetStation(int id)
         {
             IBL.BO.Station boBaseStation = new IBL.BO.Station();
@@ -32,7 +36,11 @@ namespace BL
             }
             return boBaseStation;
         }
-
+        /// <summary>
+        ///  a function that gets an id of a drone returns the drone
+        /// </summary>
+        /// <param name="id">id of a drone</param>
+        /// <returns></returns>
         public Drone GetDrone(int id)
         {
             IBL.BO.Drone boDrone = new IBL.BO.Drone();
@@ -86,11 +94,21 @@ namespace BL
             }
             return boDrone;
         }
+        /// <summary>
+        /// a function that gest 2 locations and returns the distance between them
+        /// </summary>
+        /// <param name="l1">the first location</param>
+        /// <param name="l2">the second location</param>
+        /// <returns></returns>
         private double getDistance(Location l1, Location l2)
         {
             return idal.DistanceCalculate(l1.Latitude, l1.Latitude, l2.Latitude, l2.Longitude);
         }
-
+        /// <summary>
+        /// a function that gets an id of a parcel and returns its state
+        /// </summary>
+        /// <param name="id">id of a parcel</param>
+        /// <returns></returns>
         private ParcelStates getParcelState(int id)
         {
             try
@@ -110,7 +128,11 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
-
+        /// <summary>
+        /// a function that gets an id of a customer returns the customer
+        /// </summary>
+        /// <param name="id">id of a customer</param>
+        /// <returns></returns>
         public Customer GetCustomer(int id)
         {
             IBL.BO.Customer boCustomer = new IBL.BO.Customer();
@@ -136,7 +158,11 @@ namespace BL
             }
             return boCustomer;
         }
-
+        /// <summary>
+        /// a function that gets an id of a customer returns the parcels he sent
+        /// </summary>
+        /// <param name="id">id of a customer</param>
+        /// <returns></returns>
         private IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id)
         {
             try
@@ -166,6 +192,11 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+        /// <summary>
+        /// a function that gets an id of a customer returns the parcels he recieved
+        /// </summary>
+        /// <param name="id">id of a customer</param>
+        /// <returns></returns>
         private IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id)
         {
             try
@@ -196,12 +227,15 @@ namespace BL
             }
 
         }
-
+        /// <summary>
+        /// a function that return BL dronescharging of a station
+        /// </summary>
+        /// <param name="id">id of a station</param>
+        /// <returns></returns>
         private IEnumerable<DroneCharging> GetDroneChargingPerStation(int id)
-        {//עשיתי פונקציה שעושה מה שרצית לעשות פה. אם הבנתי מה רצית
+        {
             return
             from item in idal.CountDroneCharge(id)
-            //where item.DroneId == id
             select new DroneCharging
             {
                 Id = id,
@@ -209,6 +243,11 @@ namespace BL
             };
 
         }
+        /// <summary>
+        /// a function that returns the custoner of a parcel
+        /// </summary>
+        /// <param name="id">id of a customer</param>
+        /// <returns></returns>
         private CustomerOfParcel getCustomerOfParcel(int id)
         {
             try
@@ -226,6 +265,11 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// a function that gets an id of a pacel and returns the parcel
+        /// </summary>
+        /// <param name="id">id of a parcel</param>
+        /// <returns></returns>
         public Parcel GetParcel(int id)
         {
             IBL.BO.Parcel boParcel = new IBL.BO.Parcel();
@@ -259,9 +303,13 @@ namespace BL
             }
             return boParcel;
         }
+        /// <summary>
+        /// afunction that gets an id of a drone and returns the parcel of drone
+        /// </summary>
+        /// <param name="id">id of a drone</param>
+        /// <returns></returns>
         private IEnumerable<DroneInParcel> GetDroneInParcel(int id)
-        {//עשיתי פונקציה שעושה מה שרצית לעשות פה. אם הבנתי מה רצית
-            
+        {            
              return from item in idal.GetDroneInParcelByPredicate(item => item.Id == id)
              select new DroneInParcel
              {

@@ -4,13 +4,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//the partial class of showing the lists
 namespace BL
 {
     public partial class BL : IBL.IBL
     {
-        
-        //תצגוגת של רשימות
+        /// <summary>
+        /// a function that returns all the stations
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<StationToList> GetAllStations()
         {
             return (from dostat in idal.AllStation()
@@ -27,7 +29,10 @@ namespace BL
             return from dodrone in ListBLDrones
                    select new DroneToList();
         }
-
+        /// <summary>
+        /// a function that returns all the parcels
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<ParcelToList> GetAllParcels()
         {
             try
@@ -48,6 +53,12 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+        /// <summary>
+        /// a private function that returns the num of parcels in a certain state
+        /// </summary>
+        /// <param name="id"> id of a parcel</param>
+        /// <param name="p"> the state of the parcels</param>
+        /// <returns></returns>
         private int numParcelsSent(int id, ParcelStates p)
         {
             int num = 0;
@@ -58,7 +69,10 @@ namespace BL
             }
             return num;
         }
-
+        /// <summary>
+        /// A function that returns all the customers
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<CustomerToList> GetAllCustomers()
         {
             try
@@ -80,7 +94,10 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
-
+        /// <summary>
+        ///  A function that returns All Parcels that Not Scheduled
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<ParcelToList> GetAllParcelsNotScheduled()
         {
             try
@@ -102,7 +119,10 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
-
+        /// <summary>
+        /// A function that returns All Stations With Available Slots
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<StationToList> GetAllStationsWithAvailableSlots()
         {
             return (from dostat in idal.AllStation()
