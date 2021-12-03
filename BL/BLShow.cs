@@ -13,14 +13,14 @@ namespace BL
         //תצגוגת של רשימות
         public IEnumerable<StationToList> GetAllStations()
         {
-            return from dostat in idal.AllStation()
+            return (from dostat in idal.AllStation()
                    select new StationToList()
                    {
                        Id = dostat.Id,
                        Name = dostat.Name,
                        AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
                        RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
-                   };
+                   }).ToList(); ;
         }
         public IEnumerable<DroneToList> GetAllDrones()
         {
@@ -32,7 +32,7 @@ namespace BL
         {
             try
             {
-                return from doparc in idal.AllParcel()
+                return( from doparc in idal.AllParcel()
                        select new ParcelToList()
                        {
                            Id = doparc.Id,
@@ -41,7 +41,7 @@ namespace BL
                            Weight = (WeightCategories)doparc.Weight,
                            Priority = (Priorities)doparc.Priority,
                            ParcelState = getParcelState(doparc.Id)
-                       };
+                       }).ToList(); ;
             }
             catch (MissingIdException ex)
             {
@@ -63,7 +63,7 @@ namespace BL
         {
             try
             {
-                return from docust in idal.AllCustomer()
+                return (from docust in idal.AllCustomer()
                        select new CustomerToList()
                        {
                            Id = docust.Id,
@@ -73,7 +73,7 @@ namespace BL
                            NumOfParcelsSentNotSupplied = numParcelsSent(docust.Id, ParcelStates.PickedUp),
                            NumOfParcelsDelivered = GetParcelsFromCustomer(docust.Id).Count(),
                            NumOfParcelsReceived = GetParcelsToCustomer(docust.Id).Count()
-                       };
+                       }).ToList(); ;
             }
             catch (MissingIdException ex)
             {
@@ -85,7 +85,7 @@ namespace BL
         {
             try
             {
-                return from doparc in idal.AllParcel()
+                return (from doparc in idal.AllParcel()
                        where (getParcelState(doparc.Id) == ParcelStates.Requested)  //requested but not schedualed
                        select new ParcelToList()
                        {
@@ -95,7 +95,7 @@ namespace BL
                            Weight = (WeightCategories)doparc.Weight,
                            Priority = (Priorities)doparc.Priority,
                            ParcelState = getParcelState(doparc.Id)
-                       };
+                       }).ToList(); ;
             }
             catch (MissingIdException ex)
             {
@@ -105,7 +105,7 @@ namespace BL
 
         public IEnumerable<StationToList> GetAllStationsWithAvailableSlots()
         {
-            return from dostat in idal.AllStation()
+            return (from dostat in idal.AllStation()
                    where (dostat.AvailableChargeSlots>0)
                    select new StationToList()
                    {
@@ -113,7 +113,7 @@ namespace BL
                        Name = dostat.Name,
                        AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
                        RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
-                   };
+                   }).ToList(); ;
         }
     }
 }

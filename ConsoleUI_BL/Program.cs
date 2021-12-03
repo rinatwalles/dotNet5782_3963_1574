@@ -48,7 +48,7 @@ namespace ConsoleUI_BL
                                 {
                                     case Add.Station:
                                         {
-                                            Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber");
+                                            Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber and location");
                                             IBL.BO.Station stat = new IBL.BO.Station()
                                             {
                                                 Id = int.Parse(System.Console.ReadLine()),
@@ -64,17 +64,16 @@ namespace ConsoleUI_BL
                                         }
                                     case Add.Dron:
                                         {//קליטת רחפן
-                                            Console.WriteLine("Insert id, model, maximum wight and Station ID");
+                                            Console.WriteLine("Insert id, model and Station ID");
                                             IBL.BO.Drone dron = new IBL.BO.Drone()
                                             {
                                                 Id = int.Parse(System.Console.ReadLine()),
-                                                Model = System.Console.ReadLine(),
-                                               
+                                                Model = System.Console.ReadLine()
                                             };
-                                            Console.WriteLine("insert Weight: light-0, medium=1, heavy=2");
+                                            int statId = int.Parse(System.Console.ReadLine());
+                                            Console.WriteLine("insert maximum weight: light-0, medium=1, heavy=2");
                                             int wght = int.Parse(System.Console.ReadLine());
                                             dron.Weight = (IBL.BO.WeightCategories)wght;
-                                            int statId = int.Parse(System.Console.ReadLine());
                                             ibl.AddDrone(dron, statId);
                                             break;
                                         }
@@ -95,7 +94,7 @@ namespace ConsoleUI_BL
                                         }
                                     case Add.Parcel:
                                         {//קליטת חבילה
-                                            Console.WriteLine("Insert idof the sender and the target");
+                                            Console.WriteLine("Insert id of the sender and the target");
                                             int IdSend = int.Parse(System.Console.ReadLine());
                                             int IdReceive = int.Parse(System.Console.ReadLine());
 
