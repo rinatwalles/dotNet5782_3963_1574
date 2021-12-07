@@ -104,7 +104,7 @@ namespace BL
                 idal.StationUpdate(minStation);
                 IDAL.DO.DroneCharge dc = new IDAL.DO.DroneCharge();
                 dc.StationId = minStation.Id;
-                dc.DroneId = minStation.Id;
+                dc.DroneId = id;
                 idal.DroneChargeAddition(dc);
             }
            catch(DAL.MissingIdException ex)
@@ -146,6 +146,7 @@ namespace BL
                 double minDistance = 10000000;//מקווה שזה לגיטמי ככה להגדיר מינימום מה גם שאני לא יודעת סדרי גודל 
                 double droneToSender, senderToTarget, targetToStation;
                 IDAL.DO.Parcel chosenOne = new IDAL.DO.Parcel();
+                int counter = 0;
 
                 foreach (IDAL.DO.Parcel item in idal.GetParcelByPredicate(par => (int)par.Weight <= (int)boDrone.Weight))
                 {
@@ -155,16 +156,24 @@ namespace BL
                     if (maxPriority < (Priorities)item.Priority)
                         if (droneToSender < minDistance)
                             if (array[1 + (int)boDrone.Weight] * (droneToSender + targetToStation + senderToTarget) <= boDrone.BatteryStatus)
+                            {
                                 chosenOne = item;
+                                counter = 1;
+                            }
                 }
-                DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
-                dtl.DroneStatus = DroneStatuses.Maintenance;
-                //updating the BL list
-                ListBLDrones.RemoveAll(d => d.Id == id);
-                ListBLDrones.Add(dtl);
-                chosenOne.DroneId = id;
-                chosenOne.RequestedTime = DateTime.Now;
-                idal.ParcelUpdate(chosenOne);
+                if (counter != 0)
+                {
+                    DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
+                    dtl.DroneStatus = DroneStatuses.Delivery;
+                    //updating the BL list
+                    ListBLDrones.RemoveAll(d => d.Id == id);
+                    ListBLDrones.Add(dtl);
+                    chosenOne.DroneId = id;
+                    chosenOne.RequestedTime = DateTime.Now;
+                    idal.ParcelUpdate(chosenOne);
+                }
+                else
+                    throw new DeliveryProblems(id, "can't join parcel to drone");
             }
             catch (DAL.MissingIdException ex)
             {
@@ -197,7 +206,7 @@ namespace BL
                 dron = ListBLDrones.Find(d => d.Id == droneId);
                 if (dron.DroneStatus != IBL.BO.DroneStatuses.Maintenance)   //cant be released
                     throw new DeliveryProblems(droneId, "Drone not in maintance status");
-                dron.BatteryStatus = array[1 + (int)dron.Weight] * (t.TotalSeconds / 60);  //time of charging
+                dron.BatteryStatus += array[1 + (int)dron.Weight] * (t.TotalMinutes / 60);  //time of charging
                 dron.DroneStatus = IBL.BO.DroneStatuses.Available;
                 //updating the BL list
                 ListBLDrones.RemoveAll(d => d.Id == droneId);
