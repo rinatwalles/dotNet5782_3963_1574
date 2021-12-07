@@ -11,7 +11,7 @@ namespace ConsoleUI_BL
 {
     public class Program
     {
-        enum Option { Add, Update, Display, Show, Distance, Exit };//enum  for options
+        enum Option { Add, Update, Display, Show, Exit };//enum  for options
         enum Add { Station, Dron, Customer, Parcel };//enum for add options
         enum Update { Drone, Customer, Station, Join, Supply, ChargeDrone, ReleaseDrone, PickedUpParcel };//enum for update options
         enum Display { Station, Drone, Customer, Parcel };//enum for display options
@@ -20,20 +20,21 @@ namespace ConsoleUI_BL
         enum Priorities { Regular, Fast, Emergency };
         static void Main(string[] args)
         {
-            try
+            
+            IBL.IBL ibl = new BL.BL();
+            Option o;
+            Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for exit");
+            string st = Console.ReadLine();
+            bool b = Option.TryParse(st, out o);
+            // קודם כל מיקום
+            IBL.BO.Location locat = new IBL.BO.Location()
             {
-                IBL.IBL ibl = new BL.BL();
-                Option o;
-                Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
-                string st = Console.ReadLine();
-                bool b = Option.TryParse(st, out o);
-                // קודם כל מיקום
-                IBL.BO.Location locat = new IBL.BO.Location()
-                {
-                    Longitude = 0,
-                    Latitude = 0
-                };
-                while (o != Option.Exit)//while not exit
+                Longitude = 0,
+                Latitude = 0
+            };
+            while (o != Option.Exit)//while not exit
+            {
+                try
                 {
                     switch (o)
                     {
@@ -44,6 +45,7 @@ namespace ConsoleUI_BL
                                 st = Console.ReadLine();
                                 Add a;
                                 b = Add.TryParse(st, out a);
+                            
                                 switch (a)
                                 {
                                     case Add.Station:
@@ -300,15 +302,16 @@ namespace ConsoleUI_BL
                         default:
                             break;
                     }
-                    Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
-                    st = Console.ReadLine();
-                    b = Option.TryParse(st, out o);
                 }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
+                Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for exit");
+                st = Console.ReadLine();
+                b = Option.TryParse(st, out o);
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine(ex.Message);
-            }
+            
         }
     }
 }

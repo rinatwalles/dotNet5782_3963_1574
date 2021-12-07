@@ -57,33 +57,36 @@ namespace BL
                 //boDrone.ParcelInDelivery מה עם זה
                 if (boDrone.DroneStatus == IBL.BO.DroneStatuses.Delivery)
                 {
+                    IDAL.DO.Parcel boParcel = idal.getParcelByDroneId(id);
+                    //IDAL.DO.Customer boSender = idal.getParcelByDroneId(id);
                     boDrone.ParcelInDelivery = new ParcelInDelivery
                     {
-                        Id = idal.getParcelByDroneId(id).Id,
+                        Id = boParcel.Id,
                         SenderName = new CustomerOfParcel
                         {
-                            Id = idal.GetParcel(boDrone.ParcelInDelivery.Id).SenderId,//by parcel id
-                            Name = idal.GetCustomer(boDrone.ParcelInDelivery.SenderName.Id).Name,//by customer id who is the sender in the parcel
+                            Id = boParcel.SenderId,//by parcel id
+                            Name = idal.GetCustomer(boParcel.SenderId).Name,//by customer id who is the sender in the parcel
                         },
                         ReceiverName = new CustomerOfParcel
                         {
-                            Id = idal.GetParcel(boDrone.ParcelInDelivery.Id).TargetId,//by parcel id
-                            Name = idal.GetCustomer(boDrone.ParcelInDelivery.ReceiverName.Id).Name,//by customer id who is the reciever in the parcel
+                            Id = boParcel.TargetId,//by parcel id
+                            Name = idal.GetCustomer(boParcel.TargetId).Name,//by customer id who is the reciever in the parcel
                         },
-                        Weight = (WeightCategories)idal.GetParcel(boDrone.ParcelInDelivery.Id).Weight,
-                        Priority = (Priorities)idal.GetParcel(boDrone.ParcelInDelivery.Id).Priority,
+                        Weight = (WeightCategories)boParcel.Weight,
+                        Priority = (Priorities)boParcel.Priority,
                         CollectingPlace = new Location
                         {
-                            Longitude = idal.GetCustomer(boDrone.ParcelInDelivery.SenderName.Id).Longitude,//locationr of the sender by parcel, sender, customer name
-                            Latitude = idal.GetCustomer(boDrone.ParcelInDelivery.SenderName.Id).Latitude
+                            Longitude = idal.GetCustomer(boParcel.SenderId).Longitude,//locationr of the sender by parcel, sender, customer name
+                            Latitude = idal.GetCustomer(boParcel.SenderId).Latitude
                         },
                         DestinationPlace = new Location
                         {
-                            Longitude = idal.GetCustomer(boDrone.ParcelInDelivery.ReceiverName.Id).Longitude,//locationr of the reciever by parcel, sender, customer name
-                            Latitude = idal.GetCustomer(boDrone.ParcelInDelivery.ReceiverName.Id).Latitude
+                            Longitude = idal.GetCustomer(boParcel.TargetId).Longitude,//locationr of the reciever by parcel, sender, customer name
+                            Latitude = idal.GetCustomer(boParcel.TargetId).Latitude
                         },
-                        TransportDistance = getDistance(boDrone.ParcelInDelivery.CollectingPlace, boDrone.ParcelInDelivery.DestinationPlace)
+                        //TransportDistance = getDistance(boDrone.ParcelInDelivery.CollectingPlace, boDrone.ParcelInDelivery.DestinationPlace)
                     };
+                    boDrone.ParcelInDelivery.TransportDistance = getDistance(boDrone.ParcelInDelivery.CollectingPlace, boDrone.ParcelInDelivery.DestinationPlace);
                     boDrone.ParcelInDelivery.ParcelState = getParcelState(id) == ParcelStates.PickedUp;//החבילה נאספה והיא בדרך
 
                 }
