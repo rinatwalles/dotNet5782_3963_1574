@@ -24,11 +24,17 @@ namespace BL
                        RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
                    }).ToList(); ;
         }
+
+        /// <summary>
+        /// function that returns all the drones
+        /// </summary>
+        /// <returns>all the drones in the list</returns>
         public IEnumerable<DroneToList> GetAllDrones()
         {
             return from dodrone in ListBLDrones
                    select new DroneToList();
         }
+
         /// <summary>
         /// a function that returns all the parcels
         /// </summary>
@@ -53,6 +59,7 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         /// a private function that returns the num of parcels in a certain state
         /// </summary>
@@ -69,6 +76,7 @@ namespace BL
             }
             return num;
         }
+
         /// <summary>
         /// A function that returns all the customers
         /// </summary>
@@ -94,6 +102,7 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         ///  A function that returns All Parcels that Not Scheduled
         /// </summary>
@@ -119,6 +128,7 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         /// A function that returns All Stations With Available Slots
         /// </summary>

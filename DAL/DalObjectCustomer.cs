@@ -10,10 +10,16 @@ namespace DalObject
 {
     public partial class DalObject : DAL.IDAL.IDAL
     {
+        /// <summary>
+        /// function that checks if a customer exists in the list or not
+        /// </summary>
+        /// <param name="id">id f a customer</param>
+        /// <returns>returns true if exists if not false</returns>
         public bool CheckCustomer(int id)      
         {
             return DataSource.customers.Any(c => c.Id == id);
         }
+
         /// <summary>
         /// add new customer
         /// </summary>
@@ -36,6 +42,7 @@ namespace DalObject
                 throw new DAL.MissingIdException(id, "Customer");
             return DataSource.customers.Find(c => c.Id == id);
         }
+
         /// <summary>
         /// collecting the parcel cy the costumer
         /// </summary>
@@ -45,20 +52,16 @@ namespace DalObject
             Parcel p = GetParcel(parcelId);
             p.DeliveredTime = DateTime.Now;//change time
         }
+
         /// <summary>
         /// returning array of all customers
         /// </summary>
         public IEnumerable<Customer> AllCustomer()
         {
-            //List<Customer> newList = new List<Customer>();
-            //foreach (Customer item in DataSource.customers)
-            //{
-            //    newList.Add(item);
-            //}
             return from custo in DataSource.customers
                    select custo;
-            //return newList;
         }
+
         /// <summary>
         /// current distance fron customer
         /// </summary>
@@ -72,6 +75,11 @@ namespace DalObject
             double lat2 = c.Latitude;
             return DistanceCalculate(long1, lat1, long2, lat2);//print the distance
         }
+
+        /// <summary>
+        /// delete customer function
+        /// </summary>
+        /// <param name="c">the customer</param>
         public void CustomerDelete(Customer c)
         {
             int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);
@@ -79,6 +87,10 @@ namespace DalObject
                 throw new DAL.MissingIdException(c.Id, "Customer");
         }
 
+        /// <summary>
+        /// function that gets a customer and update it in the list
+        /// </summary>
+        /// <param name="c">the customer</param>
         public void CustomerUpdate(Customer c)
         {
             int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);

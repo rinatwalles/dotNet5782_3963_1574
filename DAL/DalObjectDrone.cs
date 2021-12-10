@@ -15,16 +15,28 @@ namespace DalObject
         /// create initialized arrays
         /// </summary>
         public DalObject() { DataSource.Initialize(); }
+
+        /// <summary>
+        /// function that checks if a drone is exists
+        /// </summary>
+        /// <param name="id">id of a drone</param>
+        /// <returns>true if exists</returns>
         public bool CheckDrone(int id)
         {
             return DataSource.drones.Any(d => d.Id == id);
         }
+
+        /// <summary>
+        /// add drone function
+        /// </summary>
+        /// <param name="d">the drone</param>
         public void DroneAddition(Drone d)
         {
             if (CheckDrone(d.Id))
                 throw new DAL.DuplicateIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
+
         /// <summary>
         /// search drone accroding to its id in the array
         /// </summary>
@@ -55,6 +67,7 @@ namespace DalObject
                 }
             }
         }
+
         /// <summary>
         /// collecting the parcel by drone
         /// </summary>
@@ -75,7 +88,6 @@ namespace DalObject
 
             }
         }
-
 
         /// <summary>
         /// charging the drone
@@ -105,6 +117,7 @@ namespace DalObject
 
             }
         }
+
         /// <summary>
         /// releasing drone from charging 
         /// </summary>
@@ -130,7 +143,6 @@ namespace DalObject
                 }
             }
         }
-
 
         /// <summary>
         ///  returning array of all drones
@@ -159,6 +171,7 @@ namespace DalObject
             double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
             return r * c;
         }
+
         /// <summary>
         /// private help function to DistanceCalculate
         /// </summary>
@@ -168,6 +181,7 @@ namespace DalObject
         {
             return deg * (Math.PI / 180);
         }
+
         /// <summary>
         /// function that gets a drone and delete it from the list
         /// </summary>
@@ -178,6 +192,7 @@ namespace DalObject
             if(count==0)
                 throw new DAL.MissingIdException(d.Id, "Drone");
         }
+
         /// <summary>
         /// function that gets a drone , delete it from the list by its id and insert a new  one
         /// </summary>
@@ -189,10 +204,11 @@ namespace DalObject
                 throw new DAL.MissingIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
+
         /// <summary>
         /// a function that returns the data about electricity of drones 
         /// </summary>
-        /// <returns></returns>
+        /// <returns>array with electricity data</returns>
        public double[] AskingElectricityUse()
         {
             double[] arr= new double[5];
@@ -203,6 +219,12 @@ namespace DalObject
             arr[4] = DataSource.Config.ChargePrecent;
             return arr;
         }
+
+        /// <summary>
+        /// a function that gets a predicate and returns the drones
+        /// </summary>
+        /// <param name="predicate">predicate of a drone</param>
+        /// <returns>the drones</returns>
         public IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate)
         {
             return from dr in DataSource.drones

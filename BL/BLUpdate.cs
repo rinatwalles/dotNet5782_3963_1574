@@ -9,11 +9,15 @@ namespace BL
 {
     public partial class BL : IBL.IBL
     {
-        
+        /// <summary>
+        /// function that gets a drone and update it
+        /// </summary>
+        /// <param name="id">id of drone</param>
+        /// <param name="model">drone's model</param>
         public void UpdateDrone(int id, string model)
         {//מסתמכים שאם הוא נמצר בDAL כבר הוספנו אותו לBL. לא להסתמך על זה?
             try
-            {//שינוי הרחפן בDAL
+            {//changing drone in DAL
                 IDAL.DO.Drone doDrone = new IDAL.DO.Drone();
                 doDrone = idal.GetDrone(id);  
                 doDrone.Model = model;
@@ -24,19 +28,26 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
 
-            //שינוי רחפן ברישמת רחפנים BL
+            //changing the droe in BL list
             DroneToList dl = ListBLDrones.Find(d => d.Id == id);        //creating copy
             int count = ListBLDrones.RemoveAll(dr => dr.Id == id); //deleting the old one
             dl.Model = model;  // changing the model name
             ListBLDrones.Add(dl); //adding the new one
         }
+
+        /// <summary>
+        /// function that gets a customer and update it in the list
+        /// </summary>
+        /// <param name="id">id of customer</param>
+        /// <param name="name">customer's name</param>
+        /// <param name="phone">customer's phone</param>
         public void UpdateCustomer(int id, string name, string phone)
         {
             try
             {
                 IDAL.DO.Customer doCustomer = new IDAL.DO.Customer();
                 doCustomer = idal.GetCustomer(id);
-                if (name != "")                  //בדיקה אם הוא הכניב ערכים או ENTER
+                if (name != "")                  //checking if inserts a value or pressed ENTER
                     doCustomer.Name = name;
                 if (phone != "")
                     doCustomer.Phone = phone;
@@ -48,7 +59,11 @@ namespace BL
             }
         }
 
-
+        /// <summary>
+        /// function that returns a station closest to the drone location
+        /// </summary>
+        /// <param name="boDrone">BL drone</param>
+        /// <returns>DAL station</returns>
         private IDAL.DO.Station minStationDistance(IBL.BO.Drone boDrone)
         {
             IDAL.DO.Station minStation = new IDAL.DO.Station();
@@ -78,6 +93,10 @@ namespace BL
             return minStation;
         }
         
+        /// <summary>
+        /// function that put a drone into charging
+        /// </summary>
+        /// <param name="id">id of drone</param>
         public void droneToCharge (int id)
         {
             try 
@@ -111,6 +130,12 @@ namespace BL
             }
 
         }
+
+        /// <summary>
+        /// function that gets location and returns the station with the min distance
+        /// </summary>
+        /// <param name="location">the location</param>
+        /// <returns>closest station</returns>
         private Location minStationDistance(Location location)
         {
             IDAL.DO.Station minStation = new IDAL.DO.Station();
@@ -132,6 +157,11 @@ namespace BL
                 Longitude = minStation.Longitude
             };
         }
+
+        /// <summary>
+        /// function that connect between drone and parcel
+        /// </summary>
+        /// <param name="id">id of drone</param>
         public void joinParcelToDrone (int id)
         {
             try
@@ -180,12 +210,12 @@ namespace BL
         }
 
         /// <summary>
-        /// 
+        /// function that gets a station and update its feilds
         /// </summary>
-        /// <param name="id">the id of </param>
-        /// <param name="name"></param>
-        /// <param name="allChargingPositions"></param>
-        public void UpdateStation(int id, string name = "", string allChargingPositions = "")
+        /// <param name="id">the id of station</param>
+        /// <param name="name">the station's name</param>
+        /// <param name="allChargingPositions">num of ChargingPositions in string </param>
+        public void UpdateStation(int id, string name , string allChargingPositions)
         {
             try
             {
@@ -304,5 +334,4 @@ namespace BL
             }
         }
     }
-   
 }

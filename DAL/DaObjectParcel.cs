@@ -19,6 +19,7 @@ namespace DalObject
         {
             return DataSource.parcels.Any(p => p.Id == id);
         }
+
         /// <summary>
         /// add new parcel
         /// </summary>
@@ -30,6 +31,7 @@ namespace DalObject
                 throw new DAL.DuplicateIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
+
         /// <summary>
         /// search for parcel according to its id in the list
         /// </summary>
@@ -40,6 +42,7 @@ namespace DalObject
                 throw new DAL.MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.Id == id);
         }
+
         /// <summary>
         /// function that returns all the parcels in the dal
         /// </summary>
@@ -49,6 +52,7 @@ namespace DalObject
             return from parc in DataSource.parcels
                    select parc;
         }
+
         /// <summary>
         /// function that gets a parcel and deletes it from the list
         /// </summary>
@@ -59,6 +63,7 @@ namespace DalObject
             if (count == 0)
                 throw new DAL.MissingIdException(p.Id, "Parcel");
         }
+
         /// <summary>
         /// function that gets a parcel and update it in the list
         /// </summary>
@@ -70,6 +75,7 @@ namespace DalObject
                 throw new DAL.MissingIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
+
         /// <summary>
         /// a function that gets an id and returns its parcel
         /// </summary>
@@ -81,6 +87,7 @@ namespace DalObject
                 throw new DAL.MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.DroneId == id);
         }
+
         /// <summary>
         ///  a function that gets a predicate and returns a list of all the parcels with this preducate
         /// </summary>
@@ -92,6 +99,7 @@ namespace DalObject
                    where predicate(par)
                    select par;
         }
+
         /// <summary>
         /// a function that gets a predicate and returns its parcel
         /// </summary>
@@ -101,6 +109,5 @@ namespace DalObject
         { 
            return DataSource.parcels.Find(predicate);
         }
-
     }
 }

@@ -78,6 +78,10 @@ namespace DalObject
                 throw new DAL.MissingIdException(s.Id, "Station");
         }
 
+        /// <summary>
+        /// a function that gets a station and update it
+        /// </summary>
+        /// <param name="s">the station to update</param>
         public void StationUpdate(Station s)
         {
             int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
@@ -86,6 +90,11 @@ namespace DalObject
             DataSource.stations.Add(s);
         }
 
+        /// <summary>
+        /// a function that gets a predicate and returns the stations
+        /// </summary>
+        /// <param name="predicate">predicate of a station</param>
+        /// <returns>the stations</returns>
         public IEnumerable<Station> GetStationByPredicate(Predicate<Station> predicate)
         {
             return from st in DataSource.stations

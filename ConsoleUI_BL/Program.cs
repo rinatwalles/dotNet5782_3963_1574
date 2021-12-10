@@ -26,7 +26,7 @@ namespace ConsoleUI_BL
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for exit");
             string st = Console.ReadLine();
             bool b = Option.TryParse(st, out o);
-            // קודם כל מיקום
+
             IBL.BO.Location locat = new IBL.BO.Location()
             {
                 Longitude = 0,
@@ -65,7 +65,7 @@ namespace ConsoleUI_BL
                                             break;
                                         }
                                     case Add.Dron:
-                                        {//קליטת רחפן
+                                        {
                                             Console.WriteLine("Insert id, model and Station ID");
                                             IBL.BO.Drone dron = new IBL.BO.Drone()
                                             {
@@ -80,7 +80,7 @@ namespace ConsoleUI_BL
                                             break;
                                         }
                                     case Add.Customer:
-                                        {//קליטת לקוח
+                                        {
                                             Console.WriteLine("Insert id, name, phone number, Longitude,Latitude ");
                                             IBL.BO.Customer cust = new IBL.BO.Customer()
                                             {
@@ -95,7 +95,7 @@ namespace ConsoleUI_BL
                                             break;
                                         }
                                     case Add.Parcel:
-                                        {//קליטת חבילה
+                                        {
                                             Console.WriteLine("Insert id of the sender and the target");
                                             int IdSend = int.Parse(System.Console.ReadLine());
                                             int IdReceive = int.Parse(System.Console.ReadLine());
@@ -162,7 +162,7 @@ namespace ConsoleUI_BL
                                         }
                                     case Update.ReleaseDrone:
                                         {
-                                            Console.WriteLine("Insert id of drone and its time of charging");
+                                            Console.WriteLine("Insert id of drone and its time of charging in minutes");
                                             int idD = int.Parse(System.Console.ReadLine());
                                             TimeSpan t = TimeSpan.Parse(System.Console.ReadLine());
                                             ibl.ReleaseDroneFromCharge(idD, t);
