@@ -18,7 +18,7 @@ using IDAL.DO;
             public Priorities Priority { get; set; }
             public IEnumerable<DroneInParcel> ParcelsDrones { get; set; }
             public DateTime CreatingParcel { get; set; }
-            public DateTime RequestedTime { get; set; }    //יצירת חבילה
+            public DateTime RequestedTime { get; set; }    //בקשת חבילה לזמן מסוים
             public DateTime ScheduledTime { get; set; }   //שיוך
             public DateTime PickedUpTime { get; set; }   //איסוף
             public DateTime DeliveredTime { get; set; }   //אספקה

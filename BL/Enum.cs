@@ -11,6 +11,6 @@ using System.Threading.Tasks;
         public enum WeightCategories { Light, Medium, Heavy }
         public enum DroneStatuses { Available, Delivery, Maintenance }
         public enum Priorities { Regular, Fast, Emergency }
-        public enum ParcelStates { Requested, Scheduled, PickedUp, Delivered }
+        public enum ParcelStates { Creation,Requested, Scheduled, PickedUp, Delivered }
     }
 //}

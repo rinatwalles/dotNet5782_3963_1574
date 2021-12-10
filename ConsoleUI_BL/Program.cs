@@ -210,6 +210,9 @@ namespace ConsoleUI_BL
                                             b = int.TryParse(st, out id);
                                             IBL.BO.Station bs = ibl.GetStation(id);
                                             Console.WriteLine(bs);
+                                            Console.WriteLine("The drones in charge are:");
+                                            foreach(DroneCharging dc in bs.DroneCharging)
+                                                Console.WriteLine(dc);
                                             break;
                                         }
                                     case Display.Drone:
@@ -228,6 +231,12 @@ namespace ConsoleUI_BL
                                             b = int.TryParse(st, out id);
                                             IBL.BO.Customer c = ibl.GetCustomer(id);
                                             Console.WriteLine(c);
+                                            Console.WriteLine("The parcels From the customer");
+                                            foreach (ParcelAtCustomer pac in c.ParcelsFromCustomer)
+                                                Console.WriteLine(pac);
+                                            Console.WriteLine("The parcels to the customer");
+                                            foreach (ParcelAtCustomer ptc in c.ParcelsToCustomer)
+                                                Console.WriteLine(ptc);
                                             break;
                                         }
                                     case Display.Parcel:
@@ -237,6 +246,9 @@ namespace ConsoleUI_BL
                                             b = int.TryParse(st, out id);
                                             IBL.BO.Parcel p = ibl.GetParcel(id);
                                             Console.WriteLine(p);
+                                            Console.WriteLine("The parcel in Drones");
+                                            foreach (DroneInParcel dip in p.ParcelsDrones)
+                                                Console.WriteLine(dip);
                                             break;
                                         }
                                     default:

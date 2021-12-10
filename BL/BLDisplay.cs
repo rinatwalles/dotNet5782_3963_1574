@@ -49,7 +49,7 @@ namespace BL
                 IDAL.DO.Drone doDrone = idal.GetDrone(id);
                 boDrone.Id = doDrone.Id;
                 boDrone.Model = doDrone.Model;
-                boDrone.Weight = (IBL.BO.WeightCategories)doDrone.Weight;//באיידאל זה מקסימום וויט ואיי בי אל זה סתם וויט בלי מקסימום 
+                boDrone.Weight = (IBL.BO.WeightCategories)doDrone.Weight;
                 IBL.BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
                 boDrone.BatteryStatus = dtl.BatteryStatus;
                 boDrone.DroneStatus = dtl.DroneStatus;
@@ -117,7 +117,9 @@ namespace BL
             try
             {
                 IDAL.DO.Parcel doParcel = idal.GetParcel(id);
-                if (DateTime.Now > doParcel.RequestedTime&& DateTime.MinValue == doParcel.ScheduledTime)
+                if (DateTime.Now == DateTime.MinValue)
+                    return ParcelStates.Creation;
+                else if (DateTime.Now >= doParcel.RequestedTime&& DateTime.MinValue == doParcel.ScheduledTime)
                     return ParcelStates.Requested;
                 else if (DateTime.Now >= doParcel.ScheduledTime && DateTime.MinValue == doParcel.PickedUpTime)
                         return ParcelStates.Scheduled;
@@ -144,7 +146,7 @@ namespace BL
                 IDAL.DO.Customer doCustomerd = idal.GetCustomer(id);
                 boCustomer.Id = doCustomerd.Id;
                 boCustomer.Name = doCustomerd.Name;
-                boCustomer.Phone = doCustomerd.Phone;//באיידאל זה מקסימום וויט ואיי בי אל זה סתם וויט בלי מקסימום 
+                boCustomer.Phone = doCustomerd.Phone; 
                 IBL.BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
                 boCustomer.Location = new Location
                 {
@@ -181,12 +183,12 @@ namespace BL
                     Id = item.Id,//id of parcel
                     Weight = (IBL.BO.WeightCategories)item.Weight,
                     Priority = (IBL.BO.Priorities)item.Priority,
-                    ParcelState = getParcelState(item.Id),//החבילה נאספה והיא בדרך
+                    ParcelState = getParcelState(item.Id),
                     customer = new CustomerOfParcel
                     {
                         Id = item.TargetId,
                         Name = idal.GetCustomer(item.TargetId).Name
-                    }//צריך לאתחל איי די ושם של הלקוח או השולח הפוך מהלוקח המקורי
+                    }
                 };
             }
 
@@ -215,12 +217,12 @@ namespace BL
                     Id = item.Id,//id of parcel
                 Weight = (IBL.BO.WeightCategories)item.Weight,
                     Priority = (IBL.BO.Priorities)item.Priority,
-                    ParcelState = getParcelState(item.Id),//החבילה נאספה והיא בדרך
+                    ParcelState = getParcelState(item.Id),
                 customer = new CustomerOfParcel
                     {
                         Id = item.SenderId,
                         Name = idal.GetCustomer(item.SenderId).Name
-                    },//צריך לאתחל איי די ושם של הלקוח או השולח הפוך מהלוקח המקורי
+                    },
 
                 };
             }
@@ -290,7 +292,7 @@ namespace BL
                     Id = doParcel.TargetId,//by parcel id
                     Name = idal.GetCustomer(doParcel.TargetId).Name,//by customer id who is the sender in the parcel
                 };
-                boParcel.Weight = (WeightCategories)doParcel.Weight;//באיידאל זה מקסימום וויט ואיי בי אל זה סתם וויט בלי מקסימום 
+                boParcel.Weight = (WeightCategories)doParcel.Weight;
                 boParcel.Priority = (Priorities)doParcel.Priority;
                 boParcel.ParcelsDrones = GetDroneInParcel(doParcel.DroneId);
                 //boParcel.CreatingParcel למה זה שווה בדיוק
