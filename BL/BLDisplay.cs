@@ -36,6 +36,7 @@ namespace BL
             }
             return boBaseStation;
         }
+
         /// <summary>
         ///  a function that gets an id of a drone returns the drone
         /// </summary>
@@ -97,6 +98,7 @@ namespace BL
             }
             return boDrone;
         }
+
         /// <summary>
         /// a function that gest 2 locations and returns the distance between them
         /// </summary>
@@ -107,6 +109,7 @@ namespace BL
         {
             return idal.DistanceCalculate(l1.Latitude, l1.Latitude, l2.Latitude, l2.Longitude);
         }
+
         /// <summary>
         /// a function that gets an id of a parcel and returns its state
         /// </summary>
@@ -133,6 +136,7 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         /// a function that gets an id of a customer returns the customer
         /// </summary>
@@ -163,6 +167,7 @@ namespace BL
             }
             return boCustomer;
         }
+
         /// <summary>
         /// a function that gets an id of a customer returns the parcels he sent
         /// </summary>
@@ -197,6 +202,7 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         /// a function that gets an id of a customer returns the parcels he recieved
         /// </summary>
@@ -232,6 +238,7 @@ namespace BL
             }
 
         }
+
         /// <summary>
         /// a function that return BL dronescharging of a station
         /// </summary>
@@ -248,6 +255,7 @@ namespace BL
             };
 
         }
+
         /// <summary>
         /// a function that returns the custoner of a parcel
         /// </summary>
@@ -308,6 +316,7 @@ namespace BL
             }
             return boParcel;
         }
+
         /// <summary>
         /// afunction that gets an id of a drone and returns the parcel of drone
         /// </summary>
@@ -322,7 +331,6 @@ namespace BL
                 BattaryStatus = ListBLDrones.Find(d => id == item.Id).BatteryStatus,
                 Location= ListBLDrones.Find(d => id == item.Id).Location,
              };
-
         }
     }
 

@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using DalObject;
 using IBL.BO;
 using BL;
-using static DalObject.DataSource;
 
 namespace BL
 {
@@ -31,7 +30,6 @@ namespace BL
             double Medium = array[2];
             double Heavy = array[3];
             double ChargePrecent = array[4];
-
 
             ListBLDrones = (List<DroneToList>)(from dodron in idal.AllDrones()
                                                select new DroneToList()
@@ -99,6 +97,7 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         ///  function that gets a location and returns the closest station
         /// </summary>
@@ -120,6 +119,7 @@ namespace BL
             }
             return newlocat;
         }
+
         /// <summary>
         /// function add drone  to data and to the list in BL
         /// </summary>
@@ -165,6 +165,7 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         /// a function that adds a station to the DAL layer
         /// </summary>
@@ -174,7 +175,7 @@ namespace BL
             try
             {
                 //check if the station is already exists
-                if (idal.CheckStation(s.Id))               //למה צריך לבדוק גם פה? זה נבדק גם בפונקצית הוספה בDAL?????
+                if (idal.CheckStation(s.Id))
                     throw new DuplicateIdException(s.Id, "Station");
 
                 //adding the station to DAL layer and addupt the feilds
@@ -192,6 +193,7 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         /// a function that adds a customer to the DAL layer
         /// </summary>
@@ -219,6 +221,7 @@ namespace BL
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
         }
+
         /// <summary>
         /// a function that adds a parcel to the DAL layer
         /// </summary>
@@ -241,7 +244,7 @@ namespace BL
                     Weight = (IDAL.DO.WeightCategories)p.Weight,
                     Priority = (IDAL.DO.Priorities)p.Priority,
                     DroneId = 0,
-                    RequestedTime = DateTime.MinValue,
+                    RequestedTime = DateTime.Now,
                     ScheduledTime = DateTime.MinValue,
                     PickedUpTime = DateTime.MinValue,
                     DeliveredTime = DateTime.MinValue

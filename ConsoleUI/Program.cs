@@ -19,7 +19,6 @@ namespace ConsoleUI
         static void Main(string[] args)
         {
             DalObject.DalObject dall = new DalObject.DalObject();
-            DalObject.DataSource dat = new DalObject.DataSource();
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
             string st = Console.ReadLine();
             Option x;

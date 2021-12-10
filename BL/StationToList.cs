@@ -5,20 +5,18 @@ using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
 
-//namespace BL
-//{
-    namespace IBL.BO
+
+namespace IBL.BO
+{
+    public class StationToList
     {
-       public class StationToList
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public int AvailableCharginggSlotsNumber { get; set; }
+        public int RservedCharginggSlotsNumber { get; set; }
+        public override string ToString()
         {
-            public int Id { get; set; }
-            public string Name { get; set; }
-            public int AvailableCharginggSlotsNumber { get; set; }
-            public int RservedCharginggSlotsNumber { get; set; }
-            public override string ToString()
-            {
-                return this.ToStringProperty();
-            }
+            return this.ToStringProperty();
         }
-    }  
-//}
+    }
+}
