@@ -10,10 +10,16 @@ namespace DalObject
 {
     public partial class DalObject : DAL.IDAL.IDAL
     {
+        /// <summary>
+        /// function that gets an id of a station and checks if it is in the list
+        /// </summary>
+        /// <param name="id">id of a station</param>
+        /// <returns>true if the station exist, if not returns false</returns>
         public bool CheckStation(int id)
         {
             return DataSource.stations.Any(s => s.Id == id);
         }
+
         /// <summary>
         /// add new station
         /// </summary>
@@ -26,10 +32,10 @@ namespace DalObject
         }
 
         /// <summary>
-        /// search for station according to its id in the array
+        /// search for station according to its id in the list
         /// </summary>
-        /// <param name="id">station id to search for in the array</param>
-        /// <returns>return the index of the station in the array</returns>
+        /// <param name="id">station id to search for in the list</param>
+        /// <returns>return the station in the list</returns>
         public Station GetStation(int id)
         {
             if (!CheckStation(id))
@@ -38,19 +44,15 @@ namespace DalObject
         }
 
         /// <summary>
-        /// returning array of all stations
+        /// function that returns all the stations 
         /// </summary>
+        /// <returns>all the stations </returns>
         public IEnumerable<Station> AllStation()
         {
-            //List<Station> newList = new List<Station>();
-            //foreach (Station item in DataSource.stations)
-            //{
-            //    newList.Add(item);
-            //}
-            //return newList;
             return from stat in DataSource.stations
                    select stat;
         }
+
         /// <summary>
         /// current distance fron station
         /// </summary>
@@ -64,6 +66,11 @@ namespace DalObject
             double latx = s.Latitude;
             return DistanceCalculate(x1, y1, longy, latx);//print the distance
         }
+
+        /// <summary>
+        /// a function that delete a station
+        /// </summary>
+        /// <param name="s">the station to delete</param>
         public void StationDelete(Station s)
         {
             int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
@@ -78,6 +85,7 @@ namespace DalObject
                 throw new DAL.MissingIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }
+
         public IEnumerable<Station> GetStationByPredicate(Predicate<Station> predicate)
         {
             return from st in DataSource.stations

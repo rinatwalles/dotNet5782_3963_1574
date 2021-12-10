@@ -7,7 +7,7 @@ using IDAL.DO;
 
 namespace DalObject
 {
-    public class DataSource
+    internal class DataSource
     {
         /// <summary>
         /// function that create static arrays for drones, stations, customers, parcels and drone charges

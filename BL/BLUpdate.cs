@@ -15,8 +15,7 @@ namespace BL
             try
             {//שינוי הרחפן בDAL
                 IDAL.DO.Drone doDrone = new IDAL.DO.Drone();
-                doDrone = idal.GetDrone(id);   //הצבה בין שדות?
-                //IDAL.DO.Drone doDrone = idal.GetDrone(id);     השורה הזאת יכולה להחליף את 145, 146? כי יכול להיות שמאחורי הקלעים יש new
+                doDrone = idal.GetDrone(id);  
                 doDrone.Model = model;
                 idal.DroneUpdate(doDrone);
             }
@@ -26,8 +25,8 @@ namespace BL
             }
 
             //שינוי רחפן ברישמת רחפנים BL
-            DroneToList dl = ListBLDrones.Find(d => d.Id == id);        //יצרנו העתק
-            int count = ListBLDrones.RemoveAll(dr => dr.Id == id); //מוחקים את הישן
+            DroneToList dl = ListBLDrones.Find(d => d.Id == id);        //creating copy
+            int count = ListBLDrones.RemoveAll(dr => dr.Id == id); //deleting the old one
             dl.Model = model;  // changing the model name
             ListBLDrones.Add(dl); //adding the new one
         }
@@ -87,7 +86,6 @@ namespace BL
                 if (boDrone.DroneStatus != DroneStatuses.Available)
                     throw new DeliveryProblems(boDrone.Id, "The drone doesn't available");
 
-                //double[] array = idal.AskingElectricityUse();//למחוק אחרי פוש !!1
                 IDAL.DO.Station minStation = minStationDistance(boDrone);
                 Location sLocation = new Location { };
                 DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
@@ -180,6 +178,13 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="id">the id of </param>
+        /// <param name="name"></param>
+        /// <param name="allChargingPositions"></param>
         public void UpdateStation(int id, string name = "", string allChargingPositions = "")
         {
             try
@@ -198,6 +203,11 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// function that releases the drone from charging
+        /// </summary>
+        /// <param name="droneId">id of a drone</param>
+        /// <param name="t">time that the drone charged</param>
         public void ReleaseDroneFromCharge(int droneId, TimeSpan t)
         {
             try
@@ -227,6 +237,10 @@ namespace BL
             }
         }
 
+        /// <summary>
+        /// function that update the drone has picked up the parcel from the customer
+        /// </summary>
+        /// <param name="droneId">id of a drone</param>
         public void PickedUpParcelByDrone(int droneId)
         {
             try
@@ -259,6 +273,11 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
+        /// <summary>
+        /// function that update the parcel supllied to the customer
+        /// </summary>
+        /// <param name="id">id of drone</param>
         public void supplyParceByDrone(int id)
         {
             try
