@@ -13,7 +13,7 @@ namespace ConsoleUI_BL
     {
         enum Option { Add, Update, Display, Show, Exit };//enum  for options
         enum Add { Station, Dron, Customer, Parcel };//enum for add options
-        enum Update { Drone, Customer, Station, Join, Supply, ChargeDrone, ReleaseDrone, PickedUpParcel };//enum for update options
+        enum Update { Drone, Customer, Station, Join, PickedUpParcel, Supply, ChargeDrone, ReleaseDrone };//enum for update options
         enum Display { Station, Drone, Customer, Parcel };//enum for display options
         enum Show { Station, Drone, Customer, Parcel, ParcelWithoutDrone, AvilabaleStations };//enum for show options
         enum Weigth { Light, Medium, Heavy };
@@ -231,10 +231,10 @@ namespace ConsoleUI_BL
                                             b = int.TryParse(st, out id);
                                             IBL.BO.Customer c = ibl.GetCustomer(id);
                                             Console.WriteLine(c);
-                                            Console.WriteLine("The parcels From the customer");
+                                            Console.WriteLine("The parcels From the customer:");
                                             foreach (ParcelAtCustomer pac in c.ParcelsFromCustomer)
                                                 Console.WriteLine(pac);
-                                            Console.WriteLine("The parcels to the customer");
+                                            Console.WriteLine("\nThe parcels to the customer:");
                                             foreach (ParcelAtCustomer ptc in c.ParcelsToCustomer)
                                                 Console.WriteLine(ptc);
                                             break;
@@ -246,9 +246,6 @@ namespace ConsoleUI_BL
                                             b = int.TryParse(st, out id);
                                             IBL.BO.Parcel p = ibl.GetParcel(id);
                                             Console.WriteLine(p);
-                                            Console.WriteLine("The parcel in Drones");
-                                            foreach (DroneInParcel dip in p.ParcelsDrones)
-                                                Console.WriteLine(dip);
                                             break;
                                         }
                                     default:

@@ -302,8 +302,13 @@ namespace BL
                 };
                 boParcel.Weight = (WeightCategories)doParcel.Weight;
                 boParcel.Priority = (Priorities)doParcel.Priority;
-                boParcel.ParcelsDrones = GetDroneInParcel(doParcel.DroneId);
-                //boParcel.CreatingParcel למה זה שווה בדיוק
+                boParcel.ParcelDrones = new DroneInParcel
+                {
+                    Id= doParcel.DroneId,
+                    BattaryStatus = ListBLDrones.Find(d => id == doParcel.DroneId).BatteryStatus,
+                    Location = ListBLDrones.Find(d => id == doParcel.DroneId).Location,
+                };
+                    
                 boParcel.RequestedTime = doParcel.RequestedTime;
                 boParcel.ScheduledTime = doParcel.ScheduledTime;
                 boParcel.PickedUpTime = doParcel.PickedUpTime;
@@ -317,21 +322,7 @@ namespace BL
             return boParcel;
         }
 
-        /// <summary>
-        /// afunction that gets an id of a drone and returns the parcel of drone
-        /// </summary>
-        /// <param name="id">id of a drone</param>
-        /// <returns></returns>
-        private IEnumerable<DroneInParcel> GetDroneInParcel(int id)
-        {            
-             return from item in idal.GetDroneInParcelByPredicate(item => item.Id == id)
-             select new DroneInParcel
-             {
-                Id = id,
-                BattaryStatus = ListBLDrones.Find(d => id == item.Id).BatteryStatus,
-                Location= ListBLDrones.Find(d => id == item.Id).Location,
-             };
-        }
+        
     }
 
 }
