@@ -39,22 +39,21 @@ namespace BL
                                                    Weight = (WeightCategories)dodron.Weight,
                                                    ParcelNumber= rand.Next(1, 5)
                                                }).ToList(); ;
-            DateTime t = DateTime.MinValue;
             Location locat = new Location();
             try
             {
                 foreach (DroneToList item in ListBLDrones)
                 {
-                    if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == t))))
+                    if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == null))))
                     {
                         item.DroneStatus = DroneStatuses.Delivery;
                         IDAL.DO.Parcel parc = idal.GetParcel(item.ParcelNumber);
                         IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
                         locat.Latitude = cust.Latitude;
                         locat.Longitude = cust.Longitude;
-                        if (parc.PickedUpTime == t)    //parcel schduled but not PickedUp
+                        if (parc.PickedUpTime == null)    //parcel schduled but not PickedUp
                             item.Location = MinDistanceOfSation(locat);    //the location is the closest station
-                        if (parc.DeliveredTime == t)   //the parcel not deliverd so the location is the sender location
+                        if (parc.DeliveredTime == null)   //the parcel not deliverd so the location is the sender location
                             item.Location = locat;
 
                         double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
@@ -79,7 +78,7 @@ namespace BL
                     {
                         foreach (IDAL.DO.Parcel parc in idal.AllParcel())
                         {
-                            if (parc.DeliveredTime != t)
+                            if (parc.DeliveredTime != null)
                             {
                                 IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
                                 locat.Latitude = cust.Latitude;
@@ -245,9 +244,9 @@ namespace BL
                     Priority = (IDAL.DO.Priorities)p.Priority,
                     DroneId = 0,
                     RequestedTime = DateTime.Now,
-                    ScheduledTime = DateTime.MinValue,
-                    PickedUpTime = DateTime.MinValue,
-                    DeliveredTime = DateTime.MinValue
+                    ScheduledTime = null,
+                    PickedUpTime = null,
+                    DeliveredTime = null
                 };
                 idal.ParcelAddition(doParcel);
             }

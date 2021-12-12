@@ -16,10 +16,10 @@ namespace IDAL
             public WeightCategories Weight { get; set; }
             public Priorities Priority { get; set; }
             public int DroneId { get; set; }
-            public DateTime RequestedTime { get; set; }   // זמן בקשת חבילה למשלוח
-            public DateTime ScheduledTime { get; set; }  // זמן שיוך החבילה לרחפן 
-            public DateTime PickedUpTime { get; set; }   // זמן איסוף חבילה על ידי הרחפן
-            public DateTime DeliveredTime { get; set; }  //זמן הגעת החבילה למקבל/אספקה
+            public DateTime? RequestedTime { get; set; }   // זמן בקשת חבילה למשלוח
+            public DateTime? ScheduledTime { get; set; }  // זמן שיוך החבילה לרחפן 
+            public DateTime? PickedUpTime { get; set; }   // זמן איסוף חבילה על ידי הרחפן
+            public DateTime? DeliveredTime { get; set; }  //זמן הגעת החבילה למקבל/אספקה
 
             public override string ToString()
             {

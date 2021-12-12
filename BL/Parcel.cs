@@ -15,10 +15,10 @@ namespace IBL.BO
         public WeightCategories Weight { get; set; }
         public Priorities Priority { get; set; }
         public DroneInParcel ParcelDrones { get; set; }
-        public DateTime RequestedTime { get; set; }    //יצירת חבילה
-        public DateTime ScheduledTime { get; set; }   //שיוך
-        public DateTime PickedUpTime { get; set; }   //איסוף
-        public DateTime DeliveredTime { get; set; }   //אספקה
+        public DateTime? RequestedTime { get; set; }    //יצירת חבילה
+        public DateTime? ScheduledTime { get; set; }   //שיוך
+        public DateTime? PickedUpTime { get; set; }   //איסוף
+        public DateTime? DeliveredTime { get; set; }   //אספקה
         public override string ToString()
         {
             return this.ToStringProperty();
