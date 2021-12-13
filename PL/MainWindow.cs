@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BL;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,11 +20,13 @@ namespace PL
     /// </summary>
     public partial class DroneList : Window
     {
+        internal IBL.IBL idal = new BL.BL();
         public DroneList()
         {
 
             InitializeComponent();
-            internal static BL.IDAL.IDAL idal;
+        }
+
     }
-    }
+}
 }
