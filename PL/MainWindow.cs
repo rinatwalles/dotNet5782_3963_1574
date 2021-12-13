@@ -21,7 +21,9 @@ namespace PL
     {
         public DroneList()
         {
+
             InitializeComponent();
-        }
+            internal static BL.IDAL.IDAL idal;
+    }
     }
 }
