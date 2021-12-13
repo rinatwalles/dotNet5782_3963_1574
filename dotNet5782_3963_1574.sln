@@ -18,8 +18,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BL", "BL\BL.csproj", "{F8C8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleUI_BL", "ConsoleUI_BL\ConsoleUI_BL.csproj", "{283F292E-A95B-4464-9F88-24922713F355}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PL", "PL\PL.csproj", "{C6325232-75CA-4A08-9C30-AF437CAECDA2}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -46,16 +44,9 @@ Global
 		{283F292E-A95B-4464-9F88-24922713F355}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{283F292E-A95B-4464-9F88-24922713F355}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{283F292E-A95B-4464-9F88-24922713F355}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C6325232-75CA-4A08-9C30-AF437CAECDA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C6325232-75CA-4A08-9C30-AF437CAECDA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C6325232-75CA-4A08-9C30-AF437CAECDA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C6325232-75CA-4A08-9C30-AF437CAECDA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
-	EndGlobalSection
-	GlobalSection(NestedProjects) = preSolution
-		{C6325232-75CA-4A08-9C30-AF437CAECDA2} = {9038637D-35D9-4862-955A-DA33969A0463}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0526EBC5-73DD-4750-820C-268E012A4198}
