@@ -23,7 +23,7 @@ namespace PL
         public DroneList(IBL.IBL newIbl)
         {
             ibl = newIbl;
-            ListView.ItemsSource = ibl.GetAllDrones();
+            DronesListView.ItemsSource = ibl.GetAllDrones();
             InitializeComponent();
             
         }
