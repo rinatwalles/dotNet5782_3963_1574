@@ -1,4 +1,4 @@
-﻿using BL;
+﻿using IBL;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,16 +16,15 @@ using System.Windows.Shapes;
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for DroneList.xaml
+    /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class DroneList : Window
+    public partial class MainWindow : Window
     {
         internal IBL.IBL idal = new BL.BL();
-        public DroneList()
-        {
 
+        public MainWindow()
+        {
             InitializeComponent();
         }
-
     }
 }
