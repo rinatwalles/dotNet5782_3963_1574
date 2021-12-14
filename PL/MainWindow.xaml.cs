@@ -21,10 +21,15 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal IBL.IBL idal = new BL.BL();
+        IBL.IBL ibl = new BL.BL();
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new DroneList(ibl).Show();
         }
     }
 }
