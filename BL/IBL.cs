@@ -34,7 +34,7 @@ namespace IBL
 
         #region Show
         IEnumerable<StationToList> GetAllStations();
-        IEnumerable<DroneToList> GetAllDrones();
+        IEnumerable<DroneToList> GetAllDrones(Predicate<DroneToList> predicate);
         IEnumerable<CustomerToList> GetAllCustomers();
         IEnumerable<ParcelToList> GetAllParcels();
         IEnumerable<ParcelToList> GetAllParcelsNotScheduled();
