@@ -321,8 +321,11 @@ namespace BL
             }
             return boParcel;
         }
+        //public IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate)
+        //{
+        //    idal.GetDroneInParcelByPredicate(predicate);
+        //}
 
-        
     }
 
 }

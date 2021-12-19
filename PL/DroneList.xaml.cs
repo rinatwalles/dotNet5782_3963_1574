@@ -24,7 +24,14 @@ namespace PL
         {
             ibl = newIbl;
             DronesListView.ItemsSource = ibl.GetAllDrones();
+            StatusSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
+            WeightSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
             InitializeComponent();
+        }
+
+        private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            curDro = (StatusSelector.SelectedItem as IBL.BO.Drone);
         }
     }
 }

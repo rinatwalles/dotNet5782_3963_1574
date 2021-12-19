@@ -20,7 +20,7 @@ VerticalAlignment="Stretch" Width="auto">
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="StatusSelector" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="120"/>
+            <ComboBox x:Name="StatusSelector" Grid.Column="1" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Width="120" SelectionChanged="StatusSelector_SelectionChanged"/>
             <ComboBox x:Name="WeightSelector" Grid.Column="3" Margin="40,0,40,0" Width="120" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
             <Label Content="Drone Status" HorizontalAlignment="Left" Margin="54,26,0,0" VerticalAlignment="Top"/>
             <Label Content="Drone Weight" Grid.Column="2" HorizontalAlignment="Left" Margin="48,24,0,0" VerticalAlignment="Top"/>
