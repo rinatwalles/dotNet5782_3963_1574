@@ -25,7 +25,6 @@ namespace PL
             ibl = newIbl;
             DronesListView.ItemsSource = ibl.GetAllDrones();
             InitializeComponent();
-            
         }
     }
 }
