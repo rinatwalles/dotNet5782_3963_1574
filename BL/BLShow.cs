@@ -35,7 +35,11 @@ namespace BL
                    where predicate(dodrone)
                    select new DroneToList();
         }
-
+        public IEnumerable<DroneToList> GetAllDrones()
+        {
+            return from dodrone in ListBLDrones
+                   select new DroneToList();
+        }
         /// <summary>
         /// a function that returns all the parcels
         /// </summary>

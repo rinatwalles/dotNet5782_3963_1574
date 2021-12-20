@@ -23,7 +23,7 @@ namespace PL
         public DroneList(IBL.IBL newIbl)
         {
             ibl = newIbl;
-            //droneToListListView.ItemsSource = ibl.GetAllDrones();
+            droneToListListView.ItemsSource = ibl.GetAllDrones();
             StatusSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
             InitializeComponent();
@@ -32,7 +32,7 @@ namespace PL
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(StatusSelector.SelectedIndex == -1&& WeightSelector.SelectedIndex==-1)
-                droneToListListView.ItemsSource = ibl.GetAllDrones(dr=>dr.Id==dr.Id);
+                droneToListListView.ItemsSource = ibl.GetAllDrones();
             else if (StatusSelector.SelectedIndex == -1)
                 droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
             else if (WeightSelector.SelectedIndex == -1)
@@ -45,5 +45,7 @@ namespace PL
         {
             new PL.Drone(ibl).Show();
         }
+
+        
     }
 }
