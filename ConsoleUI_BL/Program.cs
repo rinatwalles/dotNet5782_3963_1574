@@ -270,7 +270,7 @@ namespace ConsoleUI_BL
                                         }
                                     case Show.Drone:
                                         {
-                                            List<DroneToList> lstDrone = (List<DroneToList>)ibl.GetAllDrones();
+                                            List<DroneToList> lstDrone = (List<DroneToList>)ibl.GetAllDrones(dr=>dr.Id==dr.Id);
                                             foreach (DroneToList item in lstDrone)
                                                 Console.WriteLine(item);
                                             break;
