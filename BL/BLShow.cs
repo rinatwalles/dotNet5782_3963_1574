@@ -37,8 +37,8 @@ namespace BL
         }
         public IEnumerable<DroneToList> GetAllDrones()
         {
-            return from dodrone in ListBLDrones
-                   select new DroneToList();
+            return (from dodrone in ListBLDrones
+                   select new DroneToList()).ToList() ; ;
         }
         /// <summary>
         /// a function that returns all the parcels
