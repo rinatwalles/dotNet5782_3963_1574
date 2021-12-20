@@ -33,5 +33,10 @@ namespace PL
         {
             curDro = (StatusSelector.SelectedItem as IBL.BO.Drone);
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new PL.Drone(ibl).Show();
+        }
     }
 }
