@@ -22,11 +22,13 @@ namespace PL
         private IBL.IBL ibl;
         public DroneList(IBL.IBL newIbl)
         {
+            InitializeComponent();
             ibl = newIbl;
+            IEnumerable<IBL.BO.DroneToList> lst = ibl.GetAllDrones();
             droneToListListView.ItemsSource = ibl.GetAllDrones();
             StatusSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
-            InitializeComponent();
+           
         }
 
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -46,6 +48,16 @@ namespace PL
             new PL.Drone(ibl).Show();
         }
 
-        
+        private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (StatusSelector.SelectedIndex == -1 && WeightSelector.SelectedIndex == -1)
+                droneToListListView.ItemsSource = ibl.GetAllDrones();
+            else if (StatusSelector.SelectedIndex == -1)
+                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
+            else if (WeightSelector.SelectedIndex == -1)
+                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem);
+            else
+                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
+        }
     }
 }

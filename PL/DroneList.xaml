@@ -21,9 +21,9 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions >
             <ComboBox x:Name="StatusSelector" Grid.Column="1" Width="120" SelectionChanged="StatusSelector_SelectionChanged" Margin="40,0,40,0"/>
-            <ComboBox x:Name="WeightSelector" Grid.Column="3" Margin="40,0,40,0" Width="120" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
-            <Label Content="Drone Status" HorizontalAlignment="Left" Margin="54,26,0,0" VerticalAlignment="Top"/>
-            <Label Content="Drone Weight" Grid.Column="2" HorizontalAlignment="Left" Margin="48,24,0,0" VerticalAlignment="Top"/>
+            <ComboBox x:Name="WeightSelector" Grid.Column="3" Margin="40,0,40,0" Width="120" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="WeightSelector_SelectionChanged"/>
+            <Label Content="Drone Status" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
+            <Label Content="Drone Weight" Grid.Column="2" HorizontalAlignment="Center" Margin="0,6,0,0" VerticalAlignment="Top"/>
         </Grid>
         <ListView x:Name="droneToListListView" ItemsSource="{Binding}" Margin="10,41,218,10" SelectionMode="Single" Grid.Row="1">
             <ListView.ItemContainerStyle>
@@ -41,6 +41,23 @@
                                 <TextBox Margin="-6,-1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
                             </DataTemplate>
                         </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="latColumn" Header="Latitude" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="-6,-1" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+
+
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="lonColumn" Header="Longitude" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="-6,-1" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+
                     </GridViewColumn>
                     <GridViewColumn x:Name="modelColumn" Header="Model" Width="80">
                         <GridViewColumn.CellTemplate>

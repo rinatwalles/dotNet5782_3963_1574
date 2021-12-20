@@ -31,14 +31,14 @@ namespace BL
         /// <returns>all the drones in the list</returns>
         public IEnumerable<DroneToList> GetAllDrones(Predicate<DroneToList> predicate)
         {
-            return from dodrone in ListBLDrones
-                   where predicate(dodrone)
-                   select new DroneToList();
+            return from bodrone in ListBLDrones
+                   where predicate(bodrone)
+                   select bodrone;
         }
         public IEnumerable<DroneToList> GetAllDrones()
         {
-            return (from dodrone in ListBLDrones
-                   select new DroneToList()).ToList() ; ;
+            return (from bodrone in ListBLDrones
+                   select bodrone).ToList() ; ;
         }
         /// <summary>
         /// a function that returns all the parcels
