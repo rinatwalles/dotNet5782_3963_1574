@@ -25,10 +25,60 @@
             <Label Content="Drone Status" HorizontalAlignment="Left" Margin="54,26,0,0" VerticalAlignment="Top"/>
             <Label Content="Drone Weight" Grid.Column="2" HorizontalAlignment="Left" Margin="48,24,0,0" VerticalAlignment="Top"/>
         </Grid>
-        <ListView x:Name="DronesListView" Margin="169,69,169,0" Grid.RowSpan="2" Grid.Row="1">
+        <ListView x:Name="droneToListListView" ItemsSource="{Binding}" Margin="10,41,218,106" SelectionMode="Single" Grid.Row="1">
+            <ListView.ItemContainerStyle>
+                <Style>
+                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
+                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
+                </Style>
+            </ListView.ItemContainerStyle>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn/>
+
+                    <GridViewColumn x:Name="idColumn" Header="Id" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="-6,-1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="modelColumn" Header="Model" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="-6,-1" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="batteryStatusColumn" Header="Battery Status" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="6,-1,-6,-1" Text="{Binding BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="droneStatusColumn" Header="Drone Status" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="-6,-1" Text="{Binding DroneStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+
+
+                    <GridViewColumn x:Name="parcelNumberColumn" Header="Parcel Number" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="-6,-1" Text="{Binding ParcelNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="weightColumn" Header="Weight" Width="80">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBox Margin="-6,-1" Text="{Binding Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
         </ListView>

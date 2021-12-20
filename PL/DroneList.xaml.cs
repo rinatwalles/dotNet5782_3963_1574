@@ -23,7 +23,7 @@ namespace PL
         public DroneList(IBL.IBL newIbl)
         {
             ibl = newIbl;
-            DronesListView.ItemsSource = ibl.GetAllDrones();
+            //droneToListListView.ItemsSource = ibl.GetAllDrones();
             StatusSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
             InitializeComponent();
@@ -31,7 +31,14 @@ namespace PL
 
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            curDro = (StatusSelector.SelectedItem as IBL.BO.Drone);
+            if(StatusSelector.SelectedIndex == -1&& WeightSelector.SelectedIndex==-1)
+                droneToListListView.ItemsSource = ibl.GetAllDrones(dr=>dr.Id==dr.Id);
+            else if (StatusSelector.SelectedIndex == -1)
+                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
+            else if (WeightSelector.SelectedIndex == -1)
+                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem);
+            else
+                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
