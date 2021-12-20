@@ -6,7 +6,24 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="Drone" Height="450" Width="800">
-    <Grid>
-        
+    <Grid Margin="0,3,0,-3">
+        <ComboBox x:Name="WeightComboBox"  HorizontalAlignment="Left" Margin="356,127,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial Black" FontWeight="Bold">
+        </ComboBox>
+        <Label Content="Weight:" HorizontalAlignment="Left" Margin="253,122,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" Height="39" Width="87" FontSize="18"/>
+        <TextBox x:Name="txtID" HorizontalAlignment="Left" Margin="356,82,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="Model:" HorizontalAlignment="Left" Margin="259,212,0,0" VerticalAlignment="Top" Height="30" Width="90" FontSize="18" FontFamily="Segoe UI Black" FontWeight="Normal"/>
+
+        <TextBox x:Name="txtModel" HorizontalAlignment="Left" Margin="356,217,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120"/>
+        <Label Content="ID:" HorizontalAlignment="Left" Margin="268,76,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Arial Black" FontWeight="Normal" FontSize="18"/>
+        <ComboBox x:Name="StatusComboBox" HorizontalAlignment="Left" Margin="356,171,0,0" VerticalAlignment="Top" Width="120">
+            <CheckBox Content=""/>
+        </ComboBox>
+        <Label Content="Status:" HorizontalAlignment="Left" Margin="232,171,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Arial Black" FontWeight="Normal" FontSize="18"/>
+        <Label Content="Battery:" HorizontalAlignment="Left" Margin="236,258,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Segoe UI Black" FontWeight="Normal" FontSize="18"/>
+        <Label Content="Parcel ID:" HorizontalAlignment="Left" Margin="243,302,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Segoe UI Black" FontWeight="Normal" FontSize="18"/>
+        <TextBox x:Name="txtBattrey" HorizontalAlignment="Left" Margin="356,262,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtBattrey_TextChanged"/>
+        <TextBox x:Name="txtParcelID" HorizontalAlignment="Left" Margin="356,318,0,0" Text="" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtParcelID_TextChanged"/>
+        <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="126,363,0,0" VerticalAlignment="Top" Height="38" Width="104"/>
+
     </Grid>
 </Window>

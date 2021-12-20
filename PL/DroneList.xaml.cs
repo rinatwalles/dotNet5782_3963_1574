@@ -32,7 +32,7 @@ namespace PL
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(StatusSelector.SelectedIndex == -1&& WeightSelector.SelectedIndex==-1)
-                droneToListListView.ItemsSource = ibl.GetAllDrones(dr=>dr.Id==dr.Id);
+                droneToList.ListView.ItemsSource = ibl.GetAllDrones(dr=>dr.Id==dr.Id);
             else if (StatusSelector.SelectedIndex == -1)
                 droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
             else if (WeightSelector.SelectedIndex == -1)

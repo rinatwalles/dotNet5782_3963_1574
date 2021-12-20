@@ -25,12 +25,33 @@ namespace PL
             InitializeComponent();
             ibl = newIbl;
 
+            StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
+            WeightComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
+            this.Title = "Drone Addition";
+            OptionButtun.Content = "ADD The Drone";
+
+
         }
 
         public Drone(IBL.IBL newIbl, IBL.BO.Drone d) //update constructor
         {
             InitializeComponent();
             ibl = newIbl;
+
+            StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
+            WeightComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
+            this.Title = "Drone Update";
+            OptionButtun.Content = "Update The Drone";
+
+        }
+
+        private void txtBattrey_TextChanged(object sender, TextChangedEventArgs e)
+        {
+
+        }
+
+        private void txtParcelID_TextChanged(object sender, TextChangedEventArgs e)
+        {
 
         }
     }
