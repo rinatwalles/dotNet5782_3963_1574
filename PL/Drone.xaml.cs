@@ -48,6 +48,7 @@ namespace PL
             PLdDrone = d;
             op = option.Update;
             droneup.DataContext = PLdDrone ;
+           // txtID.Content = d.Id;
 
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
