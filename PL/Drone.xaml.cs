@@ -44,14 +44,14 @@ namespace PL
         public DroneWindow(IBL.IBL newIbl, IBL.BO.DroneToList d)//update constructor
         {
             InitializeComponent();
+            StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
+            WeightComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
+
             ibl = newIbl;
             PLdDrone = d;
             op = option.Update;
             droneup.DataContext = PLdDrone ;
-           // txtID.Content = d.Id;
 
-            StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
-            WeightComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
@@ -77,22 +77,22 @@ namespace PL
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            for (int i = 0; i < 3; ++i)
-            {
-                ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = (IBL.BO.WeightCategories)i;
-                WeightComboBox.Items.Add(newItem);
-            }
+            //for (int i = 0; i < 3; ++i)
+            //{
+              // ComboBoxItem newItem = new ComboBoxItem();
+               //newItem.Content = (IBL.BO.WeightCategories)i;
+             //   WeightComboBox.Items.Add(newItem);
+           // }
         }
 
         private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            for (int i = 0; i < 3; ++i)
-            {
-                ComboBoxItem newItem = new ComboBoxItem();
-                newItem.Content = (IBL.BO.DroneStatuses)i;
-                StatusComboBox.Items.Add(newItem);
-            }
+        //    for (int i = 0; i < 3; ++i)
+        //    {
+        //        ComboBoxItem newItem = new ComboBoxItem();
+        //        newItem.Content = (IBL.BO.DroneStatuses)i;
+        //        StatusComboBox.Items.Add(newItem);
+        //    }
         }
 
         private void txtModel_TextChanged(object sender, TextChangedEventArgs e)
@@ -102,10 +102,18 @@ namespace PL
 
         private void OptionButtun_Click(object sender, RoutedEventArgs e)
         {
-            //if(op==0)
-            // ibl.AddDrone(PLdDrone as IBL.BO.Drone, 3);
-            //else
-            ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+            if (op == 0)
+            {
+                IBL.BO.Drone Dl = new IBL.BO.Drone()
+                {
+                    Id = PLdDrone.Id,
+                    Model = PLdDrone.Model,
+                    Weight = PLdDrone.Weight
+                };
+                ibl.AddDrone(Dl, 5);
+            }
+            else
+                ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
 
         }
     }

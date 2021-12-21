@@ -8,7 +8,7 @@
         Title="Drone" Height="450" Width="800">
     <Grid Margin="50,32,0,-3">
         <Grid Name="droneup" Margin="0,0,0,23">
-            <ComboBox x:Name="WeightComboBox"  HorizontalAlignment="Left" Margin="356,127,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial Black" FontWeight="Bold" SelectionChanged="WeightComboBox_SelectionChanged">
+            <ComboBox x:Name="WeightComboBox" Text="{Binding Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" Margin="356,127,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial Black" FontWeight="Bold" SelectionChanged="WeightComboBox_SelectionChanged">
             </ComboBox>
             <Label x:Name="WeightLabel" Content="Weight:" HorizontalAlignment="Left" Margin="253,122,0,0" VerticalAlignment="Top" FontFamily="Segoe UI Black" Height="39" Width="87" FontSize="18"/>
             <TextBox x:Name="txtID" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="356,82,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtID_TextChanged"/>
@@ -16,7 +16,7 @@
 
             <TextBox x:Name="txtModel" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="356,217,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtModel_TextChanged"/>
             <Label x:Name="IDLabel" Content="ID:" HorizontalAlignment="Left" Margin="268,76,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Arial Black" FontWeight="Normal" FontSize="18"/>
-            <ComboBox x:Name="StatusComboBox" HorizontalAlignment="Left" Margin="356,171,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="StatusComboBox_SelectionChanged">
+            <ComboBox x:Name="StatusComboBox" Text="{Binding DroneStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="356,171,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="StatusComboBox_SelectionChanged">
             </ComboBox>
             <Label x:Name="StatusLabel" Content="Status:" HorizontalAlignment="Left" Margin="232,171,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Arial Black" FontWeight="Normal" FontSize="18"/>
             <Label x:Name="BatteryLabel" Content="Battery:" HorizontalAlignment="Left" Margin="236,258,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Segoe UI Black" FontWeight="Normal" FontSize="18"/>
