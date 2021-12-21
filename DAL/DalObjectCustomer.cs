@@ -98,5 +98,11 @@ namespace DalObject
                 throw new DAL.MissingIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }
+        public IEnumerable<Customer> GetCustomerInParcelByPredicate(Predicate<Customer> predicate)
+        {
+            return from cust in DataSource.customers
+                   where predicate(cust)
+                   select cust;
+        }
     }
 }

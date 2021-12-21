@@ -40,6 +40,7 @@ namespace DAL
             double DistanceFromCustomer(int id, double x1, double y1);
             void CustomerDelete(Customer c);
             void CustomerUpdate(Customer c);
+            IEnumerable<Customer> GetCustomerInParcelByPredicate(Predicate<Customer> predicate);
 
             #endregion
 

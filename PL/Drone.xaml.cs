@@ -22,8 +22,12 @@ namespace PL
         private IBL.IBL ibl;
         IBL.BO.DroneToList PLdDrone;
         enum option { Add, Update};
+        enum update {charge,disCharge }
+        enum delivery { Join, PickedUpParcel, Supply }
 
         option op;
+        update up=update.charge;
+        delivery del=delivery.Join;
         public DroneWindow(IBL.IBL newIbl)    //add constructor
         {
             InitializeComponent();
@@ -55,6 +59,36 @@ namespace PL
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
+            if(d.DroneStatus==IBL.BO.DroneStatuses.Available)
+            {
+                UpdateButton.Content = "Charge Drone";
+                DeliveryButton.Content = "Join Parcel To Drone";
+                up = update.charge;
+                del = delivery.Join;
+            }
+            if(d.DroneStatus == IBL.BO.DroneStatuses.Maintenance)
+            {
+                UpdateButton.Content = "Charge Drone";
+                DeliveryButton.Visibility = Visibility.Collapsed;
+                up = update.disCharge;
+            }
+            if (d.DroneStatus == IBL.BO.DroneStatuses.Delivery)
+            {
+                IBL.BO.Parcel parcel = ibl.GetParcel(d.ParcelNumber);
+                if (parcel.PickedUpTime != DateTime.MinValue)
+                {
+                    UpdateButton.Visibility = Visibility.Collapsed;
+                    DeliveryButton.Content = "Supply Parcel By Drone";
+                    del = delivery.Supply;
+                }
+
+                if (parcel.ScheduledTime != DateTime.MinValue)
+                {
+                    UpdateButton.Visibility = Visibility.Collapsed;
+                    DeliveryButton.Content = "Collecting Parcel By Drone";
+                    del = delivery.PickedUpParcel;
+                }
+            }
         }
 
 
@@ -115,6 +149,24 @@ namespace PL
             else
                 ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
 
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            if (del == delivery.Join)
+                ibl.joinParcelToDrone(PLdDrone.Id);
+            else if (del == delivery.Supply)
+                ibl.supplyParceByDrone(PLdDrone.Id);
+            else
+                ibl.PickedUpParcelByDrone(PLdDrone.Id);
+        }
+
+        private void UpdateButton_Click(object sender, RoutedEventArgs e)
+        {
+            if (up == update.charge)
+                ibl.droneToCharge(PLdDrone.Id);
+            //else
+                //realsedrone
         }
     }
 }
