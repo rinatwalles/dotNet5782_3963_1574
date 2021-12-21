@@ -17,14 +17,14 @@ namespace PL
     /// <summary>
     /// Interaction logic for Drone.xaml
     /// </summary>
-    public partial class Drone : Window
+    public partial class DroneWindow : Window
     {
         private IBL.IBL ibl;
         IBL.BO.DroneToList PLdDrone;
         enum option { Add, Update};
 
         option op;
-        public Drone(IBL.IBL newIbl)    //add constructor
+        public DroneWindow(IBL.IBL newIbl)    //add constructor
         {
             InitializeComponent();
             ibl = newIbl;
@@ -41,7 +41,7 @@ namespace PL
             StatusLabel.Visibility = StatusComboBox.Visibility = Visibility.Collapsed;
         }
 
-        public Drone(IBL.IBL newIbl, IBL.BO.DroneToList d)//update constructor
+        public DroneWindow(IBL.IBL newIbl, IBL.BO.DroneToList d)//update constructor
         {
             InitializeComponent();
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
