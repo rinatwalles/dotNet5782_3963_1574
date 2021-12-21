@@ -45,7 +45,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new PL.Drone(ibl).Show();
+            new PL.Drone(ibl).ShowDialog();
         }
 
         private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,9 +60,10 @@ namespace PL
                 droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
         }
 
-        private void droneToListListView_Selected(object sender, RoutedEventArgs e)
+        private void droneToListListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-
+            IBL.BO.DroneToList d = droneToListListView.SelectedItem as IBL.BO.DroneToList;
+            new PL.Drone(ibl, d).ShowDialog();
         }
     }
 }
