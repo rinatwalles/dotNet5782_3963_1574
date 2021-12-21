@@ -62,6 +62,8 @@ namespace PL
 
         private void droneToListListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            //MessageBox.Show(droneToListListView.SelectedItem.ToString());
+            
             IBL.BO.DroneToList d = droneToListListView.SelectedItem as IBL.BO.DroneToList;
             new PL.Drone(ibl, d).ShowDialog();
         }
