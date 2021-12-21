@@ -5,12 +5,12 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DroneList" Height="450" Width="800">
+        Title="DroneList" Height="450" Width="800" MouseDoubleClick="droneToListListView_MouseDoubleClick">
     <Grid Name="MainGrid">
         <Grid.RowDefinitions>
-            <RowDefinition Height="24*"/>
-            <RowDefinition Height="154*"/>
-            <RowDefinition Height="39*"/>
+            <RowDefinition Height="48*"/>
+            <RowDefinition Height="359*"/>
+            <RowDefinition Height="27*"/>
         </Grid.RowDefinitions>
 
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto">
@@ -100,7 +100,6 @@
             </ListView.View>
         </ListView>
         <Button Content="Add New Drone" HorizontalAlignment="Left" Margin="660,239,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
-
+        <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="660,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
     </Grid>
-
 </Window>

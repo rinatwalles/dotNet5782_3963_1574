@@ -64,7 +64,12 @@ namespace PL
         private void droneToListListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             IBL.BO.DroneToList d = droneToListListView.SelectedItem as IBL.BO.DroneToList;
-            new PL.Drone(ibl, d).ShowDialog();
+            new PL.DroneWindow(ibl, d).ShowDialog();
+        }
+
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }

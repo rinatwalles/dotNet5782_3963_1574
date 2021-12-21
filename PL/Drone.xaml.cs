@@ -39,6 +39,7 @@ namespace PL
             ParcelIDLabel.Visibility = txtParcelID.Visibility = Visibility.Collapsed;
             BatteryLabel.Visibility = txtBattery.Visibility = Visibility.Collapsed;
             StatusLabel.Visibility = StatusComboBox.Visibility = Visibility.Collapsed;
+            OptionButtun.IsEnabled = false;
         }
 
         public DroneWindow(IBL.IBL newIbl, IBL.BO.DroneToList d)//update constructor
@@ -71,18 +72,15 @@ namespace PL
 
         private void txtID_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex!= -1)
+                OptionButtun.IsEnabled = true;
         }
 
         private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            //for (int i = 0; i < 3; ++i)
-            //{
-              // ComboBoxItem newItem = new ComboBoxItem();
-               //newItem.Content = (IBL.BO.WeightCategories)i;
-             //   WeightComboBox.Items.Add(newItem);
-           // }
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1)
+                OptionButtun.IsEnabled = true;
         }
 
         private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -97,11 +95,13 @@ namespace PL
 
         private void txtModel_TextChanged(object sender, TextChangedEventArgs e)
         {
-
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1)
+                OptionButtun.IsEnabled = true;
         }
 
         private void OptionButtun_Click(object sender, RoutedEventArgs e)
         {
+            bool addedSuccessfully = true;
             if (op == 0)
             {
                 IBL.BO.Drone Dl = new IBL.BO.Drone()
@@ -110,11 +110,27 @@ namespace PL
                     Model = PLdDrone.Model,
                     Weight = PLdDrone.Weight
                 };
-                ibl.AddDrone(Dl, 5);
+                try 
+                {
+                    ibl.AddDrone(Dl, 1);
+                }
+                catch (Exception ex)
+                {
+                    addedSuccessfully = false;
+                    MessageBox.Show(ex.Message);
+                }
+                if(addedSuccessfully)
+                    MessageBox.Show("The Drone added successfully");
+
             }
             else
                 ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
 
+        }
+
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
