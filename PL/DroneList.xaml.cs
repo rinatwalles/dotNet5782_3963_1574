@@ -26,6 +26,8 @@ namespace PL
             ibl = newIbl;
             IEnumerable<IBL.BO.DroneToList> lst = ibl.GetAllDrones();
             droneToListListView.ItemsSource = ibl.GetAllDrones();
+            //MainGrid.IsRe
+            // droneToListListView.IsReadOnly = true;
             //readonly
             StatusSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
