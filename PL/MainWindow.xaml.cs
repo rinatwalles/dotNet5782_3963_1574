@@ -29,7 +29,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new PL.DroneList(ibl).Show();
+            new PL.DroneListWindow(ibl).Show();
         }
     }
 }

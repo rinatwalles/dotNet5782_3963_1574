@@ -17,15 +17,16 @@ namespace PL
     /// <summary>
     /// Interaction logic for DroneList.xaml
     /// </summary>
-    public partial class DroneList : Window
+    public partial class DroneListWindow : Window
     {
         private IBL.IBL ibl;
-        public DroneList(IBL.IBL newIbl)
+        public DroneListWindow(IBL.IBL newIbl)
         {
             InitializeComponent();
             ibl = newIbl;
             IEnumerable<IBL.BO.DroneToList> lst = ibl.GetAllDrones();
             droneToListListView.ItemsSource = ibl.GetAllDrones();
+            //readonly
             StatusSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
            
@@ -45,7 +46,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            new PL.Drone(ibl).ShowDialog();
+            new PL.DroneWindow(ibl).Show();
         }
 
         private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -60,10 +61,5 @@ namespace PL
                 droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
         }
 
-        private void droneToListListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            IBL.BO.DroneToList d = droneToListListView.SelectedItem as IBL.BO.DroneToList;
-            new PL.Drone(ibl, d).ShowDialog();
-        }
     }
 }
