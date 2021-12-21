@@ -59,5 +59,10 @@ namespace PL
             else
                 droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
         }
+
+        private void droneToListListView_Selected(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }
