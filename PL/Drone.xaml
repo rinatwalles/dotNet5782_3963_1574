@@ -32,7 +32,7 @@
             <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="552,127,0,0" VerticalAlignment="Top" Height="38" Width="104" Click="OptionButtun_Click"/>
             <Button x:Name="UpdateButton"  Content="Button" HorizontalAlignment="Left" Margin="558,209,0,0" VerticalAlignment="Top" Height="35" Width="98" Click="UpdateButton_Click"/>
             <Button x:Name="DeliveryButton" Content="Button" HorizontalAlignment="Left" Margin="558,302,0,0" VerticalAlignment="Top" Height="26" Width="98" Click="Button_Click"/>
-            <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="550,250,0,0" VerticalAlignment="Top" Click="OptionButtun_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
+            
             <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="550,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
 
         </Grid>
