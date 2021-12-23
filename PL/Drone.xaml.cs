@@ -43,6 +43,10 @@ namespace PL
             ParcelIDLabel.Visibility = txtParcelID.Visibility = Visibility.Collapsed;
             BatteryLabel.Visibility = txtBattery.Visibility = Visibility.Collapsed;
             StatusLabel.Visibility = StatusComboBox.Visibility = Visibility.Collapsed;
+
+            UpdateButton.Visibility = Visibility.Collapsed;
+            DeliveryButton.Visibility = Visibility.Collapsed;
+
             OptionButtun.IsEnabled = false;
         }
 
@@ -90,6 +94,12 @@ namespace PL
                     del = delivery.PickedUpParcel;
                 }
             }
+            txtID.IsEnabled = false;
+            txtParcelID.IsEnabled = false;
+            txtBattery.IsEnabled = false;
+            WeightComboBox.IsEnabled = false;
+            StatusComboBox.IsEnabled= false;
+
         }
 
 
@@ -152,10 +162,13 @@ namespace PL
                 {
                     addedSuccessfully = false;
                     MessageBox.Show(ex.Message);
-                }
-                if(addedSuccessfully)
-                    MessageBox.Show("The Drone added successfully");
 
+                }
+                if (addedSuccessfully)
+                {
+                    MessageBox.Show("The Drone added successfully");
+                    this.Close();
+                }
             }
             else
                 ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);

@@ -23,11 +23,10 @@
             <Label x:Name="ParcelIDLabel" Content="Parcel ID:" HorizontalAlignment="Left" Margin="243,302,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Segoe UI Black" FontWeight="Normal" FontSize="18"/>
             <TextBox x:Name="txtBattery" Text="{Binding BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" Margin="356,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtBattrey_TextChanged"/>
             <TextBox x:Name="txtParcelID" Text="{Binding ParcelNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="356,308,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtParcelID_TextChanged"/>
-            <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="552,127,0,0" VerticalAlignment="Top" Height="38" Width="104" Click="OptionButtun_Click"/>
-            <Button x:Name="UpdateButton"  Content="Button" HorizontalAlignment="Left" Margin="558,209,0,0" VerticalAlignment="Top" Height="35" Width="98" Click="UpdateButton_Click"/>
-            <Button x:Name="DeliveryButton" Content="Button" HorizontalAlignment="Left" Margin="558,302,0,0" VerticalAlignment="Top" Height="26" Width="98" Click="Button_Click"/>
-            <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="550,250,0,0" VerticalAlignment="Top" Click="OptionButtun_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="550,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="552,127,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="UpdateButton"  Content="Button" HorizontalAlignment="Left" Margin="558,209,0,0" VerticalAlignment="Top"  Click="UpdateButton_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="DeliveryButton" Content="Button" HorizontalAlignment="Left" Margin="558,273,0,0" VerticalAlignment="Top"  Click="Button_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="558,333,0,0" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
 
         </Grid>
     </Grid>
