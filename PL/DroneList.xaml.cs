@@ -25,7 +25,7 @@ namespace PL
             InitializeComponent();
             ibl = newIbl;
             IEnumerable<IBL.BO.DroneToList> lst = ibl.GetAllDrones();
-            droneToListListView.ItemsSource = ibl.GetAllDrones();
+            droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
             //MainGrid.IsRe
             // droneToListListView.IsReadOnly = true;
             //readonly
@@ -37,13 +37,13 @@ namespace PL
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if(StatusSelector.SelectedIndex == -1&& WeightSelector.SelectedIndex==-1)
-                droneToListListView.ItemsSource = ibl.GetAllDrones();
+                droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
             else if (StatusSelector.SelectedIndex == -1)
-                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
+                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
             else if (WeightSelector.SelectedIndex == -1)
-                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem);
+                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem);
             else
-                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
+                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -54,18 +54,18 @@ namespace PL
         private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (StatusSelector.SelectedIndex == -1 && WeightSelector.SelectedIndex == -1)
-                droneToListListView.ItemsSource = ibl.GetAllDrones();
+                droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
             else if (StatusSelector.SelectedIndex == -1)
-                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
+                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
             else if (WeightSelector.SelectedIndex == -1)
-                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem);
+                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem);
             else
-                droneToListListView.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
+                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (IBL.BO.DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (IBL.BO.WeightCategories)WeightSelector.SelectedItem);
         }
 
-        private void droneToListListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        private void droneToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            IBL.BO.DroneToList d = droneToListListView.SelectedItem as IBL.BO.DroneToList;
+            IBL.BO.DroneToList d = droneToListDataGrid.SelectedItem as IBL.BO.DroneToList;
             new PL.DroneWindow(ibl, d).ShowDialog();
         }
     }

@@ -147,7 +147,10 @@ namespace PL
                 ibl.AddDrone(Dl, 5);
             }
             else
+            {
                 ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            }
 
         }
 

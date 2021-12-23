@@ -7,6 +7,12 @@
         mc:Ignorable="d"
         Title="DroneList" Height="450" Width="800">
     <Grid Name="MainGrid">
+        <Grid.Background>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFF9FAF9"/>
+                <GradientStop Color="#FFA4E7B3" Offset="1"/>
+            </LinearGradientBrush>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="24*"/>
             <RowDefinition Height="154*"/>
@@ -22,84 +28,24 @@
             </Grid.ColumnDefinitions >
             <ComboBox x:Name="StatusSelector" Grid.Column="1" Width="120" SelectionChanged="StatusSelector_SelectionChanged" Margin="40,0,40,0"/>
             <ComboBox x:Name="WeightSelector" Grid.Column="3" Margin="40,0,40,0" Width="120" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="WeightSelector_SelectionChanged"/>
-            <Label Content="Drone Status" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top"/>
-            <Label Content="Drone Weight" Grid.Column="2" HorizontalAlignment="Center" Margin="0,6,0,0" VerticalAlignment="Top"/>
+            <Label Content="Drone Status" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Background="#FFDC2711"/>
+            <Label Content="Drone Weight" Grid.Column="2" HorizontalAlignment="Center" Margin="0,6,0,0" VerticalAlignment="Top" Background="#FFDC2711"/>
         </Grid>
-        <ListView x:Name="droneToListListView" ItemsSource="{Binding}" Margin="10,41,218,10" SelectionMode="Single" Grid.Row="1" MouseDoubleClick="droneToListListView_MouseDoubleClick">
-            <ListView.ItemContainerStyle>
-                <Style>
-                    <Setter Property="Control.HorizontalContentAlignment" Value="Stretch"/>
-                    <Setter Property="Control.VerticalContentAlignment" Value="Stretch"/>
-                </Style>
-            </ListView.ItemContainerStyle>
-            <ListView.View>
-                <GridView>
+        <DataGrid x:Name="droneToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="70,45,250,45" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" MouseDoubleClick="droneToListDataGrid_MouseDoubleClick" Background="#FFFAFAFA" OpacityMask="Black">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="batteryStatusColumn" Binding="{Binding BatteryStatus}" Header="Battery Status" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="droneStatusColumn" Binding="{Binding DroneStatus}" Header="Drone Status" Width="SizeToHeader"/>
 
-                    <GridViewColumn x:Name="idColumn" Header="Id" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="latColumn" Header="Latitude" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
+                <DataGridTextColumn x:Name="modelColumn" Binding="{Binding Model}" Header="Model" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="parcelNumberColumn" Binding="{Binding ParcelNumber}" Header="Parcel Number" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="LatColunm" Binding="{Binding Location.Latitude}" Header="Latitude" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="LonColunm" Binding="{Binding Location.Longitude}" Header="Longitude" Width="SizeToHeader"/>
 
-
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="lonColumn" Header="Longitude" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="modelColumn" Header="Model" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="batteryStatusColumn" Header="Battery Status" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="6,-1,-6,-1" Text="{Binding BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="droneStatusColumn" Header="Drone Status" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding DroneStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-
-
-                    <GridViewColumn x:Name="parcelNumberColumn" Header="Parcel Number" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding ParcelNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                    <GridViewColumn x:Name="weightColumn" Header="Weight" Width="80">
-                        <GridViewColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBox Margin="-6,-1" Text="{Binding Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"/>
-                            </DataTemplate>
-                        </GridViewColumn.CellTemplate>
-                    </GridViewColumn>
-                </GridView>
-            </ListView.View>
-        </ListView>
-        <Button Content="Add New Drone" HorizontalAlignment="Left" Margin="660,239,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button Content="Add New Drone" HorizontalAlignment="Left" Margin="661,284,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal" Grid.RowSpan="2"/>
 
     </Grid>
 

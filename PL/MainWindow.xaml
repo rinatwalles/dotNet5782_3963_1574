@@ -8,12 +8,20 @@
         Title="MainWindow" Height="450" Width="800">
     <Grid>
         <Grid.Background>
-            <ImageBrush/>
+            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                <GradientStop Color="#FFF7F3F3" Offset="0"/>
+                <GradientStop Color="#FF8CEE87" Offset="1"/>
+            </LinearGradientBrush>
         </Grid.Background>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Content="List Of Drones" HorizontalAlignment="Left" Margin="303,284,0,0" VerticalAlignment="Top" Click="Button_Click" Height="93" Width="231" Background="#FFBF3F3F" FontSize="24" FontFamily="Arial Black" FontWeight="Bold"/>
+        <Button Content="List Of Drones" HorizontalAlignment="Center" Margin="0,284,0,0" VerticalAlignment="Top" Click="Button_Click" Height="93" Width="232" Background="#FFDC2711" FontSize="24" FontFamily="Arial Black" FontWeight="Bold"/>
+        <Grid Margin="181,36,180,181">
+            <Grid.Background>
+                <ImageBrush ImageSource="/dronetolist.jpg"/>
+            </Grid.Background>
+        </Grid>
 
     </Grid>
 
