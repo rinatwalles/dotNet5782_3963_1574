@@ -73,7 +73,7 @@ namespace PL
             }
             if(d.DroneStatus == IBL.BO.DroneStatuses.Maintenance)
             {
-                UpdateButton.Content = "Charge Drone";
+                UpdateButton.Content = "Discharge Drone";
                 DeliveryButton.Visibility = Visibility.Collapsed;
                 up = update.disCharge;
             }
@@ -186,16 +186,19 @@ namespace PL
                 ibl.supplyParceByDrone(PLdDrone.Id);
             else
                 ibl.PickedUpParcelByDrone(PLdDrone.Id);
+            this.Close();
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
             if (up == update.charge)
                 ibl.droneToCharge(PLdDrone.Id);
-            //PL.DroneListWindow.ac
-            //droneup.
-            //else
-            //realsedrone
+            else
+            {
+                string time=Microsoft.VisualBasic.Interaction.InputBox("Insert time (in minutes) of drone charging", "insert", "50");
+                ibl.ReleaseDroneFromCharge(PLdDrone.Id,TimeSpan.Parse(time));
+            }
+            
             this.Close();
         }
 

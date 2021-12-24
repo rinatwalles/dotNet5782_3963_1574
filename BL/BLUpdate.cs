@@ -187,6 +187,7 @@ namespace BL
                             {
                                 chosenOne = item;
                                 counter = 1;
+                                break;
                             }
                 }
                 if (counter != 0)

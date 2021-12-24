@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DroneList" Height="450" Width="800" MouseDoubleClick="droneToListDataGrid_MouseDoubleClick">
+        Title="DroneList" Height="450" Width="800" MouseDoubleClick="droneToListDataGrid_MouseDoubleClick" Activated="Window_Activated">
     <Grid Name="MainGrid">
         <Grid.Background>
             <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">

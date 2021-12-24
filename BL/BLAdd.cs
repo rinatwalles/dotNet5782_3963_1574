@@ -76,6 +76,8 @@ namespace BL
                         locat.Latitude = stat.Latitude;
                         item.Location = locat;
                         item.BatteryStatus = rand.NextDouble() * 20;
+                        //item.DroneStatus = DroneStatuses.Available;
+                        //droneToCharge(item.Id);
                     }
                     
                     if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
