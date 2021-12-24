@@ -49,6 +49,7 @@ namespace PL
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             new PL.DroneWindow(ibl).Show();
+            //this.Refresh();
         }
 
         private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -67,11 +68,17 @@ namespace PL
         {
             IBL.BO.DroneToList d = droneToListDataGrid.SelectedItem as IBL.BO.DroneToList;
             new PL.DroneWindow(ibl, d).ShowDialog();
+           //DroneListWindow.Window_Activated();
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
         }
     }
 }
