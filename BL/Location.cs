@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 //{
 namespace IBL.BO
     {
-        public class Location
+        public struct Location
         {
             public double Longitude { get; set; }
             public double Latitude { get; set; }

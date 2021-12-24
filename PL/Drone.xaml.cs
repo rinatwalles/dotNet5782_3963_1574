@@ -193,6 +193,8 @@ namespace PL
         {
             if (up == update.charge)
                 ibl.droneToCharge(PLdDrone.Id);
+            //PL.DroneListWindow.ac
+            //droneup.
             //else
                 //realsedrone
         }
