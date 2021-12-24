@@ -195,7 +195,8 @@ namespace PL
             //PL.DroneListWindow.ac
             //droneup.
             //else
-                //realsedrone
+            //realsedrone
+            this.Close();
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
