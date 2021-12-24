@@ -120,13 +120,13 @@ namespace BL
             try
             {
                 IDAL.DO.Parcel doParcel = idal.GetParcel(id);
-                if (DateTime.Now == DateTime.MinValue)
+                if (doParcel.RequestedTime == DateTime.MinValue)
                     return ParcelStates.Creation;
-                else if (DateTime.Now >= doParcel.RequestedTime&& DateTime.MinValue == doParcel.ScheduledTime)
+                else if (DateTime.MinValue == doParcel.ScheduledTime)
                     return ParcelStates.Requested;
-                else if (DateTime.Now >= doParcel.ScheduledTime && DateTime.MinValue == doParcel.PickedUpTime)
+                else if ( DateTime.MinValue == doParcel.PickedUpTime)
                         return ParcelStates.Scheduled;
-                else if (DateTime.Now >= doParcel.PickedUpTime && DateTime.MinValue == doParcel.DeliveredTime)
+                else if (DateTime.MinValue == doParcel.DeliveredTime)
                         return ParcelStates.PickedUp;
                 else 
                     return ParcelStates.Delivered;
