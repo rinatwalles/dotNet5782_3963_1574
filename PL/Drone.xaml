@@ -7,11 +7,16 @@
         mc:Ignorable="d"
         Title="Drone" Height="450" Width="800">
     <Grid Margin="50,32,0,-3">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="65*"/>
+            <ColumnDefinition Width="28*"/>
+            <ColumnDefinition Width="282*"/>
+        </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="62*"/>
             <RowDefinition Height="343*"/>
         </Grid.RowDefinitions>
-        <Grid Name="droneup" Margin="0,0,0,23" Grid.RowSpan="2">
+        <Grid Name="droneup" Margin="0,0,0,23" Grid.RowSpan="2" Grid.ColumnSpan="3">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFF9FFFA"/>
