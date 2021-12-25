@@ -57,8 +57,8 @@
 
 
         <Button Content="Add New Drone" HorizontalAlignment="Left" Margin="660,221,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal" Grid.ColumnSpan="3"/>
-        <Button x:Name="closeButton" HorizontalAlignment="Left" Margin="660,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal" Grid.ColumnSpan="3">
-            <Rectangle Height="39" Stroke="Black" Width="100"/>
+        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="660,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal" Grid.ColumnSpan="3">
+           
         </Button>
     </Grid>
 </Window>
