@@ -48,11 +48,13 @@ namespace BL
                     if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == DateTime.MinValue))))
                     {
                         item.DroneStatus = DroneStatuses.Delivery;
-                        IDAL.DO.Parcel parc = idal.GetParcel(item.ParcelNumber);
+                        IDAL.DO.Parcel parc = idal.GetOneParcelByPredicate(parc=>parc.DroneId == item.Id);
                         IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
                         locat.Latitude = cust.Latitude;
                         locat.Longitude = cust.Longitude;
                         item.Location = locat;
+                        parc.ScheduledTime = DateTime.Now;
+                        idal.ParcelUpdate(parc);
                         if (parc.PickedUpTime == DateTime.MinValue)    //parcel schduled but not PickedUp
                             item.Location = MinDistanceOfSation(locat);    //the location is the closest station
                         if (parc.DeliveredTime == DateTime.MinValue)   //the parcel not deliverd so the location is the sender location
