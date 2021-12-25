@@ -31,6 +31,7 @@ namespace BL
             double Heavy = array[3];
             double ChargePrecent = array[4];
 
+            int counterStat = 1;
             ListBLDrones = (List<DroneToList>)(from dodron in idal.AllDrones()
                                                select new DroneToList()
                                                {
@@ -52,9 +53,9 @@ namespace BL
                         locat.Latitude = cust.Latitude;
                         locat.Longitude = cust.Longitude;
                         item.Location = locat;
-                        if (parc.PickedUpTime == null)    //parcel schduled but not PickedUp
+                        if (parc.PickedUpTime == DateTime.MinValue)    //parcel schduled but not PickedUp
                             item.Location = MinDistanceOfSation(locat);    //the location is the closest station
-                        if (parc.DeliveredTime == null)   //the parcel not deliverd so the location is the sender location
+                        if (parc.DeliveredTime == DateTime.MinValue)   //the parcel not deliverd so the location is the sender location
                             item.Location = locat;
 
                         double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
@@ -68,18 +69,23 @@ namespace BL
                     {
                         item.DroneStatus = (DroneStatuses)(rand.Next(0, 2) * 2);    //0 or 2
                     }
+                    
                     if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
                     {
-                        int id = rand.Next(1, 2);
-                        IDAL.DO.Station stat = idal.GetStation(id);
+                        IDAL.DO.Station stat = idal.GetStation(counterStat);
                         locat.Longitude = stat.Longitude;
                         locat.Latitude = stat.Latitude;
                         item.Location = locat;
                         item.BatteryStatus = rand.NextDouble() * 20;
-                        //item.DroneStatus = DroneStatuses.Available;
-                        //droneToCharge(item.Id);
+                        stat.AvailableChargeSlots--;
+                        idal.StationUpdate(stat);
+                        IDAL.DO.DroneCharge dc = new IDAL.DO.DroneCharge();
+                        dc.StationId = stat.Id;
+                        dc.DroneId = item.Id;
+                        idal.DroneChargeAddition(dc);
+                        counterStat++;
                     }
-                    
+
                     if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
                     {
                     int randId = rand.Next(11, 16);

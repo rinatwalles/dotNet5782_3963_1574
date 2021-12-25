@@ -186,6 +186,7 @@ namespace PL
                 ibl.supplyParceByDrone(PLdDrone.Id);
             else
                 ibl.PickedUpParcelByDrone(PLdDrone.Id);
+            MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
             this.Close();
         }
 
@@ -198,7 +199,7 @@ namespace PL
                 string time=Microsoft.VisualBasic.Interaction.InputBox("Insert time (in minutes) of drone charging", "insert", "50");
                 ibl.ReleaseDroneFromCharge(PLdDrone.Id,TimeSpan.Parse(time));
             }
-            
+            MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
             this.Close();
         }
 
