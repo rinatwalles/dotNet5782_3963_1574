@@ -305,8 +305,8 @@ namespace BL
                 boParcel.ParcelDrones = new DroneInParcel
                 {
                     Id= doParcel.DroneId,
-                    BattaryStatus = ListBLDrones.Find(d => id == doParcel.DroneId).BatteryStatus,
-                    Location = ListBLDrones.Find(d => id == doParcel.DroneId).Location,
+                    BattaryStatus = ListBLDrones.Find(d => d.Id == doParcel.DroneId).BatteryStatus,
+                    Location = ListBLDrones.Find(d => d.Id == doParcel.DroneId).Location,
                 };
                     
                 boParcel.RequestedTime = doParcel.RequestedTime;

@@ -48,7 +48,7 @@ namespace DalObject
                 drones.Add(d);
             }
 
-            for (int i = 1; i <= 5; i++)
+            for (int i = 1; i <= 15; i++)
             {
                 Station s = new Station()
                 {

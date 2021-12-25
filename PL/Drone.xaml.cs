@@ -100,7 +100,7 @@ namespace PL
                     del = delivery.Supply;
                 }
 
-                if (parcel.ScheduledTime != DateTime.MinValue)
+                else if (parcel.ScheduledTime != DateTime.MinValue)
                 {
                     UpdateButton.Visibility = Visibility.Collapsed;
                     DeliveryButton.Content = "Collecting Parcel By Drone";
@@ -159,26 +159,55 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            if (del == delivery.Join)
-                ibl.joinParcelToDrone(PLdDrone.Id);
-            else if (del == delivery.Supply)
-                ibl.supplyParceByDrone(PLdDrone.Id);
-            else
-                ibl.PickedUpParcelByDrone(PLdDrone.Id);
-            this.Close();
+            bool worked = true; 
+            try
+            {
+                if (del == delivery.Join)
+                    ibl.joinParcelToDrone(PLdDrone.Id);
+                else if (del == delivery.Supply)
+                    ibl.supplyParceByDrone(PLdDrone.Id);
+                else
+                    ibl.PickedUpParcelByDrone(PLdDrone.Id);
+            }
+            catch (Exception ex)
+            {
+                worked = false;
+                MessageBox.Show(ex.Message, "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                this.Close();
+            }
+
+            if (worked)
+            {
+                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+
+                this.Close();
+            }
         }
 
         private void UpdateButton_Click(object sender, RoutedEventArgs e)
         {
-            if (up == update.charge)
-                ibl.droneToCharge(PLdDrone.Id);
-            else
+            bool worked = true;
+            try
             {
-                string time=Microsoft.VisualBasic.Interaction.InputBox("Insert time (in minutes) of drone charging", "insert", "50");
-                ibl.ReleaseDroneFromCharge(PLdDrone.Id,TimeSpan.Parse(time));
+                if (up == update.charge)
+                    ibl.droneToCharge(PLdDrone.Id);
+                else
+                {
+                    string time = Microsoft.VisualBasic.Interaction.InputBox("Insert time (in minutes) of drone charging", "insert", "50");
+                    ibl.ReleaseDroneFromCharge(PLdDrone.Id, TimeSpan.Parse(time));
+                }
             }
-            
-            this.Close();
+            catch (Exception ex)
+            {
+                worked = false;
+                MessageBox.Show(ex.Message, "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                this.Close();
+            }
+            if (worked)
+            {
+                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                this.Close();
+            }
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)    //close window botton
