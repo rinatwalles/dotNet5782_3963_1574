@@ -66,9 +66,7 @@ namespace BL
                     }
                     else if (!idal.AllParcel().Any(parc => (parc.DroneId == item.Id)))    //not doing a delivery now
                     {
-                        item.DroneStatus = (DroneStatuses)(rand.Next(0, 1) * 2);    //0 or 2
-                        item.BatteryStatus = rand.NextDouble() * 100;
-                        //item.Location
+                        item.DroneStatus = (DroneStatuses)(rand.Next(0, 2) * 2);    //0 or 2
                     }
                     if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
                     {
@@ -78,22 +76,22 @@ namespace BL
                         locat.Latitude = stat.Latitude;
                         item.Location = locat;
                         item.BatteryStatus = rand.NextDouble() * 20;
+                        //item.DroneStatus = DroneStatuses.Available;
+                        //droneToCharge(item.Id);
                     }
+                    
                     if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
                     {
-                        foreach (IDAL.DO.Parcel parc in idal.AllParcel())
-                        {
-                            if (parc.DeliveredTime != DateTime.MinValue)
-                            {
-                                IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
-                                locat.Latitude = cust.Latitude;
-                                locat.Longitude = cust.Longitude;
-                                Location closeStation = MinDistanceOfSation(locat);
-                                item.Location = closeStation;
-                                double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
-                                item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
-                            }
-                        }
+                    int randId = rand.Next(11, 16);
+                    IDAL.DO.Parcel doParcel =idal.GetParcel(randId);    
+                    IDAL.DO.Customer cust = idal.GetCustomer(doParcel.SenderId);
+                    locat.Latitude = cust.Latitude;
+                    locat.Longitude = cust.Longitude;
+                    Location closeStation = MinDistanceOfSation(locat);
+                    item.Location = closeStation;
+                    double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+                    item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
+                            
                     }
                 }
             }
