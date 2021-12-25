@@ -22,7 +22,5 @@
                 <ImageBrush ImageSource="/dronetolist.jpg"/>
             </Grid.Background>
         </Grid>
-
     </Grid>
-
 </Window>

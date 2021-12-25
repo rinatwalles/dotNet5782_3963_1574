@@ -26,6 +26,7 @@ namespace PL
             ibl = newIbl;
             IEnumerable<IBL.BO.DroneToList> lst = ibl.GetAllDrones();
             droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
+            droneToListDataGrid.IsReadOnly = true;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
            
@@ -63,7 +64,8 @@ namespace PL
         private void droneToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             IBL.BO.DroneToList d = droneToListDataGrid.SelectedItem as IBL.BO.DroneToList;
-            new PL.DroneWindow(ibl, d).ShowDialog();        }
+            new PL.DroneWindow(ibl, d).Show();
+        }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
         {

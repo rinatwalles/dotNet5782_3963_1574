@@ -132,6 +132,9 @@ namespace BL
         {
             try
             {
+                //check if the drone is already exists
+                if (idal.CheckDrone(d.Id))
+                    throw new DuplicateIdException(d.Id, "Drone");
                 d.BatteryStatus = rand.NextDouble() * 100;//לא יתן 1, רק קטן מ1!
                 d.DroneStatus = DroneStatuses.Maintenance;
                 Location locat = new Location();
@@ -139,9 +142,6 @@ namespace BL
                locat.Latitude = idal.GetStation(sId).Latitude;
                locat.Longitude = idal.GetStation(sId).Longitude;
                 d.Location = locat;
-                //check if the drone is already exists
-                if (idal.CheckDrone(d.Id))
-                    throw new DuplicateIdException(d.Id, "Drone");
 
                 //adding the drone to DAL layer and addupt the feilds
                 IDAL.DO.Drone doDrone = new IDAL.DO.Drone();

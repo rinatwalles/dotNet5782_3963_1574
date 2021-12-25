@@ -44,6 +44,16 @@ namespace DalObject
         }
 
         /// <summary>
+        /// search for station according to predicate in the list
+        /// </summary>
+        /// <param name="predicate">predicate of station</param>
+        /// <returns>station</returns>
+        public Station GetStationBypredicate(Predicate<Station> predicate)
+        {
+            return DataSource.stations.Find(predicate);
+        }
+
+        /// <summary>
         /// function that returns all the stations 
         /// </summary>
         /// <returns>all the stations </returns>

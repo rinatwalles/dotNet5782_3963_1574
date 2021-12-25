@@ -7,7 +7,11 @@
         mc:Ignorable="d"
         Title="Drone" Height="450" Width="800">
     <Grid Margin="50,32,0,-3">
-        <Grid Name="droneup" Margin="0,0,0,23">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="62*"/>
+            <RowDefinition Height="343*"/>
+        </Grid.RowDefinitions>
+        <Grid Name="droneup" Margin="0,0,0,23" Grid.RowSpan="2">
             <Grid.Background>
                 <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                     <GradientStop Color="#FFF9FFFA"/>
@@ -52,11 +56,11 @@
                         </ComboBox.ItemsPanel>
                     </ComboBox>
                     <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="txtID_TextChanged_1"/>
+                    <TextBox x:Name="txtID"  PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,0,0,5" Grid.Row="2" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" Width="120" TextChanged="txtID_TextChanged_1"/>
                     <Label Content="Model:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtModel" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="txtModel_TextChanged"/>
+                    <TextBox x:Name="txtModel" PreviewTextInput="EnglishLettersValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Model, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="txtModel_TextChanged"/>
                     <Label x:Name="ParcelIDLabel" Content="Parcel Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-                    <TextBox x:Name="txtParcelID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding ParcelNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <TextBox x:Name="txtParcelID" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding ParcelNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     <Label Content="Weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
                     <ComboBox x:Name="WeightComboBox" Grid.Column="1" HorizontalAlignment="Center" Height="Auto"  Text="{Binding Weight , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="0,0,0,5" Grid.Row="5" VerticalAlignment="Bottom" Width="120" SelectionChanged="WeightComboBox_SelectionChanged">
                         <ComboBox.ItemsPanel>
@@ -70,7 +74,7 @@
                     <Label  x:Name="longitudeLabel" Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
                     <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,0,0,5" Grid.Row="7" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" Width="120"/>
                 </Grid>
-                <ComboBox x:Name="stationComboBox" HorizontalAlignment="Left" Margin="239,324,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="stationComboBox_SelectionChanged"/>
+                <ComboBox x:Name="stationComboBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="239,324,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="stationComboBox_SelectionChanged"/>
                 <Label x:Name="stationLabel" Content="Station" HorizontalAlignment="Left" Margin="155,322,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.891,-0.243"/>
 
             </Grid>
@@ -89,10 +93,10 @@
             <Label x:Name="ParcelIDLabel" Content="Parcel ID:" HorizontalAlignment="Left" Margin="243,302,0,0" VerticalAlignment="Top" Height="30" Width="90" FontFamily="Segoe UI Black" FontWeight="Normal" FontSize="18"/>
             <TextBox x:Name="txtBattery" Text="{Binding BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" Margin="356,262,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtBattrey_TextChanged"/>
             <TextBox x:Name="txtParcelID" Text="{Binding ParcelNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Margin="356,308,0,0"  TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="txtParcelID_TextChanged"/>-->
-            <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="551,151,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Button x:Name="UpdateButton"  Content="Button" HorizontalAlignment="Left" Margin="551,214,0,0" VerticalAlignment="Top"  Click="UpdateButton_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Button x:Name="DeliveryButton" Content="Button" HorizontalAlignment="Left" Margin="551,273,0,0" VerticalAlignment="Top"  Click="Button_Click" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="551,333,0,0" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFB94343" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="551,151,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="UpdateButton"  Content="Button" HorizontalAlignment="Left" Margin="551,214,0,0" VerticalAlignment="Top"  Click="UpdateButton_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="DeliveryButton" Content="Button" HorizontalAlignment="Left" Margin="551,273,0,0" VerticalAlignment="Top"  Click="Button_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="551,333,0,0" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
 
         </Grid>
     </Grid>

@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Text.RegularExpressions;
 
 namespace PL
 {
@@ -70,6 +71,9 @@ namespace PL
             op = option.Update;
             droneup.DataContext = PLdDrone ;
 
+            stationComboBox.Visibility = stationLabel.Visibility = Visibility.Collapsed;
+
+
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
@@ -118,26 +122,26 @@ namespace PL
 
         }
 
-        private void OptionButtun_Click(object sender, RoutedEventArgs e)
+        private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
         {
             bool addedSuccessfully = true;
             if (op == 0)
             {
                 IBL.BO.Drone Dl = new IBL.BO.Drone()
                 {
-                    Id = PLdDrone.Id,
-                    Model = PLdDrone.Model,
-                    Weight = PLdDrone.Weight
+                    Id = int.Parse(txtID.Text),
+                    Model = txtModel.Text,
+                    Weight = (IBL.BO.WeightCategories)WeightComboBox.SelectedItem
                 };
                 try 
                 {
                     ibl.AddDrone(Dl, (int)stationComboBox.SelectedItem);
                 }
-                catch (Exception ex)
+                catch (BL.DuplicateIdException ex)
                 {
                     addedSuccessfully = false;
-                    MessageBox.Show(ex.Message);
-
+                    MessageBox.Show("The Drone id belong to another drone. insert another one");
+                    txtID.Text = "";
                 }
                 if (addedSuccessfully)
                 {
@@ -146,8 +150,7 @@ namespace PL
                 }
             }
             else
-            {
-                ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+            {                ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
                 MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             }
@@ -178,34 +181,45 @@ namespace PL
             this.Close();
         }
 
-        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        private void Button_Click_Close(object sender, RoutedEventArgs e)    //close window botton
         {
             this.Close();
         }
 
-        private void txtID_TextChanged_1(object sender, TextChangedEventArgs e)
+        private void txtID_TextChanged_1(object sender, TextChangedEventArgs e)    //txtID textbox
+        {
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
+                OptionButtun.IsEnabled = true;            
+        }
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)///function that makes the user enters only numbers
+        {
+            Regex regex = new Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void EnglishLettersValidationTextBox(object sender, TextCompositionEventArgs e)///function that makes the user enters only capital English Letters
+        {
+            Regex regex = new Regex("[^A-Z]");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+
+        private void txtModel_TextChanged(object sender, TextChangedEventArgs e)  //txtModel textbox
         {
             if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
                 OptionButtun.IsEnabled = true;
         }
 
-        private void txtModel_TextChanged(object sender, TextChangedEventArgs e)
+        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)//Weight ComboBox  
         {
-            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1&& stationComboBox.SelectedIndex != -1)
-                OptionButtun.IsEnabled = true;
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
+                OptionButtun.IsEnabled = true;            
         }
 
-        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void stationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)  //station id ComboBox
         {
             if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
                 OptionButtun.IsEnabled = true;
-        }
-
-        private void stationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
-                OptionButtun.IsEnabled = true;
-
         }
     }
 }
