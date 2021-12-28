@@ -7,7 +7,7 @@ using IDAL.DO;
 
 //namespace BL
 //{
-    namespace IBL.BO
+    namespace BO
     {
         public class ParcelAtCustomer
         {

@@ -1,14 +1,15 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using static DalObject.DataSource;
+using DaLApi;
 
-namespace DalObject
+
+namespace Dal
 {
-    public partial class DalObject : DAL.IDAL.IDAL
+    public partial class DalObject : IDAL
     {
         /// <summary>
         /// function that checks if a customer exists in the list or not
@@ -27,7 +28,7 @@ namespace DalObject
         public void CustomerAddition(Customer c)
         {
             if (!CheckCustomer(c.Id))
-                throw new DAL.DuplicateIdException(c.Id, "Customer");
+                throw new DuplicateIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }
 
@@ -39,7 +40,7 @@ namespace DalObject
         public Customer GetCustomer(int id)
         {
             if (!CheckCustomer(id))
-                throw new DAL.MissingIdException(id, "Customer");
+                throw new MissingIdException(id, "Customer");
             return DataSource.customers.Find(c => c.Id == id);
         }
 
@@ -84,7 +85,7 @@ namespace DalObject
         {
             int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(c.Id, "Customer");
+                throw new MissingIdException(c.Id, "Customer");
         }
 
         /// <summary>
@@ -95,7 +96,7 @@ namespace DalObject
         {
             int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(c.Id, "Customer");
+                throw new MissingIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }
         public IEnumerable<Customer> GetCustomerInParcelByPredicate(Predicate<Customer> predicate)

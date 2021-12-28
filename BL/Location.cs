@@ -1,5 +1,5 @@
 ﻿using System;
-using IBL.BO;
+using BO;
 using IDAL.DO;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 //namespace BL
 //{
-namespace IBL.BO
+namespace BO
     {
         public struct Location
         {

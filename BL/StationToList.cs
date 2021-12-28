@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using IDAL.DO;
 
 
-namespace IBL.BO
+namespace BO
 {
     public class StationToList
     {

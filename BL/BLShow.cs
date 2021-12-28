@@ -4,10 +4,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLApi;
 //the partial class of showing the lists
+
+
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BLApi.IBL
     {
         /// <summary>
         /// a function that returns all the stations

@@ -4,10 +4,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using BLApi;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BLApi.IBL
     {
         /// <summary>
         ///  a function that gets an id of a station returns the station

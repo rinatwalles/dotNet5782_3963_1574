@@ -5,11 +5,12 @@ using System.Text;
 using System.Threading.Tasks;
 using DalObject;
 using IBL.BO;
+using BLApi;
 using BL;
 
 namespace BL
 {
-    public partial class BL : IBL.IBL
+    public partial class BL : BLApi.IBL
     { 
         static Random rand = new Random(DateTime.Now.Millisecond);
 

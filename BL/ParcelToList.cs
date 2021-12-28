@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 //namespace BL
 //{
-    namespace IBL.BO
+    namespace BO
     {
         public class ParcelToList
         {

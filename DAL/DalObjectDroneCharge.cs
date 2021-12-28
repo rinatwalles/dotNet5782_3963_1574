@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Dal;
+using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using static DalObject.DataSource;
+using DaLApi;
 
-namespace DalObject
+namespace Dal
 {
-    public partial class DalObject : DAL.IDAL.IDAL
+    public partial class DalObject : IDAL
     {
         /// <summary>
         /// add dronecharge function
@@ -17,7 +18,7 @@ namespace DalObject
         public void DroneChargeAddition(DroneCharge dc)
         {
             if (CheckDroneCharge(dc.DroneId))
-                throw new DAL.DuplicateIdException(dc.DroneId, "Drone Charge");
+                throw new DuplicateIdException(dc.DroneId, "Drone Charge");
             DataSource.droneCharges.Add(dc);
         }
   
@@ -50,7 +51,7 @@ namespace DalObject
         public DroneCharge GetDroneCharge(int dId)
         {
             if (!CheckDroneCharge(dId))
-                throw new DAL.MissingIdException(dId, "DroneCharge");
+                throw new MissingIdException(dId, "DroneCharge");
             return DataSource.droneCharges.Find(c => c.DroneId == dId);
         }
 

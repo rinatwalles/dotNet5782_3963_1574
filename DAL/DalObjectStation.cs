@@ -1,14 +1,15 @@
-﻿using System;
+﻿using Dal;
+using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using static DalObject.DataSource;
+using DaLApi;
 
-namespace DalObject
+namespace Dal
 {
-    public partial class DalObject : DAL.IDAL.IDAL
+    public partial class DalObject : IDAL
     {
         /// <summary>
         /// function that gets an id of a station and checks if it is in the list
@@ -27,7 +28,7 @@ namespace DalObject
         public void StationAddition(Station s)
         {
             if (CheckStation(s.Id))
-                throw new DAL.DuplicateIdException(s.Id, "Station");
+                throw new DuplicateIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }
 
@@ -39,7 +40,7 @@ namespace DalObject
         public Station GetStation(int id)
         {
             if (!CheckStation(id))
-                throw new DAL.MissingIdException(id, "Station");
+                throw new MissingIdException(id, "Station");
             return DataSource.stations.Find(s => s.Id == id);
         }
 
@@ -85,7 +86,7 @@ namespace DalObject
         {
             int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(s.Id, "Station");
+                throw new MissingIdException(s.Id, "Station");
         }
 
         /// <summary>
@@ -96,7 +97,7 @@ namespace DalObject
         {
             int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(s.Id, "Station");
+                throw new MissingIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }
 

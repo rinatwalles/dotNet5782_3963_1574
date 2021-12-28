@@ -1,15 +1,17 @@
-﻿using System;
+﻿using Dal;
+using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using static DalObject.DataSource;
+using static Dal.DataSource;
+using DaLApi;
 
 
-namespace DalObject
+namespace Dal
 {
-    public partial class DalObject : DAL.IDAL.IDAL
+    public partial class DalObject : IDAL
     {
         /// <summary>
         /// create initialized arrays
@@ -33,7 +35,7 @@ namespace DalObject
         public void DroneAddition(Drone d)
         {
             if (CheckDrone(d.Id))
-                throw new DAL.DuplicateIdException(d.Id, "Drone");
+                throw new DuplicateIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
 
@@ -45,7 +47,7 @@ namespace DalObject
         public Drone GetDrone(int id)
         {
             if (!CheckDrone(id))
-                throw new DAL.MissingIdException(id, "Drone");
+                throw new MissingIdException(id, "Drone");
             return DataSource.drones.Find(d => d.Id == id);
         }
 
@@ -190,7 +192,7 @@ namespace DalObject
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
             if(count==0)
-                throw new DAL.MissingIdException(d.Id, "Drone");
+                throw new MissingIdException(d.Id, "Drone");
         }
 
         /// <summary>
@@ -201,7 +203,7 @@ namespace DalObject
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(d.Id, "Drone");
+                throw new MissingIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
 

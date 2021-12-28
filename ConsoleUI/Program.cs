@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using DalObject;
+using Dal;
+using DO;
 
 namespace ConsoleUI
 {
@@ -18,7 +18,7 @@ namespace ConsoleUI
         enum Distance { Station, Customer }//enum for distance options
         static void Main(string[] args)
         {
-            DalObject.DalObject dall = new DalObject.DalObject();
+            DalObject dall = new DalObject();
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
             string st = Console.ReadLine();
             Option x;
@@ -38,7 +38,7 @@ namespace ConsoleUI
                                 case Add.Station://add station
                                     {
                                         Console.WriteLine("Insert id, name, langitude, latitude, charge slot");
-                                        IDAL.DO.Station sstation = new IDAL.DO.Station()
+                                        Station sstation = new Station()
                                         {
                                             Id = int.Parse(System.Console.ReadLine()),
                                             Name = System.Console.ReadLine(),

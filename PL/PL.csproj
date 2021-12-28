@@ -8,7 +8,6 @@
 
   <ItemGroup>
     <None Remove="dronetolist.jpg" />
-    <None Remove="image %283%29.png" />
   </ItemGroup>
 
   <ItemGroup>
@@ -17,7 +16,6 @@
 
   <ItemGroup>
     <Resource Include="dronetolist.jpg" />
-    <Resource Include="image (3).png" />
   </ItemGroup>
 
 </Project>

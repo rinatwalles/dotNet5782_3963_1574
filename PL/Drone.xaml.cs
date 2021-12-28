@@ -20,7 +20,7 @@ namespace PL
     /// </summary>
     public partial class DroneWindow : Window
     {
-        private IBL.IBL ibl;
+        private BLApi.IBL ibl;
         IBL.BO.DroneToList PLdDrone;
         enum option { Add, Update};
         enum update {charge,disCharge }
@@ -61,7 +61,7 @@ namespace PL
             OptionButtun.IsEnabled = false ;
         }
 
-        public DroneWindow(IBL.IBL newIbl, IBL.BO.DroneToList d)//update constructor
+        public DroneWindow(BLApi.IBL newIbl, IBL.BO.DroneToList d)//update constructor
         {
             InitializeComponent();
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
