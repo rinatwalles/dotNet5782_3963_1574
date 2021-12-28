@@ -1,11 +1,19 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\DAL\DAL.csproj" />
+    <Folder Include="BL\" />
+    <Folder Include="BlApi\" />
+    <Folder Include="BO\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DalFacade\DalFacade.csproj" />
+    <ProjectReference Include="..\DalObject\DalObject.csproj" />
+    <ProjectReference Include="..\DalXML\DalXML.csproj" />
   </ItemGroup>
 
 </Project>

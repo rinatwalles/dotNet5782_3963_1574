@@ -4,17 +4,21 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-
+namespace IDAL
+{
     namespace DO
     {
-       public struct DroneCharge
+        public struct Station
         {
-            public int DroneId { get; set; }
-            public int StationId { get; set; }
+            public int Id { get; set; }
+            public string Name { get; set; }
+            public double Longitude { get; set; }
+            public double Latitude { get; set; }
+            public int AvailableChargeSlots { get; set; }
             public override string ToString()
             {
                 return this.ToStringProperty();
             }
         }
     }
-
+}

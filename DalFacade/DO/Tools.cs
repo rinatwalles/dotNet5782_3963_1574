@@ -5,7 +5,8 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-
+namespace IDAL
+{
     namespace DO
     {
         public static class Tools
@@ -19,4 +20,4 @@ using System.Threading.Tasks;
             }
         }
     }
-
+}
