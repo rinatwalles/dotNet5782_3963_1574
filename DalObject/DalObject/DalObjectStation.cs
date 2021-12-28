@@ -1,15 +1,14 @@
-﻿using Dal;
-using DO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DaLApi;
+using IDAL.DO;
+using static DalObject.DataSource;
 
-namespace Dal
+namespace DalObject
 {
-    public partial class DalObject : IDAL
+    public partial class DalObject : DAL.IDAL.IDAL
     {
         /// <summary>
         /// function that gets an id of a station and checks if it is in the list
