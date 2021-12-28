@@ -1,14 +1,16 @@
-﻿using System;
+﻿using Dal;
+using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using static DalObject.DataSource;
+using static Dal.DataSource;
+using DaLApi;
 
-namespace DalObject
+namespace Dal
 {
-    public partial class DalObject : DAL.IDAL.IDAL
+     partial class DalObject : IDAL
     {
         /// <summary>
         /// function that gets an id of a parcel and checks if it is in the list
@@ -28,7 +30,7 @@ namespace DalObject
         {
             p.Id = Config.ParcelId++;
             if (CheckParcel(p.Id))
-                throw new DAL.DuplicateIdException(p.Id, "Parcel");
+                throw new DuplicateIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
 
@@ -38,8 +40,8 @@ namespace DalObject
         /// <param name="id">parcel id to search for in the list</param>
         public Parcel GetParcel(int id)
         {
-            if (!CheckParcel (id))
-                throw new DAL.MissingIdException(id, "Parcel");
+            if (!CheckParcel(id))
+                throw new MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.Id == id);
         }
 
@@ -61,7 +63,7 @@ namespace DalObject
         {
             int count = DataSource.parcels.RemoveAll(parc => parc.Id == p.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(p.Id, "Parcel");
+                throw new MissingIdException(p.Id, "Parcel");
         }
 
         /// <summary>
@@ -72,7 +74,7 @@ namespace DalObject
         {
             int count = DataSource.parcels.RemoveAll(parc => parc.Id == p.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(p.Id, "Parcel");
+                throw new MissingIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
 
@@ -81,10 +83,10 @@ namespace DalObject
         /// </summary>
         /// <param name="id">id of a parcel</param>
         /// <returns>a parcel</returns>
-        public Parcel getParcelByDroneId (int id)
+        public Parcel getParcelByDroneId(int id)
         {
             if (!CheckParcel(id))
-                throw new DAL.MissingIdException(id, "Parcel");
+                throw new MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.DroneId == id);
         }
 
@@ -106,8 +108,8 @@ namespace DalObject
         /// <param name="predicate">predicate of a parcel</param>
         /// <returns>the parcel</returns>
         public Parcel GetOneParcelByPredicate(Predicate<Parcel> predicate)
-        { 
-           return DataSource.parcels.Find(predicate);
+        {
+            return DataSource.parcels.Find(predicate);
         }
     }
 }

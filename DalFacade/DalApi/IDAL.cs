@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DAL
+namespace DaLApi
 {
     namespace IDAL
     {

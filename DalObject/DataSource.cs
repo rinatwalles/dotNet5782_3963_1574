@@ -1,11 +1,12 @@
-﻿using System;
+﻿using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
 
-namespace DalObject
+
+namespace Dal
 {
     internal class DataSource
     {
@@ -17,9 +18,9 @@ namespace DalObject
             static public int ParcelId = 1;
             static public double Availavble = 0.001;
             static public double Light = 0.003;
-            static public double Medium =0.004;
-            static public double Heavy= 0.005;
-            static public double ChargePrecent= 0.35;  //קצב טעינת רחפן
+            static public double Medium = 0.004;
+            static public double Heavy = 0.005;
+            static public double ChargePrecent = 0.35;  //קצב טעינת רחפן
         }
 
         internal static List<Drone> drones = new List<Drone>();
@@ -29,7 +30,7 @@ namespace DalObject
         internal static List<DroneCharge> droneCharges = new List<DroneCharge>();
 
         static Random rand = new Random(DateTime.Now.Millisecond);
-        
+
         /// <summary>
         /// The function initialize the arrays
         /// </summary>
@@ -37,13 +38,13 @@ namespace DalObject
         {
             for (int i = 1; i <= 15; i++)
             {
-                Drone d = new Drone ()
+                Drone d = new Drone()
                 {
-                    Id =i,
-                    Model=""+(char)rand.Next(65, 90)+ (char)rand.Next(97, 122)+ (char)rand.Next(97, 122),
+                    Id = i,
+                    Model = "" + (char)rand.Next(65, 90) + (char)rand.Next(97, 122) + (char)rand.Next(97, 122),
                     Weight = (WeightCategories)rand.Next(0, 2),
-                   // Status = (DroneStatuses)rand.Next(0, 1),
-                   // Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
+                    // Status = (DroneStatuses)rand.Next(0, 1),
+                    // Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
                 };
                 drones.Add(d);
             }
@@ -61,13 +62,13 @@ namespace DalObject
                 stations.Add(s);
             }
 
-            for (int i = 1; i <=15; i++)
+            for (int i = 1; i <= 15; i++)
             {
                 Customer c = new Customer()
                 {
                     Id = i,
                     Name = "" + (char)rand.Next(65, 90) + (char)rand.Next(97, 122) + (char)rand.Next(97, 122),
-                    Phone= "054"  + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57)+ (char)rand.Next(48, 57),
+                    Phone = "054" + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57),
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };
@@ -76,10 +77,10 @@ namespace DalObject
 
             for (int i = 1; i <= 3; i++)
             {
-               Parcel p= new Parcel()
+                Parcel p = new Parcel()
                 {
                     Id = Config.ParcelId++,
-                    SenderId = rand.Next(1,10),
+                    SenderId = rand.Next(1, 10),
                     TargetId = rand.Next(1, 10),
                     Weight = (WeightCategories)rand.Next(0, 2),
                     Priority = (Priorities)rand.Next(0, 2),
@@ -149,4 +150,5 @@ namespace DalObject
 
     }
 }
+
 

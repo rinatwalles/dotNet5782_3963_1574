@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 //namespace BL
 //{
-    namespace IBL.BO
-    {
-        public enum WeightCategories { Light, Medium, Heavy }
-        public enum DroneStatuses { Available, Delivery, Maintenance }
-        public enum Priorities { Regular, Fast, Emergency }
-        public enum ParcelStates { Creation,Requested, Scheduled, PickedUp, Delivered }
-    }
+namespace BO
+{
+    public enum WeightCategories { Light, Medium, Heavy }
+    public enum DroneStatuses { Available, Delivery, Maintenance }
+    public enum Priorities { Regular, Fast, Emergency }
+    public enum ParcelStates { Creation, Requested, Scheduled, PickedUp, Delivered }
+}
 //}

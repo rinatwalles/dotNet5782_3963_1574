@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Reflection;
 
-namespace IBL.BO
+namespace BO
 {
     public static class Tools
     {
@@ -18,5 +18,4 @@ namespace IBL.BO
         }
     }
 }
-
 

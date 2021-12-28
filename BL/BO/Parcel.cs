@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
 
-namespace IBL.BO
+namespace BO
 {
     public class Parcel
-    { 
+    {
         public int Id { get; set; }
         public CustomerOfParcel Sender { get; set; }
         public CustomerOfParcel Receiver { get; set; }
