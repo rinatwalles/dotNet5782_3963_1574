@@ -20,8 +20,8 @@ namespace ConsoleUI_BL
         enum Priorities { Regular, Fast, Emergency };
         static void Main(string[] args)
         {
-            
-            IBL.IBL ibl = new BL.BL();
+
+            BLApi.IBL ibl = new BL.BL();
             Option o;
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for exit");
             string st = Console.ReadLine();

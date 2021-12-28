@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 //namespace BL
 //{
-    namespace BO
+    namespace IBL.BO
     {
         public enum WeightCategories { Light, Medium, Heavy }
         public enum DroneStatuses { Available, Delivery, Maintenance }

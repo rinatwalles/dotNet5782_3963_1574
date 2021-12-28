@@ -28,7 +28,7 @@ namespace Dal
         public void CustomerAddition(Customer c)
         {
             if (!CheckCustomer(c.Id))
-                throw new DAL.DuplicateIdException(c.Id, "Customer");
+                throw new DuplicateIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }
 
@@ -40,7 +40,7 @@ namespace Dal
         public Customer GetCustomer(int id)
         {
             if (!CheckCustomer(id))
-                throw new DAL.MissingIdException(id, "Customer");
+                throw new MissingIdException(id, "Customer");
             return DataSource.customers.Find(c => c.Id == id);
         }
 
@@ -85,7 +85,7 @@ namespace Dal
         {
             int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(c.Id, "Customer");
+                throw new MissingIdException(c.Id, "Customer");
         }
 
         /// <summary>
@@ -96,7 +96,7 @@ namespace Dal
         {
             int count = DataSource.customers.RemoveAll(custo => custo.Id == c.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(c.Id, "Customer");
+                throw new MissingIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }
         public IEnumerable<Customer> GetCustomerInParcelByPredicate(Predicate<Customer> predicate)

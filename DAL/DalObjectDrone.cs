@@ -35,7 +35,7 @@ namespace Dal
         public void DroneAddition(Drone d)
         {
             if (CheckDrone(d.Id))
-                throw new DAL.DuplicateIdException(d.Id, "Drone");
+                throw new DuplicateIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
 
@@ -47,7 +47,7 @@ namespace Dal
         public Drone GetDrone(int id)
         {
             if (!CheckDrone(id))
-                throw new DAL.MissingIdException(id, "Drone");
+                throw new MissingIdException(id, "Drone");
             return DataSource.drones.Find(d => d.Id == id);
         }
 
@@ -192,7 +192,7 @@ namespace Dal
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
             if(count==0)
-                throw new DAL.MissingIdException(d.Id, "Drone");
+                throw new MissingIdException(d.Id, "Drone");
         }
 
         /// <summary>
@@ -203,7 +203,7 @@ namespace Dal
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(d.Id, "Drone");
+                throw new MissingIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
 

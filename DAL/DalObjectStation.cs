@@ -28,7 +28,7 @@ namespace Dal
         public void StationAddition(Station s)
         {
             if (CheckStation(s.Id))
-                throw new DAL.DuplicateIdException(s.Id, "Station");
+                throw new DuplicateIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }
 
@@ -40,7 +40,7 @@ namespace Dal
         public Station GetStation(int id)
         {
             if (!CheckStation(id))
-                throw new DAL.MissingIdException(id, "Station");
+                throw new MissingIdException(id, "Station");
             return DataSource.stations.Find(s => s.Id == id);
         }
 
@@ -86,7 +86,7 @@ namespace Dal
         {
             int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(s.Id, "Station");
+                throw new MissingIdException(s.Id, "Station");
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Dal
         {
             int count = DataSource.stations.RemoveAll(stat => stat.Id == s.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(s.Id, "Station");
+                throw new MissingIdException(s.Id, "Station");
             DataSource.stations.Add(s);
         }
 

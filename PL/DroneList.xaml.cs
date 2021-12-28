@@ -19,8 +19,8 @@ namespace PL
     /// </summary>
     public partial class DroneListWindow : Window
     {
-        private IBL.IBL ibl;
-        public DroneListWindow(IBL.IBL newIbl)
+        private BLApi.IBL ibl;
+        public DroneListWindow(BLApi.IBL newIbl)
         {
             InitializeComponent();
             ibl = newIbl;

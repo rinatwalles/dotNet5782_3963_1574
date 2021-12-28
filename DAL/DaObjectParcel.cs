@@ -30,7 +30,7 @@ namespace Dal
         {
             p.Id = Config.ParcelId++;
             if (CheckParcel(p.Id))
-                throw new DAL.DuplicateIdException(p.Id, "Parcel");
+                throw new DuplicateIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
 
@@ -41,7 +41,7 @@ namespace Dal
         public Parcel GetParcel(int id)
         {
             if (!CheckParcel (id))
-                throw new DAL.MissingIdException(id, "Parcel");
+                throw new MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.Id == id);
         }
 
@@ -63,7 +63,7 @@ namespace Dal
         {
             int count = DataSource.parcels.RemoveAll(parc => parc.Id == p.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(p.Id, "Parcel");
+                throw new MissingIdException(p.Id, "Parcel");
         }
 
         /// <summary>
@@ -74,7 +74,7 @@ namespace Dal
         {
             int count = DataSource.parcels.RemoveAll(parc => parc.Id == p.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(p.Id, "Parcel");
+                throw new MissingIdException(p.Id, "Parcel");
             DataSource.parcels.Add(p);
         }
 
@@ -86,7 +86,7 @@ namespace Dal
         public Parcel getParcelByDroneId (int id)
         {
             if (!CheckParcel(id))
-                throw new DAL.MissingIdException(id, "Parcel");
+                throw new MissingIdException(id, "Parcel");
             return DataSource.parcels.Find(p => p.DroneId == id);
         }
 

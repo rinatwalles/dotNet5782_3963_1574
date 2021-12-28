@@ -7,21 +7,21 @@ using IDAL.DO;
 
 //namespace BL
 //{
-    namespace BO
+    namespace IBL.BO
     {
-        public class Customer
+        public class CustomerToList
         {
             public int Id { get; set; }
             public string Name { get; set; }
             public string Phone { get; set; }
-            public Location Location { get; set; }
-            public IEnumerable<ParcelAtCustomer> ParcelsFromCustomer { get; set; }
-            public IEnumerable<ParcelAtCustomer> ParcelsToCustomer { get; set; }
+            public int NumOfParcelsSentNotSupplied { get; set; }
+            public int NumOfParcelsSentAndSupplied { get; set; }
+            public int NumOfParcelsReceived { get; set; }
+            public int NumOfParcelsDelivered { get; set; }
             public override string ToString()
             {
                 return this.ToStringProperty();
             }
-
         }
     }
 //}

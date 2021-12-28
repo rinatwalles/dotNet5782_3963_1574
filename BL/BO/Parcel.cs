@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using IDAL.DO;
 
-namespace BO
+namespace IBL.BO
 {
     public class Parcel
     { 

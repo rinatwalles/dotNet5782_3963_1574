@@ -78,7 +78,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-namespace DO
+namespace DAL
 {
     [Serializable]
     public class MissingIdException : Exception

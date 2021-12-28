@@ -18,7 +18,7 @@ namespace Dal
         public void DroneChargeAddition(DroneCharge dc)
         {
             if (CheckDroneCharge(dc.DroneId))
-                throw new DAL.DuplicateIdException(dc.DroneId, "Drone Charge");
+                throw new DuplicateIdException(dc.DroneId, "Drone Charge");
             DataSource.droneCharges.Add(dc);
         }
   
@@ -51,7 +51,7 @@ namespace Dal
         public DroneCharge GetDroneCharge(int dId)
         {
             if (!CheckDroneCharge(dId))
-                throw new DAL.MissingIdException(dId, "DroneCharge");
+                throw new MissingIdException(dId, "DroneCharge");
             return DataSource.droneCharges.Find(c => c.DroneId == dId);
         }
 
