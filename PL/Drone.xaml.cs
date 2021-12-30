@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
+using BO;
 
 namespace PL
 {
@@ -21,7 +22,7 @@ namespace PL
     public partial class DroneWindow : Window
     {
         private BLApi.IBL ibl;
-        IBL.BO.DroneToList PLdDrone;
+        DroneToList PLdDrone;
         enum option { Add, Update};
         enum update {charge,disCharge }
         enum delivery { Join, PickedUpParcel, Supply }
@@ -33,14 +34,14 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            PLdDrone = new IBL.BO.DroneToList();
+            PLdDrone = new DroneToList();
             op = option.Add;
 
-            StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
-            WeightComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
+            StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
+            WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
-            IEnumerable<IBL.BO.StationToList> lst = ibl.GetAllStationsWithAvailableSlots();
-            var txt = from IBL.BO.StationToList item in lst
+            IEnumerable<StationToList> lst = ibl.GetAllStationsWithAvailableSlots();
+            var txt = from StationToList item in lst
                       select item.Id;
             stationComboBox.ItemsSource = txt;
 
@@ -60,11 +61,11 @@ namespace PL
             OptionButtun.IsEnabled = false ;
         }
 
-        public DroneWindow(BLApi.IBL newIbl, IBL.BO.DroneToList d)//update constructor
+        public DroneWindow(BLApi.IBL newIbl,DroneToList d)//update constructor
         {
             InitializeComponent();
-            StatusComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.DroneStatuses));
-            WeightComboBox.ItemsSource = Enum.GetValues(typeof(IBL.BO.WeightCategories));
+            StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
+            WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
             ibl = newIbl;
             PLdDrone = d;
@@ -77,22 +78,22 @@ namespace PL
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
-            if(d.DroneStatus==IBL.BO.DroneStatuses.Available)
+            if(d.DroneStatus==DroneStatuses.Available)
             {
                 UpdateButton.Content = "Charge Drone";
                 DeliveryButton.Content = "Join Parcel To Drone";
                 up = update.charge;
                 del = delivery.Join;
             }
-            if(d.DroneStatus == IBL.BO.DroneStatuses.Maintenance)
+            if(d.DroneStatus == DroneStatuses.Maintenance)
             {
                 UpdateButton.Content = "Discharge Drone";
                 DeliveryButton.Visibility = Visibility.Collapsed;
                 up = update.disCharge;
             }
-            if (d.DroneStatus == IBL.BO.DroneStatuses.Delivery)
+            if (d.DroneStatus ==DroneStatuses.Delivery)
             {
-                IBL.BO.Parcel parcel = ibl.GetParcel(d.ParcelNumber);
+                Parcel parcel = ibl.GetParcel(d.ParcelNumber);
                 if (parcel.PickedUpTime != DateTime.MinValue)
                 {
                     UpdateButton.Visibility = Visibility.Collapsed;
@@ -127,17 +128,17 @@ namespace PL
             bool addedSuccessfully = true;
             if (op == 0)
             {
-                IBL.BO.Drone Dl = new IBL.BO.Drone()
+                Drone Dl = new Drone()
                 {
                     Id = int.Parse(txtID.Text),
                     Model = txtModel.Text,
-                    Weight = (IBL.BO.WeightCategories)WeightComboBox.SelectedItem
+                    Weight = (WeightCategories)WeightComboBox.SelectedItem
                 };
                 try 
                 {
                     ibl.AddDrone(Dl, (int)stationComboBox.SelectedItem);
                 }
-                catch (BL.DuplicateIdException ex)
+                catch (DuplicateIdException ex)
                 {
                     addedSuccessfully = false;
                     MessageBox.Show("The Drone id belong to another drone. insert another one");

@@ -15,9 +15,11 @@ namespace Dal
     {
         static readonly IDAL instance = new DalObject();
         public static IDAL Instance { get => instance; }
+
         /// <summary>
         /// create initialized arrays
         /// </summary>
+        /// 
         static DalObject() { DataSource.Initialize(); }
 
         /// <summary>

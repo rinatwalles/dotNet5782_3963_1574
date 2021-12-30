@@ -1,4 +1,4 @@
-﻿using IDAL.DO;
+﻿using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,8 +8,6 @@ using System.Threading.Tasks;
 
 namespace DaLApi
 {
-    namespace IDAL
-    {
         public interface IDAL
         {
             #region Drone
@@ -77,6 +75,5 @@ namespace DaLApi
             Parcel GetOneParcelByPredicate(Predicate<Parcel> predicate);
             #endregion
         }
-
-    }
+ 
 }

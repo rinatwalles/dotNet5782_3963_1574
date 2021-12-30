@@ -6,14 +6,20 @@ using System.Threading.Tasks;
 using BLApi;
 using BL;
 using BO;
+using DaLApi;
 
 namespace BL
 {
-     partial class BL : IBL
-    { 
+    sealed partial class BL : IBL
+    {
+        static readonly IBL instance = new BL();
+        public static IBL Instance { get => instance; }
+
+        internal IDAL idal = DalApi.DalFactory.GetDal();//האם כאן אמור להיות האתחול?
+
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        internal static DAL.IDAL.IDAL idal;
+        //internal static IDAL idal;
         public List<BO.DroneToList> ListBLDrones = new List<BO.DroneToList>();
         double[] array;
 
@@ -22,7 +28,7 @@ namespace BL
         /// </summary>
         public BL()
         {
-            idal = new Dal.DalObject();
+            //idal = new Dal.DalObject();
 
             array = idal.AskingElectricityUse();
             double Available = array[0];

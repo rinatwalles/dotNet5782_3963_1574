@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BLApi;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,6 +9,6 @@ namespace BlApi
 {
     public static class BlFactory
     {
-        public static BLApi.IBL GetBl() => BL.BL.Intance;
+        public static IBL GetBl() => BL.BL.Instance;
     }
 }

@@ -6,8 +6,6 @@ using System.Text;
 using System.Threading.Tasks;
 
 
-//namespace BL
-//{
 namespace BO
 {
     public struct Location
@@ -20,4 +18,3 @@ namespace BO
         }
     }
 }
-//}
