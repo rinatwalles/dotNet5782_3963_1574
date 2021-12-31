@@ -3,19 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using DalObject;
-using IBL.BO;
 using BLApi;
 using BL;
+using BO;
+using DaLApi;
 
 namespace BL
 {
-    public partial class BL : BLApi.IBL
-    { 
+    sealed partial class BL : IBL
+    {
+        static readonly IBL instance = new BL();
+        public static IBL Instance { get => instance; }
+
+        internal IDAL idal = DalApi.DalFactory.GetDal();//האם כאן אמור להיות האתחול?
+
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        internal static DAL.IDAL.IDAL idal;
-        public List<IBL.BO.DroneToList> ListBLDrones = new List<IBL.BO.DroneToList>();
+        //internal static IDAL idal;
+        public List<BO.DroneToList> ListBLDrones = new List<BO.DroneToList>();
         double[] array;
 
         /// <summary>
@@ -23,7 +28,7 @@ namespace BL
         /// </summary>
         public BL()
         {
-            idal = new DalObject.DalObject();
+            //idal = new Dal.DalObject();
 
             array = idal.AskingElectricityUse();
             double Available = array[0];
@@ -49,8 +54,8 @@ namespace BL
                     if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == DateTime.MinValue))))
                     {
                         item.DroneStatus = DroneStatuses.Delivery;
-                        IDAL.DO.Parcel parc = idal.GetOneParcelByPredicate(parc=>parc.DroneId == item.Id);
-                        IDAL.DO.Customer cust = idal.GetCustomer(parc.SenderId);
+                        DO.Parcel parc = idal.GetOneParcelByPredicate(parc=>parc.DroneId == item.Id);
+                        DO.Customer cust = idal.GetCustomer(parc.SenderId);
                         locat.Latitude = cust.Latitude;
                         locat.Longitude = cust.Longitude;
                         item.Location = locat;
@@ -75,14 +80,14 @@ namespace BL
                     
                     if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
                     {
-                        IDAL.DO.Station stat = idal.GetStation(counterStat);
+                        DO.Station stat = idal.GetStation(counterStat);
                         locat.Longitude = stat.Longitude;
                         locat.Latitude = stat.Latitude;
                         item.Location = locat;
                         item.BatteryStatus = rand.NextDouble() * 20;
                         stat.AvailableChargeSlots--;
                         idal.StationUpdate(stat);
-                        IDAL.DO.DroneCharge dc = new IDAL.DO.DroneCharge();
+                        DO.DroneCharge dc = new DO.DroneCharge();
                         dc.StationId = stat.Id;
                         dc.DroneId = item.Id;
                         idal.DroneChargeAddition(dc);
@@ -92,8 +97,8 @@ namespace BL
                     if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
                     {
                     int randId = rand.Next(11, 16);
-                    IDAL.DO.Parcel doParcel =idal.GetParcel(randId);    
-                    IDAL.DO.Customer cust = idal.GetCustomer(doParcel.SenderId);
+                    DO.Parcel doParcel =idal.GetParcel(randId);    
+                    DO.Customer cust = idal.GetCustomer(doParcel.SenderId);
                     locat.Latitude = cust.Latitude;
                     locat.Longitude = cust.Longitude;
                     Location closeStation = MinDistanceOfSation(locat);
@@ -104,7 +109,7 @@ namespace BL
                     }
                 }
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -119,7 +124,7 @@ namespace BL
         {
             Location newlocat = new Location();
             double minDistance = 1000;
-            foreach (IDAL.DO.Station stat in idal.AllStation())  //searching the closest station to the sender
+            foreach (DO.Station stat in idal.AllStation())  //searching the closest station to the sender
             {
                 double dist = idal.DistanceCalculate(stat.Longitude, stat.Latitude, locat.Longitude, locat.Latitude);
                 if (dist < minDistance)
@@ -153,14 +158,14 @@ namespace BL
                 d.Location = locat;
 
                 //adding the drone to DAL layer and addupt the feilds
-                IDAL.DO.Drone doDrone = new IDAL.DO.Drone();
+                DO.Drone doDrone = new DO.Drone();
                 doDrone.Id = d.Id;
                 doDrone.Model = d.Model;
-                doDrone.Weight = (IDAL.DO.WeightCategories)d.Weight;
+                doDrone.Weight = (DO.WeightCategories)d.Weight;
                 idal.DroneAddition(doDrone);
 
                 //addutp bl list
-                DroneToList Dl = new IBL.BO.DroneToList()
+                DroneToList Dl = new BO.DroneToList()
                 {
                     Id = d.Id,
                     Model = d.Model,
@@ -172,7 +177,7 @@ namespace BL
                 ListBLDrones.Add(Dl);
             }
             //catch DO.exc
-            catch (DAL.DuplicateIdException ex)
+            catch (DO.DuplicateIdException ex)
             {
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
@@ -191,7 +196,7 @@ namespace BL
                     throw new DuplicateIdException(s.Id, "Station");
 
                 //adding the station to DAL layer and addupt the feilds
-                IDAL.DO.Station doStation = new IDAL.DO.Station();
+                DO.Station doStation = new DO.Station();
                 doStation.Id = s.Id;
                 doStation.Name = s.Name;
                 doStation.Latitude = s.Location.Latitude;
@@ -200,7 +205,7 @@ namespace BL
                 idal.StationAddition(doStation);
             }
             //catch DO.exc
-            catch (DAL.DuplicateIdException ex)
+            catch (DO.DuplicateIdException ex)
             {
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
@@ -219,7 +224,7 @@ namespace BL
                     throw new DuplicateIdException(c.Id, "Customer");
 
                 //adding the customer to DAL layer and addupt the feilds
-                IDAL.DO.Customer doCustomer = new IDAL.DO.Customer();
+                DO.Customer doCustomer = new DO.Customer();
                 doCustomer.Id = c.Id;
                 doCustomer.Name = c.Name;
                 doCustomer.Latitude = c.Location.Latitude;
@@ -228,7 +233,7 @@ namespace BL
                 idal.CustomerAddition(doCustomer);
             }
             //catch DO.exc
-            catch (DAL.DuplicateIdException ex)
+            catch (DO.DuplicateIdException ex)
             {
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }
@@ -249,12 +254,12 @@ namespace BL
                     throw new DuplicateIdException(p.Id, "Parcel");
 
                 //adding the parcel to DAL layer and addupt the feilds
-                IDAL.DO.Parcel doParcel = new IDAL.DO.Parcel()
+                DO.Parcel doParcel = new DO.Parcel()
                 {
                     SenderId = IdSender,
                     TargetId = IdReceiver,
-                    Weight = (IDAL.DO.WeightCategories)p.Weight,
-                    Priority = (IDAL.DO.Priorities)p.Priority,
+                    Weight = (DO.WeightCategories)p.Weight,
+                    Priority = (DO.Priorities)p.Priority,
                     DroneId = 0,
                     RequestedTime = DateTime.Now,
                     ScheduledTime = DateTime.MinValue,
@@ -264,7 +269,7 @@ namespace BL
                 idal.ParcelAddition(doParcel);
             }
             //catch DO.exc
-            catch (DAL.DuplicateIdException ex)
+            catch (DO.DuplicateIdException ex)
             {
                 throw new DuplicateIdException(ex.ID, ex.EntityName);
             }

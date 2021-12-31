@@ -1,20 +1,26 @@
-﻿using System;
+﻿using Dal;
+using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using static DalObject.DataSource;
+using static Dal.DataSource;
+using DaLApi;
 
 
-namespace DalObject
+namespace Dal
 {
-    public partial class DalObject : DAL.IDAL.IDAL
+    sealed partial class DalObject : IDAL
     {
+        static readonly IDAL instance = new DalObject();
+        public static IDAL Instance { get => instance; }
+
         /// <summary>
         /// create initialized arrays
         /// </summary>
-        public DalObject() { DataSource.Initialize(); }
+        /// 
+        static DalObject() { DataSource.Initialize(); }
 
         /// <summary>
         /// function that checks if a drone is exists
@@ -33,7 +39,7 @@ namespace DalObject
         public void DroneAddition(Drone d)
         {
             if (CheckDrone(d.Id))
-                throw new DAL.DuplicateIdException(d.Id, "Drone");
+                throw new DuplicateIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
 
@@ -45,7 +51,7 @@ namespace DalObject
         public Drone GetDrone(int id)
         {
             if (!CheckDrone(id))
-                throw new DAL.MissingIdException(id, "Drone");
+                throw new MissingIdException(id, "Drone");
             return DataSource.drones.Find(d => d.Id == id);
         }
 
@@ -189,8 +195,8 @@ namespace DalObject
         public void DroneDelete(Drone d)
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
-            if(count==0)
-                throw new DAL.MissingIdException(d.Id, "Drone");
+            if (count == 0)
+                throw new MissingIdException(d.Id, "Drone");
         }
 
         /// <summary>
@@ -201,7 +207,7 @@ namespace DalObject
         {
             int count = DataSource.drones.RemoveAll(dr => dr.Id == d.Id);
             if (count == 0)
-                throw new DAL.MissingIdException(d.Id, "Drone");
+                throw new MissingIdException(d.Id, "Drone");
             DataSource.drones.Add(d);
         }
 
@@ -209,9 +215,9 @@ namespace DalObject
         /// a function that returns the data about electricity of drones 
         /// </summary>
         /// <returns>array with electricity data</returns>
-       public double[] AskingElectricityUse()
+        public double[] AskingElectricityUse()
         {
-            double[] arr= new double[5];
+            double[] arr = new double[5];
             arr[0] = DataSource.Config.Availavble;
             arr[1] = DataSource.Config.Light;
             arr[2] = DataSource.Config.Medium;

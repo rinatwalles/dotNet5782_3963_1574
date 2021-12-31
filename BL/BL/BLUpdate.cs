@@ -1,15 +1,15 @@
-﻿using IBL.BO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLApi;
-
+using BO;
 
 namespace BL
 {
-    public partial class BL : BLApi.IBL
+     partial class BL : IBL
     {
         /// <summary>
         /// function that gets a drone and update it
@@ -20,12 +20,12 @@ namespace BL
         {//מסתמכים שאם הוא נמצר בDAL כבר הוספנו אותו לBL. לא להסתמך על זה?
             try
             {//changing drone in DAL
-                IDAL.DO.Drone doDrone = new IDAL.DO.Drone();
+                DO.Drone doDrone = new DO.Drone();
                 doDrone = idal.GetDrone(id);  
                 doDrone.Model = model;
                 idal.DroneUpdate(doDrone);
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -47,7 +47,7 @@ namespace BL
         {
             try
             {
-                IDAL.DO.Customer doCustomer = new IDAL.DO.Customer();
+                DO.Customer doCustomer = new DO.Customer();
                 doCustomer = idal.GetCustomer(id);
                 if (name != "")                  //checking if inserts a value or pressed ENTER
                     doCustomer.Name = name;
@@ -55,7 +55,7 @@ namespace BL
                     doCustomer.Phone = phone;
                 idal.CustomerUpdate(doCustomer);
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -66,14 +66,14 @@ namespace BL
         /// </summary>
         /// <param name="boDrone">BL drone</param>
         /// <returns>DAL station</returns>
-        private IDAL.DO.Station minStationDistance(IBL.BO.Drone boDrone)
+        private DO.Station minStationDistance(BO.Drone boDrone)
         {
-            IDAL.DO.Station minStation = new IDAL.DO.Station();
+            DO.Station minStation = new DO.Station();
             try
             { 
                 double minDistance = 1000000;
                 Location sLocation = new Location { };
-                foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
+                foreach (DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
                 {
                     sLocation.Latitude = item.Latitude;
                     sLocation.Longitude = item.Longitude;
@@ -88,7 +88,7 @@ namespace BL
                 if (minDistance == 1000000)
                     throw new notEnoughFuelInDrone(boDrone.Id, "Drone");
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -103,11 +103,11 @@ namespace BL
         {
             try 
             {
-                IBL.BO.Drone boDrone = GetDrone(id);
+                BO.Drone boDrone = GetDrone(id);
                 if (boDrone.DroneStatus != DroneStatuses.Available)
                     throw new DeliveryProblems(boDrone.Id, "The drone doesn't available");
 
-                IDAL.DO.Station minStation = minStationDistance(boDrone);
+                DO.Station minStation = minStationDistance(boDrone);
                 Location sLocation = new Location { };
                 DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
                 ListBLDrones.RemoveAll(d => d.Id == id);
@@ -121,12 +121,12 @@ namespace BL
                 ListBLDrones.Add(dtl);
                 minStation.AvailableChargeSlots--;
                 idal.StationUpdate(minStation);
-                IDAL.DO.DroneCharge dc = new IDAL.DO.DroneCharge();
+                DO.DroneCharge dc = new DO.DroneCharge();
                 dc.StationId = minStation.Id;
                 dc.DroneId = id;
                 idal.DroneChargeAddition(dc);
             }
-           catch(DAL.MissingIdException ex)
+           catch(MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -140,10 +140,10 @@ namespace BL
         /// <returns>closest station</returns>
         private Location minStationDistance(Location location)
         {
-            IDAL.DO.Station minStation = new IDAL.DO.Station();
+            DO.Station minStation = new DO.Station();
             double minDistance = 1000000;
             Location sLocation = new Location { };
-            foreach (IDAL.DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
+            foreach (DO.Station item in idal.GetStationByPredicate(st => st.AvailableChargeSlots > 0))  //searching the closest station to the sender
             {
                 sLocation.Latitude = item.Latitude;
                 sLocation.Longitude = item.Longitude;
@@ -168,17 +168,17 @@ namespace BL
         {
             try
             {
-                IBL.BO.Drone boDrone = GetDrone(id);
+                BO.Drone boDrone = GetDrone(id);
                 if (boDrone.DroneStatus != DroneStatuses.Available)
                     throw new DeliveryProblems(boDrone.Id, "The drone doesn't available");
 
                 Priorities maxPriority = Priorities.Regular;
                 double minDistance = 10000000;//מקווה שזה לגיטמי ככה להגדיר מינימום מה גם שאני לא יודעת סדרי גודל 
                 double droneToSender, senderToTarget, targetToStation;
-                IDAL.DO.Parcel chosenOne = new IDAL.DO.Parcel();
+                DO.Parcel chosenOne = new DO.Parcel();
                 int counter = 0;
 
-                foreach (IDAL.DO.Parcel item in idal.GetParcelByPredicate(par => (int)par.Weight <= (int)boDrone.Weight))
+                foreach (DO.Parcel item in idal.GetParcelByPredicate(par => (int)par.Weight <= (int)boDrone.Weight))
                 {
                     droneToSender = getDistance(GetCustomer(item.SenderId).Location, boDrone.Location);
                     senderToTarget = getDistance(GetCustomer(item.SenderId).Location, GetCustomer(item.TargetId).Location);
@@ -206,7 +206,7 @@ namespace BL
                 else
                     throw new DeliveryProblems(id, "can't join parcel to drone");
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -222,7 +222,7 @@ namespace BL
         {
             try
             {
-                IDAL.DO.Station doStation = new IDAL.DO.Station();
+                DO.Station doStation = new DO.Station();
                 doStation = idal.GetStation(id);
                 if (name != "")
                     doStation.Name = name;
@@ -230,7 +230,7 @@ namespace BL
                     doStation.AvailableChargeSlots = Int32.Parse(allChargingPositions) - idal.CountDroneCharge(id).Count();
                 idal.StationUpdate(doStation);
             }
-            catch (DAL.MissingIdException ex)
+            catch (MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -245,26 +245,26 @@ namespace BL
         {
             try
             {
-                IBL.BO.DroneToList dron = new IBL.BO.DroneToList();
+                BO.DroneToList dron = new BO.DroneToList();
                 dron = ListBLDrones.Find(d => d.Id == droneId);
-                if (dron.DroneStatus != IBL.BO.DroneStatuses.Maintenance)   //cant be released
+                if (dron.DroneStatus != BO.DroneStatuses.Maintenance)   //cant be released
                     throw new DeliveryProblems(droneId, "Drone not in maintance status");
                 dron.BatteryStatus += array[1 + (int)dron.Weight] * (t.TotalMinutes / 60);  //time of charging
-                dron.DroneStatus = IBL.BO.DroneStatuses.Available;
+                dron.DroneStatus = BO.DroneStatuses.Available;
                 //updating the BL list
                 ListBLDrones.RemoveAll(d => d.Id == droneId);
                 ListBLDrones.Add(dron);
 
                 //adding one available station
-                IDAL.DO.DroneCharge dc = idal.GetDroneCharge(dron.Id);
-                IDAL.DO.Station stat = idal.GetStation(dc.StationId);
+                DO.DroneCharge dc = idal.GetDroneCharge(dron.Id);
+                DO.Station stat = idal.GetStation(dc.StationId);
                 stat.AvailableChargeSlots++;
                 idal.StationUpdate(stat);
 
                 //deleteing the drone charge from the list
                 idal.DroneChargesDelete(dc);
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -279,15 +279,15 @@ namespace BL
             try
             {
                 DateTime t = DateTime.MinValue;
-                IBL.BO.DroneToList dron = new IBL.BO.DroneToList();
+                BO.DroneToList dron = new BO.DroneToList();
                 dron = ListBLDrones.Find(d => d.Id == droneId);
-                IDAL.DO.Parcel parc = idal.GetParcel(dron.ParcelNumber);
+                DO.Parcel parc = idal.GetParcel(dron.ParcelNumber);
                 if (parc.PickedUpTime != t)
                     throw new DeliveryProblems(droneId, "Drone already picked up");
                 Location locat = new Location();
                 locat = dron.Location;              //current location of drone
 
-                IDAL.DO.Customer sender = idal.GetCustomer(parc.SenderId);    //the location of the sender
+                DO.Customer sender = idal.GetCustomer(parc.SenderId);    //the location of the sender
                 dron.BatteryStatus = idal.DistanceCalculate(sender.Longitude, sender.Latitude, locat.Longitude, locat.Latitude) * array[1 + (int)dron.Weight]; //distance between the sender and the current location
                 locat.Latitude = sender.Latitude;
                 locat.Longitude = sender.Longitude;
@@ -301,7 +301,7 @@ namespace BL
                 ListBLDrones.Add(dron);
 
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -315,8 +315,8 @@ namespace BL
         {
             try
             {
-                IBL.BO.Drone boDrone = GetDrone(id);
-                IDAL.DO.Parcel doParcel = idal.GetOneParcelByPredicate(p => p.DroneId == id);
+                BO.Drone boDrone = GetDrone(id);
+                DO.Parcel doParcel = idal.GetOneParcelByPredicate(p => p.DroneId == id);
                 //IBL.BO.Parcel boParcel = getParcel(doParcel.Id);
                 if (getParcelState(doParcel.Id) == ParcelStates.Delivered)
                     throw new DeliveryProblems(id, "The drone didn't picked up the parcel or alredy delivered it");
@@ -331,7 +331,7 @@ namespace BL
                 //updating the BL list
                 ListBLDrones.Add(dtl);
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }

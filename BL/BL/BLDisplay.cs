@@ -1,14 +1,15 @@
-﻿using IBL.BO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLApi;
+using BO;
 
 namespace BL
 {
-    public partial class BL : BLApi.IBL
+    partial class BL : IBL
     {
         /// <summary>
         ///  a function that gets an id of a station returns the station
@@ -17,10 +18,10 @@ namespace BL
         /// <returns></returns>
         public Station GetStation(int id)
         {
-            IBL.BO.Station boBaseStation = new IBL.BO.Station();
+            BO.Station boBaseStation = new BO.Station();
             try
             {
-                IDAL.DO.Station doStation = idal.GetStation(id);
+                DO.Station doStation = idal.GetStation(id);
                 boBaseStation.Id = doStation.Id;
                 boBaseStation.Name = doStation.Name;
                 boBaseStation.Location = new Location
@@ -31,7 +32,7 @@ namespace BL
                 boBaseStation.AvailableChargeSlots = doStation.AvailableChargeSlots;
                 boBaseStation.DroneCharging = GetDroneChargingPerStation(id);
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -45,21 +46,21 @@ namespace BL
         /// <returns></returns>
         public Drone GetDrone(int id)
         {
-            IBL.BO.Drone boDrone = new IBL.BO.Drone();
+            BO.Drone boDrone = new BO.Drone();
             try
             {
-                IDAL.DO.Drone doDrone = idal.GetDrone(id);
+                DO.Drone doDrone = idal.GetDrone(id);
                 boDrone.Id = doDrone.Id;
                 boDrone.Model = doDrone.Model;
-                boDrone.Weight = (IBL.BO.WeightCategories)doDrone.Weight;
-                IBL.BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
+                boDrone.Weight = (BO.WeightCategories)doDrone.Weight;
+                BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
                 boDrone.BatteryStatus = dtl.BatteryStatus;
                 boDrone.DroneStatus = dtl.DroneStatus;
                 boDrone.Location = dtl.Location;
                 //boDrone.ParcelInDelivery מה עם זה
-                if (boDrone.DroneStatus == IBL.BO.DroneStatuses.Delivery)
+                if (boDrone.DroneStatus == BO.DroneStatuses.Delivery)
                 {
-                    IDAL.DO.Parcel boParcel = idal.getParcelByDroneId(id);
+                    DO.Parcel boParcel = idal.getParcelByDroneId(id);
                     //IDAL.DO.Customer boSender = idal.getParcelByDroneId(id);
                     boDrone.ParcelInDelivery = new ParcelInDelivery
                     {
@@ -93,7 +94,7 @@ namespace BL
 
                 }
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -120,7 +121,7 @@ namespace BL
         {
             try
             {
-                IDAL.DO.Parcel doParcel = idal.GetParcel(id);
+                DO.Parcel doParcel = idal.GetParcel(id);
                 if (doParcel.RequestedTime == DateTime.MinValue)
                     return ParcelStates.Creation;
                 else if (DateTime.MinValue == doParcel.ScheduledTime)
@@ -132,7 +133,7 @@ namespace BL
                 else 
                     return ParcelStates.Delivered;
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -145,14 +146,14 @@ namespace BL
         /// <returns></returns>
         public Customer GetCustomer(int id)
         {
-            IBL.BO.Customer boCustomer = new IBL.BO.Customer();
+            BO.Customer boCustomer = new BO.Customer();
             try
             {
-                IDAL.DO.Customer doCustomerd = idal.GetCustomer(id);
+                DO.Customer doCustomerd = idal.GetCustomer(id);
                 boCustomer.Id = doCustomerd.Id;
                 boCustomer.Name = doCustomerd.Name;
                 boCustomer.Phone = doCustomerd.Phone; 
-                IBL.BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
+                BO.DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
                 boCustomer.Location = new Location
                 {
                     Latitude = doCustomerd.Latitude,
@@ -162,7 +163,7 @@ namespace BL
                 boCustomer.ParcelsToCustomer = GetParcelsToCustomer(id);
 
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -178,7 +179,7 @@ namespace BL
         {
             try
             {
-                IDAL.DO.Customer c = idal.GetCustomer(id);
+                DO.Customer c = idal.GetCustomer(id);
                 return
                 from item in idal.AllParcel()
                 where item.SenderId == id
@@ -187,8 +188,8 @@ namespace BL
                 select new ParcelAtCustomer
                 {
                     Id = item.Id,//id of parcel
-                    Weight = (IBL.BO.WeightCategories)item.Weight,
-                    Priority = (IBL.BO.Priorities)item.Priority,
+                    Weight = (BO.WeightCategories)item.Weight,
+                    Priority = (BO.Priorities)item.Priority,
                     ParcelState = getParcelState(item.Id),
                     customer = new CustomerOfParcel
                     {
@@ -198,7 +199,7 @@ namespace BL
                 };
             }
 
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -213,7 +214,7 @@ namespace BL
         {
             try
             {
-                IDAL.DO.Customer c = idal.GetCustomer(id);
+                DO.Customer c = idal.GetCustomer(id);
                 return
                 from item in idal.AllParcel()
                 where item.TargetId == id
@@ -222,8 +223,8 @@ namespace BL
                 select new ParcelAtCustomer
                 {
                     Id = item.Id,//id of parcel
-                Weight = (IBL.BO.WeightCategories)item.Weight,
-                    Priority = (IBL.BO.Priorities)item.Priority,
+                Weight = (BO.WeightCategories)item.Weight,
+                    Priority = (BO.Priorities)item.Priority,
                     ParcelState = getParcelState(item.Id),
                 customer = new CustomerOfParcel
                     {
@@ -233,7 +234,7 @@ namespace BL
 
                 };
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -267,13 +268,13 @@ namespace BL
             try
             {
                 CustomerOfParcel cp = new CustomerOfParcel();
-                IDAL.DO.Customer doCast = new IDAL.DO.Customer();
+                DO.Customer doCast = new DO.Customer();
                 doCast = idal.GetCustomer(id);
                 cp.Name = doCast.Name;
                 cp.Id = id;
                 return cp;
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
@@ -286,10 +287,10 @@ namespace BL
         /// <returns></returns>
         public Parcel GetParcel(int id)
         {
-            IBL.BO.Parcel boParcel = new IBL.BO.Parcel();
+            BO.Parcel boParcel = new BO.Parcel();
             try
             {
-                IDAL.DO.Parcel doParcel = idal.GetParcel(id);
+                DO.Parcel doParcel = idal.GetParcel(id);
                 boParcel.Id = doParcel.Id;
                 boParcel.Sender = new CustomerOfParcel
                 {
@@ -316,7 +317,7 @@ namespace BL
                 boParcel.DeliveredTime = doParcel.DeliveredTime;
 
             }
-            catch (DAL.MissingIdException ex)
+            catch (DO.MissingIdException ex)
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }

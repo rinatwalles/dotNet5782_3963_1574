@@ -1,16 +1,17 @@
-﻿using IBL.BO;
+﻿
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using BLApi;
+using BO;
 //the partial class of showing the lists
 
 
 namespace BL
 {
-    public partial class BL : BLApi.IBL
+     partial class BL : IBL
     {
         /// <summary>
         /// a function that returns all the stations
@@ -77,7 +78,7 @@ namespace BL
         private int numParcelsSent(int id, ParcelStates p)
         {
             int num = 0;
-            foreach (IDAL.DO.Parcel item in idal.AllParcel())
+            foreach (DO.Parcel item in idal.AllParcel())
             {
                 if (getParcelState(item.Id) == p)
                     num++;

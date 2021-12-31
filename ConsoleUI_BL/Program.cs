@@ -1,11 +1,11 @@
-﻿using System;
+﻿using BlApi;
+using BLApi;
+using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using IDAL.DO;
-using DalObject;
-using IBL.BO;
 
 namespace ConsoleUI_BL
 {
@@ -18,16 +18,17 @@ namespace ConsoleUI_BL
         enum Show { Station, Drone, Customer, Parcel, ParcelWithoutDrone, AvilabaleStations };//enum for show options
         enum Weigth { Light, Medium, Heavy };
         enum Priorities { Regular, Fast, Emergency };
+
+        static IBL ibl = BlFactory.GetBl();
         static void Main(string[] args)
         {
-
-            BLApi.IBL ibl = new BL.BL();
+           
             Option o;
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for exit");
             string st = Console.ReadLine();
             bool b = Option.TryParse(st, out o);
 
-            IBL.BO.Location locat = new IBL.BO.Location()
+            Location locat = new Location()
             {
                 Longitude = 0,
                 Latitude = 0
@@ -51,7 +52,7 @@ namespace ConsoleUI_BL
                                     case Add.Station:
                                         {
                                             Console.WriteLine("Insert id, name, AvilableChargeSlotsNumber,Longitude, Latitude");
-                                            IBL.BO.Station stat = new IBL.BO.Station()
+                                            Station stat = new Station()
                                             {
                                                 Id = int.Parse(System.Console.ReadLine()),
                                                 Name = System.Console.ReadLine(),
@@ -67,7 +68,7 @@ namespace ConsoleUI_BL
                                     case Add.Dron:
                                         {
                                             Console.WriteLine("Insert id, model and Station ID");
-                                            IBL.BO.Drone dron = new IBL.BO.Drone()
+                                            Drone dron = new Drone()
                                             {
                                                 Id = int.Parse(System.Console.ReadLine()),
                                                 Model = System.Console.ReadLine()
@@ -75,14 +76,14 @@ namespace ConsoleUI_BL
                                             int statId = int.Parse(System.Console.ReadLine());
                                             Console.WriteLine("insert maximum weight: light-0, medium=1, heavy=2");
                                             int wght = int.Parse(System.Console.ReadLine());
-                                            dron.Weight = (IBL.BO.WeightCategories)wght;
+                                            dron.Weight = (WeightCategories)wght;
                                             ibl.AddDrone(dron, statId);
                                             break;
                                         }
                                     case Add.Customer:
                                         {
                                             Console.WriteLine("Insert id, name, phone number, Longitude,Latitude ");
-                                            IBL.BO.Customer cust = new IBL.BO.Customer()
+                                            Customer cust = new Customer()
                                             {
                                                 Id = int.Parse(System.Console.ReadLine()),
                                                 Name = System.Console.ReadLine(),
@@ -105,10 +106,10 @@ namespace ConsoleUI_BL
                                             Console.WriteLine("insert priority: Regular-0, Fast=1, Emergency=2");
                                             int prior = int.Parse(System.Console.ReadLine());
 
-                                            IBL.BO.Parcel parc = new IBL.BO.Parcel()
+                                            Parcel parc = new Parcel()
                                             {
-                                                Weight = (IBL.BO.WeightCategories)wght,
-                                                Priority = (IBL.BO.Priorities)prior
+                                                Weight = (WeightCategories)wght,
+                                                //Priority = (Priorities)prior
                                             };
                                             ibl.AddParcel(parc, IdSend, IdReceive);
                                             break;
@@ -208,7 +209,7 @@ namespace ConsoleUI_BL
                                             Console.WriteLine("insert station id number");
                                             st = Console.ReadLine();
                                             b = int.TryParse(st, out id);
-                                            IBL.BO.Station bs = ibl.GetStation(id);
+                                            Station bs = ibl.GetStation(id);
                                             Console.WriteLine(bs);
                                             Console.WriteLine("The drones in charge are:");
                                             foreach(DroneCharging dc in bs.DroneCharging)
@@ -220,7 +221,7 @@ namespace ConsoleUI_BL
                                             Console.WriteLine("insert drone id number");
                                             st = Console.ReadLine();
                                             b = int.TryParse(st, out id);
-                                            IBL.BO.Drone dr = ibl.GetDrone(id);
+                                            Drone dr = ibl.GetDrone(id);
                                             Console.WriteLine(dr);
                                             break;
                                         }
@@ -229,7 +230,7 @@ namespace ConsoleUI_BL
                                             Console.WriteLine("insert customer id number");
                                             st = Console.ReadLine();
                                             b = int.TryParse(st, out id);
-                                            IBL.BO.Customer c = ibl.GetCustomer(id);
+                                            Customer c = ibl.GetCustomer(id);
                                             Console.WriteLine(c);
                                             Console.WriteLine("The parcels From the customer:");
                                             foreach (ParcelAtCustomer pac in c.ParcelsFromCustomer)
@@ -244,7 +245,7 @@ namespace ConsoleUI_BL
                                             Console.WriteLine("insert parcel id number");
                                             st = Console.ReadLine();
                                             b = int.TryParse(st, out id);
-                                            IBL.BO.Parcel p = ibl.GetParcel(id);
+                                            Parcel p = ibl.GetParcel(id);
                                             Console.WriteLine(p);
                                             break;
                                         }

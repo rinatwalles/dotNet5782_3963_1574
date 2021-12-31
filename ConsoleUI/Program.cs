@@ -1,10 +1,11 @@
-﻿using System;
+﻿using DalApi;
+using DaLApi;
+using DO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Dal;
-using DO;
 
 namespace ConsoleUI
 {
@@ -16,9 +17,10 @@ namespace ConsoleUI
         enum Display { Station, Drone, Customer, Parcel };//enum for display options
         enum Show { Station, Drone, Customer, Parcel, ParcelWithoutDrone, AvilabaleStations };//enum for show options
         enum Distance { Station, Customer }//enum for distance options
+
+        static IDAL dall = DalFactory.GetDal();
         static void Main(string[] args)
         {
-            DalObject dall = new DalObject();
             Console.WriteLine("insert:\n 0 for addtion\n 1 for update\n 2 for display\n 3 for showing\n 4 for distance\n 5 for exit");
             string st = Console.ReadLine();
             Option x;
