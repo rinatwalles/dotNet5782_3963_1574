@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="StationWindow" Height="450" Width="800">
+        Title="StationWindow" Height="450" Width="800"  Background="{StaticResource MyButtonBackground}">
     <Grid>
         <Grid x:Name="stationGrid"  HorizontalAlignment="Left" Margin="208,90,0,0" VerticalAlignment="Top" Height="167">
             <Grid.ColumnDefinitions>
@@ -20,21 +20,21 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Available Charge Slots:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="availableChargeSlotsTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding AvailableChargeSlots, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="availableChargeSlotsTextBox_TextChanged"/>
+            <TextBox x:Name="availableChargeSlotsTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding AvailableChargeSlots, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="availableChargeSlotsTextBox_TextChanged"/>
             <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="idTextBox_TextChanged"/>
+            <TextBox x:Name="idTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="idTextBox_TextChanged"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="nameTextBox_TextChanged"/>
+            <TextBox x:Name="nameTextBox" PreviewTextInput="EnglishLettersValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="nameTextBox_TextChanged"/>
             <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="latitudeTextBox_TextChanged"/>
+            <TextBox x:Name="latitudeTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="latitudeTextBox_TextChanged"/>
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
+            <TextBox x:Name="longitudeTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
             <Label Content="Drone Charge Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,38.8,0,-28.8" Grid.Row="5" VerticalAlignment="Center"/>
             <TextBox x:Name="DroneChargeId" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,42.8,0,-29.8" Grid.Row="4" Text="{Binding DroneCharging.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Drone Charge Battery Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,70.8,0,-60.8" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="DroneChargeBattery" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,74.8,0,-61.8" Grid.Row="4" Text="{Binding DroneCharging.BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
-        <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="599,107,0,0" VerticalAlignment="Top" Height="45" Width="108" Click="OptionButtun_Click"/>
-        <Button x:Name="CloseButtun" Content="Close" HorizontalAlignment="Left" Margin="599,174,0,0" VerticalAlignment="Top" Height="43" Width="108" Click="CloseButtun_Click"/>
+        <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="599,107,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click"/>
+        <Button x:Name="CloseButtun" Content="Close" HorizontalAlignment="Left" Margin="599,174,0,0" VerticalAlignment="Top"  Click="CloseButtun_Click"/>
     </Grid>
 </Window>

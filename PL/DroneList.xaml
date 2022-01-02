@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DroneList" Height="450" Width="800" Activated="Window_Activated">
+        Title="DroneList" Height="450" Width="800" Activated="Window_Activated"         Background="{StaticResource MyButtonBackground}">
     <Grid Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
@@ -14,13 +14,7 @@
             <ColumnDefinition Width="33*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
-
-        <Grid.Background>
-            <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
-                <GradientStop Color="#FFF9FAF9"/>
-                <GradientStop Color="#FFA4E7B3" Offset="1"/>
-            </LinearGradientBrush>
-        </Grid.Background>
+        
         <Grid.RowDefinitions>
             <RowDefinition Height="48*"/>
             <RowDefinition Height="359*"/>
@@ -54,10 +48,10 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add New Drone" HorizontalAlignment="Left" Margin="651,221,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal" Grid.ColumnSpan="3" Grid.Column="1"/>
-        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="651,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal" Grid.ColumnSpan="3" Grid.Column="1">
+        <Button Content="Add New Drone" HorizontalAlignment="Left" Margin="651,221,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"  Grid.ColumnSpan="3" Grid.Column="1"/>
+        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="651,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Grid.ColumnSpan="3" Grid.Column="1">
 
         </Button>
-        <Button Content="Group List" HorizontalAlignment="Left" Margin="651,0,0,0" Grid.Row="1" VerticalAlignment="Center" Height="46" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal" Grid.ColumnSpan="3" Click="Button_Click_1" Grid.Column="1"/>
+        <Button Content="Group List" HorizontalAlignment="Left" Margin="651,0,0,0" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="3" Click="Button_Click_1" Grid.Column="1"/>
     </Grid>
 </Window>

@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ParcelToListWindow" Height="450" Width="800">
+        Title="ParcelToListWindow" Height="450" Width="800"         Background="{StaticResource MyButtonBackground}">
     <Grid>
         <DataGrid x:Name="parcelToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="198,78,93.6,142" RowDetailsVisibilityMode="VisibleWhenSelected">
             <DataGrid.Columns>
