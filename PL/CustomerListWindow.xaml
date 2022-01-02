@@ -7,6 +7,16 @@
         mc:Ignorable="d"
         Title="CustomerListWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid x:Name="customerToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="0,113,3.6,107" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="numOfParcelsDeliveredColumn" Binding="{Binding NumOfParcelsDelivered}" Header="Num Of Parcels Delivered" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="numOfParcelsReceivedColumn" Binding="{Binding NumOfParcelsReceived}" Header="Num Of Parcels Received" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="numOfParcelsSentAndSuppliedColumn" Binding="{Binding NumOfParcelsSentAndSupplied}" Header="Num Of Parcels Sent And Supplied" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="numOfParcelsSentNotSuppliedColumn" Binding="{Binding NumOfParcelsSentNotSupplied}" Header="Num Of Parcels Sent Not Supplied" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Phone" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>

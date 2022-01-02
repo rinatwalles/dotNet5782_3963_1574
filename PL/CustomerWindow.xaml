@@ -40,7 +40,7 @@
                 <DataGridTextColumn x:Name="FromCustomerNmaeCustomerColumn" Width="SizeToHeader" Header="Customer Name" Binding="{Binding customer.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="parcelToCustomerDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="400,240,32,45" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="parcelAtCustomerDataGrid_SelectionChanged">
+        <DataGrid x:Name="parcelToCustomerDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="400,240,42,45" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="parcelAtCustomerDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="ToCustomeridColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn x:Name="ToCustomerparcelStateColumn" Width="SizeToHeader" Header="Parcel State" Binding="{Binding ParcelState}"/>
