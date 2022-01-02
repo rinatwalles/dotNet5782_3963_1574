@@ -13,7 +13,7 @@ namespace BL
     sealed partial class BL : IBL
     {
         static readonly IBL instance = new BL();
-        public static IBL Instance { get => instance; }
+        public static IBL Instance { get => instance; }//problem here!
 
         internal IDAL idal = DalApi.DalFactory.GetDal();//האם כאן אמור להיות האתחול?
 

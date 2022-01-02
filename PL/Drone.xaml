@@ -79,8 +79,8 @@
                     <Label  x:Name="longitudeLabel" Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
                     <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,0,0,5" Grid.Row="7" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" Width="120"/>
                 </Grid>
-                <ComboBox x:Name="stationComboBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="239,324,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="stationComboBox_SelectionChanged"/>
-                <Label x:Name="stationLabel" Content="Station" HorizontalAlignment="Left" Margin="155,322,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.891,-0.243"/>
+                <ComboBox x:Name="stationComboBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="236,324,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="stationComboBox_SelectionChanged"/>
+                <Label x:Name="stationLabel" Content="Station" HorizontalAlignment="Left" Margin="141,322,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.891,-0.243"/>
 
             </Grid>
             <!--<ComboBox x:Name="WeightComboBox" Text="{Binding Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  HorizontalAlignment="Left" Margin="356,127,0,0" VerticalAlignment="Top" Width="120" FontFamily="Arial Black" FontWeight="Bold" SelectionChanged="WeightComboBox_SelectionChanged">
