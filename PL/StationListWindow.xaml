@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="StationListWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid x:Name="stationToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="88,81,257,139" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="availableCharginggSlotsNumberColumn" Binding="{Binding AvailableCharginggSlotsNumber}" Header="Available Chargingg Slots Number" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="rservedCharginggSlotsNumberColumn" Binding="{Binding RservedCharginggSlotsNumber}" Header="Rserved Chargingg Slots Number" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
