@@ -27,9 +27,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalXML", "DalXML\DalXML.csp
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DalFacade", "DalFacade\DalFacade.csproj", "{FB4976D6-5928-432E-B60A-0F472035B738}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{B0CADD08-CD3A-4F87-B22F-AE3A1AE6F7EF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{21A3E73D-84AB-49B6-B667-C3CC6D43CA70}"
 	ProjectSection(SolutionItems) = preProject
-		dal-config.xml = dal-config.xml
+		xml\dal-config.xml = xml\dal-config.xml
 	EndProjectSection
 EndProject
 Global
@@ -73,6 +73,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{21A3E73D-84AB-49B6-B667-C3CC6D43CA70} = {9038637D-35D9-4862-955A-DA33969A0463}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0526EBC5-73DD-4750-820C-268E012A4198}
