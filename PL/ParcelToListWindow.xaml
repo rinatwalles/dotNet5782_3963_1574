@@ -7,6 +7,41 @@
         mc:Ignorable="d"
         Title="ParcelToListWindow" Height="450" Width="800">
     <Grid>
-        
+        <DataGrid x:Name="parcelToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="198,78,93.6,142" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idReceiverColumn" Binding="{Binding Receiver.Id}" Header="Reciever Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="NameReceiverColumn" Binding="{Binding Receiver.Name}" Header="Receiver Name" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idSenderColumn" Binding="{Binding Sender.Id}" Header="Sender Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="NameSenderColumn" Binding="{Binding Sender.Name}" Header="Sender Name" Width="SizeToHeader"/>
+                <DataGridTemplateColumn x:Name="parcelStateColumn" Header="Parcel State" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox>
+                                <ComboBoxItem Content="{Binding ParcelState}"/>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="priorityColumn" Header="Priority" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox>
+                                <ComboBoxItem Content="{Binding Priority}"/>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+                <DataGridTemplateColumn x:Name="weightColumn" Header="Weight" Width="SizeToHeader">
+                    <DataGridTemplateColumn.CellTemplate>
+                        <DataTemplate>
+                            <ComboBox>
+                                <ComboBoxItem Content="{Binding Weight}"/>
+                            </ComboBox>
+                        </DataTemplate>
+                    </DataGridTemplateColumn.CellTemplate>
+                </DataGridTemplateColumn>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
