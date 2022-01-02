@@ -30,7 +30,8 @@ namespace PL
         option op;
         update up=update.charge;
         delivery del=delivery.Join;
-        public DroneWindow(BLApi.IBL newIbl)    //add constructor
+        string droneModel;
+        public DroneWindow(IBL.IBL newIbl)    //add constructor
         {
             InitializeComponent();
             ibl = newIbl;
@@ -71,6 +72,7 @@ namespace PL
             PLdDrone = d;
             op = option.Update;
             droneup.DataContext = PLdDrone ;
+            droneModel = d.Model;
 
             stationComboBox.Visibility = stationLabel.Visibility = Visibility.Collapsed;
 
@@ -151,7 +153,7 @@ namespace PL
                 }
             }
             else
-            {                ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+            {   ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
                 MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             }
@@ -180,7 +182,6 @@ namespace PL
             if (worked)
             {
                 MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-
                 this.Close();
             }
         }
@@ -213,7 +214,12 @@ namespace PL
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)    //close window botton
         {
+           if(op == option.Update)
+            {
+                txtModel.Text = droneModel;
+            }
             this.Close();
+
         }
 
         private void txtID_TextChanged_1(object sender, TextChangedEventArgs e)    //txtID textbox

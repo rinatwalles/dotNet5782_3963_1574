@@ -35,14 +35,7 @@ namespace PL
 
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            if(StatusSelector.SelectedIndex == -1&& WeightSelector.SelectedIndex==-1)
-                droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
-            else if (StatusSelector.SelectedIndex == -1)
-                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.Weight == (WeightCategories)WeightSelector.SelectedItem);
-            else if (WeightSelector.SelectedIndex == -1)
-                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (DroneStatuses)StatusSelector.SelectedItem);
-            else
-                droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (WeightCategories)WeightSelector.SelectedItem);
+            filterListDrones();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -50,8 +43,9 @@ namespace PL
             new PL.DroneWindow(ibl).Show();
         }
 
-        private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void filterListDrones()
         {
+
             if (StatusSelector.SelectedIndex == -1 && WeightSelector.SelectedIndex == -1)
                 droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
             else if (StatusSelector.SelectedIndex == -1)
@@ -60,6 +54,11 @@ namespace PL
                 droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (DroneStatuses)StatusSelector.SelectedItem);
             else
                 droneToListDataGrid.ItemsSource = ibl.GetAllDrones(dr => dr.DroneStatus == (DroneStatuses)StatusSelector.SelectedItem && dr.Weight == (WeightCategories)WeightSelector.SelectedItem);
+        }
+
+        private void WeightSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterListDrones();
         }
 
         private void droneToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
@@ -76,6 +75,7 @@ namespace PL
         private void Window_Activated(object sender, EventArgs e)
         {
             droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
+            filterListDrones();
         }
     }
 }
