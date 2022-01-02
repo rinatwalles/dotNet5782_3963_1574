@@ -29,5 +29,26 @@ namespace PL
             customerToListDataGrid.ItemsSource = ibl.GetAllCustomers();
             customerToListDataGrid.IsReadOnly = true;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new PL.CustomerWindow(ibl).Show();
+        }
+
+        private void closeButtun_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void customerToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            CustomerToList c = customerToListDataGrid.SelectedItem as CustomerToList;
+            new PL.CustomerWindow(ibl, c).Show();
+        }
+
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            customerToListDataGrid.ItemsSource = ibl.GetAllCustomers();
+        }
     }
 }

@@ -29,14 +29,19 @@ namespace PL
             InitializeComponent();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private void DronesWindow_Click(object sender, RoutedEventArgs e)
         {
             new PL.DroneListWindow(ibl).Show();
         }
 
-        private void Button_Click_1(object sender, RoutedEventArgs e)
+        private void CustomersWindow_Click(object sender, RoutedEventArgs e)
         {
             new PL.CustomerListWindow(ibl).Show();
+        }
+
+        private void StationsWindow_Click(object sender, RoutedEventArgs e)
+        {
+            new PL.StationListWindow(ibl).Show();
         }
     }
 }

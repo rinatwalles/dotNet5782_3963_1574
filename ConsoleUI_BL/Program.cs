@@ -57,7 +57,7 @@ namespace ConsoleUI_BL
                                                 Id = int.Parse(System.Console.ReadLine()),
                                                 Name = System.Console.ReadLine(),
                                                 AvailableChargeSlots = int.Parse(System.Console.ReadLine()),
-                                                DroneCharging = new System.Collections.Generic.List<DroneCharging>()//בטוח צריך?זה זה מה שהתכוונו?
+                                              // DroneCharging = new System.Collections.Generic.List<DroneCharging>()//בטוח צריך?זה זה מה שהתכוונו?
                                             };
                                             locat.Longitude = double.Parse(Console.ReadLine());
                                             locat.Latitude = double.Parse(Console.ReadLine());

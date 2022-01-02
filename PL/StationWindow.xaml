@@ -34,5 +34,7 @@
             <Label Content="Drone Charge Battery Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,70.8,0,-60.8" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="DroneChargeBattery" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,74.8,0,-61.8" Grid.Row="4" Text="{Binding DroneCharging.BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
+        <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="627,120,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="CloseButtun" Content="Close" HorizontalAlignment="Left" Margin="613,174,0,0" VerticalAlignment="Top" Height="32" Width="67" Click="CloseButtun_Click"/>
     </Grid>
 </Window>

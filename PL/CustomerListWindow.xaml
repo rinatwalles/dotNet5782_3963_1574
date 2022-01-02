@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="CustomerListWindow" Height="450" Width="800">
+        Title="CustomerListWindow" Height="450" Width="800" Activated="Window_Activated">
     <Grid>
-        <DataGrid x:Name="customerToListDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="0,113,3.6,107" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="customerToListDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="0,113,3.6,107" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="customerToListDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
@@ -18,6 +18,7 @@
                 <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Phone" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Button" HorizontalAlignment="Left" Margin="400,355,0,0" VerticalAlignment="Top" Height="43" Width="116"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="400,355,0,0" VerticalAlignment="Top" Height="43" Width="116" Click="Button_Click"/>
+        <Button x:Name="closeButtun" Content="Close" HorizontalAlignment="Left" Margin="590,355,0,0" VerticalAlignment="Top" Height="45" Width="105" Click="closeButtun_Click" />
     </Grid>
 </Window>

@@ -54,18 +54,90 @@ namespace PL
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
-            txtID.IsEnabled = false;
-            txtParcelID.IsEnabled = false;
-            txtBattery.IsEnabled = false;
-            WeightComboBox.IsEnabled = false;
-            StatusComboBox.IsEnabled = false;
+            idTextBox.IsEnabled = false;
             longitudeTextBox.IsEnabled = false;
             latitudeTextBox.IsEnabled = false;
 
         }
+        private bool buttunEnabled()
+        {
+            return idTextBox.Text != "" && nameTextBox.Text != "" && phoneTextBox.Text != "" && latitudeTextBox.Text != "" && longitudeTextBox.Text != "";
+        }
+
         private void idTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-           
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void phoneTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void latitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void OptionButtun_Click(object sender, RoutedEventArgs e)
+        {
+            bool addedSuccessfully = true;
+            if (op == 0)
+            {
+                Location locat = new Location()
+                {
+                    Longitude = double.Parse(longitudeTextBox.Text),
+                    Latitude = double.Parse(latitudeTextBox.Text)
+                };
+                Customer Cl = new Customer()
+                {
+                    Id = int.Parse(idTextBox.Text),
+                    Name = nameTextBox.Text,
+                    Phone= phoneTextBox.Text,
+                    Location = locat
+                };
+                try
+                {
+                    ibl.AddCustomer(Cl);
+                }
+                catch (DuplicateIdException ex)
+                {
+                    addedSuccessfully = false;
+                    MessageBox.Show("The Customer id belong to another Customer. insert another one");
+                    idTextBox.Text = "";
+                }
+                if (addedSuccessfully)
+                {
+                    MessageBox.Show("The Customer added successfully");
+                    this.Close();
+                }
+            }
+            else
+            {
+                ibl.UpdateCustomer(PLcustomer.Id, nameTextBox.Text, phoneTextBox.Text);
+                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                this.Close();
+            }
+        }
+
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
