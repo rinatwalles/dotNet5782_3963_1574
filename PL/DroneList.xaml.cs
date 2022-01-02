@@ -30,7 +30,6 @@ namespace PL
             droneToListDataGrid.IsReadOnly = true;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-           
         }
 
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -76,6 +75,14 @@ namespace PL
         {
             droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
             filterListDrones();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<DroneToList> result = (IEnumerable<DroneToList>)(from drone in ibl.GetAllDrones()
+                                                      group drone by drone.DroneStatus into gs
+                                                      select gs);
+            droneToListDataGrid.ItemsSource = result;
         }
     }
 }

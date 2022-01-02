@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="CustomerWindow" Height="450" Width="800">
     <Grid>
-        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="31,70,0,0" VerticalAlignment="Top">
+        <Grid x:Name="customerDetails" HorizontalAlignment="Left" Margin="31,70,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
@@ -20,7 +20,7 @@
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
             <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="idTextBox_TextChanged"/>
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Phone:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
@@ -50,5 +50,8 @@
                 <DataGridTextColumn x:Name="ToCustomerNmaeCustomerColumn" Width="SizeToHeader" Header="Customer Name" Binding="{Binding customer.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
+        <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="90,350,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+        <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="233,350,0,0" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+
     </Grid>
 </Window>

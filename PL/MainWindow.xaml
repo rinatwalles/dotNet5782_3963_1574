@@ -16,7 +16,8 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Button Content="List Of Drones" HorizontalAlignment="Center" Margin="0,284,0,0" VerticalAlignment="Top" Click="Button_Click" Height="93" Width="232" Background="#FFDC2711" FontSize="24" FontFamily="Arial Black" FontWeight="Bold"/>
+        <Button Content="Drones" HorizontalAlignment="Left" Margin="39,289,0,0" VerticalAlignment="Top" Click="Button_Click" Height="72" Width="205" Background="#FFDC2711" FontSize="24" FontFamily="Arial Black" FontWeight="Bold"/>
+        <Button Content="Customers" HorizontalAlignment="Left" Margin="278,289,0,0" VerticalAlignment="Top" Height="56" Width="134" Click="Button_Click_1"/>
         <Grid Margin="181,36,180,181">
             <Grid.Background>
                 <ImageBrush ImageSource="/dronetolist.jpg"/>

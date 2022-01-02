@@ -11,23 +11,17 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using BO;
 
 namespace PL
 {
     /// <summary>
-    /// Interaction logic for CustomerListWindow.xaml
+    /// Interaction logic for ParcelToListWindow.xaml
     /// </summary>
-    public partial class CustomerListWindow : Window
+    public partial class ParcelToListWindow : Window
     {
-        private BLApi.IBL ibl;
-        public CustomerListWindow(BLApi.IBL newIbl)
+        public ParcelToListWindow()
         {
             InitializeComponent();
-            ibl = newIbl;
-            IEnumerable<CustomerToList> lst = ibl.GetAllCustomers();
-            customerToListDataGrid.ItemsSource = ibl.GetAllCustomers();
-            customerToListDataGrid.IsReadOnly = true;
         }
     }
 }

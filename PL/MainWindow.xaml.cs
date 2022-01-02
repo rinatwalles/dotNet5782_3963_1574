@@ -33,5 +33,10 @@ namespace PL
         {
             new PL.DroneListWindow(ibl).Show();
         }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            new PL.CustomerListWindow(ibl).Show();
+        }
     }
 }
