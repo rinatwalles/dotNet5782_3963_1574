@@ -35,77 +35,104 @@ namespace PL
             this.Title = "Drone Addition";
             OptionButtun.Content = "ADD The Drone";
 
-            ParcelIDLabel.Visibility = txtParcelID.Visibility = Visibility.Collapsed;
-            BatteryLabel.Visibility = txtBattery.Visibility = Visibility.Collapsed;
-            StatusLabel.Visibility = StatusComboBox.Visibility = Visibility.Collapsed;
-            latitudeTextBox.Visibility = latitudeLabel.Visibility = Visibility.Collapsed;
-            longitudeTextBox.Visibility = longitudeLabel.Visibility = Visibility.Collapsed;
-
-            UpdateButton.Visibility = Visibility.Collapsed;
-            DeliveryButton.Visibility = Visibility.Collapsed;
-
             OptionButtun.IsEnabled = false;
         }
 
-        public StationWindow(BLApi.IBL newIbl, DroneToList d)//update constructor
+        public StationWindow(BLApi.IBL newIbl, StationToList s)//update constructor
         {
             InitializeComponent();
 
             ibl = newIbl;
-            PLdDrone = d;
+            PLStation = s;
             op = option.Update;
-            droneup.DataContext = PLdDrone;
-            droneModel = d.Model;
-
-            stationComboBox.Visibility = stationLabel.Visibility = Visibility.Collapsed;
-
+            stationGrid.DataContext = PLStation;
+           // droneModel = d.Model;
 
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
-
-            if (d.DroneStatus == DroneStatuses.Available)
-            {
-                UpdateButton.Content = "Charge Drone";
-                DeliveryButton.Content = "Join Parcel To Drone";
-                up = update.charge;
-                del = delivery.Join;
-            }
-            if (d.DroneStatus == DroneStatuses.Maintenance)
-            {
-                UpdateButton.Content = "Discharge Drone";
-                DeliveryButton.Visibility = Visibility.Collapsed;
-                up = update.disCharge;
-            }
-            if (d.DroneStatus == DroneStatuses.Delivery)
-            {
-                Parcel parcel = ibl.GetParcel(d.ParcelNumber);
-                if (parcel.PickedUpTime != DateTime.MinValue)
-                {
-                    UpdateButton.Visibility = Visibility.Collapsed;
-                    DeliveryButton.Content = "Supply Parcel By Drone";
-                    del = delivery.Supply;
-                }
-
-                else if (parcel.ScheduledTime != DateTime.MinValue)
-                {
-                    UpdateButton.Visibility = Visibility.Collapsed;
-                    DeliveryButton.Content = "Collecting Parcel By Drone";
-                    del = delivery.PickedUpParcel;
-                }
-            }
-            txtID.IsEnabled = false;
-            txtParcelID.IsEnabled = false;
-            txtBattery.IsEnabled = false;
-            WeightComboBox.IsEnabled = false;
-            StatusComboBox.IsEnabled = false;
-            longitudeTextBox.IsEnabled = false;
-            latitudeTextBox.IsEnabled = false;
 
         }
 
         private void CloseButtun_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
+        }
+
+        private bool buttunEnabled()
+        {
+            return idTextBox.Text != "" && nameTextBox.Text != "" && availableChargeSlotsTextBox.Text != "" && latitudeTextBox.Text != "" && longitudeTextBox.Text != "";
+        }
+
+        private void availableChargeSlotsTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void idTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void nameTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void latitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void longitudeTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (buttunEnabled())
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void OptionButtun_Click(object sender, RoutedEventArgs e)
+        {
+
+            bool addedSuccessfully = true;
+            if (op == 0)
+            {
+                Location locat = new Location()
+                {
+                    Longitude = double.Parse(longitudeTextBox.Text),
+                    Latitude = double.Parse(latitudeTextBox.Text)
+                };
+                Station Vl = new Station()
+                {
+                    Id = int.Parse(idTextBox.Text),
+                    Name = nameTextBox.Text,
+                    AvailableChargeSlots = int.Parse(availableChargeSlotsTextBox.Text),
+                    Location = locat
+                };
+                try
+                {
+                    ibl.AddStation(Vl);
+                }
+                catch (DuplicateIdException ex)
+                {
+                    addedSuccessfully = false;
+                    MessageBox.Show("The Station id belong to another Station. insert another one");
+                    idTextBox.Text = "";
+                }
+                if (addedSuccessfully)
+                {
+                    MessageBox.Show("The Station added successfully");
+                    this.Close();
+                }
+            }
+            else
+            {
+                ibl.UpdateStation(PLStation.Id, nameTextBox.Text, availableChargeSlotsTextBox.Text);
+                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                this.Close();
+            } 
         }
     }
 }
