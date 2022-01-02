@@ -13,6 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using BO;
+//using BLApi;
 
 namespace PL
 {
@@ -31,7 +32,7 @@ namespace PL
         update up=update.charge;
         delivery del=delivery.Join;
         string droneModel;
-        public DroneWindow(IBL.IBL newIbl)    //add constructor
+        public DroneWindow(BLApi.IBL newIbl)    //add constructor
         {
             InitializeComponent();
             ibl = newIbl;
