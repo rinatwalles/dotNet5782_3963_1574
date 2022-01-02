@@ -44,7 +44,7 @@ namespace BL
                                                    Id = dodron.Id,
                                                    Model = dodron.Model,
                                                    Weight = (WeightCategories)dodron.Weight,
-                                                   ParcelNumber= rand.Next(1, 5)
+                                                   ParcelNumber= 0
                                                }).ToList(); ;
             Location locat = new Location();
             try
