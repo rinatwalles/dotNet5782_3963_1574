@@ -7,6 +7,48 @@
         mc:Ignorable="d"
         Title="CustomerWindow" Height="450" Width="800">
     <Grid>
-        
+        <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="31,70,0,0" VerticalAlignment="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+            <TextBox x:Name="nameTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Phone:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+            <TextBox x:Name="phoneTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="2" Text="{Binding Phone, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+            <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+            <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+        </Grid>
+        <DataGrid x:Name="parcelFromCustomerDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="400,31,42,238" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="parcelAtCustomerDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="idFromCustomerColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn x:Name="FromCustomerparcelStateColumn" Width="SizeToHeader" Header="Parcel State" Binding="{Binding ParcelState}"/>
+                <DataGridTextColumn x:Name="FromCustomerpriorityColumn" Width="SizeToHeader" Header="Priority" Binding="{Binding Priority}"/>
+                <DataGridTextColumn x:Name="FromCustomerweightColumn" Width="SizeToHeader" Header="Weight" Binding="{Binding Weight}"/>
+                <DataGridTextColumn x:Name="FromCustomerIdCustomerColumn" Width="SizeToHeader" Header="Customer Id" Binding="{Binding customer.Id}"/>
+                <DataGridTextColumn x:Name="FromCustomerNmaeCustomerColumn" Width="SizeToHeader" Header="Customer Name" Binding="{Binding customer.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <DataGrid x:Name="parcelToCustomerDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="400,240,32,45" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" SelectionChanged="parcelAtCustomerDataGrid_SelectionChanged">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="ToCustomeridColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
+                <DataGridTextColumn x:Name="ToCustomerparcelStateColumn" Width="SizeToHeader" Header="Parcel State" Binding="{Binding ParcelState}"/>
+                <DataGridTextColumn x:Name="ToCustomerpriorityColumn" Width="SizeToHeader" Header="Priority" Binding="{Binding Priority}"/>
+                <DataGridTextColumn x:Name="ToCustomerweightColumn" Width="SizeToHeader" Header="Weight" Binding="{Binding Weight}"/>
+                <DataGridTextColumn x:Name="ToCustomerIdCustomerColumn" Width="SizeToHeader" Header="Customer Id" Binding="{Binding customer.Id}"/>
+                <DataGridTextColumn x:Name="ToCustomerNmaeCustomerColumn" Width="SizeToHeader" Header="Customer Name" Binding="{Binding customer.Name}"/>
+            </DataGrid.Columns>
+        </DataGrid>
     </Grid>
 </Window>
