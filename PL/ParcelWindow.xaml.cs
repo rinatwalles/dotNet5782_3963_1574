@@ -23,6 +23,7 @@ namespace PL
         private BLApi.IBL ibl;
         enum option { Add, Update };
         option op;
+        Parcel PlParc;
         public ParcelWindow(BLApi.IBL newIbl)
         {
             InitializeComponent();
@@ -33,45 +34,105 @@ namespace PL
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
-            IEnumerable<CustomerToList> lst = ibl.GetAllCustomers();
             
 
 
             this.Title = "Parcel Addition";
             OptionButtun.Content = "ADD The Parcel";
 
-            //ParcelIDLabel.Visibility = txtParcelID.Visibility = Visibility.Collapsed;
-            //BatteryLabel.Visibility = txtBattery.Visibility = Visibility.Collapsed;
-            //StatusLabel.Visibility = StatusComboBox.Visibility = Visibility.Collapsed;
-            //latitudeTextBox.Visibility = latitudeLabel.Visibility = Visibility.Collapsed;
+            battaryStatusLabel.Visibility = battaryStatusTextBox.Visibility = Visibility.Collapsed;
+            idLabel.Visibility = idTextBox.Visibility = Visibility.Collapsed;
+            ReceiverNameLabel.Visibility = nameTextBox.Visibility = Visibility.Collapsed;
+            SenderNameLabel.Visibility = nameTextBox1.Visibility = Visibility.Collapsed;
             //longitudeTextBox.Visibility = longitudeLabel.Visibility = Visibility.Collapsed;
 
             //UpdateButton.Visibility = Visibility.Collapsed;
             //DeliveryButton.Visibility = Visibility.Collapsed;
 
-            //OptionButtun.IsEnabled = false;
+            idTextBox.IsEnabled = false;
+        }
+
+
+        public ParcelWindow(BLApi.IBL newIbl, ParcelToList parc)//update constructor
+        {
+            InitializeComponent();
+            priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
+            weightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+
+            ibl = newIbl;
+            PlParc = ibl.GetParcel(parc.Id);
+            op = option.Update;
+            parcelup.DataContext = PlParc;
+           
+
+            stationComboBox.Visibility = stationLabel.Visibility = Visibility.Collapsed;
+
+
+            this.Title = "Drone Update";
+            OptionButtun.Content = "Update The Drone";
+
+            if (d.DroneStatus == DroneStatuses.Available)
+            {
+                UpdateButton.Content = "Charge Drone";
+                DeliveryButton.Content = "Join Parcel To Drone";
+                up = update.charge;
+                del = delivery.Join;
+            }
+            if (d.DroneStatus == DroneStatuses.Maintenance)
+            {
+                UpdateButton.Content = "Discharge Drone";
+                DeliveryButton.Visibility = Visibility.Collapsed;
+                up = update.disCharge;
+            }
+            if (d.DroneStatus == DroneStatuses.Delivery)
+            {
+                Parcel parcel = ibl.GetParcel(d.ParcelNumber);
+                if (parcel.PickedUpTime != DateTime.MinValue)
+                {
+                    UpdateButton.Visibility = Visibility.Collapsed;
+                    DeliveryButton.Content = "Supply Parcel By Drone";
+                    del = delivery.Supply;
+                }
+
+                else if (parcel.ScheduledTime != DateTime.MinValue)
+                {
+                    UpdateButton.Visibility = Visibility.Collapsed;
+                    DeliveryButton.Content = "Collecting Parcel By Drone";
+                    del = delivery.PickedUpParcel;
+                }
+            }
+            txtID.IsEnabled = false;
+            txtParcelID.IsEnabled = false;
+            txtBattery.IsEnabled = false;
+            WeightComboBox.IsEnabled = false;
+            StatusComboBox.IsEnabled = false;
+            longitudeTextBox.IsEnabled = false;
+            latitudeTextBox.IsEnabled = false;
+
         }
         private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
         {
             bool addedSuccessfully = true;
             if (op == 0)
             {
-                Id = int.Parse(idTextBox.Text),
-                Drone Dl = new Drone()
+                
+                Parcel parc = new Parcel()
                 {
-                   
-                    Model = txtModel.Text,
-                    Weight = (WeightCategories)WeightComboBox.SelectedItem
+                    Weight = (WeightCategories)weightComboBox.SelectedItem,
+                    Priority = (Priorities)priorityComboBox.SelectedItem
                 };
+                int IdSend = int.Parse(idTextBox3.Text);
+                int IdReceive = int.Parse(idTextBox2.Text);
+                ibl.AddParcel(parc, IdSend, IdReceive);
                 try
                 {
-                    ibl.AddDrone(Dl, (int)stationComboBox.SelectedItem);
+                    ibl.AddParcel(parc, IdSend, IdReceive);
                 }
                 catch (DuplicateIdException ex)
                 {
                     addedSuccessfully = false;
                     MessageBox.Show("The Drone id belong to another drone. insert another one");
-                    txtID.Text = "";
+                    //txtID.Text = "";
                 }
                 if (addedSuccessfully)
                 {
