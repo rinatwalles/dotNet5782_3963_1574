@@ -44,7 +44,7 @@ namespace BL
                                                    Id = dodron.Id,
                                                    Model = dodron.Model,
                                                    Weight = (WeightCategories)dodron.Weight,
-                                                   ParcelNumber= 0
+                                                   ParcelNumber= 1
                                                }).ToList(); ;
             Location locat = new Location();
             try
@@ -70,12 +70,12 @@ namespace BL
                         Location closeStation = MinDistanceOfSation(locat);
 
                         calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
-                        item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
+                        item.BatteryStatus = 0.1 + 0.1;
 
                     }
                     else if (!idal.AllParcel().Any(parc => (parc.DroneId == item.Id)))    //not doing a delivery now
                     {
-                        item.DroneStatus = (DroneStatuses)(rand.Next(0, 2) * 2);    //0 or 2
+                        item.DroneStatus = (DroneStatuses)(1 * 2);    //0 or 2
                     }
                     
                     if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
@@ -84,7 +84,7 @@ namespace BL
                         locat.Longitude = stat.Longitude;
                         locat.Latitude = stat.Latitude;
                         item.Location = locat;
-                        item.BatteryStatus = rand.NextDouble() * 20;
+                        item.BatteryStatus = 0.1 * 20;
                         stat.AvailableChargeSlots--;
                         idal.StationUpdate(stat);
                         DO.DroneCharge dc = new DO.DroneCharge();
@@ -96,7 +96,7 @@ namespace BL
 
                     if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
                     {
-                    int randId = rand.Next(11, 16);
+                    int randId = 0;
                     DO.Parcel doParcel =idal.GetParcel(randId);    
                     DO.Customer cust = idal.GetCustomer(doParcel.SenderId);
                     locat.Latitude = cust.Latitude;
@@ -104,7 +104,7 @@ namespace BL
                     Location closeStation = MinDistanceOfSation(locat);
                     item.Location = closeStation;
                     double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
-                    item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
+                    item.BatteryStatus = 0.1 +0.1;
                             
                     }
                 }
