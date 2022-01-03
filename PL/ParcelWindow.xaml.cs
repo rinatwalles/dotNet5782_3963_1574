@@ -54,37 +54,36 @@ namespace PL
         private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
         {
             bool addedSuccessfully = true;
-            if (op == 0)
-            {
-                Id = int.Parse(idTextBox.Text),
-                Drone Dl = new Drone()
-                {
-                   
-                    Model = txtModel.Text,
-                    Weight = (WeightCategories)WeightComboBox.SelectedItem
-                };
-                try
-                {
-                    ibl.AddDrone(Dl, (int)stationComboBox.SelectedItem);
-                }
-                catch (DuplicateIdException ex)
-                {
-                    addedSuccessfully = false;
-                    MessageBox.Show("The Drone id belong to another drone. insert another one");
-                    txtID.Text = "";
-                }
-                if (addedSuccessfully)
-                {
-                    MessageBox.Show("The Drone added successfully");
-                    this.Close();
-                }
-            }
-            else
-            {
-                ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
-                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                this.Close();
-            }
+            //if (op == 0)
+            //{
+            //    Drone Dl = new Drone()
+            //    {
+            //        Id = int.Parse(idTextBox.Text),
+            //        Model = txtModel.Text,
+            //        Weight = (WeightCategories)WeightComboBox.SelectedItem
+            //    };
+            //    try
+            //    {
+            //        ibl.AddDrone(Dl, (int)stationComboBox.SelectedItem);
+            //    }
+            //    catch (DuplicateIdException ex)
+            //    {
+            //        addedSuccessfully = false;
+            //        MessageBox.Show("The Drone id belong to another drone. insert another one");
+            //        txtID.Text = "";
+            //    }
+            //    if (addedSuccessfully)
+            //    {
+            //        MessageBox.Show("The Drone added successfully");
+            //        this.Close();
+            //    }
+            //}
+            //else
+            //{
+            //    ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+            //    MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            //    this.Close();
+            //}
 
         }
     }

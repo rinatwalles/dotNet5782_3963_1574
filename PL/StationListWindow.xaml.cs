@@ -51,5 +51,13 @@ namespace PL
         {
             stationToListDataGrid.ItemsSource = ibl.GetAllStations();
         }
+
+        private void groupButtun_Click(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<StationToList> result = (IEnumerable<StationToList>)(from station in ibl.GetAllStations()
+                                                                         group station by station.AvailableCharginggSlotsNumber into gs
+                                                                         select gs);
+            stationToListDataGrid.ItemsSource = result;
+        }
     }
 }

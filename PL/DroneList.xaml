@@ -14,7 +14,7 @@
             <ColumnDefinition Width="33*"/>
             <ColumnDefinition Width="20*"/>
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
             <RowDefinition Height="48*"/>
             <RowDefinition Height="359*"/>
@@ -52,6 +52,6 @@
         <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="651,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Grid.ColumnSpan="3" Grid.Column="1">
 
         </Button>
-        <Button Content="Group List" HorizontalAlignment="Left" Margin="651,0,0,0" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="3" Click="Button_Click_1" Grid.Column="1"/>
+        <Button Content="Group List" HorizontalAlignment="Left" Margin="621,0,0,0" Grid.Row="1" VerticalAlignment="Center" Grid.ColumnSpan="3" Click="Button_Click_1" Grid.Column="1" Width="146"/>
     </Grid>
 </Window>

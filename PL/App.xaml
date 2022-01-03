@@ -16,8 +16,27 @@
             <Setter Property="FontWeight" Value="Normal" />
             <Setter Property="Height" Value="39" />
             <Setter Property="Width" Value="116" />
-            <Setter Property="FontSize" Value="21" />
-
+            <Setter Property="FontSize" Value="18" />
+            <Style.Triggers>
+                <EventTrigger RoutedEvent="MouseEnter">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.300" Storyboard.TargetProperty="FontSize" To="28" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+                <EventTrigger RoutedEvent="MouseLeave">
+                    <EventTrigger.Actions>
+                        <BeginStoryboard>
+                            <Storyboard>
+                                <DoubleAnimation Duration="0:0:0.800" Storyboard.TargetProperty="FontSize" To="18" />
+                            </Storyboard>
+                        </BeginStoryboard>
+                    </EventTrigger.Actions>
+                </EventTrigger>
+            </Style.Triggers>
         </Style>
         <Style TargetType="Button" BasedOn="{StaticResource buttunStyle}">
             <Setter Property="Background" Value="#FFDC2711" />

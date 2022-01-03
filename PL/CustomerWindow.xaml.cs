@@ -51,7 +51,6 @@ namespace PL
             op = option.Update;
             customerDetails.DataContext = PLcustomer;
 
-
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
