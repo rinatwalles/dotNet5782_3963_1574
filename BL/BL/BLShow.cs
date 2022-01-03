@@ -29,6 +29,20 @@ namespace BL
                    }).ToList(); ;
         }
 
+
+        public IEnumerable<StationToList> GetAllStations(Predicate<DO.Station> predicate)
+        {
+            return (from dostat in idal.AllStation()
+                    where predicate(dostat)
+                    select new StationToList()
+                    {
+                        Id = dostat.Id,
+                        Name = dostat.Name,
+                        AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
+                        RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
+                    }).ToList(); ;
+        }
+
         /// <summary>
         /// function that returns all the drones
         /// </summary>
@@ -62,6 +76,29 @@ namespace BL
                            Priority = (Priorities)doparc.Priority,
                            ParcelState = getParcelState(doparc.Id)
                        }).ToList(); ;
+            }
+            catch (MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
+
+
+        public IEnumerable<ParcelToList> GetAllParcels(Predicate<DO.Parcel> predicate)
+        {
+            try
+            {
+                return (from doparc in idal.AllParcel()
+                        where predicate(doparc)
+                        select new ParcelToList()
+                        {
+                            Id = doparc.Id,
+                            Sender = getCustomerOfParcel(doparc.SenderId),
+                            Receiver = getCustomerOfParcel(doparc.TargetId),
+                            Weight = (WeightCategories)doparc.Weight,
+                            Priority = (Priorities)doparc.Priority,
+                            ParcelState = getParcelState(doparc.Id)
+                        }).ToList(); ;
             }
             catch (MissingIdException ex)
             {
@@ -112,11 +149,35 @@ namespace BL
             }
         }
 
+
+        public IEnumerable<CustomerToList> GetAllCustomers(Predicate<DO.Customer> predicate)
+        {
+            try
+            {
+                return (from docust in idal.AllCustomer()
+                        where predicate(docust)
+                        select new CustomerToList()
+                        {
+                            Id = docust.Id,
+                            Name = docust.Name,
+                            Phone = docust.Phone,
+                            NumOfParcelsSentAndSupplied = numParcelsSent(docust.Id, ParcelStates.Delivered),
+                            NumOfParcelsSentNotSupplied = numParcelsSent(docust.Id, ParcelStates.PickedUp),
+                            NumOfParcelsDelivered = GetParcelsFromCustomer(docust.Id).Count(),
+                            NumOfParcelsReceived = GetParcelsToCustomer(docust.Id).Count()
+                        }).ToList(); ;
+            }
+            catch (MissingIdException ex)
+            {
+                throw new MissingIdException(ex.ID, ex.EntityName);
+            }
+        }
+
         /// <summary>
         ///  A function that returns All Parcels that Not Scheduled
         /// </summary>
         /// <returns></returns>
-        public IEnumerable<ParcelToList> GetAllParcelsNotScheduled()
+        public IEnumerable<ParcelToList> GetAllParcelsNotScheduled()//change this function to predicate
         {
             try
             {

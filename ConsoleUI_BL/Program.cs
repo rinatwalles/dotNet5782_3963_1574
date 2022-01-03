@@ -109,7 +109,7 @@ namespace ConsoleUI_BL
                                             Parcel parc = new Parcel()
                                             {
                                                 Weight = (WeightCategories)wght,
-                                                //Priority = (Priorities)prior
+                                                Priority = (BO.Priorities)prior
                                             };
                                             ibl.AddParcel(parc, IdSend, IdReceive);
                                             break;
