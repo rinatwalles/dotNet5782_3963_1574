@@ -34,9 +34,12 @@ namespace BLApi
 
         #region Show
         IEnumerable<StationToList> GetAllStations();
+        IEnumerable<StationToList> GetAllStations(Predicate<DO.Station> predicate);
         IEnumerable<DroneToList> GetAllDrones(Predicate<DroneToList> predicate);
         IEnumerable<DroneToList> GetAllDrones();
+        IEnumerable<CustomerToList> GetAllCustomers(Predicate<DO.Customer> predicate);
         IEnumerable<CustomerToList> GetAllCustomers();
+        IEnumerable<ParcelToList> GetAllParcels(Predicate<DO.Parcel> predicate);
         IEnumerable<ParcelToList> GetAllParcels();
         IEnumerable<ParcelToList> GetAllParcelsNotScheduled();
         IEnumerable<StationToList> GetAllStationsWithAvailableSlots();

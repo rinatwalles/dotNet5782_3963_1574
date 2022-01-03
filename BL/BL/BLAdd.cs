@@ -250,8 +250,7 @@ namespace BL
             try
             {
                 //check if the parcel is already exists
-                if (idal.CheckParcel(p.Id))
-                    throw new DuplicateIdException(p.Id, "Parcel");
+                
 
                 //adding the parcel to DAL layer and addupt the feilds
                 DO.Parcel doParcel = new DO.Parcel()

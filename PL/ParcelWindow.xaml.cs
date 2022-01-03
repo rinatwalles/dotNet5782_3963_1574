@@ -33,14 +33,12 @@ namespace PL
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
-            IEnumerable<StationToList> lst = ibl.GetAllStationsWithAvailableSlots();
-            var txt = from StationToList item in lst
-                      select item.Id;
-            //stationComboBox.ItemsSource = txt;
+            IEnumerable<CustomerToList> lst = ibl.GetAllCustomers();
+            
 
 
-            //this.Title = "Drone Addition";
-            //OptionButtun.Content = "ADD The Drone";
+            this.Title = "Parcel Addition";
+            OptionButtun.Content = "ADD The Parcel";
 
             //ParcelIDLabel.Visibility = txtParcelID.Visibility = Visibility.Collapsed;
             //BatteryLabel.Visibility = txtBattery.Visibility = Visibility.Collapsed;
@@ -52,6 +50,42 @@ namespace PL
             //DeliveryButton.Visibility = Visibility.Collapsed;
 
             //OptionButtun.IsEnabled = false;
+        }
+        private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
+        {
+            bool addedSuccessfully = true;
+            if (op == 0)
+            {
+                Id = int.Parse(idTextBox.Text),
+                Drone Dl = new Drone()
+                {
+                   
+                    Model = txtModel.Text,
+                    Weight = (WeightCategories)WeightComboBox.SelectedItem
+                };
+                try
+                {
+                    ibl.AddDrone(Dl, (int)stationComboBox.SelectedItem);
+                }
+                catch (DuplicateIdException ex)
+                {
+                    addedSuccessfully = false;
+                    MessageBox.Show("The Drone id belong to another drone. insert another one");
+                    txtID.Text = "";
+                }
+                if (addedSuccessfully)
+                {
+                    MessageBox.Show("The Drone added successfully");
+                    this.Close();
+                }
+            }
+            else
+            {
+                ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                this.Close();
+            }
+
         }
     }
 }
