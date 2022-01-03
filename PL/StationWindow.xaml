@@ -29,11 +29,13 @@
             <TextBox x:Name="latitudeTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="latitudeTextBox_TextChanged"/>
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="longitudeTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
-            <Label Content="Drone Charge Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,38.8,0,-28.8" Grid.Row="5" VerticalAlignment="Center"/>
-            <TextBox x:Name="DroneChargeId" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,42.8,0,-29.8" Grid.Row="4" Text="{Binding DroneCharging.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Drone Charge Battery Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,70.8,0,-60.8" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="DroneChargeBattery" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="2.6,74.8,0,-61.8" Grid.Row="4" Text="{Binding DroneCharging.BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
         </Grid>
+        <DataGrid x:Name="droneChargingDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" Margin="277,284,413,21" RowDetailsVisibilityMode="VisibleWhenSelected">
+            <DataGrid.Columns>
+                <DataGridTextColumn x:Name="battaryStatusColumn" Binding="{Binding DroneCharging.BattaryStatus}" Header="Battary Status" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="idColumn" Binding="{Binding DroneCharging.Id}" Header="Id" Width="SizeToHeader"/>
+            </DataGrid.Columns>
+        </DataGrid>
         <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="599,107,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click"/>
         <Button x:Name="CloseButtun" Content="Close" HorizontalAlignment="Left" Margin="599,174,0,0" VerticalAlignment="Top"  Click="CloseButtun_Click"/>
     </Grid>
