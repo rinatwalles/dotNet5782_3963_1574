@@ -12,12 +12,14 @@ namespace BL
 {
     sealed partial class BL : IBL
     {
-        static readonly IBL instance = new BL();
-        public static IBL Instance { get => instance; }//problem here!
-
         internal IDAL idal = DalApi.DalFactory.GetDal();//האם כאן אמור להיות האתחול?
 
         static Random rand = new Random(DateTime.Now.Millisecond);
+
+        static readonly IBL instance = new BL();
+        public static IBL Instance { get => instance; }//problem here!
+
+       
 
         //internal static IDAL idal;
         public List<BO.DroneToList> ListBLDrones = new List<BO.DroneToList>();
@@ -44,7 +46,7 @@ namespace BL
                                                    Id = dodron.Id,
                                                    Model = dodron.Model,
                                                    Weight = (WeightCategories)dodron.Weight,
-                                                   ParcelNumber= 1
+                                                   ParcelNumber= 1//לתקן
                                                }).ToList(); ;
             Location locat = new Location();
             try
