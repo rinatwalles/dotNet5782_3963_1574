@@ -25,7 +25,7 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            IEnumerable<CustomerToList> lst = ibl.GetAllCustomers();
+           // IEnumerable<CustomerToList> lst = ibl.GetAllCustomers();
             customerToListDataGrid.ItemsSource = ibl.GetAllCustomers();
             customerToListDataGrid.IsReadOnly = true;
         }

@@ -47,6 +47,8 @@ namespace PL
             PLStation = s;
             op = option.Update;
             stationGrid.DataContext = PLStation;
+            droneChargingDataGrid.ItemsSource = ibl.GetDroneChargingPerStation(PLStation.Id);
+            droneChargingDataGrid.IsReadOnly = true;
 
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
@@ -148,11 +150,6 @@ namespace PL
                 MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             } 
-        }
-
-        private void droneChargingDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            droneChargingDataGrid.ItemsSource =ibl.GetDroneChargingPerStation(PLStation.Id);
         }
     }
 }

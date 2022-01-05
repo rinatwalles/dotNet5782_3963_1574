@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ParcelToListWindow" Height="450" Width="800"         Background="{StaticResource MyButtonBackground}">
     <Grid>
-        <DataGrid x:Name="parcelToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="28,77,263,143" RowDetailsVisibilityMode="VisibleWhenSelected">
+        <DataGrid x:Name="parcelToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="28,77,263,143" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="parcelToListDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="idReceiverColumn" Binding="{Binding Receiver.Id}" Header="Reciever Id" Width="SizeToHeader"/>

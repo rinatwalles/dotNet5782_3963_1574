@@ -51,6 +51,11 @@ namespace PL
             op = option.Update;
             customerDetails.DataContext = PLcustomer;
 
+            parcelFromCustomerDataGrid.ItemsSource = ibl.GetParcelsFromCustomer(PLcustomer.Id);
+            parcelToCustomerDataGrid.ItemsSource = ibl.GetParcelsToCustomer(PLcustomer.Id);
+            parcelFromCustomerDataGrid.IsReadOnly = true;
+            parcelToCustomerDataGrid.IsReadOnly = true;
+
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
@@ -151,5 +156,18 @@ namespace PL
             this.Close();
         }
 
+        private void parcelFromCustomerDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelAtCustomer p = parcelFromCustomerDataGrid.SelectedItem as ParcelAtCustomer;
+            Parcel pc = ibl.GetParcel(p.Id);
+            new PL.ParcelWindow(ibl, pc).Show();
+        }
+
+        private void parcelToCustomerDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            ParcelAtCustomer p = parcelToCustomerDataGrid.SelectedItem as ParcelAtCustomer;
+            Parcel pc = ibl.GetParcel(p.Id);
+            new PL.ParcelWindow(ibl, pc).Show();
+        }
     }
 }

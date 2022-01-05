@@ -175,7 +175,7 @@ namespace BL
         /// </summary>
         /// <param name="id">id of a customer</param>
         /// <returns></returns>
-        private IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id)
+        public IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id)
         {
             try
             {
@@ -210,7 +210,7 @@ namespace BL
         /// </summary>
         /// <param name="id">id of a customer</param>
         /// <returns></returns>
-        private IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id)
+        public IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id)
         {
             try
             {
@@ -223,10 +223,10 @@ namespace BL
                 select new ParcelAtCustomer
                 {
                     Id = item.Id,//id of parcel
-                Weight = (BO.WeightCategories)item.Weight,
+                    Weight = (BO.WeightCategories)item.Weight,
                     Priority = (BO.Priorities)item.Priority,
                     ParcelState = getParcelState(item.Id),
-                customer = new CustomerOfParcel
+                    customer = new CustomerOfParcel
                     {
                         Id = item.SenderId,
                         Name = idal.GetCustomer(item.SenderId).Name

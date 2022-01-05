@@ -28,7 +28,7 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            Parcel parcel = new Parcel();
+            PlParc = new Parcel();
             op = option.Add;
 
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
@@ -53,14 +53,14 @@ namespace PL
         }
 
 
-        public ParcelWindow(BLApi.IBL newIbl, ParcelToList parc)//update constructor
+        public ParcelWindow(BLApi.IBL newIbl, Parcel parc)//update constructor
         {
             InitializeComponent();
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
             ibl = newIbl;
-            PlParc = ibl.GetParcel(parc.Id);
+            PlParc = parc;
             op = option.Update;
             parcelup.DataContext = PlParc;
            
@@ -131,7 +131,6 @@ namespace PL
                 {
                     addedSuccessfully = false;
                     MessageBox.Show("The Drone id belong to another drone. insert another one");
-                    //txtID.Text = "";
                 }
                 if (addedSuccessfully)
                 {

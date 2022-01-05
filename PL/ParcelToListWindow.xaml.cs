@@ -36,6 +36,14 @@ namespace PL
             new PL.ParcelWindow(ibl).Show();
         }
 
+        private void parcelToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            ParcelToList p = parcelToListDataGrid.SelectedItem as ParcelToList;
+            Parcel pc = ibl.GetParcel(p.Id);
+            new PL.ParcelWindow(ibl, pc).Show();
+        }
+
         private void closeButtun_Click(object sender, RoutedEventArgs e)
         {
             this.Close();
@@ -50,5 +58,7 @@ namespace PL
         {
 
         }
+
+
     }
 }

@@ -15,7 +15,7 @@
                 <DataGridTextColumn x:Name="rservedCharginggSlotsNumberColumn" Binding="{Binding RservedCharginggSlotsNumber}" Header="Rserved Chargingg Slots Number" Width="SizeToHeader"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button  Content="Button" HorizontalAlignment="Left" Margin="630,81,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click"/>
+        <Button  Content="Add New Station" HorizontalAlignment="Left" Margin="630,81,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click"/>
         <Button x:Name="closeButtun"  Content="Close" HorizontalAlignment="Left" Margin="630,143,0,0" VerticalAlignment="Top"  Click="closeButtun_Click"/>
         <Button x:Name="groupButtun" Content="Group List" HorizontalAlignment="Left" Margin="630,227,0,0" VerticalAlignment="Top" Click="groupButtun_Click"/>
         <Button x:Name="clearButtun" Content="clear" HorizontalAlignment="Left" Margin="630,281,0,0" VerticalAlignment="Top" Click="clearButtun_Click"/>
