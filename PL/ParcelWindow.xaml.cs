@@ -34,7 +34,7 @@ namespace PL
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
-            
+
 
 
             this.Title = "Parcel Addition";
@@ -63,12 +63,12 @@ namespace PL
             PlParc = parc;
             op = option.Update;
             parcelup.DataContext = PlParc;
-           
 
 
 
-        //    this.Title = "Drone Update";
-        //    OptionButtun.Content = "Update The Drone";
+
+            //    this.Title = "Drone Update";
+            //    OptionButtun.Content = "Update The Drone";
 
             //if (d.DroneStatus == DroneStatuses.Available)
             //{
@@ -108,48 +108,50 @@ namespace PL
             //longitudeTextBox.IsEnabled = false;
             //latitudeTextBox.IsEnabled = false;
 
-        //}
-        private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
-        {
-            bool addedSuccessfully = true;
-            if (op == 0)
-            {
+            //}
+            //private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
+            //{
+            //    bool addedSuccessfully = true;
+            //    if (op == 0)
+            //    {
 
-                Parcel parc = new Parcel()
-                {
-                    Weight = (WeightCategories)weightComboBox.SelectedItem,
-                    Priority = (Priorities)priorityComboBox.SelectedItem
-                };
-                int IdSend = int.Parse(idTextBox3.Text);
-                int IdReceive = int.Parse(idTextBox2.Text);
-                ibl.AddParcel(parc, IdSend, IdReceive);
-                try
-                {
-                    ibl.AddParcel(parc, IdSend, IdReceive);
-                }
-                catch (DuplicateIdException ex)
-                {
-                    addedSuccessfully = false;
-                    MessageBox.Show("The Drone id belong to another drone. insert another one");
-                }
-                if (addedSuccessfully)
-                {
-                    MessageBox.Show("The Drone added successfully");
-                    this.Close();
-                }
-            }
-            else
-            {
-                //ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
-                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                this.Close();
-            }
+            //        Parcel parc = new Parcel()
+            //        {
+            //            Weight = (WeightCategories)weightComboBox.SelectedItem,
+            //            Priority = (Priorities)priorityComboBox.SelectedItem
+            //        };
+            //        int IdSend = int.Parse(idTextBox3.Text);
+            //        int IdReceive = int.Parse(idTextBox2.Text);
+            //        ibl.AddParcel(parc, IdSend, IdReceive);
+            //        try
+            //        {
+            //            ibl.AddParcel(parc, IdSend, IdReceive);
+            //        }
+            //        catch (DuplicateIdException ex)
+            //        {
+            //            addedSuccessfully = false;
+            //            MessageBox.Show("The Drone id belong to another drone. insert another one");
+            //        }
+            //        if (addedSuccessfully)
+            //        {
+            //            MessageBox.Show("The Drone added successfully");
+            //            this.Close();
+            //        }
+            //    }
+            //    else
+            //    {
+            //        //ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+            //        MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            //        this.Close();
+            //    }
+            //}
 
-        private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            int id =int.Parse(idTextBox1.Text);
-            BO.Drone d= ibl.GetDrone(id);
-            new PL.DroneWindow(ibl,d);
+            //private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+            //{
+            //    int id =int.Parse(idTextBox1.Text);
+            //    BO.Drone d= ibl.GetDrone(id);
+            //    new PL.DroneWindow(ibl,d);
+            //}
         }
     }
 }

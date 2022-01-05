@@ -56,7 +56,7 @@ namespace BL
             {
                 foreach (DroneToList item in ListBLDrones)
                 {
-                    if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == DateTime.MinValue))))
+                    if (idal.AllParcel().Any(parc => (parc.DroneId == item.Id) && (parc.DeliveredTime == DateTime.MinValue)))
                     {
                         item.DroneStatus = DroneStatuses.Delivery;
                         DO.Parcel parc = idal.GetOneParcelByPredicate(parc => parc.DroneId == item.Id);
