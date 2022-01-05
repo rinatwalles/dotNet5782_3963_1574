@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +20,35 @@ namespace PL
     /// </summary>
     public partial class ParcelToListWindow : Window
     {
-        public ParcelToListWindow()
+
+        private BLApi.IBL ibl;
+        public ParcelToListWindow(BLApi.IBL newIbl)
         {
             InitializeComponent();
+            ibl = newIbl;
+            IEnumerable<ParcelToList> lst = ibl.GetAllParcels();
+            parcelToListDataGrid.ItemsSource = lst;
+            parcelToListDataGrid.IsReadOnly = true;
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new PL.ParcelWindow(ibl).Show();
+        }
+
+        private void closeButtun_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void groupButtun_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void clearButtun_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

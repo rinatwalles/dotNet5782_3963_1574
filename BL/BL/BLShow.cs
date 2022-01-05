@@ -24,8 +24,8 @@ namespace BL
                    {
                        Id = dostat.Id,
                        Name = dostat.Name,
-                       AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
-                       RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
+                       AvailableChargeSlots = dostat.AvailableChargeSlots,
+                       RservedCharginggSlotsNumber = idal.GetDroneChargeInStation(dostat.Id).Count()
                    }).ToList(); ;
         }
 
@@ -38,8 +38,8 @@ namespace BL
                     {
                         Id = dostat.Id,
                         Name = dostat.Name,
-                        AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
-                        RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
+                        AvailableChargeSlots = dostat.AvailableChargeSlots,
+                        RservedCharginggSlotsNumber = idal.GetDroneChargeInStation(dostat.Id).Count()
                     }).ToList(); ;
         }
 
@@ -211,8 +211,8 @@ namespace BL
                    {
                        Id = dostat.Id,
                        Name = dostat.Name,
-                       AvailableCharginggSlotsNumber = dostat.AvailableChargeSlots,
-                       RservedCharginggSlotsNumber = idal.CountDroneCharge(dostat.Id).Count()
+                       AvailableChargeSlots = dostat.AvailableChargeSlots,
+                       RservedCharginggSlotsNumber = idal.GetDroneChargeInStation(dostat.Id).Count()
                    }).ToList(); ;
         }
     }

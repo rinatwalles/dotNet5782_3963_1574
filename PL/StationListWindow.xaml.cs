@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -26,7 +27,7 @@ namespace PL
             InitializeComponent();
             ibl = newIbl;
             IEnumerable<StationToList> lst = ibl.GetAllStations();
-            stationToListDataGrid.ItemsSource = ibl.GetAllDrones();
+            stationToListDataGrid.ItemsSource = lst;
             stationToListDataGrid.IsReadOnly = true;
         }
 
@@ -44,7 +45,9 @@ namespace PL
         private void stationToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             StationToList s = stationToListDataGrid.SelectedItem as StationToList;
-            new PL.StationWindow(ibl, s).Show();
+            Station st = ibl.GetStation(s.Id);
+
+            new PL.StationWindow(ibl, st).Show();
         }
 
         private void Window_Activated(object sender, EventArgs e)
@@ -54,10 +57,36 @@ namespace PL
 
         private void groupButtun_Click(object sender, RoutedEventArgs e)
         {
-            IEnumerable<StationToList> result = (IEnumerable<StationToList>)(from station in ibl.GetAllStations()
-                                                                         group station by station.AvailableCharginggSlotsNumber into gs
-                                                                         select gs);
-            stationToListDataGrid.ItemsSource = result;
+            stationToListDataGrid.ItemsSource = (from station in ibl.GetAllStations()
+                                                 orderby station.AvailableChargeSlots
+                                                 select station);
+            //group station by station.AvailableCharginggSlotsNumber into gs
+
+
+            //IEnumerable<IGrouping<int,StationToList>> result = (from station in ibl.GetAllStations()
+            //                                     group station by station.AvailableCharginggSlotsNumber into gs
+            //                                     select gs);
+
+            //List<StationToList> lst1 = new List<StationToList>();
+            //foreach (IGrouping<int, StationToList> g in result)
+            //{
+
+
+            //            foreach (StationToList n in g)
+            //                lst1.Add(n);                       
+
+
+            //}
+            //stationToListDataGrid.ItemsSource = lst1;
+
+        }
+
+        private void clearButtun_Click(object sender, RoutedEventArgs e)
+        {
+            stationToListDataGrid.ItemsSource = (from station in ibl.GetAllStations()
+                                                 orderby station.Id
+                                                 select station);
+
         }
     }
 }

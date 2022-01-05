@@ -43,5 +43,10 @@ namespace PL
         {
             new PL.StationListWindow(ibl).Show();
         }
+
+        private void ParcelsWindow_Click(object sender, RoutedEventArgs e)
+        {
+            new PL.ParcelToListWindow(ibl).Show();
+        }
     }
 }

@@ -60,7 +60,7 @@ namespace Dal
         /// </summary>
         /// <param name="id">id of station</param>
         /// <returns>all the DroneCharges im the station</returns>
-        public IEnumerable<DroneCharge> CountDroneCharge(int id)
+        public IEnumerable<DroneCharge> GetDroneChargeInStation(int id)
         {
             return DataSource.droneCharges.Where(dc => dc.StationId == id);
         }

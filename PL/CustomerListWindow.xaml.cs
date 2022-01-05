@@ -43,7 +43,8 @@ namespace PL
         private void customerToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             CustomerToList c = customerToListDataGrid.SelectedItem as CustomerToList;
-            new PL.CustomerWindow(ibl, c).Show();
+            Customer cs = ibl.GetCustomer(c.Id);
+            new PL.CustomerWindow(ibl, cs).Show();
         }
 
         private void Window_Activated(object sender, EventArgs e)

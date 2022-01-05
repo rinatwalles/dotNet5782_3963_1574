@@ -23,7 +23,7 @@ namespace PL
     public partial class DroneWindow : Window
     {
         private BLApi.IBL ibl;
-        DroneToList PLdDrone;
+        Drone PLdDrone;
         enum option { Add, Update};
         enum update {charge,disCharge }
         enum delivery { Join, PickedUpParcel, Supply }
@@ -31,12 +31,11 @@ namespace PL
         option op;
         update up=update.charge;
         delivery del=delivery.Join;
-        string droneModel;
         public DroneWindow(BLApi.IBL newIbl)    //add constructor
         {
             InitializeComponent();
             ibl = newIbl;
-            PLdDrone = new DroneToList();
+            PLdDrone = new Drone();
             op = option.Add;
 
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
@@ -44,6 +43,7 @@ namespace PL
 
             IEnumerable<StationToList> lst = ibl.GetAllStationsWithAvailableSlots();
             var txt = from StationToList item in lst
+                      orderby item.Id
                       select item.Id;
             stationComboBox.ItemsSource = txt;
 
@@ -63,7 +63,7 @@ namespace PL
             OptionButtun.IsEnabled = false ;
         }
 
-        public DroneWindow(BLApi.IBL newIbl,DroneToList d)//update constructor
+        public DroneWindow(BLApi.IBL newIbl, Drone d)//update constructor
         {
             InitializeComponent();
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
@@ -73,7 +73,6 @@ namespace PL
             PLdDrone = d;
             op = option.Update;
             droneup.DataContext = PLdDrone ;
-            droneModel = d.Model;
 
             stationComboBox.Visibility = stationLabel.Visibility = Visibility.Collapsed;
 
@@ -81,36 +80,36 @@ namespace PL
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
-            if(d.DroneStatus==DroneStatuses.Available)
-            {
-                UpdateButton.Content = "Charge Drone";
-                DeliveryButton.Content = "Join Parcel To Drone";
-                up = update.charge;
-                del = delivery.Join;
-            }
-            if(d.DroneStatus == DroneStatuses.Maintenance)
-            {
-                UpdateButton.Content = "Discharge Drone";
-                DeliveryButton.Visibility = Visibility.Collapsed;
-                up = update.disCharge;
-            }
-            if (d.DroneStatus ==DroneStatuses.Delivery)
-            {
-                Parcel parcel = ibl.GetParcel(d.ParcelNumber);
-                if (parcel.PickedUpTime != DateTime.MinValue)
-                {
-                    UpdateButton.Visibility = Visibility.Collapsed;
-                    DeliveryButton.Content = "Supply Parcel By Drone";
-                    del = delivery.Supply;
-                }
+            //if(d.DroneStatus==DroneStatuses.Available)
+            //{
+            //    UpdateButton.Content = "Charge Drone";
+            //    DeliveryButton.Content = "Join Parcel To Drone";
+            //    up = update.charge;
+            //    del = delivery.Join;
+            //}
+            //if(d.DroneStatus == DroneStatuses.Maintenance)
+            //{
+            //    UpdateButton.Content = "Discharge Drone";
+            //    DeliveryButton.Visibility = Visibility.Collapsed;
+            //    up = update.disCharge;
+            //}
+            //if (d.DroneStatus ==DroneStatuses.Delivery)
+            //{
+            //    Parcel parcel = ibl.GetParcel(d.ParcelInDelivery.Id);
+            //    if (parcel.PickedUpTime != DateTime.MinValue)
+            //    {
+            //        UpdateButton.Visibility = Visibility.Collapsed;
+            //        DeliveryButton.Content = "Supply Parcel By Drone";
+            //        del = delivery.Supply;
+            //    }
 
-                else if (parcel.ScheduledTime != DateTime.MinValue)
-                {
-                    UpdateButton.Visibility = Visibility.Collapsed;
-                    DeliveryButton.Content = "Collecting Parcel By Drone";
-                    del = delivery.PickedUpParcel;
-                }
-            }
+            //    else if (parcel.ScheduledTime != DateTime.MinValue)
+            //    {
+            //        UpdateButton.Visibility = Visibility.Collapsed;
+            //        DeliveryButton.Content = "Collecting Parcel By Drone";
+            //        del = delivery.PickedUpParcel;
+            //    }
+            //}
             txtID.IsEnabled = false;
             txtParcelID.IsEnabled = false;
             txtBattery.IsEnabled = false;
@@ -137,7 +136,7 @@ namespace PL
                     Model = txtModel.Text,
                     Weight = (WeightCategories)WeightComboBox.SelectedItem
                 };
-                try 
+                try
                 {
                     ibl.AddDrone(Dl, (int)stationComboBox.SelectedItem);
                 }
@@ -154,7 +153,8 @@ namespace PL
                 }
             }
             else
-            {   ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+            {    PLdDrone.Model = txtModel.Text;
+               ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
                 MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             }
@@ -215,12 +215,7 @@ namespace PL
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)    //close window botton
         {
-           if(op == option.Update)
-            {
-                txtModel.Text = droneModel;
-            }
             this.Close();
-
         }
 
         private void txtID_TextChanged_1(object sender, TextChangedEventArgs e)    //txtID textbox

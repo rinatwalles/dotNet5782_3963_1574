@@ -246,15 +246,14 @@ namespace BL
         /// </summary>
         /// <param name="id">id of a station</param>
         /// <returns></returns>
-        private IEnumerable<DroneCharging> GetDroneChargingPerStation(int id)
+        public IEnumerable<DroneCharging> GetDroneChargingPerStation(int id)
         {
-            return
-            from item in idal.CountDroneCharge(id)
-            select new DroneCharging
-            {
-                Id = id,
-                BattaryStatus = ListBLDrones.Find(d => id == item.DroneId).BatteryStatus
-            };
+            return (from item in idal.GetDroneChargeInStation(id)
+                    select new DroneCharging
+                    {
+                        Id = id,
+                        BattaryStatus = ListBLDrones.Find(d => id == item.DroneId).BatteryStatus
+                    }).ToList(); ;
 
         }
 

@@ -22,7 +22,7 @@ namespace PL
     public partial class CustomerWindow : Window
     {
         private BLApi.IBL ibl;
-        CustomerToList PLcustomer;
+        Customer PLcustomer;
         enum option { Add, Update };
         option op;
 
@@ -30,7 +30,7 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            PLcustomer = new CustomerToList();
+            PLcustomer = new Customer();
             op = option.Add;
 
 
@@ -41,7 +41,7 @@ namespace PL
             OptionButtun.IsEnabled = false;
         }
 
-        public CustomerWindow(BLApi.IBL newIbl, CustomerToList c)//update constructor
+        public CustomerWindow(BLApi.IBL newIbl, Customer c)//update constructor
         {
             InitializeComponent();
 
