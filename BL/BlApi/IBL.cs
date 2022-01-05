@@ -43,6 +43,10 @@ namespace BLApi
         IEnumerable<ParcelToList> GetAllParcels();
         IEnumerable<ParcelToList> GetAllParcelsNotScheduled();
         IEnumerable<StationToList> GetAllStationsWithAvailableSlots();
+        IEnumerable<DroneCharging> GetDroneChargingPerStation(int id);
+
+        IEnumerable<ParcelAtCustomer> GetParcelsFromCustomer(int id);
+        IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id);
         //int numParcelsSentNotSupplied();
         #endregion
 

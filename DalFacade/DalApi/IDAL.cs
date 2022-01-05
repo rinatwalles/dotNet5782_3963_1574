@@ -71,7 +71,7 @@ namespace DaLApi
             bool CheckDroneCharge(int dId);
             void DroneChargesDelete(DroneCharge d);
             DroneCharge GetDroneCharge(int dId);
-            IEnumerable<DroneCharge> CountDroneCharge(int id);
+            IEnumerable<DroneCharge> GetDroneChargeInStation(int id);
             Parcel GetOneParcelByPredicate(Predicate<Parcel> predicate);
             #endregion
         }

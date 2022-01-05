@@ -11,7 +11,7 @@ namespace BO
     {
         public int Id { get; set; }
         public string Name { get; set; }
-        public int AvailableCharginggSlotsNumber { get; set; }
+        public int AvailableChargeSlots { get; set; }
         public int RservedCharginggSlotsNumber { get; set; }
         public override string ToString()
         {

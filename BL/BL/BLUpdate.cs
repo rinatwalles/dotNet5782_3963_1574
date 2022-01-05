@@ -227,7 +227,7 @@ namespace BL
                 if (name != "")
                     doStation.Name = name;
                 if (allChargingPositions != "")
-                    doStation.AvailableChargeSlots = Int32.Parse(allChargingPositions) - idal.CountDroneCharge(id).Count();
+                    doStation.AvailableChargeSlots = Int32.Parse(allChargingPositions) - idal.GetDroneChargeInStation(id).Count();
                 idal.StationUpdate(doStation);
             }
             catch (MissingIdException ex)

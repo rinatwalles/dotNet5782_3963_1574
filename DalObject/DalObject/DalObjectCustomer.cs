@@ -27,7 +27,7 @@ namespace Dal
         /// <param name="c">new customer</param>
         public void CustomerAddition(Customer c)
         {
-            if (!CheckCustomer(c.Id))
+            if (CheckCustomer(c.Id))
                 throw new DuplicateIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }

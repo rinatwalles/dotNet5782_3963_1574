@@ -22,7 +22,7 @@ namespace PL
     {
 
         private BLApi.IBL ibl;
-        StationToList PLStation;
+        Station PLStation;
         enum option { Add, Update };
 
         option op;
@@ -30,7 +30,7 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            PLStation = new StationToList();
+            PLStation = new Station();
             op = option.Add;
 
             this.Title = "Drone Addition";
@@ -39,7 +39,7 @@ namespace PL
             OptionButtun.IsEnabled = false;
         }
 
-        public StationWindow(BLApi.IBL newIbl, StationToList s)//update constructor
+        public StationWindow(BLApi.IBL newIbl, Station s)//update constructor
         {
             InitializeComponent();
 
@@ -47,11 +47,15 @@ namespace PL
             PLStation = s;
             op = option.Update;
             stationGrid.DataContext = PLStation;
-           // droneModel = d.Model;
+            droneChargingDataGrid.ItemsSource = ibl.GetDroneChargingPerStation(PLStation.Id);
+            droneChargingDataGrid.IsReadOnly = true;
 
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
 
+            idTextBox.IsEnabled = false;
+            longitudeTextBox.IsEnabled = false;
+            latitudeTextBox.IsEnabled = false;
         }
 
         private void CloseButtun_Click(object sender, RoutedEventArgs e)

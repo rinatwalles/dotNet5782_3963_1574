@@ -12,16 +12,21 @@ namespace BL
 {
     sealed partial class BL : IBL
     {
-        static readonly IBL instance = new BL();
-        public static IBL Instance { get => instance; }//problem here!
-
         internal IDAL idal = DalApi.DalFactory.GetDal();//האם כאן אמור להיות האתחול?
 
         static Random rand = new Random(DateTime.Now.Millisecond);
 
-        //internal static IDAL idal;
         public List<BO.DroneToList> ListBLDrones = new List<BO.DroneToList>();
+
         double[] array;
+
+        static readonly IBL instance = new BL();
+        public static IBL Instance { get => instance; }//problem here!
+
+
+
+        //internal static IDAL idal;
+
 
         /// <summary>
         /// Constructor of BL

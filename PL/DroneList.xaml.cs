@@ -26,7 +26,7 @@ namespace PL
             InitializeComponent();
             ibl = newIbl;
             IEnumerable<DroneToList> lst = ibl.GetAllDrones();
-            droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
+            droneToListDataGrid.ItemsSource = lst;
             droneToListDataGrid.IsReadOnly = true;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
@@ -64,7 +64,7 @@ namespace PL
         {
             DroneToList d = droneToListDataGrid.SelectedItem as DroneToList;
             Drone dr = ibl.GetDrone(d.Id);
-            new PL.DroneWindow(ibl, d).Show();
+            new PL.DroneWindow(ibl, dr).Show();
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
@@ -77,13 +77,21 @@ namespace PL
             droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
             filterListDrones();
         }
-
+        //נשאר לעשות לזה GROUP
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            IEnumerable<DroneToList> result = (IEnumerable<DroneToList>)(from drone in ibl.GetAllDrones()
-                                                      group drone by drone.DroneStatus into gs
-                                                      select gs);
-            droneToListDataGrid.ItemsSource = result;
+            droneToListDataGrid.ItemsSource  = (from drone in ibl.GetAllDrones()
+                                                orderby drone.DroneStatus
+                                                select drone);
+            //group drone by drone.DroneStatus into gs
+        }
+
+        private void clearButtun_Click(object sender, RoutedEventArgs e)
+        {
+            droneToListDataGrid.ItemsSource = (from drone in ibl.GetAllDrones()
+                                               orderby drone.Id
+                                               select drone);
+           
         }
     }
 }

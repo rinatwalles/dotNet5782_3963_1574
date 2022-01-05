@@ -7,13 +7,15 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800"         Background="{StaticResource MyButtonBackground}">
     <Grid>
-       
+
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Button x:Name="DronesWindow" Content="Drones" HorizontalAlignment="Left" Margin="50,289,0,0" Height="56" Width="134" Click="DronesWindow_Click" />
-        <Button x:Name="CustomersWindow" Content="Customers" HorizontalAlignment="Left" Margin="278,289,0,0"  Height="56" Width="134" Click="CustomersWindow_Click" FontWeight="Normal"  />
-        <Button x:Name="StationsWindow" Content="Stations" HorizontalAlignment="Left" Margin="464,289,0,0"  Height="56" Width="134" Click="StationsWindow_Click" />
+        <Button x:Name="CustomersWindow" Content="Customers" HorizontalAlignment="Left" Margin="211,289,0,0"  Height="56" Width="134" Click="CustomersWindow_Click" FontWeight="Normal"  />
+        <Button x:Name="StationsWindow" Content="Stations" HorizontalAlignment="Left" Margin="377,289,0,0"  Height="56" Width="134" Click="StationsWindow_Click" />
+        <Button x:Name="ParcelsWindow" Content="Parcels" HorizontalAlignment="Left" Margin="557,289,0,0"  Height="56" Width="134" Click="ParcelsWindow_Click"/>
+
         <Grid Margin="181,36,180,181">
             <Grid.Background>
                 <ImageBrush ImageSource="/dronetolist.jpg"/>
