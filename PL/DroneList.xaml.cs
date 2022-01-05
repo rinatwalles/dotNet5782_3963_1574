@@ -63,6 +63,7 @@ namespace PL
         private void droneToListDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             DroneToList d = droneToListDataGrid.SelectedItem as DroneToList;
+            Drone dr = ibl.GetDrone(d.Id);
             new PL.DroneWindow(ibl, d).Show();
         }
 

@@ -56,7 +56,7 @@
             </ComboBox>
             <Label  x:Name="battaryStatusLabel" Content="Battary Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
             <TextBox x:Name="battaryStatusTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding ParcelDrones.BattaryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label  x:Name="DroneLabel" Content="Drone Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+            <Label  x:Name="DroneLabel" Content="Drone Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center" MouseDoubleClick="DroneLabel_MouseDoubleClick"/>
             <TextBox x:Name="idTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding ParcelDrones.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label Content="Receiver Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
             <TextBox x:Name="idTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="9" Text="{Binding Receiver.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
@@ -66,7 +66,7 @@
             <TextBox x:Name="idTextBox3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="11" Text="{Binding Sender.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label  x:Name="SenderNameLabel" Content="Sender Name:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="12" VerticalAlignment="Top" Margin="3,0,0,0"/>
             <TextBox x:Name="nameTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="12" Text="{Binding Sender.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="-172,42,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.RowSpan="3">
+            <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="-184,33,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.RowSpan="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -80,8 +80,8 @@
                 <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
                 <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding ParcelDrones.Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
-            <Button x:Name="OptionButtun" Content="OButtun" HorizontalAlignment="Left" Margin="-165,25,0,0" Grid.RowSpan="2" Grid.Row="6" VerticalAlignment="Top"/>
 
         </Grid>
+        <Button x:Name="OptionButtun" Content="OButtun" HorizontalAlignment="Left" Margin="660,339,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
