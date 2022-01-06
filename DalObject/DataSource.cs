@@ -57,7 +57,7 @@ namespace Dal
                     Name = "" + (char)rand.Next(65, 90) + (char)rand.Next(97, 122) + (char)rand.Next(97, 122),
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
-                    AvailableChargeSlots = rand.Next(0, 10)   //number of empty charge slots in each station
+                    AvailableChargeSlots = rand.Next(2, 10)   //number of empty charge slots in each station
                 };
                 stations.Add(s);
             }

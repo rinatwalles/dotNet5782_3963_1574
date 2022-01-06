@@ -67,8 +67,8 @@ namespace PL
 
 
 
-            this.Title = "Drone Update";
-            OptionButtun.Content = "Update The Drone";
+        //    this.Title = "Drone Update";
+        //    OptionButtun.Content = "Update The Drone";
 
             //if (d.DroneStatus == DroneStatuses.Available)
             //{
@@ -108,13 +108,13 @@ namespace PL
             //longitudeTextBox.IsEnabled = false;
             //latitudeTextBox.IsEnabled = false;
 
-        }
+        //}
         private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
         {
             bool addedSuccessfully = true;
             if (op == 0)
             {
-                
+
                 Parcel parc = new Parcel()
                 {
                     Weight = (WeightCategories)weightComboBox.SelectedItem,
@@ -154,6 +154,11 @@ namespace PL
                 this.Close();
             }
 
+        private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            int id =int.Parse(idTextBox1.Text);
+            BO.Drone d= ibl.GetDrone(id);
+            new PL.DroneWindow(ibl,d);
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)
