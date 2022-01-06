@@ -5,13 +5,14 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ParcelWindow" Height="450" Width="800">
+        Title="ParcelWindow" Height="450" Width="800"  Background="{StaticResource MyButtonBackground}">
     <Grid x:Name="parcelup">
-        <Grid x:Name="grid1"  HorizontalAlignment="Center" Margin="0,-58,0,0" VerticalAlignment="Top" Height="535" Width="440">
+        <Grid x:Name="grid1"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Height="430" Width="440">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="241"/>
+                <ColumnDefinition Width="16.64"/>
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition Height="Auto"/>
@@ -28,45 +29,45 @@
                 <RowDefinition Height="Auto"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Label  x:Name="idLabel" Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Priority:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-            <ComboBox x:Name="priorityComboBox" Grid.Column="1" DisplayMemberPath="Priority" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120">
+            <Label  x:Name="idLabel" Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" VerticalAlignment="Center"/>
+            <TextBox x:Name="idTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,0" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Priority:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center"/>
+            <ComboBox x:Name="priorityComboBox" Grid.Column="1" DisplayMemberPath="Priority" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3,0,0,0" Grid.Row="1" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label Content="Requested Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <DatePicker x:Name="requestedTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="3" SelectedDate="{Binding RequestedTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="Scheduled Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <DatePicker x:Name="scheduledTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="4" SelectedDate="{Binding ScheduledTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="Picked Up Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-            <DatePicker x:Name="pickedUpTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="5" SelectedDate="{Binding PickedUpTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="Delivered Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
-            <DatePicker x:Name="deliveredTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3" Grid.Row="6" SelectedDate="{Binding DeliveredTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="Weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
-            <ComboBox x:Name="weightComboBox" Grid.Column="1" DisplayMemberPath="Weight" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="2" VerticalAlignment="Center" Width="120">
+            <Label Content="Requested Time:" HorizontalAlignment="Center" Grid.Row="3" VerticalAlignment="Center"/>
+            <DatePicker x:Name="requestedTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="3" SelectedDate="{Binding RequestedTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <Label Content="Scheduled Time:" HorizontalAlignment="Center" Grid.Row="4" VerticalAlignment="Center"/>
+            <DatePicker x:Name="scheduledTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="4" SelectedDate="{Binding ScheduledTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <Label Content="Picked Up Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="5" VerticalAlignment="Center"/>
+            <DatePicker x:Name="pickedUpTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="5" SelectedDate="{Binding PickedUpTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <Label Content="Delivered Time:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="6" VerticalAlignment="Center"/>
+            <DatePicker x:Name="deliveredTimeDatePicker" Grid.Column="1" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="6" SelectedDate="{Binding DeliveredTime, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Grid.ColumnSpan="2"/>
+            <Label Content="Weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="2" VerticalAlignment="Center"/>
+            <ComboBox x:Name="weightComboBox" Grid.Column="1" DisplayMemberPath="Weight" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3,0,0,0" Grid.Row="2" VerticalAlignment="Center" Width="120">
                 <ComboBox.ItemsPanel>
                     <ItemsPanelTemplate>
                         <VirtualizingStackPanel/>
                     </ItemsPanelTemplate>
                 </ComboBox.ItemsPanel>
             </ComboBox>
-            <Label  x:Name="battaryStatusLabel" Content="Battary Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-            <TextBox x:Name="battaryStatusTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="8" Text="{Binding ParcelDrones.BattaryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label  x:Name="DroneLabel" Content="Drone Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding ParcelDrones.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label Content="Receiver Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="9" Text="{Binding Receiver.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Label x:Name="ReceiverNameLabel" Content="Receiver Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
-            <TextBox x:Name="nameTextBox" Grid.Column="1" Height="23" Margin="3,0,81,0" Grid.Row="10" Text="{Binding Receiver.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
-            <Label Content="Sender Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center"/>
-            <TextBox x:Name="idTextBox3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="11" Text="{Binding Sender.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label  x:Name="battaryStatusLabel" Content="Battary Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="8" VerticalAlignment="Center"/>
+            <TextBox x:Name="battaryStatusTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,0" Grid.Row="8" Text="{Binding ParcelDrones.BattaryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label  x:Name="DroneLabel" Content="Drone Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" VerticalAlignment="Center"/>
+            <TextBox x:Name="idDroneTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,0" Grid.Row="7" Text="{Binding ParcelDrones.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label Content="Receiver Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="9" VerticalAlignment="Center"/>
+            <TextBox x:Name="idReceiverTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,0" Grid.Row="9" Text="{Binding Receiver.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Label x:Name="ReceiverNameLabel" Content="Receiver Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="10" VerticalAlignment="Center"/>
+            <TextBox x:Name="nameReceiverTextBox" Grid.Column="1" Height="23" Margin="3,0,64,0" Grid.Row="10" Text="{Binding Receiver.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center"/>
+            <Label Content="Sender Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="11" VerticalAlignment="Center"/>
+            <TextBox x:Name="idSenderTextBox3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,0" Grid.Row="11" Text="{Binding Sender.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label  x:Name="SenderNameLabel" Content="Sender Name:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="12" VerticalAlignment="Top" Margin="3,0,0,0"/>
-            <TextBox x:Name="nameTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="12" Text="{Binding Sender.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="-184,33,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.RowSpan="2">
+            <TextBox x:Name="nameSenderTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,0" Grid.Row="12" Text="{Binding Sender.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+            <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="-180,0,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.RowSpan="3">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -82,6 +83,8 @@
             </Grid>
 
         </Grid>
-        <Button x:Name="OptionButtun" Content="OButtun" HorizontalAlignment="Left" Margin="660,339,0,0" VerticalAlignment="Top"/>
+        <Button x:Name="OptionButtun" Content="OButtun" HorizontalAlignment="Left" Margin="600,100,0,0" Grid.RowSpan="2" Grid.Row="6" VerticalAlignment="Top"/>
+        <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="600,200,0,0" VerticalAlignment="Top" Click="Button_Click_Close" />
+
     </Grid>
 </Window>

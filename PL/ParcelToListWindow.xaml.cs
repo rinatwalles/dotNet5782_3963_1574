@@ -40,7 +40,7 @@ namespace PL
         {
 
             ParcelToList p = parcelToListDataGrid.SelectedItem as ParcelToList;
-            Parcel pc = ibl.GetParcel(p.Id);
+            Parcel pc = ibl.GetParcel(p.Id);  //ghjkl
             new PL.ParcelWindow(ibl, pc).Show();
         }
 

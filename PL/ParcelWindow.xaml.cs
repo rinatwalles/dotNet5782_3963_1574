@@ -42,8 +42,8 @@ namespace PL
 
             battaryStatusLabel.Visibility = battaryStatusTextBox.Visibility = Visibility.Collapsed;
             idLabel.Visibility = idTextBox.Visibility = Visibility.Collapsed;
-            ReceiverNameLabel.Visibility = nameTextBox.Visibility = Visibility.Collapsed;
-            SenderNameLabel.Visibility = nameTextBox1.Visibility = Visibility.Collapsed;
+            ReceiverNameLabel.Visibility = nameReceiverTextBox.Visibility = Visibility.Collapsed;
+            SenderNameLabel.Visibility = nameSenderTextBox1.Visibility = Visibility.Collapsed;
             //longitudeTextBox.Visibility = longitudeLabel.Visibility = Visibility.Collapsed;
 
             //UpdateButton.Visibility = Visibility.Collapsed;
@@ -115,36 +115,44 @@ namespace PL
             //    if (op == 0)
             //    {
 
-            //        Parcel parc = new Parcel()
-            //        {
-            //            Weight = (WeightCategories)weightComboBox.SelectedItem,
-            //            Priority = (Priorities)priorityComboBox.SelectedItem
-            //        };
-            //        int IdSend = int.Parse(idTextBox3.Text);
-            //        int IdReceive = int.Parse(idTextBox2.Text);
-            //        ibl.AddParcel(parc, IdSend, IdReceive);
-            //        try
-            //        {
-            //            ibl.AddParcel(parc, IdSend, IdReceive);
-            //        }
-            //        catch (DuplicateIdException ex)
-            //        {
-            //            addedSuccessfully = false;
-            //            MessageBox.Show("The Drone id belong to another drone. insert another one");
-            //        }
-            //        if (addedSuccessfully)
-            //        {
-            //            MessageBox.Show("The Drone added successfully");
-            //            this.Close();
-            //        }
-            //    }
-            //    else
-            //    {
-            //        //ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
-            //        MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-            //        this.Close();
-            //    }
-            //}
+                Parcel parc = new Parcel()
+                {
+                    Weight = (WeightCategories)weightComboBox.SelectedItem,
+                    Priority = (Priorities)priorityComboBox.SelectedItem
+                };
+                int IdSend = int.Parse(idSenderTextBox3.Text);
+                int IdReceive = int.Parse(idReceiverTextBox2.Text);
+              //  ibl.AddParcel(parc, IdSend, IdReceive);
+                try
+                {
+                    ibl.AddParcel(parc, IdSend, IdReceive);
+                }
+                catch (DuplicateIdException ex)
+                {
+                    addedSuccessfully = false;
+                    MessageBox.Show("The parcel id belong to another parcel. insert another one");
+                    idTextBox.Text = "";
+                }
+                catch (DeliveryProblems ex)
+                {
+                    addedSuccessfully = false;
+                    MessageBox.Show("sender and reciver cannot be with the same id, insert again");
+                    idSenderTextBox3.Text = "";
+                    idReceiverTextBox2.Text = "";
+
+                }
+                if (addedSuccessfully)
+                {
+                    MessageBox.Show("The Drone added successfully");
+                    this.Close();
+                }
+            }
+            else
+            {
+                //ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
+                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                this.Close();
+            }
 
             //private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
             //{
@@ -152,6 +160,11 @@ namespace PL
             //    BO.Drone d= ibl.GetDrone(id);
             //    new PL.DroneWindow(ibl,d);
             //}
+        }
+
+        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
