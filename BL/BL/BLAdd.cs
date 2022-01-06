@@ -41,7 +41,7 @@ namespace BL
             double Medium = array[2];
             double Heavy = array[3];
             double ChargePrecent = array[4];
-
+            int i = 1;
             int counterStat = 1;
             ListBLDrones = (List<DroneToList>)(from dodron in idal.AllDrones()
                                                select new DroneToList()
@@ -49,7 +49,7 @@ namespace BL
                                                    Id = dodron.Id,
                                                    Model = dodron.Model,
                                                    Weight = (WeightCategories)dodron.Weight,
-                                                   ParcelNumber = rand.Next(1, 5)
+                                                   ParcelNumber = i++
                                                }).ToList(); ;
             Location locat = new Location();
             try
@@ -98,11 +98,11 @@ namespace BL
                         idal.DroneChargeAddition(dc);
                         counterStat++;
                     }
-
+                    i = 11;
                     if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
                     {
-                        int randId = rand.Next(11, 16);
-                        DO.Parcel doParcel = idal.GetParcel(randId);
+                       // int randId = rand.Next(11, 16);
+                        DO.Parcel doParcel = idal.GetParcel(i);
                         DO.Customer cust = idal.GetCustomer(doParcel.SenderId);
                         locat.Latitude = cust.Latitude;
                         locat.Longitude = cust.Longitude;
@@ -254,9 +254,8 @@ namespace BL
         {
             try
             {
-                //check if the parcel is already exists
-                
-
+                if (IdSender == IdReceiver)
+                    throw new DeliveryProblems(p.Id, "sender and reciver with the same id");
                 //adding the parcel to DAL layer and addupt the feilds
                 DO.Parcel doParcel = new DO.Parcel()
                 {

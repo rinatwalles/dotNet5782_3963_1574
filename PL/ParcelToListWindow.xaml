@@ -14,8 +14,8 @@
                 <DataGridTextColumn x:Name="NameReceiverColumn" Binding="{Binding Receiver.Name}" Header="Receiver Name" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="idSenderColumn" Binding="{Binding Sender.Id}" Header="Sender Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="NameSenderColumn" Binding="{Binding Sender.Name}" Header="Sender Name" Width="SizeToHeader"/>
-                <DataGridTemplateColumn x:Name="parcelStateColumn" Header="Parcel State" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
+               <!--> <DataGridTemplateColumn x:Name="parcelStateColumn" Header="Parcel State" Width="SizeToHeader">-->
+                 <!--<DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
                             <ComboBox>
                                 <ComboBoxItem Content="{Binding ParcelState}"/>
@@ -31,19 +31,15 @@
                             </ComboBox>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
-                <DataGridTemplateColumn x:Name="weightColumn" Header="Weight" Width="SizeToHeader">
-                    <DataGridTemplateColumn.CellTemplate>
-                        <DataTemplate>
-                            <ComboBox>
-                                <ComboBoxItem Content="{Binding Weight}"/>
-                            </ComboBox>
-                        </DataTemplate>
-                    </DataGridTemplateColumn.CellTemplate>
-                </DataGridTemplateColumn>
+                </DataGridTemplateColumn>-->
+                    <DataGridTextColumn x:Name="priorityColumn" Binding="{Binding Priority}" Header="Priority" Width="SizeToHeader"/>
+                    <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
+
+                <DataGridTextColumn x:Name="parcelStateColumn" Binding="{Binding ParcelState}" Header="Parcel State" Width="SizeToHeader"/>
+
             </DataGrid.Columns>
         </DataGrid>
-        <Button  Content="Button" HorizontalAlignment="Left" Margin="600,81,0,0" VerticalAlignment="Top" Click="Button_Click"  />
+        <Button  Content="Add New Parcel" HorizontalAlignment="Left" Margin="600,81,0,0" VerticalAlignment="Top" Click="Button_Click"  />
         <Button x:Name="closeButtun"  Content="Close" HorizontalAlignment="Left" Margin="600,143,0,0" VerticalAlignment="Top" Click="closeButtun_Click"  />
         <Button x:Name="groupButtun" Content="Group List" HorizontalAlignment="Left" Margin="600,227,0,0" VerticalAlignment="Top" Click="groupButtun_Click"/>
         <Button x:Name="clearButtun" Content="clear" HorizontalAlignment="Left" Margin="600,281,0,0" VerticalAlignment="Top" Click="clearButtun_Click"/>

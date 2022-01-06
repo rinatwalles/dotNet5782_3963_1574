@@ -108,6 +108,11 @@ namespace Dal
                     DeliveredTime = DateTime.MinValue
                 };
                 parcels.Add(p);
+                if (p.SenderId == p.TargetId)  //to prevent a person sending to himself
+                {
+                    parcels.Remove(p);
+                    i--;
+                }
             }
 
             for (int i = 8; i <= 10; i++)
@@ -144,10 +149,7 @@ namespace Dal
                 };
                 parcels.Add(p);
             }
-
-
         }
-
     }
 }
 

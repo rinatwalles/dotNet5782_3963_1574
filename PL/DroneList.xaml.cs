@@ -80,10 +80,42 @@ namespace PL
         //נשאר לעשות לזה GROUP
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            droneToListDataGrid.ItemsSource  = (from drone in ibl.GetAllDrones()
-                                                orderby drone.DroneStatus
-                                                select drone);
-            //group drone by drone.DroneStatus into gs
+            droneToListDataGrid.ItemsSource = (from drone in ibl.GetAllDrones()
+                                               orderby drone.DroneStatus
+                                               select drone);
+          //  group drone by drone.DroneStatus into gs
+
+            //List<DroneToList> lst1 = new List<DroneToList>();
+
+            //IEnumerable<IGrouping<DroneStatuses, DroneToList>> result = (from drone in ibl.GetAllDrones()
+            //                                                             group drone by drone.DroneStatus into gs
+            //                                                             select gs).ToList(); ;
+            //foreach (IGrouping<DroneStatuses, DroneToList> g in result)
+            //{
+            //    switch (g.Key)
+            //    {
+            //        case (DroneStatuses)0:
+            //            {
+
+            //                 foreach (DroneToList n in g)
+            //                    lst1.AddRange(n as IEnumerable<DroneToList>);
+            //                 break;
+            //            }
+            //        case (DroneStatuses)1:
+            //            {
+            //                foreach (DroneToList n in g)
+            //                    lst1.AddRange(n as IEnumerable<DroneToList>);
+            //                break;
+            //            }
+            //        case (DroneStatuses)2:
+            //            {
+            //                foreach (DroneToList n in g)
+            //                    lst1.AddRange(n as IEnumerable<DroneToList>);
+            //                break;
+            //            }
+            //    }
+            //}
+            //droneToListDataGrid.ItemsSource = lst1;
         }
 
         private void clearButtun_Click(object sender, RoutedEventArgs e)
