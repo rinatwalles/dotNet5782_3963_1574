@@ -123,7 +123,8 @@ namespace PL
             droneToListDataGrid.ItemsSource = (from drone in ibl.GetAllDrones()
                                                orderby drone.Id
                                                select drone);
-           
+           WeightSelector.SelectedIndex = -1;
+          StatusSelector.SelectedIndex = -1;
         }
     }
 }

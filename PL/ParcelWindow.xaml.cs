@@ -108,7 +108,7 @@ namespace PL
             //longitudeTextBox.IsEnabled = false;
             //latitudeTextBox.IsEnabled = false;
 
-        //}
+        }
         private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
         {
             bool addedSuccessfully = true;
@@ -122,7 +122,7 @@ namespace PL
                 };
                 int IdSend = int.Parse(idSenderTextBox3.Text);
                 int IdReceive = int.Parse(idReceiverTextBox2.Text);
-              //  ibl.AddParcel(parc, IdSend, IdReceive);
+                //  ibl.AddParcel(parc, IdSend, IdReceive);
                 try
                 {
                     ibl.AddParcel(parc, IdSend, IdReceive);
@@ -153,10 +153,10 @@ namespace PL
                 MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             }
-
+        }
         private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            int id =int.Parse(idTextBox1.Text);
+            int id =int.Parse(idDroneTextBox1.Text);
             BO.Drone d= ibl.GetDrone(id);
             new PL.DroneWindow(ibl,d);
         }
