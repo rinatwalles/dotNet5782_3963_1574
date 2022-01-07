@@ -34,7 +34,7 @@ namespace PL
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
-            
+
 
 
             this.Title = "Parcel Addition";
@@ -63,12 +63,12 @@ namespace PL
             PlParc = parc;
             op = option.Update;
             parcelup.DataContext = PlParc;
-           
 
 
 
-        //    this.Title = "Drone Update";
-        //    OptionButtun.Content = "Update The Drone";
+
+            //    this.Title = "Drone Update";
+            //    OptionButtun.Content = "Update The Drone";
 
             //if (d.DroneStatus == DroneStatuses.Available)
             //{
