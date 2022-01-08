@@ -30,35 +30,25 @@ namespace PL
             ibl = newIbl;
             PlParc = new Parcel();
             op = option.Add;
-
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
 
-
-
-
             this.Title = "Parcel Addition";
             OptionButtun.Content = "ADD The Parcel";
-
             battaryStatusLabel.Visibility = battaryStatusTextBox.Visibility = Visibility.Collapsed;
             idLabel.Visibility = idTextBox.Visibility = Visibility.Collapsed;
             ReceiverNameLabel.Visibility = nameReceiverTextBox.Visibility = Visibility.Collapsed;
             SenderNameLabel.Visibility = nameSenderTextBox1.Visibility = Visibility.Collapsed;
             //longitudeTextBox.Visibility = longitudeLabel.Visibility = Visibility.Collapsed;
-
             //UpdateButton.Visibility = Visibility.Collapsed;
             //DeliveryButton.Visibility = Visibility.Collapsed;
-
             idTextBox.IsEnabled = false;
         }
-
-
         public ParcelWindow(BLApi.IBL newIbl, Parcel parc)//update constructor
         {
             InitializeComponent();
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
             weightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
-
             ibl = newIbl;
             PlParc = parc;
             op = option.Update;
@@ -67,6 +57,8 @@ namespace PL
 
 
 
+            this.Title = "Drone Update";
+            OptionButtun.Content = "Update The Drone";
             //    this.Title = "Drone Update";
             //    OptionButtun.Content = "Update The Drone";
 
@@ -92,7 +84,6 @@ namespace PL
             //        DeliveryButton.Content = "Supply Parcel By Drone";
             //        del = delivery.Supply;
             //    }
-
             //    else if (parcel.ScheduledTime != DateTime.MinValue)
             //    {
             //        UpdateButton.Visibility = Visibility.Collapsed;
@@ -108,12 +99,14 @@ namespace PL
             //longitudeTextBox.IsEnabled = false;
             //latitudeTextBox.IsEnabled = false;
 
-            //}
-            //private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
-            //{
-            //    bool addedSuccessfully = true;
-            //    if (op == 0)
-            //    {
+        }
+        //}
+        private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
+        {
+            bool addedSuccessfully = true;
+            if (op == 0)
+            {
+
 
                 Parcel parc = new Parcel()
                 {
@@ -122,7 +115,7 @@ namespace PL
                 };
                 int IdSend = int.Parse(idSenderTextBox3.Text);
                 int IdReceive = int.Parse(idReceiverTextBox2.Text);
-              //  ibl.AddParcel(parc, IdSend, IdReceive);
+                //  ibl.AddParcel(parc, IdSend, IdReceive);
                 try
                 {
                     ibl.AddParcel(parc, IdSend, IdReceive);
@@ -139,7 +132,6 @@ namespace PL
                     MessageBox.Show("sender and reciver cannot be with the same id, insert again");
                     idSenderTextBox3.Text = "";
                     idReceiverTextBox2.Text = "";
-
                 }
                 if (addedSuccessfully)
                 {
@@ -154,17 +146,22 @@ namespace PL
                 this.Close();
             }
 
-            //private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-            //{
-            //    int id =int.Parse(idTextBox1.Text);
-            //    BO.Drone d= ibl.GetDrone(id);
-            //    new PL.DroneWindow(ibl,d);
-            //}
+            private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+            {
+                int id = int.Parse(idTextBox1.Text);
+                BO.Drone d = ibl.GetDrone(id);
+                new PL.DroneWindow(ibl, d);
+            }
+
+            private void Button_Click_Close(object sender, RoutedEventArgs e)
+            {
+                this.Close();
+            }
         }
 
-        private void Button_Click_Close(object sender, RoutedEventArgs e)
+        private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            this.Close();
+
         }
     }
 }
