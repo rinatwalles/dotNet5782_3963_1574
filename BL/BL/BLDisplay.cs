@@ -60,7 +60,7 @@ namespace BL
                 //boDrone.ParcelInDelivery מה עם זה
                 if (boDrone.DroneStatus == BO.DroneStatuses.Delivery)
                 {
-                    DO.Parcel boParcel = idal.getParcelByDroneId(id);
+                    DO.Parcel boParcel = idal.GetOneParcelByPredicate(p => p.DroneId == id);
                     //IDAL.DO.Customer boSender = idal.getParcelByDroneId(id);
                     boDrone.ParcelInDelivery = new ParcelInDelivery
                     {

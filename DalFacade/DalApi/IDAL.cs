@@ -15,16 +15,16 @@ namespace DaLApi
             bool CheckDrone(int id);
             void DroneAddition(Drone d);
             Drone GetDrone(int id);
-            void JoinDroneToParcel(int parcelId);
-            void DroneCollecting(int parcelId);
-            void ChargingDrone(int droneId, int stationId);
-            void ReleaseDrone(int droneId, int stationId);
+            //void JoinDroneToParcel(int parcelId);
+            //void DroneCollecting(int parcelId);
+            //void ChargingDrone(int droneId, int stationId);
+            //void ReleaseDrone(int droneId, int stationId);
             IEnumerable<Drone> AllDrones();
             double DistanceCalculate(double long1, double lat1, double long2, double lat2);
             void DroneDelete(Drone d);
             void DroneUpdate(Drone d);
             double[] AskingElectricityUse();
-            IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate);
+           // IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate);
             #endregion
 
             #region Customer
@@ -60,7 +60,7 @@ namespace DaLApi
             Parcel GetParcel(int id);
             IEnumerable<Parcel> AllParcel();
             void ParcelDelete(Parcel p);
-            Parcel getParcelByDroneId(int id);
+         //   Parcel getParcelByDroneId(int id);
             void ParcelUpdate(Parcel p);
             IEnumerable<Parcel> GetParcelByPredicate(Predicate<Parcel> predicate);
             #endregion

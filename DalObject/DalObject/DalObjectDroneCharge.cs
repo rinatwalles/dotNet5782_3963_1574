@@ -39,8 +39,8 @@ namespace Dal
         public void DroneChargesDelete(DroneCharge dc)
         {
             int count = DataSource.droneCharges.RemoveAll(d => ((d.DroneId == dc.DroneId) && (d.StationId == dc.DroneId)));
-            //if (count == 0)
-            //    throw new DAL.MissingIdException(dc.DroneId, "DroneCharge");
+            if (count == 0)
+                throw new MissingIdException(dc.DroneId, "DroneCharge");
         }
 
         /// <summary>

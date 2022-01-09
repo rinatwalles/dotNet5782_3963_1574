@@ -78,17 +78,17 @@ namespace Dal
             DataSource.parcels.Add(p);
         }
 
-        /// <summary>
-        /// a function that gets an id and returns its parcel
-        /// </summary>
-        /// <param name="id">id of a parcel</param>
-        /// <returns>a parcel</returns>
-        public Parcel getParcelByDroneId(int id)
-        {
-            if (!CheckParcel(id))
-                throw new MissingIdException(id, "Parcel");
-            return DataSource.parcels.Find(p => p.DroneId == id);
-        }
+        ///// <summary>
+        ///// a function that gets an id and returns its parcel
+        ///// </summary>
+        ///// <param name="id">id of a parcel</param>
+        ///// <returns>a parcel</returns>
+        //public Parcel getParcelByDroneId(int id)
+        //{
+        //    if (!CheckParcel(id))
+        //        throw new MissingIdException(id, "Parcel");
+        //    return DataSource.parcels.Find(p => p.DroneId == id);
+        //}
 
         /// <summary>
         ///  a function that gets a predicate and returns a list of all the parcels with this preducate
