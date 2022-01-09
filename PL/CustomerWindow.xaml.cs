@@ -62,6 +62,7 @@ namespace PL
             idTextBox.IsEnabled = false;
             longitudeTextBox.IsEnabled = false;
             latitudeTextBox.IsEnabled = false;
+            phoneTextBox.IsEnabled = false;
 
         }
         private bool buttunEnabled()
