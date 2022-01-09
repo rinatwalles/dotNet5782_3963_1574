@@ -157,7 +157,6 @@ namespace Dal
         {
             return from dr in DataSource.drones
                    select dr;
-            //return DataSource.drones;
         }
 
         /// <summary>
