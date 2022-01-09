@@ -12,7 +12,8 @@ namespace Dal
     {
         public bool CheckStation(int id)
         {
-            throw new NotImplementedException();
+            List<Station> listStations =XMLTools.La
+            return DataSource.stations.Any(s => s.Id == id);
         }
 
         public void StationAddition(Station s)
