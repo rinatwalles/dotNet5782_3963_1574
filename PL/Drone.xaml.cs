@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using BO;
-//using BLApi;
+using BLApi;
 
 namespace PL
 {
@@ -35,12 +35,16 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            PLdDrone = new Drone();
-            op = option.Add;
 
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
+            parcelStateComboBox.ItemsSource = Enum.GetValues(typeof(ParcelStates));
 
+            PLdDrone = new Drone();
+            op = option.Add;
+
+            
             IEnumerable<StationToList> lst = ibl.GetAllStationsWithAvailableSlots();
             var txt = from StationToList item in lst
                       orderby item.Id
@@ -242,13 +246,19 @@ namespace PL
                 OptionButtun.IsEnabled = true;
         }
 
-        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)//Weight ComboBox  
-        {
-            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
-                OptionButtun.IsEnabled = true;            
-        }
+        //private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)//Weight ComboBox  
+        //{
+        //    if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
+        //        OptionButtun.IsEnabled = true;            
+        //}
 
         private void stationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)  //station id ComboBox
+        {
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
                 OptionButtun.IsEnabled = true;
