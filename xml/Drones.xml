@@ -75,4 +75,9 @@
     <Model>Hve</Model>
     <Weight>Medium</Weight>
   </Drone>
+  <Drone>
+    <Id>33</Id>
+    <Model>ASF</Model>
+    <Weight>Medium</Weight>
+  </Drone>
 </ArrayOfDrone>

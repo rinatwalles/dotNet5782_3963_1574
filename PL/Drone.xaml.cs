@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using BO;
-//using BLApi;
+using BLApi;
 
 namespace PL
 {
@@ -35,12 +35,16 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            PLdDrone = new Drone();
-            op = option.Add;
 
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
+            parcelStateComboBox.ItemsSource = Enum.GetValues(typeof(ParcelStates));
 
+            PLdDrone = new Drone();
+            op = option.Add;
+
+            
             IEnumerable<StationToList> lst = ibl.GetAllStationsWithAvailableSlots();
             var txt = from StationToList item in lst
                       orderby item.Id
@@ -55,8 +59,13 @@ namespace PL
             BatteryLabel.Visibility = txtBattery.Visibility = Visibility.Collapsed;
             StatusLabel.Visibility = StatusComboBox.Visibility = Visibility.Collapsed;
             latitudeTextBox.Visibility= latitudeLabel.Visibility = Visibility.Collapsed;
-            longitudeTextBox.Visibility=longitudeLabel.Visibility = Visibility.Collapsed; 
-
+            longitudeTextBox.Visibility=longitudeLabel.Visibility = Visibility.Collapsed;
+            grid3.Visibility = Visibility.Collapsed;
+            grid2.Visibility = Visibility.Collapsed;
+            parcelStateLabel.Visibility = parcelStateComboBox.Visibility = Visibility.Collapsed;
+            priorityLabel.Visibility = priorityComboBox.Visibility = Visibility.Collapsed;
+            transportDistanceLabel.Visibility = transportDistanceTextBox.Visibility = Visibility.Collapsed;
+            weightComboBox1Label.Visibility = weightComboBox1.Visibility = Visibility.Collapsed;
             UpdateButton.Visibility = Visibility.Collapsed;
             DeliveryButton.Visibility = Visibility.Collapsed;
 
@@ -68,13 +77,13 @@ namespace PL
             InitializeComponent();
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
+            parcelStateComboBox.ItemsSource = Enum.GetValues(typeof(ParcelStates));
 
             ibl = newIbl;
             PLdDrone = d;
             op = option.Update;
             droneup.DataContext = PLdDrone ;
-
-            stationComboBox.Visibility = stationLabel.Visibility = Visibility.Collapsed;
 
 
             this.Title = "Drone Update";
@@ -86,12 +95,20 @@ namespace PL
                 DeliveryButton.Content = "Join Parcel To Drone";
                 up = update.charge;
                 del = delivery.Join;
+                grid3.Visibility = Visibility.Collapsed;
+                grid2.Visibility = Visibility.Collapsed;
+                ParcelIDLabel.Visibility= txtParcelID.Visibility = Visibility.Collapsed;
+                parcelStateLabel.Visibility= parcelStateComboBox.Visibility = Visibility.Collapsed;
+                priorityLabel.Visibility=priorityComboBox.Visibility = Visibility.Collapsed;
+                transportDistanceLabel.Visibility= transportDistanceTextBox.Visibility= Visibility.Collapsed;
+                weightComboBox1Label.Visibility= weightComboBox1.Visibility = Visibility.Collapsed;
             }
             if (d.DroneStatus == DroneStatuses.Maintenance)
             {
                 UpdateButton.Content = "Discharge Drone";
                 DeliveryButton.Visibility = Visibility.Collapsed;
                 up = update.disCharge;
+            
             }
             if (d.DroneStatus == DroneStatuses.Delivery)
             {
@@ -120,10 +137,7 @@ namespace PL
 
         }
 
-        private void StatusComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
 
-        }
 
         private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
         {
@@ -218,11 +232,6 @@ namespace PL
             this.Close();
         }
 
-        private void txtID_TextChanged_1(object sender, TextChangedEventArgs e)    //txtID textbox
-        {
-            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
-                OptionButtun.IsEnabled = true;            
-        }
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)///function that makes the user enters only numbers
         {
@@ -236,22 +245,31 @@ namespace PL
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void txtModel_TextChanged(object sender, TextChangedEventArgs e)  //txtModel textbox
-        {
-            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
-                OptionButtun.IsEnabled = true;
-        }
-
-        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)//Weight ComboBox  
-        {
-            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
-                OptionButtun.IsEnabled = true;            
-        }
-
         private void stationComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)  //station id ComboBox
         {
             if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
                 OptionButtun.IsEnabled = true;
         }
+
+        private void WeightComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
+                OptionButtun.IsEnabled = true;
+        }
+
+        private void txtID_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
+                OptionButtun.IsEnabled = true;
+        }
+
+
+        private void txtModel_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (txtID.Text != "" && txtModel.Text != "" && WeightComboBox.SelectedIndex != -1 && stationComboBox.SelectedIndex != -1)
+                OptionButtun.IsEnabled = true;
+        }
+
+
     }
 }
