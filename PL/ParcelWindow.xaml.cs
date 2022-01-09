@@ -155,11 +155,11 @@ namespace PL
             {
                 this.Close();
             }
-        }
+        //}
 
-        private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
+       // private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        //{
 
-        }
+        //}
     }
 }
