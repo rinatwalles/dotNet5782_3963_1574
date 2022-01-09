@@ -1,13 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <Id>1</Id>
-    <Name>Hmw</Name>
-    <Longitude>29.90652241958609</Longitude>
-    <Latitude>35.53119784893058</Latitude>
-    <AvailableChargeSlots>9</AvailableChargeSlots>
-  </Station>
-  <Station>
     <Id>2</Id>
     <Name>Jdc</Name>
     <Longitude>31.665089110082523</Longitude>
@@ -104,5 +97,12 @@
     <Longitude>32.46821432857225</Longitude>
     <Latitude>34.400193610740914</Latitude>
     <AvailableChargeSlots>2</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>1</Id>
+    <Name>Hmw</Name>
+    <Longitude>29.90652241958609</Longitude>
+    <Latitude>35.53119784893058</Latitude>
+    <AvailableChargeSlots>4</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>

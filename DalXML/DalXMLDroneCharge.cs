@@ -59,7 +59,6 @@ namespace Dal
                 throw new MissingIdException(dId, "DroneCharge");
             List<DroneCharge> listDroneCharges = XMLTools.LoadListFromXMLSerializer<DroneCharge>(DroneChargesPath);
             return listDroneCharges.Find(c => c.DroneId == dId);
-            XMLTools.SaveListToXMLSerializer(listDroneCharges, DroneChargesPath);
         }
 
         /// <summary>
