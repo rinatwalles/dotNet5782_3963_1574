@@ -1,5 +1,4 @@
-﻿using Dal;
-using DO;
+﻿using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,12 +23,6 @@ namespace Dal
         static DalObject() 
         { 
             DataSource.Initialize();
-            XMLTools.SaveListToXMLSerializer(customers, CustomersPath);//remove!!
-            XMLTools.SaveListToXMLSerializer(drones, DronesPath);//remove!!
-            XMLTools.SaveListToXMLSerializer(stations, StationsPath);//remove!!
-            XMLTools.SaveListToXMLSerializer(parcels, ParcelsPath);//remove!!
-            XMLTools.SaveListToXMLSerializer(droneCharges, DroneChargesPath);//remove!!
-
         }
 
         /// <summary>

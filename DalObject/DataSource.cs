@@ -30,12 +30,6 @@ namespace Dal
         internal static List<DroneCharge> droneCharges = new List<DroneCharge>();
 
 
-
-        public static string CustomersPath = "Customers.xml";//remove!!
-        public static string ParcelsPath = "Parcels.xml";//remove!!
-        public static string DronesPath = "Drones.xml";//remove!!
-        public static string StationsPath = "Stations.xml";//remove!!
-        public static string DroneChargesPath = "DroneCharges.xml";//remove!!
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         /// <summary>

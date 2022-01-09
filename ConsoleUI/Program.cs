@@ -112,14 +112,14 @@ namespace ConsoleUI
                                     {
                                         Console.WriteLine("insert an id of a parcel");
                                         int parcelId = int.Parse(System.Console.ReadLine());
-                                        dall.JoinDroneToParcel(parcelId);
+                                        //dall.JoinDroneToParcel(parcelId);
                                         break;
                                     }
                                 case Update.Collect://parcel collecting by drine 
                                     {
                                         Console.WriteLine("insert an id of a parcel");
                                         int parcelId = int.Parse(System.Console.ReadLine());
-                                        dall.DroneCollecting(parcelId);
+                                        //dall.DroneCollecting(parcelId);
                                         break;
                                     }
                                 case Update.Supply://customer collecting the parcel
@@ -135,7 +135,7 @@ namespace ConsoleUI
                                         Console.WriteLine("insert an id of a drone and station");
                                         int droneId = int.Parse(System.Console.ReadLine());
                                         int stationId = int.Parse(System.Console.ReadLine());
-                                        dall.ChargingDrone(droneId, stationId);
+                                        //dall.ChargingDrone(droneId, stationId);
                                         break;
                                     }
                                 case Update.ReleaseDrone://releasing the drone
@@ -143,7 +143,7 @@ namespace ConsoleUI
                                         Console.WriteLine("insert an id of a drone and station");
                                         int droneId = int.Parse(System.Console.ReadLine());
                                         int stationId = int.Parse(System.Console.ReadLine());
-                                        dall.ReleaseDrone(droneId, stationId);
+                                        //dall.ReleaseDrone(droneId, stationId);
                                         break;
                                     }
                                 default:

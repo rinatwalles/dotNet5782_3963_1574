@@ -32,6 +32,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{21A3E73D-84A
 		xml\dal-config.xml = xml\dal-config.xml
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml files", "xml files", "{FEB3A546-61B1-4A66-B990-80AE70FE0B99}"
+	ProjectSection(SolutionItems) = preProject
+		xml\Customers.xml = xml\Customers.xml
+		xml\DroneCharges.xml = xml\DroneCharges.xml
+		xml\Drones.xml = xml\Drones.xml
+		xml\Parcels.xml = xml\Parcels.xml
+		xml\Stations.xml = xml\Stations.xml
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +85,7 @@ Global
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{21A3E73D-84AB-49B6-B667-C3CC6D43CA70} = {9038637D-35D9-4862-955A-DA33969A0463}
+		{FEB3A546-61B1-4A66-B990-80AE70FE0B99} = {21A3E73D-84AB-49B6-B667-C3CC6D43CA70}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {0526EBC5-73DD-4750-820C-268E012A4198}
