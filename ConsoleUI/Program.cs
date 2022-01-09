@@ -126,7 +126,7 @@ namespace ConsoleUI
                                     {
                                         Console.WriteLine("insert an id of a parcel");
                                         int parcelId = int.Parse(System.Console.ReadLine());
-                                        dall.CustomerCollecting(parcelId);
+                                        //dall.CustomerCollecting(parcelId);
                                         break;
                                     }
 
@@ -276,10 +276,10 @@ namespace ConsoleUI
                                     }
                                 case Distance.Customer://distance fron customer
                                     {
-                                        Console.WriteLine("insert an id of a customer");
-                                        st = Console.ReadLine();
-                                        int id = int.Parse(st);
-                                        Console.WriteLine(dall.DistanceFromCustomer(id, x1, y1));
+                                        //Console.WriteLine("insert an id of a customer");
+                                        //st = Console.ReadLine();
+                                        //int id = int.Parse(st);
+                                        //Console.WriteLine(dall.DistanceFromCustomer(id, x1, y1));
                                         break;
                                     }
                                 default:

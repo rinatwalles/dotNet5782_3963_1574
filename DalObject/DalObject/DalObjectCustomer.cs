@@ -45,14 +45,14 @@ namespace Dal
         }
 
         /// <summary>
-        /// collecting the parcel cy the costumer
+        /// collecting the parcel by the costumer
         /// </summary>
         /// <param name="parcelId">parcel id to collect</param>
-        public void CustomerCollecting(int parcelId)
-        {
-            Parcel p = GetParcel(parcelId);
-            p.DeliveredTime = DateTime.Now;//change time
-        }
+        //public void CustomerCollecting(int parcelId)
+        //{
+        //    Parcel p = GetParcel(parcelId);
+        //    p.DeliveredTime = DateTime.Now;//change time
+        //}
 
         /// <summary>
         /// returning array of all customers
@@ -69,13 +69,13 @@ namespace Dal
         /// <param name="id">costuner id</param>
         /// <param name="x1">current x coordinate</param>
         /// <param name="y1">current y coordinate</param>
-        public double DistanceFromCustomer(int id, double long1, double lat1)
-        {
-            Customer c = GetCustomer(id);
-            double long2 = c.Longitude;//custoner coordinates
-            double lat2 = c.Latitude;
-            return DistanceCalculate(long1, lat1, long2, lat2);//print the distance
-        }
+        //public double DistanceFromCustomer(int id, double long1, double lat1)//where do we use it in bl/pl??????
+        //{
+        //    Customer c = GetCustomer(id);
+        //    double long2 = c.Longitude;//custoner coordinates
+        //    double lat2 = c.Latitude;
+        //    return DistanceCalculate(long1, lat1, long2, lat2);//print the distance
+        //}
 
         /// <summary>
         /// delete customer function
@@ -99,7 +99,7 @@ namespace Dal
                 throw new MissingIdException(c.Id, "Customer");
             DataSource.customers.Add(c);
         }
-        public IEnumerable<Customer> GetCustomerInParcelByPredicate(Predicate<Customer> predicate)
+        public IEnumerable<Customer> GetCustomerByPredicate(Predicate<Customer> predicate)
         {
             return from cust in DataSource.customers
                    where predicate(cust)

@@ -32,12 +32,12 @@ namespace DaLApi
             bool CheckCustomer(int id);
             void CustomerAddition(Customer c);
             Customer GetCustomer(int id);
-            void CustomerCollecting(int parcelId);
+            //void CustomerCollecting(int parcelId);
             IEnumerable<Customer> AllCustomer();
-            double DistanceFromCustomer(int id, double x1, double y1);
+            //double DistanceFromCustomer(int id, double x1, double y1);
             void CustomerDelete(Customer c);
             void CustomerUpdate(Customer c);
-            IEnumerable<Customer> GetCustomerInParcelByPredicate(Predicate<Customer> predicate);
+            IEnumerable<Customer> GetCustomerByPredicate(Predicate<Customer> predicate);
 
             #endregion
 
