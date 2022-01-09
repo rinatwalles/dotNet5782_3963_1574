@@ -13,6 +13,7 @@ namespace Dal
 {
     sealed partial class DalObject : IDAL
     {
+
         static readonly IDAL instance = new DalObject();
         public static IDAL Instance { get => instance; }
 
@@ -20,7 +21,16 @@ namespace Dal
         /// create initialized arrays
         /// </summary>
         /// 
-        static DalObject() { DataSource.Initialize(); }
+        static DalObject() 
+        { 
+            DataSource.Initialize();
+            XMLTools.SaveListToXMLSerializer(customers, CustomersPath);//remove!!
+            XMLTools.SaveListToXMLSerializer(drones, DronesPath);//remove!!
+            XMLTools.SaveListToXMLSerializer(stations, StationsPath);//remove!!
+            XMLTools.SaveListToXMLSerializer(parcels, ParcelsPath);//remove!!
+            XMLTools.SaveListToXMLSerializer(droneCharges, DroneChargesPath);//remove!!
+
+        }
 
         /// <summary>
         /// function that checks if a drone is exists
