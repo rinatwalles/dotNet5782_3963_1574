@@ -29,7 +29,7 @@ namespace Dal
         internal static List<Parcel> parcels = new List<Parcel>();
         internal static List<DroneCharge> droneCharges = new List<DroneCharge>();
 
-
+        
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         /// <summary>
@@ -43,7 +43,7 @@ namespace Dal
                 {
                     Id = i,
                     Model = "" + (char)rand.Next(65, 90) + (char)rand.Next(97, 122) + (char)rand.Next(97, 122),
-                    Weight = (WeightCategories)rand.Next(0, 2),
+                    Weight = (WeightCategories)rand.Next(0, 3),
                     // Status = (DroneStatuses)rand.Next(0, 1),
                     // Battery = rand.NextDouble()*100//לא יתן 1, רק קטן מ1!
                 };
@@ -83,8 +83,8 @@ namespace Dal
                     Id = Config.ParcelId++,
                     SenderId = rand.Next(1, 10),
                     TargetId = rand.Next(1, 10),
-                    Weight = (WeightCategories)rand.Next(0, 2),
-                    Priority = (Priorities)rand.Next(0, 2),
+                    Weight = (WeightCategories)rand.Next(0, 3),
+                    Priority = (Priorities)rand.Next(0, 3),
                     DroneId = i,
                     RequestedTime = DateTime.Now,
                     ScheduledTime = DateTime.MinValue,
@@ -100,8 +100,8 @@ namespace Dal
                     Id = Config.ParcelId++,
                     SenderId = rand.Next(1, 10),
                     TargetId = rand.Next(1, 10),
-                    Weight = (WeightCategories)rand.Next(0, 2),
-                    Priority = (Priorities)rand.Next(0, 2),
+                    Weight = (WeightCategories)rand.Next(0, 3),
+                    Priority = (Priorities)rand.Next(0, 3),
                     DroneId = i,
                     RequestedTime = DateTime.Now,
                     ScheduledTime = DateTime.Today.AddHours(rand.Next(1, 10)),
@@ -123,8 +123,8 @@ namespace Dal
                     Id = Config.ParcelId++,
                     SenderId = rand.Next(1, 10),
                     TargetId = rand.Next(1, 10),
-                    Weight = (WeightCategories)rand.Next(0, 2),
-                    Priority = (Priorities)rand.Next(0, 2),
+                    Weight = (WeightCategories)rand.Next(0, 3),
+                    Priority = (Priorities)rand.Next(0, 3),
                     DroneId = i,
                     RequestedTime = DateTime.Now,
                     ScheduledTime = DateTime.Today.AddHours(rand.Next(1, 10)),
@@ -140,8 +140,8 @@ namespace Dal
                     Id = Config.ParcelId++,
                     SenderId = rand.Next(1, 10),
                     TargetId = rand.Next(1, 10),
-                    Weight = (WeightCategories)rand.Next(0, 2),
-                    Priority = (Priorities)rand.Next(0, 2),
+                    Weight = (WeightCategories)rand.Next(0, 3),
+                    Priority = (Priorities)rand.Next(0, 3),
                     DroneId = i,
                     RequestedTime = DateTime.Now,
                     ScheduledTime = DateTime.Today.AddHours(rand.Next(1, 10)),
