@@ -64,12 +64,12 @@ namespace Dal
         /// function that gets a parcel and deletes it from the list
         /// </summary>
         /// <param name="p">the parcel to delete</param>
-        public void ParcelDelete(Parcel p)
+        public void ParcelDelete(int id)
         {
             List<Parcel> listParcels = XMLTools.LoadListFromXMLSerializer<Parcel>(ParcelsPath);
-            int count = listParcels.RemoveAll(parc => parc.Id == p.Id);
+            int count = listParcels.RemoveAll(parc => parc.Id == id);
             if (count == 0)
-                throw new MissingIdException(p.Id, "Parcel");
+                throw new MissingIdException(id, "Parcel");
             XMLTools.SaveListToXMLSerializer(listParcels, ParcelsPath);
         }
 

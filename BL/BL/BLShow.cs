@@ -117,7 +117,7 @@ namespace BL
             int num = 0;
             foreach (DO.Parcel item in idal.AllParcel())
             {
-                if (getParcelState(item.Id) == p)
+                if (getParcelState(item.Id) == p&&item.SenderId==id)
                     num++;
             }
             return num;

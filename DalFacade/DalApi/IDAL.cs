@@ -59,7 +59,7 @@ namespace DaLApi
             void ParcelAddition(Parcel p);
             Parcel GetParcel(int id);
             IEnumerable<Parcel> AllParcel();
-            void ParcelDelete(Parcel p);
+            void ParcelDelete(int id);
          //   Parcel getParcelByDroneId(int id);
             void ParcelUpdate(Parcel p);
             IEnumerable<Parcel> GetParcelByPredicate(Predicate<Parcel> predicate);
