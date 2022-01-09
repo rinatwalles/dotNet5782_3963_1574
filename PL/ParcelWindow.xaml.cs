@@ -100,13 +100,11 @@ namespace PL
             //latitudeTextBox.IsEnabled = false;
 
         }
-        //}
         private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
         {
             bool addedSuccessfully = true;
             if (op == 0)
             {
-
 
                 Parcel parc = new Parcel()
                 {
@@ -145,13 +143,13 @@ namespace PL
                 MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             }
-
-            private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-            {
-                int id = int.Parse(idTextBox1.Text);
-                BO.Drone d = ibl.GetDrone(id);
-                new PL.DroneWindow(ibl, d);
-            }
+        }
+        private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            int id =int.Parse(idDroneTextBox1.Text);
+            BO.Drone d= ibl.GetDrone(id);
+            new PL.DroneWindow(ibl,d);
+        }
 
             private void Button_Click_Close(object sender, RoutedEventArgs e)
             {
