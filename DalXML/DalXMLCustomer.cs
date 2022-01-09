@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace Dal
 {
@@ -20,10 +21,33 @@ namespace Dal
         {
             throw new NotImplementedException();
         }
+        //public DO.Person GetPerson(int id)
+        //{
+        //    XElement personsRootElem = XMLTools.LoadListFromXMLElement(personsPath);
 
+        //    Person p = (from per in personsRootElem.Elements()
+        //                where int.Parse(per.Element("ID").Value) == id
+        //                select new Person()
+        //                {
+        //                    ID = Int32.Parse(per.Element("ID").Value),
+        //                    Name = per.Element("Name").Value,
+        //                    Street = per.Element("Street").Value,
+        //                    HouseNumber = Int32.Parse(per.Element("HouseNumber").Value),
+        //                    City = per.Element("City").Value,
+        //                    BirthDate = DateTime.Parse(per.Element("BirthDate").Value),
+        //                    PersonalStatus = (PersonalStatus)Enum.Parse(typeof(PersonalStatus), per.Element("PersonalStatus").Value),
+        //                    Duration = TimeSpan.ParseExact(per.Element("Duration").Value, "hh\\:mm\\:ss", CultureInfo.InvariantCulture)
+        //                }
+        //                ).FirstOrDefault();
+
+        //    if (p == null)
+        //        throw new DO.BadPersonIdException(id, $"bad person id: {id}");
+
+        //    return p;
+        //}
         public Customer GetCustomer(int id)
         {
-            throw new NotImplementedException();
+            XElement personsRootElem = XMLTools.LoadListFromXMLElement(CustomersPath);
         }
 
         public void CustomerCollecting(int parcelId)
