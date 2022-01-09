@@ -51,5 +51,10 @@ namespace PL
         {
             customerToListDataGrid.ItemsSource = ibl.GetAllCustomers();
         }
+
+        private void customerToListDataGrid_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
     }
 }

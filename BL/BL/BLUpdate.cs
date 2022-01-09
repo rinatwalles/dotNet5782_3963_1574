@@ -336,5 +336,12 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+        public void deleteParcel(int id)
+        {
+            ParcelStates ps = getParcelState(id);
+            if (ps == ParcelStates.Requested || ps == ParcelStates.Creation)
+                idal.ParcelDelete(id);
+            throw new DeliveryProblems(id, "The parcel id delivered");
+        }
     }
 }
