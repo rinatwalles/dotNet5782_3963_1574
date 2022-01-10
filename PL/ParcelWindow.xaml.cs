@@ -24,7 +24,7 @@ namespace PL
         enum option { Add, Update };
         option op;
         Parcel PlParc;
-        public ParcelWindow(BLApi.IBL newIbl)
+        public ParcelWindow(BLApi.IBL newIbl)   //add
         {
             InitializeComponent();
             ibl = newIbl;
@@ -57,8 +57,8 @@ namespace PL
 
 
 
-            this.Title = "Drone Update";
-            OptionButtun.Content = "Update The Drone";
+            this.Title = "Parcel Update";
+            OptionButtun.Content = "Update The Parcel";
             //    this.Title = "Drone Update";
             //    OptionButtun.Content = "Update The Drone";
 

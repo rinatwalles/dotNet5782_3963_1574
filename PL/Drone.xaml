@@ -18,8 +18,56 @@
         </Grid.RowDefinitions>
         <Grid Name="droneup" Margin="10,0,-10,23" Grid.RowSpan="2" Grid.ColumnSpan="3">
 
-            
-            <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="60,2,0,-12" VerticalAlignment="Top">
+            <!--<Grid>
+                <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="136,0,0,0" VerticalAlignment="Center">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                        <RowDefinition Height="Auto"/>
+                    </Grid.RowDefinitions>
+                    <Label x:Name="BatteryLabel" Content="Battery Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtBattery" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding BatteryStatus, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label x:Name="StatusLabel" Content="Drone Status:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="StatusComboBox" Grid.Column="1" HorizontalAlignment="Left" Height="Auto" Text="{Binding DroneStatus , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Margin="3" Grid.Row="1" VerticalAlignment="Center" Width="120">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <Label Content="Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="2" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtID"  PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,0,0,5" Grid.Row="2" Text="{Binding Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" Width="120" TextChanged="txtID_TextChanged_1"/>
+                    <Label Content="Model:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtModel" PreviewTextInput="EnglishLettersValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Model, Mode=OneWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="txtModel_TextChanged"/>
+                    <Label x:Name="ParcelIDLabel" Content="Parcel Number:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
+                    <TextBox x:Name="txtParcelID" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding ParcelNumber, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label Content="Weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
+                    <ComboBox x:Name="WeightComboBox" Grid.Column="1" HorizontalAlignment="Center" Height="Auto"  Text="{Binding Weight , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Margin="0,0,0,5" Grid.Row="5" VerticalAlignment="Bottom" Width="120" SelectionChanged="WeightComboBox_SelectionChanged">
+                        <ComboBox.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <VirtualizingStackPanel/>
+                            </ItemsPanelTemplate>
+                        </ComboBox.ItemsPanel>
+                    </ComboBox>
+                    <Label x:Name="latitudeLabel" Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
+                    <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <Label  x:Name="longitudeLabel" Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="7" VerticalAlignment="Center"/>
+                    <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Center" Height="23" Margin="0,0,0,5" Grid.Row="7" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Bottom" Width="120"/>
+                </Grid>
+                <ComboBox x:Name="stationComboBox" PreviewTextInput="NumberValidationTextBox" HorizontalAlignment="Left" Margin="236,324,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="stationComboBox_SelectionChanged"/>
+                <Label x:Name="stationLabel" Content="Station" HorizontalAlignment="Left" Margin="141,322,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.891,-0.243"/>
+
+            </Grid>-->
+            <Grid x:Name="grid1" HorizontalAlignment="Left" Margin="58,0,0,0" VerticalAlignment="Center" Height="382" Width="534">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>
@@ -64,7 +112,7 @@
                 <Label x:Name="transportDistanceLabel" Content="Transport Distance:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="10" VerticalAlignment="Center"/>
                 <TextBox x:Name="transportDistanceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding ParcelInDelivery.TransportDistance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 <Label  x:Name="weightComboBox1Label" Content="Parcel Weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center"/>
-                <ComboBox x:Name="weightComboBox1"  Text="{Binding ParcelInDelivery.Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3,0,0,10" VerticalAlignment="Bottom" Width="120" Grid.Column="1" Grid.Row="11"/>
+                <ComboBox x:Name="weightComboBox1"  Text="{Binding ParcelInDelivery.Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}"  Margin="3,0,0,10" VerticalAlignment="Bottom" Width="120" Grid.Column="1" Grid.Row="11"/>
                 <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 <Grid x:Name="grid2" Grid.Column="1" HorizontalAlignment="Left" Margin="156,0,0,0" VerticalAlignment="Top" Grid.RowSpan="3">
                     <Grid.ColumnDefinitions>

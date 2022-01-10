@@ -110,6 +110,6 @@
     <Name>Hmw</Name>
     <Longitude>29.90652241958609</Longitude>
     <Latitude>35.53119784893058</Latitude>
-    <AvailableChargeSlots>1</AvailableChargeSlots>
+    <AvailableChargeSlots>-5</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>
