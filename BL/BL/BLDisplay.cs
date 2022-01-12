@@ -91,7 +91,11 @@ namespace BL
                     };
                     boDrone.ParcelInDelivery.TransportDistance = getDistance(boDrone.ParcelInDelivery.CollectingPlace, boDrone.ParcelInDelivery.DestinationPlace);
                     boDrone.ParcelInDelivery.ParcelState = getParcelState(id) == ParcelStates.PickedUp;//החבילה נאספה והיא בדרך
-
+                    ParcelStates ps = getParcelState(boDrone.ParcelInDelivery.Id);
+                    if (ps == ParcelStates.Requested || ps == ParcelStates.Creation)
+                        boDrone.ParcelInDelivery.ParcelState = false;
+                    else
+                        boDrone.ParcelInDelivery.ParcelState = true;
                 }
             }
             catch (DO.MissingIdException ex)

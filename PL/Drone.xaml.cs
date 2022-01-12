@@ -39,8 +39,7 @@ namespace PL
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
-            parcelStateComboBox.ItemsSource = Enum.GetValues(typeof(ParcelStates));
-
+            parcelState.Visibility = Visibility.Collapsed;
             PLdDrone = new Drone();
             op = option.Add;
 
@@ -62,7 +61,7 @@ namespace PL
             longitudeTextBox.Visibility=longitudeLabel.Visibility = Visibility.Collapsed;
             grid3.Visibility = Visibility.Collapsed;
             grid2.Visibility = Visibility.Collapsed;
-            parcelStateLabel.Visibility = parcelStateComboBox.Visibility = Visibility.Collapsed;
+            parcelStateLabel.Visibility  = Visibility.Collapsed;
             priorityLabel.Visibility = priorityComboBox.Visibility = Visibility.Collapsed;
             transportDistanceLabel.Visibility = transportDistanceTextBox.Visibility = Visibility.Collapsed;
             weightComboBox1Label.Visibility = weightComboBox1.Visibility = Visibility.Collapsed;
@@ -78,7 +77,8 @@ namespace PL
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
-            parcelStateComboBox.ItemsSource = Enum.GetValues(typeof(ParcelStates));
+           
+            parcelState.IsChecked= d.ParcelInDelivery.ParcelState;
 
             ibl = newIbl;
             PLdDrone = d;
@@ -98,7 +98,7 @@ namespace PL
                 grid3.Visibility = Visibility.Collapsed;
                 grid2.Visibility = Visibility.Collapsed;
                 ParcelIDLabel.Visibility= txtParcelID.Visibility = Visibility.Collapsed;
-                parcelStateLabel.Visibility= parcelStateComboBox.Visibility = Visibility.Collapsed;
+                parcelStateLabel.Visibility= parcelState.Visibility = Visibility.Collapsed;
                 priorityLabel.Visibility=priorityComboBox.Visibility = Visibility.Collapsed;
                 transportDistanceLabel.Visibility= transportDistanceTextBox.Visibility= Visibility.Collapsed;
                 weightComboBox1Label.Visibility= weightComboBox1.Visibility = Visibility.Collapsed;

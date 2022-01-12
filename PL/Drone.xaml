@@ -104,7 +104,7 @@
                 <Label x:Name ="ParcelIDLabel" Content="Parcel Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" VerticalAlignment="Center" Height="36" RenderTransformOrigin="0.5,0.5"/>
                 <TextBox x:Name="txtParcelID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding ParcelInDelivery.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 <Label x:Name="parcelStateLabel" Content="Parcel State:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-                <ComboBox x:Name="parcelStateComboBox" Text="{Binding ParcelInDelivery.ParcelState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="8" VerticalAlignment="Center" Width="120"/>
+                <!--<ComboBox x:Name="parcelStateComboBox" Text="{Binding ParcelInDelivery.ParcelState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="8" VerticalAlignment="Center" Width="120"/>-->
 
                 <Label x:Name="priorityLabel" Content="Priority:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
                 <ComboBox x:Name="priorityComboBox" Text="{Binding ParcelInDelivery.Priority, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="9" VerticalAlignment="Center" Width="120"/>
@@ -143,6 +143,7 @@
                     <Label Content="Destination Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="1" VerticalAlignment="Center"/>
                     <TextBox x:Name="longitudeTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="1" Text="{Binding ParcelInDelivery.DestinationPlace.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
                 </Grid>
+                <CheckBox x:Name="parcelState" Content="in delivery" Grid.Column="1" HorizontalAlignment="Left" Margin="17,0,0,0" Grid.Row="8" VerticalAlignment="Center"/>
             </Grid>
             <ComboBox x:Name="stationComboBox"  HorizontalAlignment="Left" Margin="413,150,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="stationComboBox_SelectionChanged"/>
             <Label x:Name="stationLabel" Content="Station" HorizontalAlignment="Left" Margin="342,148,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.891,-0.243"/>

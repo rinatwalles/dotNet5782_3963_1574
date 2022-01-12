@@ -180,4 +180,16 @@
     <PickedUpTime>2022-01-09T19:00:00+02:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
+  <Parcel>
+    <Id>6</Id>
+    <SenderId>9</SenderId>
+    <TargetId>5</TargetId>
+    <Weight>Medium</Weight>
+    <Priority>Emergency</Priority>
+    <DroneId>5</DroneId>
+    <RequestedTime>2022-01-09T17:43:34.904554+02:00</RequestedTime>
+    <ScheduledTime>2022-01-11T00:37:29.5526675+02:00</ScheduledTime>
+    <PickedUpTime>2022-01-11T00:37:46.1608161+02:00</PickedUpTime>
+    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+  </Parcel>
 </ArrayOfParcel>
