@@ -31,9 +31,10 @@ namespace BL
         /// <summary>
         /// Constructor of BL
         /// </summary>
+        
         public BL()
         {
-            //idal = new Dal.DalObject();
+            //idal = new DalObject.DalObject();
 
             array = idal.AskingElectricityUse();
             double Available = array[0];
@@ -41,7 +42,7 @@ namespace BL
             double Medium = array[2];
             double Heavy = array[3];
             double ChargePrecent = array[4];
-            int i = 1;
+            int countParc = 1;
             int counterStat = 1;
             ListBLDrones = (List<DroneToList>)(from dodron in idal.AllDrones()
                                                select new DroneToList()
@@ -49,14 +50,14 @@ namespace BL
                                                    Id = dodron.Id,
                                                    Model = dodron.Model,
                                                    Weight = (WeightCategories)dodron.Weight,
-                                                   ParcelNumber = i++
+                                                   ParcelNumber = countParc++
                                                }).ToList(); ;
             Location locat = new Location();
             try
             {
                 foreach (DroneToList item in ListBLDrones)
                 {
-                    if (idal.AllParcel().Any(parc => (parc.DroneId == item.Id) && (parc.DeliveredTime == DateTime.MinValue)))
+                    if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == DateTime.MinValue))))
                     {
                         item.DroneStatus = DroneStatuses.Delivery;
                         DO.Parcel parc = idal.GetOneParcelByPredicate(parc => parc.DroneId == item.Id);
@@ -66,9 +67,10 @@ namespace BL
                         item.Location = locat;
                         parc.ScheduledTime = DateTime.Now;
                         idal.ParcelUpdate(parc);
-                        if (parc.PickedUpTime == DateTime.MinValue)    //parcel schduled but not PickedUp
+                        if (parc.PickedUpTime == DateTime.MinValue)  //parcel schduled but not PickedUp 
                             item.Location = MinDistanceOfSation(locat);    //the location is the closest station
-                        if (parc.DeliveredTime == DateTime.MinValue)   //the parcel not deliverd so the location is the sender location
+                        
+                        else if (parc.DeliveredTime == DateTime.MinValue)    //the parcel not deliverd so the location is the sender location
                             item.Location = locat;
 
                         double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
@@ -98,11 +100,12 @@ namespace BL
                         idal.DroneChargeAddition(dc);
                         counterStat++;
                     }
-                    i = 11;
+
                     if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
                     {
-                       int randId = rand.Next(11, 16);
-                        DO.Parcel doParcel = idal.GetParcel(i);
+                        int randId = rand.Next(1, 6);
+                        DO.Parcel doParcel = idal.GetParcel(randId);//problem here
+
                         DO.Customer cust = idal.GetCustomer(doParcel.SenderId);
                         locat.Latitude = cust.Latitude;
                         locat.Longitude = cust.Longitude;
@@ -110,7 +113,7 @@ namespace BL
                         item.Location = closeStation;
                         double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
-                       
+
                     }
                 }
             }
@@ -119,6 +122,8 @@ namespace BL
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
         }
+
+
 
 
         /// <summary>

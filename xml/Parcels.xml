@@ -180,4 +180,28 @@
     <PickedUpTime>2022-01-09T19:00:00+02:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
+  <Parcel>
+    <Id>1</Id>
+    <SenderId>1</SenderId>
+    <TargetId>1</TargetId>
+    <Weight>Medium</Weight>
+    <Priority>Emergency</Priority>
+    <DroneId>1</DroneId>
+    <RequestedTime>2022-01-09T17:43:34.9003703+02:00</RequestedTime>
+    <ScheduledTime>2022-01-12T22:06:38.3796958+02:00</ScheduledTime>
+    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
+    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+  </Parcel>
+  <Parcel>
+    <Id>2</Id>
+    <SenderId>7</SenderId>
+    <TargetId>9</TargetId>
+    <Weight>Medium</Weight>
+    <Priority>Emergency</Priority>
+    <DroneId>2</DroneId>
+    <RequestedTime>2022-01-09T17:43:34.9013229+02:00</RequestedTime>
+    <ScheduledTime>2022-01-12T22:06:54.6981358+02:00</ScheduledTime>
+    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
+    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+  </Parcel>
 </ArrayOfParcel>
