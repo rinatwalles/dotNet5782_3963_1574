@@ -2,107 +2,37 @@
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <Id>1</Id>
-    <Name>Meq</Name>
-    <Phone>054605657</Phone>
-    <Longitude>29.81357537932395</Longitude>
-    <Latitude>34.27320179593433</Latitude>
+    <Name>Iem</Name>
+    <Phone>054466304</Phone>
+    <Longitude>33.46248983804252</Longitude>
+    <Latitude>36.14984196398865</Latitude>
   </Customer>
   <Customer>
     <Id>2</Id>
-    <Name>Xtc</Name>
-    <Phone>054786836</Phone>
-    <Longitude>29.68263558707323</Longitude>
-    <Latitude>34.4119337843321</Latitude>
+    <Name>Nrf</Name>
+    <Phone>054833626</Phone>
+    <Longitude>33.03242863199321</Longitude>
+    <Latitude>35.65493577921527</Latitude>
   </Customer>
   <Customer>
     <Id>3</Id>
-    <Name>Ktq</Name>
-    <Phone>054137541</Phone>
-    <Longitude>32.22843010999655</Longitude>
-    <Latitude>34.41340141711449</Latitude>
+    <Name>Gas</Name>
+    <Phone>054256505</Phone>
+    <Longitude>32.61419348973511</Longitude>
+    <Latitude>35.87480951481257</Latitude>
   </Customer>
   <Customer>
     <Id>4</Id>
-    <Name>Vmh</Name>
-    <Phone>054502577</Phone>
-    <Longitude>30.18504402110588</Longitude>
-    <Latitude>36.27648304671816</Latitude>
+    <Name>Rsa</Name>
+    <Phone>054644862</Phone>
+    <Longitude>31.619747675079736</Longitude>
+    <Latitude>36.04435796092467</Latitude>
   </Customer>
   <Customer>
     <Id>5</Id>
-    <Name>Xqi</Name>
-    <Phone>054351806</Phone>
-    <Longitude>33.154486665993225</Longitude>
-    <Latitude>35.86241683250405</Latitude>
-  </Customer>
-  <Customer>
-    <Id>6</Id>
-    <Name>Gtv</Name>
-    <Phone>054082882</Phone>
-    <Longitude>33.10990228308826</Longitude>
-    <Latitude>35.06036410879361</Latitude>
-  </Customer>
-  <Customer>
-    <Id>7</Id>
-    <Name>Qwo</Name>
-    <Phone>054525577</Phone>
-    <Longitude>30.61004123636989</Longitude>
-    <Latitude>33.86404939031417</Latitude>
-  </Customer>
-  <Customer>
-    <Id>8</Id>
-    <Name>Kva</Name>
-    <Phone>054702441</Phone>
-    <Longitude>29.423460856416945</Longitude>
-    <Latitude>34.62729062388059</Latitude>
-  </Customer>
-  <Customer>
-    <Id>9</Id>
-    <Name>Bgm</Name>
-    <Phone>054702287</Phone>
-    <Longitude>33.02234200729166</Longitude>
-    <Latitude>33.917972109568296</Latitude>
-  </Customer>
-  <Customer>
-    <Id>10</Id>
-    <Name>Kyl</Name>
-    <Phone>054607237</Phone>
-    <Longitude>29.709414865825984</Longitude>
-    <Latitude>35.051438924275075</Latitude>
-  </Customer>
-  <Customer>
-    <Id>11</Id>
-    <Name>Eia</Name>
-    <Phone>054802647</Phone>
-    <Longitude>32.295557338742334</Longitude>
-    <Latitude>34.98393595958312</Latitude>
-  </Customer>
-  <Customer>
-    <Id>12</Id>
-    <Name>Ivh</Name>
-    <Phone>054045358</Phone>
-    <Longitude>31.489488874743454</Longitude>
-    <Latitude>34.15974243341933</Latitude>
-  </Customer>
-  <Customer>
-    <Id>13</Id>
-    <Name>Ikb</Name>
-    <Phone>054321517</Phone>
-    <Longitude>30.24641076174863</Longitude>
-    <Latitude>34.37384332598832</Latitude>
-  </Customer>
-  <Customer>
-    <Id>14</Id>
-    <Name>Ncd</Name>
-    <Phone>054701012</Phone>
-    <Longitude>29.71855374230936</Longitude>
-    <Latitude>34.66357947129923</Latitude>
-  </Customer>
-  <Customer>
-    <Id>15</Id>
-    <Name>Xqo</Name>
-    <Phone>054382602</Phone>
-    <Longitude>30.093308657311514</Longitude>
-    <Latitude>36.29604104943389</Latitude>
+    <Name>Udf</Name>
+    <Phone>054581061</Phone>
+    <Longitude>29.64185840456833</Longitude>
+    <Latitude>34.77211031861236</Latitude>
   </Customer>
 </ArrayOfCustomer>

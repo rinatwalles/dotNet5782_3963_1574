@@ -23,6 +23,11 @@ namespace Dal
         static DalObject() 
         { 
             DataSource.Initialize();
+            //XMLTools.SaveListToXMLSerializer(drones, DronesPath);
+            //XMLTools.SaveListToXMLSerializer(stations, StationsPath);
+            //XMLTools.SaveListToXMLSerializer(customers, CustomersPath);
+            //XMLTools.SaveListToXMLSerializer(parcels, ParcelsPath);
+            //XMLTools.SaveListToXMLSerializer(droneCharges, DroneChargesPath);
         }
 
         /// <summary>

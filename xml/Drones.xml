@@ -2,82 +2,27 @@
 <ArrayOfDrone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Drone>
     <Id>1</Id>
-    <Model>Usb</Model>
+    <Model>Gyf</Model>
     <Weight>Heavy</Weight>
   </Drone>
   <Drone>
     <Id>2</Id>
-    <Model>Soj</Model>
+    <Model>Aee</Model>
     <Weight>Heavy</Weight>
   </Drone>
   <Drone>
     <Id>3</Id>
-    <Model>Uqk</Model>
-    <Weight>Heavy</Weight>
+    <Model>Gcp</Model>
+    <Weight>Medium</Weight>
   </Drone>
   <Drone>
     <Id>4</Id>
-    <Model>Opd</Model>
-    <Weight>Medium</Weight>
+    <Model>Xav</Model>
+    <Weight>Light</Weight>
   </Drone>
   <Drone>
     <Id>5</Id>
-    <Model>Mmx</Model>
-    <Weight>Light</Weight>
-  </Drone>
-  <Drone>
-    <Id>6</Id>
-    <Model>Vqk</Model>
-    <Weight>Light</Weight>
-  </Drone>
-  <Drone>
-    <Id>7</Id>
-    <Model>Muh</Model>
-    <Weight>Heavy</Weight>
-  </Drone>
-  <Drone>
-    <Id>8</Id>
-    <Model>Ary</Model>
-    <Weight>Medium</Weight>
-  </Drone>
-  <Drone>
-    <Id>9</Id>
-    <Model>Plm</Model>
-    <Weight>Medium</Weight>
-  </Drone>
-  <Drone>
-    <Id>10</Id>
-    <Model>Fat</Model>
-    <Weight>Heavy</Weight>
-  </Drone>
-  <Drone>
-    <Id>11</Id>
-    <Model>Jqt</Model>
-    <Weight>Heavy</Weight>
-  </Drone>
-  <Drone>
-    <Id>13</Id>
-    <Model>Rqm</Model>
-    <Weight>Medium</Weight>
-  </Drone>
-  <Drone>
-    <Id>14</Id>
-    <Model>Tap</Model>
-    <Weight>Light</Weight>
-  </Drone>
-  <Drone>
-    <Id>15</Id>
-    <Model>Hah</Model>
-    <Weight>Heavy</Weight>
-  </Drone>
-  <Drone>
-    <Id>12</Id>
-    <Model>Hve</Model>
-    <Weight>Medium</Weight>
-  </Drone>
-  <Drone>
-    <Id>33</Id>
-    <Model>ASF</Model>
+    <Model>Tdt</Model>
     <Weight>Medium</Weight>
   </Drone>
 </ArrayOfDrone>

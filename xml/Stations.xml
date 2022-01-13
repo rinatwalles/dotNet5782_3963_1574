@@ -1,115 +1,38 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
+    <Id>1</Id>
+    <Name>Fmn</Name>
+    <Longitude>30.09897968033281</Longitude>
+    <Latitude>35.0220893583829</Latitude>
+    <AvailableChargeSlots>2</AvailableChargeSlots>
+  </Station>
+  <Station>
     <Id>2</Id>
-    <Name>Jdc</Name>
-    <Longitude>31.665089110082523</Longitude>
-    <Latitude>34.66126537013858</Latitude>
-    <AvailableChargeSlots>6</AvailableChargeSlots>
+    <Name>Gqa</Name>
+    <Longitude>29.62275738470385</Longitude>
+    <Latitude>34.2448952223849</Latitude>
+    <AvailableChargeSlots>3</AvailableChargeSlots>
   </Station>
   <Station>
     <Id>3</Id>
-    <Name>Sfw</Name>
-    <Longitude>30.235672432899324</Longitude>
-    <Latitude>36.05906601928131</Latitude>
+    <Name>Bes</Name>
+    <Longitude>29.867239486224594</Longitude>
+    <Latitude>34.486588790261465</Latitude>
+    <AvailableChargeSlots>2</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>4</Id>
+    <Name>Wtq</Name>
+    <Longitude>33.09355726847125</Longitude>
+    <Latitude>35.95818324734372</Latitude>
     <AvailableChargeSlots>8</AvailableChargeSlots>
   </Station>
   <Station>
     <Id>5</Id>
-    <Name>Ekq</Name>
-    <Longitude>31.70645124409648</Longitude>
-    <Latitude>35.91294041723615</Latitude>
+    <Name>Olk</Name>
+    <Longitude>31.231427894780147</Longitude>
+    <Latitude>35.82137397933815</Latitude>
     <AvailableChargeSlots>4</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>6</Id>
-    <Name>Hfr</Name>
-    <Longitude>32.93660277539706</Longitude>
-    <Latitude>34.794912568523976</Latitude>
-    <AvailableChargeSlots>8</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>7</Id>
-    <Name>Spy</Name>
-    <Longitude>30.87044029932955</Longitude>
-    <Latitude>34.89843540238144</Latitude>
-    <AvailableChargeSlots>2</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>8</Id>
-    <Name>Jcg</Name>
-    <Longitude>29.32786358717264</Longitude>
-    <Latitude>35.82274895455816</Latitude>
-    <AvailableChargeSlots>6</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>9</Id>
-    <Name>Djg</Name>
-    <Longitude>31.601683794195615</Longitude>
-    <Latitude>34.42469770103912</Latitude>
-    <AvailableChargeSlots>7</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>10</Id>
-    <Name>Gmi</Name>
-    <Longitude>31.52244809913563</Longitude>
-    <Latitude>36.216520951835676</Latitude>
-    <AvailableChargeSlots>4</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>12</Id>
-    <Name>Tvu</Name>
-    <Longitude>29.456447719855444</Longitude>
-    <Latitude>34.98541683521374</Latitude>
-    <AvailableChargeSlots>4</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>13</Id>
-    <Name>Tjf</Name>
-    <Longitude>31.83803877613416</Longitude>
-    <Latitude>34.75875643773878</Latitude>
-    <AvailableChargeSlots>2</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>14</Id>
-    <Name>Cep</Name>
-    <Longitude>29.719671197244747</Longitude>
-    <Latitude>34.83139868692094</Latitude>
-    <AvailableChargeSlots>5</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>15</Id>
-    <Name>Csx</Name>
-    <Longitude>29.673492114512946</Longitude>
-    <Latitude>35.23308711067452</Latitude>
-    <AvailableChargeSlots>9</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>4</Id>
-    <Name>Sqq</Name>
-    <Longitude>32.6162176997942</Longitude>
-    <Latitude>34.15750550229918</Latitude>
-    <AvailableChargeSlots>0</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>2</Id>
-    <Name>Jdc</Name>
-    <Longitude>31.665089110082523</Longitude>
-    <Latitude>34.66126537013858</Latitude>
-    <AvailableChargeSlots>5</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>11</Id>
-    <Name>Guh</Name>
-    <Longitude>32.46821432857225</Longitude>
-    <Latitude>34.400193610740914</Latitude>
-    <AvailableChargeSlots>0</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>1</Id>
-    <Name>Hmw</Name>
-    <Longitude>29.90652241958609</Longitude>
-    <Latitude>35.53119784893058</Latitude>
-    <AvailableChargeSlots>2</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>

@@ -29,7 +29,13 @@ namespace Dal
         internal static List<Parcel> parcels = new List<Parcel>();
         internal static List<DroneCharge> droneCharges = new List<DroneCharge>();
 
-        
+        //public static string CustomersPath = "Customers.xml";
+        //public static string ParcelsPath = "Parcels.xml";
+        //public static string DronesPath = "Drones.xml";
+        //public static string StationsPath = "Stations.xml";
+        //public static string DroneChargesPath = "DroneCharges.xml";
+
+
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         /// <summary>
