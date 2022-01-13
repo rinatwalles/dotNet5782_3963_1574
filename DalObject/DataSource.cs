@@ -37,7 +37,7 @@ namespace Dal
         /// </summary>
         internal static void Initialize()// צריך לראות איזה מספר זה num ,כי לכאורה צריך כמה נאמים לכל אתחול מספר אחר
         {
-            for (int i = 1; i <= 15; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 Drone d = new Drone()
                 {
@@ -50,7 +50,7 @@ namespace Dal
                 drones.Add(d);
             }
 
-            for (int i = 1; i <= 15; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 Station s = new Station()
                 {
@@ -63,7 +63,7 @@ namespace Dal
                 stations.Add(s);
             }
 
-            for (int i = 1; i <= 15; i++)
+            for (int i = 1; i <= 5; i++)
             {
                 Customer c = new Customer()
                 {
@@ -76,13 +76,13 @@ namespace Dal
                 customers.Add(c);
             }
 
-            for (int i = 1; i <= 3; i++)
+            for (int i = 1; i <= 2; i++)//new parcel
             {
                 Parcel p = new Parcel()
                 {
                     Id = Config.ParcelId++,
-                    SenderId = rand.Next(1, 10),
-                    TargetId = rand.Next(1, 10),
+                    SenderId = rand.Next(1, 6),
+                    TargetId = rand.Next(1, 6),
                     Weight = (WeightCategories)rand.Next(0, 3),
                     Priority = (Priorities)rand.Next(0, 3),
                     DroneId = i,
@@ -91,64 +91,84 @@ namespace Dal
                     PickedUpTime = DateTime.MinValue,
                     DeliveredTime = DateTime.MinValue
                 };
-                parcels.Add(p);
+                if (p.SenderId == p.TargetId)  //to prevent a person sending to himself
+                {
+                    i--;
+                    Config.ParcelId--;
+                }
+                else
+                    parcels.Add(p);
             }
-            for (int i = 4; i <= 7; i++)
+            for (int i = 3; i < 4; i++)//משויכת
             {
                 Parcel p = new Parcel()
                 {
                     Id = Config.ParcelId++,
-                    SenderId = rand.Next(1, 10),
-                    TargetId = rand.Next(1, 10),
+                    SenderId = rand.Next(1, 6),
+                    TargetId = rand.Next(1, 6),
                     Weight = (WeightCategories)rand.Next(0, 3),
                     Priority = (Priorities)rand.Next(0, 3),
                     DroneId = i,
                     RequestedTime = DateTime.Now,
-                    ScheduledTime = DateTime.Today.AddHours(rand.Next(1, 10)),
+                    ScheduledTime = DateTime.Now.AddHours(rand.Next(1, 10)),
                     PickedUpTime = DateTime.MinValue,
                     DeliveredTime = DateTime.MinValue
                 };
-                parcels.Add(p);
                 if (p.SenderId == p.TargetId)  //to prevent a person sending to himself
                 {
-                    parcels.Remove(p);
                     i--;
+                    Config.ParcelId--;
                 }
+                else
+                    parcels.Add(p);
+               
             }
 
-            for (int i = 8; i <= 10; i++)
+            for (int i = 4; i <5; i++)//נאספה ע''י אחפן
             {
                 Parcel p = new Parcel()
                 {
                     Id = Config.ParcelId++,
-                    SenderId = rand.Next(1, 10),
-                    TargetId = rand.Next(1, 10),
+                    SenderId = rand.Next(1, 6),
+                    TargetId = rand.Next(1, 6),
                     Weight = (WeightCategories)rand.Next(0, 3),
                     Priority = (Priorities)rand.Next(0, 3),
                     DroneId = i,
                     RequestedTime = DateTime.Now,
-                    ScheduledTime = DateTime.Today.AddHours(rand.Next(1, 10)),
-                    PickedUpTime = DateTime.Today.AddHours(rand.Next(10, 20)),
+                    ScheduledTime = DateTime.Now.AddHours(rand.Next(1, 10)),
+                    PickedUpTime = DateTime.Now.AddHours(rand.Next(10, 20)),
                     DeliveredTime = DateTime.MinValue
                 };
-                parcels.Add(p);
+                if (p.SenderId == p.TargetId)  //to prevent a person sending to himself
+                {
+                    i--;
+                    Config.ParcelId--;
+                }
+                else
+                    parcels.Add(p);
             }
-            for (int i = 11; i <= 15; i++)
+            for (int i = 5; i <6; i++)//סופקה
             {
                 Parcel p = new Parcel()
                 {
                     Id = Config.ParcelId++,
-                    SenderId = rand.Next(1, 10),
-                    TargetId = rand.Next(1, 10),
+                    SenderId = rand.Next(1, 6),
+                    TargetId = rand.Next(1, 6),
                     Weight = (WeightCategories)rand.Next(0, 3),
                     Priority = (Priorities)rand.Next(0, 3),
                     DroneId = i,
                     RequestedTime = DateTime.Now,
-                    ScheduledTime = DateTime.Today.AddHours(rand.Next(1, 10)),
-                    PickedUpTime = DateTime.Today.AddHours(rand.Next(10, 15)),
-                    DeliveredTime = DateTime.Today.AddHours(rand.Next(15, 16)),
+                    ScheduledTime = DateTime.Now.AddHours(rand.Next(1, 10)),
+                    PickedUpTime = DateTime.Now.AddHours(rand.Next(10, 15)),
+                    DeliveredTime = DateTime.Now.AddHours(rand.Next(15, 16)),
                 };
-                parcels.Add(p);
+                if (p.SenderId == p.TargetId)  //to prevent a person sending to himself
+                {
+                    i--;
+                    Config.ParcelId--;
+                }
+                else
+                    parcels.Add(p);
             }
         }
     }

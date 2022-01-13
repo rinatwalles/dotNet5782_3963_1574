@@ -78,7 +78,6 @@ namespace PL
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
            
-            parcelState.IsChecked= d.ParcelInDelivery.ParcelState;
 
             ibl = newIbl;
             PLdDrone = d;
@@ -112,9 +111,12 @@ namespace PL
             }
             if (d.DroneStatus == DroneStatuses.Delivery)
             {
+                parcelState.IsChecked = d.ParcelInDelivery.ParcelState;
+
                 Parcel parcel = ibl.GetParcel(d.ParcelInDelivery.Id);
                 if (parcel.PickedUpTime != DateTime.MinValue)
                 {
+
                     UpdateButton.Visibility = Visibility.Collapsed;
                     DeliveryButton.Content = "Supply Parcel By Drone";
                     del = delivery.Supply;
