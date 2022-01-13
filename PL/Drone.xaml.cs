@@ -110,7 +110,13 @@ namespace PL
                 UpdateButton.Content = "Discharge Drone";
                 DeliveryButton.Visibility = Visibility.Collapsed;
                 up = update.disCharge;
-            
+                grid3.Visibility = Visibility.Collapsed;
+                grid2.Visibility = Visibility.Collapsed;
+                ParcelIDLabel.Visibility = txtParcelID.Visibility = Visibility.Collapsed;
+                parcelStateLabel.Visibility = parcelState.Visibility = Visibility.Collapsed;
+                priorityLabel.Visibility = priorityComboBox.Visibility = Visibility.Collapsed;
+                transportDistanceLabel.Visibility = transportDistanceTextBox.Visibility = Visibility.Collapsed;
+                weightComboBox1Label.Visibility = weightComboBox1.Visibility = Visibility.Collapsed;
             }
             if (d.DroneStatus == DroneStatuses.Delivery)
             {

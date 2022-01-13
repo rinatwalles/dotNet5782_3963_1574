@@ -80,7 +80,7 @@ namespace BL
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
 
                     }
-                    else if (!idal.AllParcel().Any(parc => (parc.DroneId == item.Id)))    //not doing a delivery now
+                    else     //not doing a delivery now
                     {
                         item.DroneStatus = (DroneStatuses)(rand.Next(0, 2) * 2);    //0 or 2
                     }

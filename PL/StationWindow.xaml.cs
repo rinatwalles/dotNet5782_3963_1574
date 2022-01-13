@@ -33,8 +33,8 @@ namespace PL
             PLStation = new Station();
             op = option.Add;
 
-            this.Title = "Drone Addition";
-            OptionButtun.Content = "ADD The Drone";
+            this.Title = "Station Addition";
+            OptionButtun.Content = "ADD The Station";
 
             OptionButtun.IsEnabled = false;
         }

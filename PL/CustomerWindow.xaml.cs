@@ -41,6 +41,9 @@ namespace PL
             parcelToCustomerDataGrid.Visibility = Visibility.Collapsed;
 
             OptionButtun.IsEnabled = false;
+
+            parcelFromCustomerDataGrid.Visibility = Visibility.Collapsed;
+            parcelToCustomerDataGrid.Visibility = Visibility.Collapsed;
         }
 
         public CustomerWindow(BLApi.IBL newIbl, Customer c)//update constructor

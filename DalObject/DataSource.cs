@@ -29,7 +29,13 @@ namespace Dal
         internal static List<Parcel> parcels = new List<Parcel>();
         internal static List<DroneCharge> droneCharges = new List<DroneCharge>();
 
-        
+        //public static string CustomersPath = "Customers.xml";
+        //public static string ParcelsPath = "Parcels.xml";
+        //public static string DronesPath = "Drones.xml";
+        //public static string StationsPath = "Stations.xml";
+        //public static string DroneChargesPath = "DroneCharges.xml";
+
+
         static Random rand = new Random(DateTime.Now.Millisecond);
 
         /// <summary>
@@ -76,7 +82,7 @@ namespace Dal
                 customers.Add(c);
             }
 
-            for (int i = 1; i <= 2; i++)//new parcel
+            for (int i = 1; i <2; i++)//new parcel
             {
                 Parcel p = new Parcel()
                 {
@@ -99,7 +105,7 @@ namespace Dal
                 else
                     parcels.Add(p);
             }
-            for (int i = 3; i < 4; i++)//משויכת
+            for (int i = 2; i < 3; i++)//משויכת
             {
                 Parcel p = new Parcel()
                 {
@@ -124,7 +130,7 @@ namespace Dal
                
             }
 
-            for (int i = 4; i <5; i++)//נאספה ע''י אחפן
+            for (int i = 3; i <4; i++)//נאספה ע''י אחפן
             {
                 Parcel p = new Parcel()
                 {
@@ -147,7 +153,7 @@ namespace Dal
                 else
                     parcels.Add(p);
             }
-            for (int i = 5; i <6; i++)//סופקה
+            for (int i = 4; i <6; i++)//סופקה
             {
                 Parcel p = new Parcel()
                 {
