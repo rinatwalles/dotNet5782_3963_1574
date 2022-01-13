@@ -1,13 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <Id>1</Id>
-    <Name>Fmn</Name>
-    <Longitude>30.09897968033281</Longitude>
-    <Latitude>35.0220893583829</Latitude>
-    <AvailableChargeSlots>2</AvailableChargeSlots>
-  </Station>
-  <Station>
     <Id>2</Id>
     <Name>Gqa</Name>
     <Longitude>29.62275738470385</Longitude>
@@ -34,5 +27,12 @@
     <Longitude>31.231427894780147</Longitude>
     <Latitude>35.82137397933815</Latitude>
     <AvailableChargeSlots>4</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>1</Id>
+    <Name>Fmn</Name>
+    <Longitude>30.09897968033281</Longitude>
+    <Latitude>35.0220893583829</Latitude>
+    <AvailableChargeSlots>-2</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>

@@ -30,7 +30,7 @@ namespace BL
                     Longitude = doStation.Longitude
                 };
                 boBaseStation.AvailableChargeSlots = doStation.AvailableChargeSlots;
-                boBaseStation.DroneCharging = GetDroneChargingPerStation(id);
+                boBaseStation.DronesCharging = GetDroneChargingPerStation(id);
             }
             catch (DO.MissingIdException ex)
             {
@@ -256,7 +256,7 @@ namespace BL
                     select new DroneCharging
                     {
                         Id = item.DroneId,
-                        BattaryStatus = ListBLDrones.Find(d => d.Id == item.DroneId).BatteryStatus
+                        BatteryStatus = ListBLDrones.Find(d => d.Id == item.DroneId).BatteryStatus
                     }).ToList(); ;
 
         }

@@ -25,4 +25,9 @@
     <Model>Tdt</Model>
     <Weight>Medium</Weight>
   </Drone>
+  <Drone>
+    <Id>6</Id>
+    <Model>Asd</Model>
+    <Weight>Medium</Weight>
+  </Drone>
 </ArrayOfDrone>

@@ -47,11 +47,12 @@ namespace PL
             PLStation = s;
             op = option.Update;
             stationGrid.DataContext = PLStation;
-            droneChargingDataGrid.ItemsSource = ibl.GetDroneChargingPerStation(PLStation.Id);
-            droneChargingDataGrid.IsReadOnly = true;
 
-            this.Title = "Drone Update";
-            OptionButtun.Content = "Update The Drone";
+            droneChargingDataGrid.ItemsSource = ibl.GetDroneChargingPerStation(PLStation.Id);
+            //droneChargingDataGrid.IsReadOnly = true;
+
+            this.Title = "Station Update";
+            OptionButtun.Content = "Update The Station";
 
             idTextBox.IsEnabled = false;
             longitudeTextBox.IsEnabled = false;

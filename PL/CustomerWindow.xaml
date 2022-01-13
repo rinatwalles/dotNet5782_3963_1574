@@ -30,7 +30,7 @@
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="longitudeTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
         </Grid>
-        <DataGrid x:Name="parcelFromCustomerDataGrid"  RowDetailsVisibilityMode="VisibleWhenSelected" Margin="400,31,42,238" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="parcelFromCustomerDataGrid_MouseDoubleClick" >
+        <DataGrid x:Name="parcelFromCustomerDataGrid"  RowDetailsVisibilityMode="VisibleWhenSelected" Margin="401,31,41,238" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="parcelFromCustomerDataGrid_MouseDoubleClick" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idFromCustomerColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn x:Name="FromCustomerparcelStateColumn" Width="SizeToHeader" Header="Parcel State" Binding="{Binding ParcelState}"/>

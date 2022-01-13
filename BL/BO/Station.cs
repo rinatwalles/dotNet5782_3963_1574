@@ -14,7 +14,7 @@ namespace BO
         public string Name { get; set; }
         public Location Location { get; set; }
         public int AvailableChargeSlots { get; set; }
-        public IEnumerable<DroneCharging> DroneCharging { get; set; }
+        public IEnumerable<DroneCharging> DronesCharging { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();
