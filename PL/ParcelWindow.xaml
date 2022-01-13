@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="ParcelWindow" Height="450" Width="800"  Background="{StaticResource MyButtonBackground}">
     <Grid x:Name="parcelup">
-        <Grid x:Name="grid1"  HorizontalAlignment="Center" Margin="0,0,0,0" VerticalAlignment="Top" Height="430" Width="440">
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="53,-6,0,0" VerticalAlignment="Top" Height="430" Width="440">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
@@ -67,7 +67,7 @@
             <TextBox x:Name="idSenderTextBox3" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,0" Grid.Row="11" Text="{Binding Sender.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             <Label  x:Name="SenderNameLabel" Content="Sender Name:" Grid.Column="0" HorizontalAlignment="Left" Grid.Row="12" VerticalAlignment="Top" Margin="3,0,0,0"/>
             <TextBox x:Name="nameSenderTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3,0,0,0" Grid.Row="12" Text="{Binding Sender.Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
-            <Grid x:Name="grid2" HorizontalAlignment="Left" Margin="-180,0,0,0" Grid.Row="3" VerticalAlignment="Top" Grid.RowSpan="3">
+            <Grid x:Name="grid2" Margin="170,18,-352,0" Grid.Row="9" VerticalAlignment="Top" Grid.RowSpan="4" Grid.Column="2">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="Auto"/>

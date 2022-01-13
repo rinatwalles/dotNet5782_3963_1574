@@ -38,7 +38,7 @@ namespace Dal
         /// <param name="dc">the dronecharge for delete</param>
         public void DroneChargesDelete(DroneCharge dc)
         {
-            int count = DataSource.droneCharges.RemoveAll(d => ((d.DroneId == dc.DroneId) && (d.StationId == dc.DroneId)));
+            int count = DataSource.droneCharges.RemoveAll(d => ((d.DroneId == dc.DroneId) && (d.StationId == dc.StationId)));
             if (count == 0)
                 throw new MissingIdException(dc.DroneId, "DroneCharge");
         }
