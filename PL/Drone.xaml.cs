@@ -101,6 +101,8 @@ namespace PL
                 priorityLabel.Visibility=priorityComboBox.Visibility = Visibility.Collapsed;
                 transportDistanceLabel.Visibility= transportDistanceTextBox.Visibility= Visibility.Collapsed;
                 weightComboBox1Label.Visibility= weightComboBox1.Visibility = Visibility.Collapsed;
+                stationComboBox.Visibility = stationLabel.Visibility = Visibility.Collapsed;
+
             }
             if (d.DroneStatus == DroneStatuses.Maintenance)
             {
@@ -198,7 +200,7 @@ namespace PL
             catch (Exception ex)
             {
                 worked = false;
-                MessageBox.Show(ex.Message, "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                MessageBox.Show(ex.Message, "problem", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             }
 
@@ -225,7 +227,7 @@ namespace PL
             catch (Exception ex)
             {
                 worked = false;
-                MessageBox.Show(ex.Message, "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                MessageBox.Show(ex.Message, "problem", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             }
             if (worked)
@@ -249,7 +251,7 @@ namespace PL
 
         private void EnglishLettersValidationTextBox(object sender, TextCompositionEventArgs e)///function that makes the user enters only capital English Letters
         {
-            Regex regex = new Regex("[^A-Z]");
+            Regex regex = new Regex("[^A-Z]+[^a-z]");
             e.Handled = regex.IsMatch(e.Text);
         }
 

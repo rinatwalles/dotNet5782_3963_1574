@@ -255,8 +255,8 @@ namespace BL
             return (from item in idal.GetDroneChargeInStation(id)
                     select new DroneCharging
                     {
-                        Id = id,
-                        BattaryStatus = ListBLDrones.Find(d => id == item.DroneId).BatteryStatus
+                        Id = item.DroneId,
+                        BattaryStatus = ListBLDrones.Find(d => d.Id == item.DroneId).BatteryStatus
                     }).ToList(); ;
 
         }

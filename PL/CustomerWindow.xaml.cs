@@ -59,8 +59,8 @@ namespace PL
             parcelFromCustomerDataGrid.IsReadOnly = true;
             parcelToCustomerDataGrid.IsReadOnly = true;
 
-            this.Title = "Drone Update";
-            OptionButtun.Content = "Update The Drone";
+            this.Title = "Customer Update";
+            OptionButtun.Content = "Update The Customer";
 
             idTextBox.IsEnabled = false;
             longitudeTextBox.IsEnabled = false;
