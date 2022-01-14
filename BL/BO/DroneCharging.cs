@@ -10,7 +10,7 @@ namespace BO
     public class DroneCharging
     {
         public int Id { get; set; }
-        public double BattaryStatus { get; set; }
+        public double BatteryStatus { get; set; }
         public override string ToString()
         {
             return this.ToStringProperty();

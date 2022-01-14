@@ -37,11 +37,13 @@ namespace PL
             this.Title = "Customer Addition";
             OptionButtun.Content = "ADD The Customer";
 
+            parcelFromCustomerDataGrid.Visibility = Visibility.Collapsed;
+            parcelToCustomerDataGrid.Visibility = Visibility.Collapsed;
 
             OptionButtun.IsEnabled = false;
 
-            parcelFromCustomerDataGrid.Visibility = Visibility.Collapsed;
-            parcelToCustomerDataGrid.Visibility = Visibility.Collapsed;
+            //parcelFromCustomerDataGrid.Visibility = Visibility.Collapsed;
+            //parcelToCustomerDataGrid.Visibility = Visibility.Collapsed;
         }
 
         public CustomerWindow(BLApi.IBL newIbl, Customer c)//update constructor
@@ -111,7 +113,7 @@ namespace PL
 
         private void EnglishLettersValidationTextBox(object sender, TextCompositionEventArgs e)///function that makes the user enters only capital English Letters
         {
-            Regex regex = new Regex("[^A-Z]");
+            Regex regex = new Regex("[^A-Z|^a-z|]");
             e.Handled = regex.IsMatch(e.Text);
         }
         private void OptionButtun_Click(object sender, RoutedEventArgs e)

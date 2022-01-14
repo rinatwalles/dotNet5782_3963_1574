@@ -212,7 +212,7 @@ namespace ConsoleUI_BL
                                             Station bs = ibl.GetStation(id);
                                             Console.WriteLine(bs);
                                             Console.WriteLine("The drones in charge are:");
-                                            foreach(DroneCharging dc in bs.DroneCharging)
+                                            foreach(DroneCharging dc in bs.DronesCharging)
                                                 Console.WriteLine(dc);
                                             break;
                                         }
