@@ -1,38 +1,38 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <Id>2</Id>
-    <Name>Gqa</Name>
-    <Longitude>29.62275738470385</Longitude>
-    <Latitude>34.2448952223849</Latitude>
-    <AvailableChargeSlots>0</AvailableChargeSlots>
-  </Station>
-  <Station>
     <Id>1</Id>
-    <Name>Fmn</Name>
-    <Longitude>30.09897968033281</Longitude>
-    <Latitude>35.0220893583829</Latitude>
-    <AvailableChargeSlots>5</AvailableChargeSlots>
+    <Name>Tfg</Name>
+    <Longitude>31.731937519289524</Longitude>
+    <Latitude>34.14061471430614</Latitude>
+    <AvailableChargeSlots>4</AvailableChargeSlots>
   </Station>
   <Station>
-    <Id>5</Id>
-    <Name>Olk</Name>
-    <Longitude>31.231427894780147</Longitude>
-    <Latitude>35.82137397933815</Latitude>
-    <AvailableChargeSlots>3</AvailableChargeSlots>
+    <Id>2</Id>
+    <Name>Kyy</Name>
+    <Longitude>33.4495051502015</Longitude>
+    <Latitude>36.22145702555843</Latitude>
+    <AvailableChargeSlots>9</AvailableChargeSlots>
   </Station>
   <Station>
     <Id>3</Id>
-    <Name>Bes</Name>
-    <Longitude>29.867239486224594</Longitude>
-    <Latitude>34.486588790261465</Latitude>
-    <AvailableChargeSlots>0</AvailableChargeSlots>
+    <Name>Klc</Name>
+    <Longitude>31.410583357936975</Longitude>
+    <Latitude>34.01698211660468</Latitude>
+    <AvailableChargeSlots>8</AvailableChargeSlots>
   </Station>
   <Station>
     <Id>4</Id>
-    <Name>Wtq</Name>
-    <Longitude>33.09355726847125</Longitude>
-    <Latitude>35.95818324734372</Latitude>
+    <Name>Ahe</Name>
+    <Longitude>29.859777317270535</Longitude>
+    <Latitude>34.047024043252236</Latitude>
+    <AvailableChargeSlots>2</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>5</Id>
+    <Name>Fdg</Name>
+    <Longitude>29.81687681568641</Longitude>
+    <Latitude>34.80199346183892</Latitude>
     <AvailableChargeSlots>8</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>

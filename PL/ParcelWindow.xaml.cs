@@ -39,9 +39,13 @@ namespace PL
             idLabel.Visibility = idTextBox.Visibility = Visibility.Collapsed;
             ReceiverNameLabel.Visibility = nameReceiverTextBox.Visibility = Visibility.Collapsed;
             SenderNameLabel.Visibility = nameSenderTextBox1.Visibility = Visibility.Collapsed;
-            //longitudeTextBox.Visibility = longitudeLabel.Visibility = Visibility.Collapsed;
-            //UpdateButton.Visibility = Visibility.Collapsed;
-            //DeliveryButton.Visibility = Visibility.Collapsed;
+            longitudeTextBox.Visibility = LongitudeLabel.Visibility = Visibility.Collapsed;
+            latitudeTextBox.Visibility = LatitudeLabel.Visibility = Visibility.Collapsed;
+            requestedTimeLabel.Visibility = requestedTimeDatePicker.Visibility = Visibility.Collapsed;
+            ScheduledTimeLabel.Visibility = scheduledTimeDatePicker.Visibility = Visibility.Collapsed;
+            PickedTimeLabel.Visibility = pickedUpTimeDatePicker.Visibility = Visibility.Collapsed;
+            DeliveredTimeLabel.Visibility = deliveredTimeDatePicker.Visibility = Visibility.Collapsed;
+            DroneLabel.Visibility = idDroneTextBox1.Visibility = Visibility.Collapsed;
             idTextBox.IsEnabled = false;
         }
         public ParcelWindow(BLApi.IBL newIbl, Parcel parc)//update constructor
@@ -59,6 +63,7 @@ namespace PL
 
             this.Title = "Parcel Update";
             OptionButtun.Content = "Update The Parcel";
+            OptionButtun.Visibility = Visibility.Collapsed;
             //    this.Title = "Drone Update";
             //    OptionButtun.Content = "Update The Drone";
 
@@ -133,7 +138,7 @@ namespace PL
                 }
                 if (addedSuccessfully)
                 {
-                    MessageBox.Show("The Drone added successfully");
+                    MessageBox.Show("The Parcel added successfully");
                     this.Close();
                 }
             }

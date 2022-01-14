@@ -90,10 +90,23 @@ namespace BL
                     if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
                     {
                         DO.Station stat=idal.GetOneStationByPredicate(s=>s.AvailableChargeSlots>0);
-                        
+                        DO.Station temp;
+                        int tempID=1;
+                        if (!idal.CheckStation(stat.Id))
+                        {
+                            foreach (DO.Station station in idal.AllStation())//לשנות
+                            {
+                                tempID = station.Id;
+                                temp = idal.GetStation(station.Id);
+                                temp.AvailableChargeSlots = rand.Next(1, 6);
+                                idal.StationUpdate(temp);
+                            }
+                            stat=idal.GetStation(tempID);
+                        }
+                       
                         //if (!idal.CheckStation(counterStat))
                         //    counterStat = 1;
-                       // DO.Station stat = idal.GetStation(counterStat);
+                        // DO.Station stat = idal.GetStation(counterStat);
 
                         locat.Longitude = stat.Longitude;
                         locat.Latitude = stat.Latitude;
