@@ -29,7 +29,7 @@ namespace Dal
         /// <param name="s">new parcel</param>
         public void ParcelAddition(Parcel p)
         {
-            p.Id = Config.ParcelId++;
+            p.Id = Config.ParcelId++;  // חייבים לשנות שיהיה בתוך קובץ XML. יהיו לנו מלא בעיות
             if (CheckParcel(p.Id))
                 throw new DuplicateIdException(p.Id, "Parcel");
             List<Parcel> listParcels = XMLTools.LoadListFromXMLSerializer<Parcel>(ParcelsPath);

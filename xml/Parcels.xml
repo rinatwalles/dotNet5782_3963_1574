@@ -32,7 +32,7 @@
     <Priority>Emergency</Priority>
     <DroneId>1</DroneId>
     <RequestedTime>2022-01-13T20:28:16.4558769+02:00</RequestedTime>
-    <ScheduledTime>2022-01-13T22:48:33.1813075+02:00</ScheduledTime>
+    <ScheduledTime>2022-01-13T22:57:03.5206979+02:00</ScheduledTime>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
@@ -44,7 +44,7 @@
     <Priority>Fast</Priority>
     <DroneId>2</DroneId>
     <RequestedTime>2022-01-13T20:28:16.4578391+02:00</RequestedTime>
-    <ScheduledTime>2022-01-13T22:48:33.2417543+02:00</ScheduledTime>
+    <ScheduledTime>2022-01-13T22:57:03.9198962+02:00</ScheduledTime>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
@@ -56,7 +56,7 @@
     <Priority>Emergency</Priority>
     <DroneId>3</DroneId>
     <RequestedTime>2022-01-13T20:28:16.457864+02:00</RequestedTime>
-    <ScheduledTime>2022-01-13T22:48:33.255173+02:00</ScheduledTime>
+    <ScheduledTime>2022-01-13T22:57:04.3095169+02:00</ScheduledTime>
     <PickedUpTime>2022-01-14T14:28:16.45787+02:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
