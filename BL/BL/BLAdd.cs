@@ -50,8 +50,9 @@ namespace BL
                                                    Id = dodron.Id,
                                                    Model = dodron.Model,
                                                    Weight = (WeightCategories)dodron.Weight,
-                                                   ParcelNumber = countParc++
+                                                   ParcelNumber = 0
                                                }).ToList(); ;
+           
             Location locat = new Location();
             try
             {
@@ -61,6 +62,7 @@ namespace BL
                     {
                         item.DroneStatus = DroneStatuses.Delivery;
                         DO.Parcel parc = idal.GetOneParcelByPredicate(parc => parc.DroneId == item.Id);
+                        item.ParcelNumber = parc.Id;
                         DO.Customer cust = idal.GetCustomer(parc.SenderId);
                         locat.Latitude = cust.Latitude;
                         locat.Longitude = cust.Longitude;
@@ -87,7 +89,25 @@ namespace BL
 
                     if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
                     {
-                        DO.Station stat = idal.GetStation(counterStat);
+                        DO.Station stat=idal.GetOneStationByPredicate(s=>s.AvailableChargeSlots>0);
+                        DO.Station temp;
+                        int tempID=1;
+                        if (!idal.CheckStation(stat.Id))
+                        {
+                            foreach (DO.Station station in idal.AllStation())//לשנות
+                            {
+                                tempID = station.Id;
+                                temp = idal.GetStation(station.Id);
+                                temp.AvailableChargeSlots = rand.Next(1, 6);
+                                idal.StationUpdate(temp);
+                            }
+                            stat=idal.GetStation(tempID);
+                        }
+                       
+                        //if (!idal.CheckStation(counterStat))
+                        //    counterStat = 1;
+                        // DO.Station stat = idal.GetStation(counterStat);
+
                         locat.Longitude = stat.Longitude;
                         locat.Latitude = stat.Latitude;
                         item.Location = locat;
@@ -97,14 +117,16 @@ namespace BL
                         DO.DroneCharge dc = new DO.DroneCharge();
                         dc.StationId = stat.Id;
                         dc.DroneId = item.Id;
-                        idal.DroneChargeAddition(dc);
-                        counterStat++;
+                        if(!idal.CheckDroneCharge(item.Id))
+                            idal.DroneChargeAddition(dc);
+                        //counterStat++;
                     }
 
                     if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
                     {
-                        int randId = rand.Next(1, 6);
-                        DO.Parcel doParcel = idal.GetParcel(randId);//problem here
+                        if (!idal.CheckStation(countParc))
+                            countParc = 1;
+                        DO.Parcel doParcel = idal.GetParcel(countParc);//problem here
 
                         DO.Customer cust = idal.GetCustomer(doParcel.SenderId);
                         locat.Latitude = cust.Latitude;
@@ -113,7 +135,7 @@ namespace BL
                         item.Location = closeStation;
                         double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
-
+                        countParc++;
                     }
                 }
             }

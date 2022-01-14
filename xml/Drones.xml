@@ -2,32 +2,27 @@
 <ArrayOfDrone xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Drone>
     <Id>1</Id>
-    <Model>Gyf</Model>
-    <Weight>Heavy</Weight>
+    <Model>Bvb</Model>
+    <Weight>Light</Weight>
   </Drone>
   <Drone>
     <Id>2</Id>
-    <Model>Aee</Model>
+    <Model>Tsi</Model>
     <Weight>Heavy</Weight>
   </Drone>
   <Drone>
     <Id>3</Id>
-    <Model>Gcp</Model>
-    <Weight>Medium</Weight>
-  </Drone>
-  <Drone>
-    <Id>4</Id>
-    <Model>Xav</Model>
+    <Model>Htv</Model>
     <Weight>Light</Weight>
   </Drone>
   <Drone>
-    <Id>5</Id>
-    <Model>Tdt</Model>
+    <Id>4</Id>
+    <Model>Tlv</Model>
     <Weight>Medium</Weight>
   </Drone>
   <Drone>
-    <Id>6</Id>
-    <Model>Asd</Model>
-    <Weight>Medium</Weight>
+    <Id>5</Id>
+    <Model>Fnj</Model>
+    <Weight>Light</Weight>
   </Drone>
 </ArrayOfDrone>

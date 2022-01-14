@@ -1,38 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <Id>1</Id>
-    <Name>Iem</Name>
-    <Phone>054466304</Phone>
-    <Longitude>33.46248983804252</Longitude>
-    <Latitude>36.14984196398865</Latitude>
+    <Name>Cua</Name>
+    <Phone>054167540</Phone>
+    <Longitude>30.99063855916757</Longitude>
+    <Latitude>34.5965585230368</Latitude>
   </Customer>
   <Customer>
     <Id>2</Id>
-    <Name>Nrf</Name>
-    <Phone>054833626</Phone>
-    <Longitude>33.03242863199321</Longitude>
-    <Latitude>35.65493577921527</Latitude>
+    <Name>Jai</Name>
+    <Phone>054776233</Phone>
+    <Longitude>30.298943981434658</Longitude>
+    <Latitude>34.631167247952504</Latitude>
   </Customer>
   <Customer>
     <Id>3</Id>
-    <Name>Dan</Name>
-    <Phone>054256505</Phone>
-    <Longitude>32.61419348973511</Longitude>
-    <Latitude>35.87480951481257</Latitude>
+    <Name>Ncb</Name>
+    <Phone>054501301</Phone>
+    <Longitude>30.50092871403365</Longitude>
+    <Latitude>35.16090821831529</Latitude>
   </Customer>
   <Customer>
     <Id>4</Id>
-    <Name>Rsa</Name>
-    <Phone>054644862</Phone>
-    <Longitude>31.619747675079736</Longitude>
-    <Latitude>36.04435796092467</Latitude>
+    <Name>Fwe</Name>
+    <Phone>054816285</Phone>
+    <Longitude>32.58773067532467</Longitude>
+    <Latitude>35.2678953681923</Latitude>
   </Customer>
   <Customer>
     <Id>5</Id>
-    <Name>Udf</Name>
-    <Phone>054581061</Phone>
-    <Longitude>29.64185840456833</Longitude>
-    <Latitude>34.77211031861236</Latitude>
+    <Name>Xud</Name>
+    <Phone>054722386</Phone>
+    <Longitude>29.558598544941564</Longitude>
+    <Latitude>35.08312949472253</Latitude>
   </Customer>
 </ArrayOfCustomer>

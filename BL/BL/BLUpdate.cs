@@ -78,6 +78,7 @@ namespace BL
                     sLocation.Latitude = item.Latitude;
                     sLocation.Longitude = item.Longitude;
                     double dist = getDistance(sLocation, boDrone.Location);
+                    
                     if (dist * array[1 + (int)boDrone.Weight] <= boDrone.BatteryStatus)
                         if (dist < minDistance)
                         {
@@ -124,7 +125,8 @@ namespace BL
                 DO.DroneCharge dc = new DO.DroneCharge();
                 dc.StationId = minStation.Id;
                 dc.DroneId = id;
-                idal.DroneChargeAddition(dc);
+                if(!idal.CheckDroneCharge(boDrone.Id))
+                    idal.DroneChargeAddition(dc);
             }
            catch(MissingIdException ex)
             {
@@ -183,10 +185,11 @@ namespace BL
                     droneToSender = getDistance(GetCustomer(item.SenderId).Location, boDrone.Location);
                     senderToTarget = getDistance(GetCustomer(item.SenderId).Location, GetCustomer(item.TargetId).Location);
                     targetToStation = getDistance(minStationDistance(GetCustomer(item.TargetId).Location), GetCustomer(item.TargetId).Location);
-                    if (maxPriority < (Priorities)item.Priority)
+                    if (maxPriority <= (Priorities)item.Priority)
                         if (droneToSender < minDistance)
                             if (array[1 + (int)boDrone.Weight] * (droneToSender + targetToStation + senderToTarget) <= boDrone.BatteryStatus)
                             {
+                                maxPriority = (Priorities)item.Priority;
                                 chosenOne = item;
                                 counter = 1;
                                 break;

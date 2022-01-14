@@ -41,7 +41,7 @@ namespace Dal
         public void DroneChargesDelete(DroneCharge dc)
         {
             List<DroneCharge> listDroneCharges = XMLTools.LoadListFromXMLSerializer<DroneCharge>(DroneChargesPath);
-            int count = listDroneCharges.RemoveAll(d => ((d.DroneId == dc.DroneId) && (d.StationId == dc.DroneId)));
+            int count = listDroneCharges.RemoveAll(d => ((d.DroneId == dc.DroneId) && (d.StationId == dc.StationId)));
             if (count == 0)
                 throw new MissingIdException(dc.DroneId, "DroneCharge");
             XMLTools.SaveListToXMLSerializer(listDroneCharges, DroneChargesPath);
