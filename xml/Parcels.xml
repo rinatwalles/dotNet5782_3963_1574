@@ -25,18 +25,6 @@
     <DeliveredTime>2022-01-14T11:28:16.4578874+02:00</DeliveredTime>
   </Parcel>
   <Parcel>
-    <Id>1</Id>
-    <SenderId>3</SenderId>
-    <TargetId>5</TargetId>
-    <Weight>Medium</Weight>
-    <Priority>Emergency</Priority>
-    <DroneId>1</DroneId>
-    <RequestedTime>2022-01-13T20:28:16.4558769+02:00</RequestedTime>
-    <ScheduledTime>2022-01-13T20:31:39.3083004+02:00</ScheduledTime>
-    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
-    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
-  </Parcel>
-  <Parcel>
     <Id>2</Id>
     <SenderId>2</SenderId>
     <TargetId>1</TargetId>
@@ -44,9 +32,9 @@
     <Priority>Fast</Priority>
     <DroneId>2</DroneId>
     <RequestedTime>2022-01-13T20:28:16.4578391+02:00</RequestedTime>
-    <ScheduledTime>2022-01-13T20:31:39.3563322+02:00</ScheduledTime>
-    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
-    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
+    <ScheduledTime>2022-01-13T22:51:42.4099821+02:00</ScheduledTime>
+    <PickedUpTime>2022-01-13T22:52:05.7876291+02:00</PickedUpTime>
+    <DeliveredTime>2022-01-13T22:52:40.1767149+02:00</DeliveredTime>
   </Parcel>
   <Parcel>
     <Id>3</Id>
@@ -56,8 +44,20 @@
     <Priority>Emergency</Priority>
     <DroneId>3</DroneId>
     <RequestedTime>2022-01-13T20:28:16.457864+02:00</RequestedTime>
-    <ScheduledTime>2022-01-13T20:31:39.3972317+02:00</ScheduledTime>
+    <ScheduledTime>2022-01-13T22:51:42.423881+02:00</ScheduledTime>
     <PickedUpTime>2022-01-14T14:28:16.45787+02:00</PickedUpTime>
+    <DeliveredTime>2022-01-13T22:52:44.9256636+02:00</DeliveredTime>
+  </Parcel>
+  <Parcel>
+    <Id>1</Id>
+    <SenderId>3</SenderId>
+    <TargetId>5</TargetId>
+    <Weight>Medium</Weight>
+    <Priority>Emergency</Priority>
+    <DroneId>3</DroneId>
+    <RequestedTime>2022-01-13T20:28:16.4558769+02:00</RequestedTime>
+    <ScheduledTime>2022-01-14T10:46:38.1298742+02:00</ScheduledTime>
+    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
 </ArrayOfParcel>

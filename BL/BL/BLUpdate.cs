@@ -78,6 +78,7 @@ namespace BL
                     sLocation.Latitude = item.Latitude;
                     sLocation.Longitude = item.Longitude;
                     double dist = getDistance(sLocation, boDrone.Location);
+                    
                     if (dist * array[1 + (int)boDrone.Weight] <= boDrone.BatteryStatus)
                         if (dist < minDistance)
                         {
@@ -124,7 +125,8 @@ namespace BL
                 DO.DroneCharge dc = new DO.DroneCharge();
                 dc.StationId = minStation.Id;
                 dc.DroneId = id;
-                idal.DroneChargeAddition(dc);
+                if(!idal.CheckDroneCharge(boDrone.Id))
+                    idal.DroneChargeAddition(dc);
             }
            catch(MissingIdException ex)
             {

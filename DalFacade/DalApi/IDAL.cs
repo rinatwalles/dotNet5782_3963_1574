@@ -51,11 +51,12 @@ namespace DaLApi
             void StationDelete(Station s);
             void StationUpdate(Station s);
             IEnumerable<Station> GetStationByPredicate(Predicate<Station> predicate);
+            Station GetOneStationByPredicate(Predicate<Station> predicate);
             #endregion
 
-            #region Parcel
-            //CRUD Parcel
-            bool CheckParcel(int id);
+        #region Parcel
+        //CRUD Parcel
+        bool CheckParcel(int id);
             void ParcelAddition(Parcel p);
             Parcel GetParcel(int id);
             IEnumerable<Parcel> AllParcel();

@@ -115,5 +115,11 @@ namespace Dal
                    where predicate(st)
                    select st;
         }
+
+        public Station GetOneStationByPredicate(Predicate<Station> predicate)
+        {
+            List<Station> listStations = XMLTools.LoadListFromXMLSerializer<Station>(StationsPath);
+            return listStations.Find(predicate);
+        }
     }
 }

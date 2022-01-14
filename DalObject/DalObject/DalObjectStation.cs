@@ -112,5 +112,9 @@ namespace Dal
                    where predicate(st)
                    select st;
         }
+        public Station GetOneStationByPredicate(Predicate<Station> predicate)
+        {
+            return DataSource.stations.Find(predicate);
+        }
     }
 }
