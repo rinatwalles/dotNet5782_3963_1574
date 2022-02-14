@@ -32,6 +32,119 @@ namespace BL
         /// Constructor of BL
         /// </summary>
         
+        //public BL()
+        //{
+        //    //idal = new DalObject.DalObject();
+
+        //    array = idal.AskingElectricityUse();
+        //    double Available = array[0];
+        //    double Light = array[1];
+        //    double Medium = array[2];
+        //    double Heavy = array[3];
+        //    double ChargePrecent = array[4];
+        //    int countParc = 1;
+        //    int counterStat = 1;
+        //    ListBLDrones = (List<DroneToList>)(from dodron in idal.AllDrones()
+        //                                       select new DroneToList()
+        //                                       {
+        //                                           Id = dodron.Id,
+        //                                           Model = dodron.Model,
+        //                                           Weight = (WeightCategories)dodron.Weight,
+        //                                           ParcelNumber = 0
+        //                                       }).ToList(); ;
+           
+        //    Location locat = new Location();
+        //    try
+        //    {
+        //        foreach (DroneToList item in ListBLDrones)
+        //        {
+        //            if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == DateTime.MinValue))))
+        //            {
+        //                item.DroneStatus = DroneStatuses.Delivery;
+        //                DO.Parcel parc = idal.GetOneParcelByPredicate(parc => parc.DroneId == item.Id);
+        //                item.ParcelNumber = parc.Id;
+        //                DO.Customer cust = idal.GetCustomer(parc.SenderId);
+        //                locat.Latitude = cust.Latitude;
+        //                locat.Longitude = cust.Longitude;
+        //                item.Location = locat;
+        //                parc.ScheduledTime = DateTime.Now;
+        //                idal.ParcelUpdate(parc);
+        //                if (parc.PickedUpTime == DateTime.MinValue)  //parcel schduled but not PickedUp 
+        //                    item.Location = MinDistanceOfSation(locat);    //the location is the closest station
+                        
+        //                else if (parc.DeliveredTime == DateTime.MinValue)    //the parcel not deliverd so the location is the sender location
+        //                    item.Location = locat;
+
+        //                double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
+        //                Location closeStation = MinDistanceOfSation(locat);
+
+        //                calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+        //                item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
+
+        //            }
+        //            else     //not doing a delivery now
+        //            {
+        //                item.DroneStatus = (DroneStatuses)(rand.Next(0, 2) * 2);    //0 or 2
+        //            }
+
+        //            if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
+        //            {
+        //                DO.Station stat=idal.GetOneStationByPredicate(s=>s.AvailableChargeSlots>0);
+        //                DO.Station temp;
+        //                int tempID=1;
+        //                if (!idal.CheckStation(stat.Id))
+        //                {
+        //                    foreach (DO.Station station in idal.AllStation())//לשנות
+        //                    {
+        //                        tempID = station.Id;
+        //                        temp = idal.GetStation(station.Id);
+        //                        temp.AvailableChargeSlots = rand.Next(1, 6);
+        //                        idal.StationUpdate(temp);
+        //                    }
+        //                    stat=idal.GetStation(tempID);
+        //                }
+                       
+        //                //if (!idal.CheckStation(counterStat))
+        //                //    counterStat = 1;
+        //                // DO.Station stat = idal.GetStation(counterStat);
+
+        //                locat.Longitude = stat.Longitude;
+        //                locat.Latitude = stat.Latitude;
+        //                item.Location = locat;
+        //                item.BatteryStatus = rand.NextDouble() * 20;
+        //                stat.AvailableChargeSlots--;
+        //                idal.StationUpdate(stat);
+        //                DO.DroneCharge dc = new DO.DroneCharge();
+        //                dc.StationId = stat.Id;
+        //                dc.DroneId = item.Id;
+        //                if(!idal.CheckDroneCharge(item.Id))
+        //                    idal.DroneChargeAddition(dc);
+        //                //counterStat++;
+        //            }
+
+        //            if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
+        //            {
+        //                if (!idal.CheckStation(countParc))
+        //                    countParc = 1;
+        //                DO.Parcel doParcel = idal.GetParcel(countParc);//problem here
+
+        //                DO.Customer cust = idal.GetCustomer(doParcel.SenderId);
+        //                locat.Latitude = cust.Latitude;
+        //                locat.Longitude = cust.Longitude;
+        //                Location closeStation = MinDistanceOfSation(locat);
+        //                item.Location = closeStation;
+        //                double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+        //                item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
+        //                countParc++;
+        //            }
+        //        }
+        //    }
+        //    catch (DO.MissingIdException ex)
+        //    {
+        //        throw new MissingIdException(ex.ID, ex.EntityName);
+        //    }
+        //}
+
         public BL()
         {
             //idal = new DalObject.DalObject();
@@ -43,7 +156,6 @@ namespace BL
             double Heavy = array[3];
             double ChargePrecent = array[4];
             int countParc = 1;
-            int counterStat = 1;
             ListBLDrones = (List<DroneToList>)(from dodron in idal.AllDrones()
                                                select new DroneToList()
                                                {
@@ -52,7 +164,7 @@ namespace BL
                                                    Weight = (WeightCategories)dodron.Weight,
                                                    ParcelNumber = 0
                                                }).ToList(); ;
-           
+
             Location locat = new Location();
             try
             {
@@ -60,6 +172,7 @@ namespace BL
                 {
                     if (idal.AllParcel().Any(parc => ((parc.DroneId == item.Id) && (parc.DeliveredTime == DateTime.MinValue))))
                     {
+
                         item.DroneStatus = DroneStatuses.Delivery;
                         DO.Parcel parc = idal.GetOneParcelByPredicate(parc => parc.DroneId == item.Id);
                         item.ParcelNumber = parc.Id;
@@ -71,7 +184,7 @@ namespace BL
                         idal.ParcelUpdate(parc);
                         if (parc.PickedUpTime == DateTime.MinValue)  //parcel schduled but not PickedUp 
                             item.Location = MinDistanceOfSation(locat);    //the location is the closest station
-                        
+
                         else if (parc.DeliveredTime == DateTime.MinValue)    //the parcel not deliverd so the location is the sender location
                             item.Location = locat;
 
@@ -82,48 +195,24 @@ namespace BL
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
 
                     }
-                    else     //not doing a delivery now
-                    {
-                        item.DroneStatus = (DroneStatuses)(rand.Next(0, 2) * 2);    //0 or 2
-                    }
 
-                    if (item.DroneStatus == DroneStatuses.Maintenance)   //drone in maintance
-                    {
-                        DO.Station stat=idal.GetOneStationByPredicate(s=>s.AvailableChargeSlots>0);
-                        DO.Station temp;
-                        int tempID=1;
-                        if (!idal.CheckStation(stat.Id))
-                        {
-                            foreach (DO.Station station in idal.AllStation())//לשנות
-                            {
-                                tempID = station.Id;
-                                temp = idal.GetStation(station.Id);
-                                temp.AvailableChargeSlots = rand.Next(1, 6);
-                                idal.StationUpdate(temp);
-                            }
-                            stat=idal.GetStation(tempID);
-                        }
-                       
-                        //if (!idal.CheckStation(counterStat))
-                        //    counterStat = 1;
-                        // DO.Station stat = idal.GetStation(counterStat);
 
+                    else if (idal.AllDroneCharges().Any(dr => dr.DroneId == item.Id))   //drone in maintance
+                    {
+                        item.DroneStatus = DroneStatuses.Maintenance;
+                        item.BatteryStatus = rand.NextDouble() * 20;
+                        DO.Station stat = idal.GetStation(idal.GetDroneChargeByPredicate(dr => dr.DroneId == item.Id).StationId);
                         locat.Longitude = stat.Longitude;
                         locat.Latitude = stat.Latitude;
                         item.Location = locat;
-                        item.BatteryStatus = rand.NextDouble() * 20;
                         stat.AvailableChargeSlots--;
                         idal.StationUpdate(stat);
-                        DO.DroneCharge dc = new DO.DroneCharge();
-                        dc.StationId = stat.Id;
-                        dc.DroneId = item.Id;
-                        if(!idal.CheckDroneCharge(item.Id))
-                            idal.DroneChargeAddition(dc);
-                        //counterStat++;
                     }
 
-                    if (item.DroneStatus == DroneStatuses.Available)   //the drone is available
+
+                    else   //the drone is available
                     {
+                        item.DroneStatus = DroneStatuses.Available;
                         if (!idal.CheckStation(countParc))
                             countParc = 1;
                         DO.Parcel doParcel = idal.GetParcel(countParc);//problem here
@@ -137,7 +226,8 @@ namespace BL
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
                         countParc++;
                     }
-                }
+                    }
+                
             }
             catch (DO.MissingIdException ex)
             {

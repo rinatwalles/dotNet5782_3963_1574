@@ -54,7 +54,7 @@ namespace DaLApi
             Station GetOneStationByPredicate(Predicate<Station> predicate);
             #endregion
 
-        #region Parcel
+            #region Parcel
         //CRUD Parcel
         bool CheckParcel(int id);
             void ParcelAddition(Parcel p);
@@ -73,6 +73,9 @@ namespace DaLApi
             void DroneChargesDelete(DroneCharge d);
             DroneCharge GetDroneCharge(int dId);
             IEnumerable<DroneCharge> GetDroneChargeInStation(int id);
+            public IEnumerable<DroneCharge> AllDroneCharges();
+            public DroneCharge GetDroneChargeByPredicate(Predicate<DroneCharge> predicate);
+
             Parcel GetOneParcelByPredicate(Predicate<Parcel> predicate);
             #endregion
         }
