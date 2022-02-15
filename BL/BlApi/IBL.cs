@@ -27,6 +27,8 @@ namespace BLApi
         void PickedUpParcelByDrone(int droneId);
         void joinParcelToDrone(int idD);
         void supplyParceByDrone(int idD);
+        public void autoUpdate(Drone drone);
+
         //IDAL.DO.Station minStationDistance(Drone boDrone);
         //Location minStationDistance(Location location);
 

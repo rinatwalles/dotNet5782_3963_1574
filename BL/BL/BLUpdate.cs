@@ -347,5 +347,43 @@ namespace BL
                 idal.ParcelDelete(id);
             throw new DeliveryProblems(id, "The parcel id delivered");
         }
+        public void autoUpdate (Drone drone)//לשנות שיקבל id?
+        {
+            switch (drone.DroneStatus)
+            {
+                case DroneStatuses.Available:
+                    if (drone.BatteryStatus < 40)
+                        droneToCharge(drone.Id);
+                    else
+                        joinParcelToDrone(drone.Id);
+                    break;
+                case DroneStatuses.Delivery:
+                    ParcelStates ps = getParcelState(drone.ParcelInDelivery.Id);
+                    switch (ps)
+                    {
+                        case ParcelStates.Scheduled:
+                            PickedUpParcelByDrone(drone.Id);
+                            break;
+                        case ParcelStates.PickedUp:
+                            supplyParceByDrone(drone.Id);
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case DroneStatuses.Maintenance:
+                    if (drone.BatteryStatus < 100)
+                    {
+                        ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("10"));
+                        droneToCharge(drone.Id);
+                    }
+                    else
+                        ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("0"));
+                    break;
+                default:
+                    break;
+            }
+
+        }
     }
 }

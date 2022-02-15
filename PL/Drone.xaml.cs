@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 using System.Text.RegularExpressions;
 using BO;
 using BLApi;
+using System.ComponentModel;
 
 namespace PL
 {
@@ -27,10 +28,14 @@ namespace PL
         enum option { Add, Update};
         enum update {charge,disCharge }
         enum delivery { Join, PickedUpParcel, Supply }
+        enum autoUpdate { start, stop}
 
         option op;
         update up=update.charge;
         delivery del=delivery.Join;
+        autoUpdate aU = autoUpdate.start;
+        BackgroundWorker droneUp;
+
         public DroneWindow(BLApi.IBL newIbl)    //add constructor
         {
             InitializeComponent();
@@ -69,6 +74,32 @@ namespace PL
             DeliveryButton.Visibility = Visibility.Collapsed;
 
             OptionButtun.IsEnabled = false ;
+
+            droneUp = new BackgroundWorker();
+            droneUp.DoWork += DroneUp_DoWork;
+            droneUp.ProgressChanged += DroneUp_ProgressChanged;
+            droneUp.RunWorkerCompleted += DroneUp_RunWorkerCompleted;
+            droneUp.WorkerSupportsCancellation = true;
+            droneUp.WorkerReportsProgress = true;
+        }
+
+        private void DroneUp_ProgressChanged(object sender, ProgressChangedEventArgs e)
+        {
+//SHOW THE WINDOW UPDATED SOMEHOW
+                }
+
+        private void DroneUp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
+        {
+            throw new NotImplementedException();
+        }
+
+        private void DroneUp_DoWork(object sender, DoWorkEventArgs e)
+        {
+            while (droneUp.CancellationPending != true)
+            {
+                ibl.autoUpdate(PLdDrone);
+                droneUp.ReportProgress();
+            }
         }
 
         public DroneWindow(BLApi.IBL newIbl, Drone d)//update constructor
@@ -87,7 +118,7 @@ namespace PL
 
             this.Title = "Drone Update";
             OptionButtun.Content = "Update The Drone";
-
+            autoUp.Content = "Auto Update";
             stationComboBox.Visibility = stationLabel.Visibility = Visibility.Collapsed;
 
             if (d.DroneStatus == DroneStatuses.Available)
@@ -281,6 +312,20 @@ namespace PL
                 OptionButtun.IsEnabled = true;
         }
 
-
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (aU == autoUpdate.start)
+            {
+                if (droneUp.IsBusy != true)
+                {
+                    this.Cursor = Cursors.Wait;
+                    droneUp.RunWorkerAsync();
+                    autoUp.Content = "Stop Auto Update";
+                    aU = autoUpdate.stop;
+                }
+            }
+            else
+                droneUp.CancelAsync();
+        }
     }
 }
