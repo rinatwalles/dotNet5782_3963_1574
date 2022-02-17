@@ -65,46 +65,7 @@ namespace PL
             this.Title = "Parcel Update";
             OptionButtun.Content = "Update The Parcel";
             OptionButtun.Visibility = Visibility.Collapsed;
-            //    this.Title = "Drone Update";
-            //    OptionButtun.Content = "Update The Drone";
-
-            //if (d.DroneStatus == DroneStatuses.Available)
-            //{
-            //    UpdateButton.Content = "Charge Drone";
-            //    DeliveryButton.Content = "Join Parcel To Drone";
-            //    up = update.charge;
-            //    del = delivery.Join;
-            //}
-            //if (d.DroneStatus == DroneStatuses.Maintenance)
-            //{
-            //    UpdateButton.Content = "Discharge Drone";
-            //    DeliveryButton.Visibility = Visibility.Collapsed;
-            //    up = update.disCharge;
-            //}
-            //if (d.DroneStatus == DroneStatuses.Delivery)
-            //{
-            //    Parcel parcel = ibl.GetParcel(d.ParcelNumber);
-            //    if (parcel.PickedUpTime != DateTime.MinValue)
-            //    {
-            //        UpdateButton.Visibility = Visibility.Collapsed;
-            //        DeliveryButton.Content = "Supply Parcel By Drone";
-            //        del = delivery.Supply;
-            //    }
-            //    else if (parcel.ScheduledTime != DateTime.MinValue)
-            //    {
-            //        UpdateButton.Visibility = Visibility.Collapsed;
-            //        DeliveryButton.Content = "Collecting Parcel By Drone";
-            //        del = delivery.PickedUpParcel;
-            //    }
-            //}
-            //txtID.IsEnabled = false;
-            //txtParcelID.IsEnabled = false;
-            //txtBattery.IsEnabled = false;
-            //WeightComboBox.IsEnabled = false;
-            //StatusComboBox.IsEnabled = false;
-            //longitudeTextBox.IsEnabled = false;
-            //latitudeTextBox.IsEnabled = false;
-
+            
         }
         private void OptionButtun_Click(object sender, RoutedEventArgs e)   //update/add option
         {

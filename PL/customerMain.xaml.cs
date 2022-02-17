@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BO;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -28,8 +29,10 @@ namespace PL
 
         private void TxtId_TextChanged(object sender, TextChangedEventArgs e)
         {
-           // int id = int.Parse(TxtId.Text);
-            new ParcelToListWindow(ibl, 4);
+            int id = int.Parse(TxtId.Text);
+            Customer cs = ibl.GetCustomer(id);
+            bool manger = false;
+            new PL.CustomerWindow(ibl, cs).Show();
         }
     }
 }

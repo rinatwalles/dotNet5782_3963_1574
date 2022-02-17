@@ -347,8 +347,9 @@ namespace BL
                 idal.ParcelDelete(id);
             throw new DeliveryProblems(id, "The parcel id delivered");
         }
-        public void autoUpdate (Drone drone)//לשנות שיקבל id?
+        public void autoUpdate (int drId)//לשנות שיקבל id?
         {
+            Drone drone = GetDrone(drId);
             try
             {
                 switch (drone.DroneStatus)
