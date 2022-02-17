@@ -155,6 +155,7 @@
 
 
         </Grid>
+        <Button x:Name="autoUp" Content="Auto Update" Grid.Column="2" HorizontalAlignment="Left" Margin="151,264,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_1"/>
     </Grid>
 
 </Window>

@@ -71,6 +71,19 @@ namespace Dal
             List<DroneCharge> listDroneCharges = XMLTools.LoadListFromXMLSerializer<DroneCharge>(DroneChargesPath);
             return listDroneCharges.Where(dc => dc.StationId == id);
         }
+        public IEnumerable<DroneCharge> AllDroneCharges()
+        {
+            List<DroneCharge> listDrones = XMLTools.LoadListFromXMLSerializer<DroneCharge>(DroneChargesPath);
+            return from dr in listDrones
+                   select dr;
+        }
+        public DroneCharge GetDroneChargeByPredicate(Predicate<DroneCharge> predicate)
+        {
+            List<DroneCharge> listDrones = XMLTools.LoadListFromXMLSerializer<DroneCharge>(DroneChargesPath);
+            return (from dr in listDrones
+                    where predicate(dr)
+                    select dr).FirstOrDefault();
+        }
 
     }
 }

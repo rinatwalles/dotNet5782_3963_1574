@@ -1,38 +1,38 @@
 <?xml version="1.0"?>
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
-    <Id>1</Id>
-    <Name>Gah</Name>
-    <Longitude>30.8888522675209</Longitude>
-    <Latitude>34.382102389671886</Latitude>
-    <AvailableChargeSlots>0</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>2</Id>
-    <Name>Ukm</Name>
-    <Longitude>29.356088420122905</Longitude>
-    <Latitude>35.84022477666858</Latitude>
-    <AvailableChargeSlots>2</AvailableChargeSlots>
+    <Id>3</Id>
+    <Name>Ihv</Name>
+    <Longitude>30.04161251231172</Longitude>
+    <Latitude>35.48804430635089</Latitude>
+    <AvailableChargeSlots>8</AvailableChargeSlots>
   </Station>
   <Station>
     <Id>5</Id>
     <Name>Ktq</Name>
     <Longitude>31.54957760286032</Longitude>
     <Latitude>34.91855464010432</Latitude>
-    <AvailableChargeSlots>1</AvailableChargeSlots>
+    <AvailableChargeSlots>2</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>2</Id>
+    <Name>Ukm</Name>
+    <Longitude>29.356088420122905</Longitude>
+    <Latitude>35.84022477666858</Latitude>
+    <AvailableChargeSlots>5</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>1</Id>
+    <Name>YUU</Name>
+    <Longitude>30.8888522675209</Longitude>
+    <Latitude>34.382102389671886</Latitude>
+    <AvailableChargeSlots>0</AvailableChargeSlots>
   </Station>
   <Station>
     <Id>4</Id>
     <Name>Jsj</Name>
     <Longitude>33.156235479124</Longitude>
     <Latitude>34.33456217601642</Latitude>
-    <AvailableChargeSlots>2</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>3</Id>
-    <Name>Ihv</Name>
-    <Longitude>30.04161251231172</Longitude>
-    <Latitude>35.48804430635089</Latitude>
-    <AvailableChargeSlots>1</AvailableChargeSlots>
+    <AvailableChargeSlots>-5</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>

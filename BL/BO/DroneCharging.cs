@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace BO
 {
-    public class DroneCharging
+    public struct DroneCharging
     {
         public int Id { get; set; }
         public double BatteryStatus { get; set; }

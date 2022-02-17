@@ -64,5 +64,16 @@ namespace Dal
         {
             return DataSource.droneCharges.Where(dc => dc.StationId == id);
         }
+        public IEnumerable<DroneCharge> AllDroneCharges()
+        {
+            return from dr in DataSource.droneCharges
+                   select dr;
+        }
+        public DroneCharge GetDroneChargeByPredicate(Predicate<DroneCharge> predicate)
+        {
+            return (from dr in DataSource.droneCharges
+                   where predicate(dr)
+                   select dr).FirstOrDefault();
+        }
     }
 }
