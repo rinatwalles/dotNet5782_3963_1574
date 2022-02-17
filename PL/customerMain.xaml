@@ -7,8 +7,11 @@
         mc:Ignorable="d"
         Title="customerMain" Height="298" Width="297"  Background="{StaticResource MyButtonBackground}">
     <Grid>
-        <TextBox x:Name="TxtId" HorizontalAlignment="Center" Margin="0,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtId_TextChanged"/>
-        <Label Content="Enter Customer Id" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="TxtId" HorizontalAlignment="Left" Margin="165,119,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="54"/>
+        <Label Content="Enter Customer Id" HorizontalAlignment="Left" Margin="43,115,0,0" VerticalAlignment="Top"/>
+        <CheckBox x:Name="isCustomerCheckBox"  Content="CheckBox" HorizontalAlignment="Left" Margin="192,170,0,0" VerticalAlignment="Top"/>
+        <Label Content="Do you have an acount?" HorizontalAlignment="Left" Margin="43,165,0,0" VerticalAlignment="Top" Width="138"/>
+        <Button x:Name="ContinueButtun" Content="Continue" HorizontalAlignment="Center" Margin="0,219,0,0" VerticalAlignment="Top" Click="ContinueButtun_Click"/>
 
     </Grid>
 </Window>

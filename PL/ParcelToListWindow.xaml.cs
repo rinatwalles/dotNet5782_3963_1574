@@ -26,9 +26,12 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            IEnumerable<ParcelToList> lst = ibl.GetAllParcels();
-            parcelToListDataGrid.ItemsSource = lst;
+            parcelToListDataGrid.ItemsSource = (from parcel in ibl.GetAllParcels()
+                                                orderby parcel.Id
+                                                select parcel);
             parcelToListDataGrid.IsReadOnly = true;
+
+           
         }
        
 
@@ -41,7 +44,7 @@ namespace PL
         {
 
             ParcelToList p = parcelToListDataGrid.SelectedItem as ParcelToList;
-            Parcel pc = ibl.GetParcel(p.Id);  //ghjkl
+            Parcel pc = ibl.GetParcel(p.Id); 
             new PL.ParcelWindow(ibl, pc).Show();
         }
 
@@ -52,17 +55,23 @@ namespace PL
 
         private void groupButtun_Click(object sender, RoutedEventArgs e)
         {
-
+            parcelToListDataGrid.ItemsSource = (from parcel in ibl.GetAllParcels()
+                                                 orderby parcel.Sender.Id
+                                                 select parcel);
         }
 
         private void clearButtun_Click(object sender, RoutedEventArgs e)
         {
-
+            parcelToListDataGrid.ItemsSource = (from parcel in ibl.GetAllParcels()
+                                                orderby parcel.Id
+                                                select parcel);
         }
 
         private void Window_Activated(object sender, EventArgs e)
         {
-            parcelToListDataGrid.ItemsSource = ibl.GetAllParcels();
+            parcelToListDataGrid.ItemsSource = (from parcel in ibl.GetAllParcels()
+                                                orderby parcel.Id
+                                                select parcel);
         }
     }
 }

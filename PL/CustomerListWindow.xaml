@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="CustomerListWindow" Height="450" Width="900" Activated="Window_Activated"         Background="{StaticResource MyButtonBackground}">
+        Title="CustomerListWindow" Height="550" Width="900" Activated="Window_Activated"         Background="{StaticResource MyButtonBackground}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -14,7 +14,7 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions >
-        <DataGrid x:Name="customerToListDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="0,113,0,107" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="customerToListDataGrid_MouseDoubleClick" SelectionChanged="customerToListDataGrid_SelectionChanged">
+        <DataGrid x:Name="customerToListDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="26,80,-26,140" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="customerToListDataGrid_MouseDoubleClick" SelectionChanged="customerToListDataGrid_SelectionChanged" Grid.ColumnSpan="5">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="nameColumn" Binding="{Binding Name}" Header="Name" Width="SizeToHeader"/>
@@ -25,7 +25,7 @@
                 <DataGridTextColumn x:Name="phoneColumn" Binding="{Binding Phone}" Header="Phone" Width="Auto"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add New Customer" HorizontalAlignment="Left" Margin="356,355,0,0" VerticalAlignment="Top" Click="Button_Click" Width="214"/>
-        <Button x:Name="closeButtun" Content="Close" HorizontalAlignment="Left" Margin="590,355,0,0" VerticalAlignment="Top" Click="closeButtun_Click" />
+        <Button Content="Add New Customer" HorizontalAlignment="Left" Margin="358,415,0,0" VerticalAlignment="Top" Click="Button_Click" Width="214"/>
+        <Button x:Name="closeButtun" Content="Close" HorizontalAlignment="Left" Margin="598,415,0,0" VerticalAlignment="Top" Click="closeButtun_Click" Grid.ColumnSpan="3" />
     </Grid>
 </Window>

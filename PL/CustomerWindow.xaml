@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="CustomerWindow" Height="450" Width="800"         Background="{StaticResource MyButtonBackground}">
+        Title="CustomerWindow" Height="550" Width="900"         Background="{StaticResource MyButtonBackground}">
     <Grid>
         <Grid x:Name="customerDetails" HorizontalAlignment="Left" Margin="31,70,0,0" VerticalAlignment="Top">
             <Grid.ColumnDefinitions>
@@ -30,7 +30,7 @@
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="longitudeTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
         </Grid>
-        <DataGrid x:Name="parcelFromCustomerDataGrid"  RowDetailsVisibilityMode="VisibleWhenSelected" Margin="401,31,41,238" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="parcelFromCustomerDataGrid_MouseDoubleClick" >
+        <DataGrid x:Name="parcelFromCustomerDataGrid"  RowDetailsVisibilityMode="VisibleWhenSelected" Margin="401,31,41,304" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="parcelFromCustomerDataGrid_MouseDoubleClick" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idFromCustomerColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn x:Name="FromCustomerparcelStateColumn" Width="SizeToHeader" Header="Parcel State" Binding="{Binding ParcelState}"/>
@@ -40,7 +40,7 @@
                 <DataGridTextColumn x:Name="FromCustomerNmaeCustomerColumn" Width="SizeToHeader" Header="Customer Name" Binding="{Binding customer.Name}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <DataGrid x:Name="parcelToCustomerDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="400,240,42,45" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="parcelToCustomerDataGrid_MouseDoubleClick">
+        <DataGrid x:Name="parcelToCustomerDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="401,280,42,77" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="parcelToCustomerDataGrid_MouseDoubleClick">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="ToCustomeridColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
                 <DataGridTextColumn x:Name="ToCustomerparcelStateColumn" Width="SizeToHeader" Header="Parcel State" Binding="{Binding ParcelState}"/>
@@ -54,8 +54,6 @@
         <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="207,350,0,0" VerticalAlignment="Top" Click="Button_Click_Close"/>
         <Label  x:Name="parcelsSentLabel" Content="Parcels the customer sent:" HorizontalAlignment="Left" Margin="431,10,0,0" VerticalAlignment="Top" Width="244"/>
         <Label  x:Name="parcelsResivedLabel" Content="Parcels the customer recieved:" HorizontalAlignment="Left" Margin="417,0,0,0" VerticalAlignment="Center" Width="244"/>
-        <Label Content="Parcels the customer sent:" HorizontalAlignment="Left" Margin="431,10,0,0" VerticalAlignment="Top" Width="244"/>
-        <Label Content="Parcels the customer recieved:" HorizontalAlignment="Left" Margin="417,0,0,0" VerticalAlignment="Center" Width="244"/>
         <Button x:Name="newParcel" Content="new parcel" HorizontalAlignment="Left" Margin="23,289,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>

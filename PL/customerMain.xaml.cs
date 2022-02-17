@@ -27,12 +27,39 @@ namespace PL
             ibl = newIbl;
         }
 
-        private void TxtId_TextChanged(object sender, TextChangedEventArgs e)
+
+
+        private void ContinueButtun_Click(object sender, RoutedEventArgs e)
         {
+            bool check=false;
             int id = int.Parse(TxtId.Text);
-            Customer cs = ibl.GetCustomer(id);
-            bool manger = false;
-            new PL.CustomerWindow(ibl, cs, manger).Show();
+            try
+            {
+                Customer cs = ibl.GetCustomer(id);
+            }
+            catch (Exception ex)        //if weve got here he doesnt have an acount
+            {
+                check = true;
+                if (isCustomerCheckBox.IsChecked == true)
+                    MessageBox.Show("One of the inputs are wrong. try again");
+                else
+                {
+                    new PL.CustomerWindow(ibl).Show();
+                    this.Close();
+                }
+            }   
+            if (check == false)
+            {
+                if (isCustomerCheckBox.IsChecked != true)
+                    MessageBox.Show("One of the inputs are wrong. try again");
+                else
+                {
+                    Customer cs = ibl.GetCustomer(id);
+                    new PL.CustomerWindow(ibl, cs, false).Show();
+                    this.Close();
+
+                }
+            }
         }
     }
 }
