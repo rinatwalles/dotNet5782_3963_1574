@@ -121,7 +121,7 @@ namespace BL
         /// </summary>
         /// <param name="id">id of a parcel</param>
         /// <returns></returns>
-        private ParcelStates getParcelState(int id)
+        public ParcelStates getParcelState(int id)
         {
             try
             {
@@ -307,13 +307,18 @@ namespace BL
                 };
                 boParcel.Weight = (WeightCategories)doParcel.Weight;
                 boParcel.Priority = (Priorities)doParcel.Priority;
-                boParcel.ParcelDrones = new DroneInParcel
+                if (doParcel.DroneId==0)
                 {
-                    Id= doParcel.DroneId,
-                    BattaryStatus = ListBLDrones.Find(d => d.Id == doParcel.DroneId).BatteryStatus,
-                    Location = ListBLDrones.Find(d => d.Id == doParcel.DroneId).Location,
-                };
-                    
+                    boParcel.ParcelDrones = new DroneInParcel();
+                }
+                else 
+                    { boParcel.ParcelDrones = new DroneInParcel
+                        {
+                            Id = doParcel.DroneId,
+                            BattaryStatus = ListBLDrones.Find(d => d.Id == doParcel.DroneId).BatteryStatus,
+                            Location = ListBLDrones.Find(d => d.Id == doParcel.DroneId).Location,
+                        };
+                    }
                 boParcel.RequestedTime = doParcel.RequestedTime;
                 boParcel.ScheduledTime = doParcel.ScheduledTime;
                 boParcel.PickedUpTime = doParcel.PickedUpTime;

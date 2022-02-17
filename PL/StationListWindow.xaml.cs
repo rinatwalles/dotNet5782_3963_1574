@@ -26,8 +26,9 @@ namespace PL
         {
             InitializeComponent();
             ibl = newIbl;
-            IEnumerable<StationToList> lst = ibl.GetAllStations();
-            stationToListDataGrid.ItemsSource = lst;
+            //IEnumerable<StationToList> lst = ibl.GetAllStations();
+            //stationToListDataGrid.ItemsSource = lst;
+            stationToListDataGrid.ItemsSource= ibl.GetAllStations();
             stationToListDataGrid.IsReadOnly = true;
         }
 

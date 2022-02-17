@@ -47,10 +47,11 @@ namespace PL
             PLStation = s;
             op = option.Update;
             stationGrid.DataContext = PLStation;
-
-            droneChargingDataGrid.ItemsSource = ibl.GetDroneChargingPerStation(PLStation.Id);
-            //droneChargingDataGrid.IsReadOnly = true;
-
+            DataContext = ibl.GetDroneChargingPerStation(s.Id);
+            droneChargingDataGrid.DataContext =ibl.GetDroneChargingPerStation(s.Id);
+            droneChargingDataGrid.ItemsSource = ibl.GetDroneChargingPerStation(s.Id);
+            droneChargingDataGrid.IsReadOnly = true;
+            
             this.Title = "Station Update";
             OptionButtun.Content = "Update The Station";
 
@@ -72,7 +73,7 @@ namespace PL
 
         private void EnglishLettersValidationTextBox(object sender, TextCompositionEventArgs e)///function that makes the user enters only capital English Letters
         {
-            Regex regex = new Regex("[^A-Z]");
+            Regex regex = new Regex("[^A-Z|^a-z|]");
             e.Handled = regex.IsMatch(e.Text);
         }
 

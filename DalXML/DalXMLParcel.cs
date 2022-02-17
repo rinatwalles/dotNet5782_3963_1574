@@ -7,6 +7,7 @@ using System.Text;
 using System.Threading.Tasks;
 //using static Dal.DataSource;
 using DaLApi;
+using System.Xml.Linq;
 
 namespace Dal
 {
@@ -29,7 +30,13 @@ namespace Dal
         /// <param name="s">new parcel</param>
         public void ParcelAddition(Parcel p)
         {
-            p.Id = Config.ParcelId++;  // חייבים לשנות שיהיה בתוך קובץ XML. יהיו לנו מלא בעיות
+            XElement ConfigData = XElement.Load(ConfigPath);
+            //XElement pId = ConfigData.Element("ParcelId");
+            int id= Convert.ToInt32(ConfigData.Element("ParcelId").Value);
+            p.Id = id; 
+            id++;
+            ConfigData.Element("ParcelId").Value = id.ToString();
+            ConfigData.Save(ConfigPath);
             if (CheckParcel(p.Id))
                 throw new DuplicateIdException(p.Id, "Parcel");
             List<Parcel> listParcels = XMLTools.LoadListFromXMLSerializer<Parcel>(ParcelsPath);

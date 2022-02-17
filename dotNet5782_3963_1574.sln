@@ -34,6 +34,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml", "xml", "{21A3E73D-84A
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "xml files", "xml files", "{FEB3A546-61B1-4A66-B990-80AE70FE0B99}"
 	ProjectSection(SolutionItems) = preProject
+		Config.xml = Config.xml
 		xml\Customers.xml = xml\Customers.xml
 		xml\DroneCharges.xml = xml\DroneCharges.xml
 		xml\Drones.xml = xml\Drones.xml
