@@ -22,11 +22,12 @@ namespace PL
     /// </summary>
     public partial class MainWindow : Window
     {
-        internal readonly BLApi.IBL ibl = BlFactory.GetBl();
+        private BLApi.IBL ibl;
 
-        public MainWindow()
+        public MainWindow(BLApi.IBL newIbl)
         {
             InitializeComponent();
+            ibl = newIbl;
         }
 
         private void DronesWindow_Click(object sender, RoutedEventArgs e)
@@ -49,9 +50,6 @@ namespace PL
             new PL.ParcelToListWindow(ibl).Show();
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            new PL.customerMain(ibl).Show();
-        }
+
     }
 }

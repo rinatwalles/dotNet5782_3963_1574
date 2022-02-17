@@ -21,6 +21,5 @@
                 <ImageBrush ImageSource="/dronetolist.jpg"/>
             </Grid.Background>
         </Grid>
-        <Button Content="Customer" HorizontalAlignment="Left" Margin="0,191,0,0" VerticalAlignment="Top" Click="Button_Click"/>
     </Grid>
 </Window>
