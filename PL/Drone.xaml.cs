@@ -15,6 +15,7 @@ using System.Text.RegularExpressions;
 using BO;
 using BLApi;
 using System.ComponentModel;
+using System.Threading;
 
 namespace PL
 {
@@ -75,18 +76,13 @@ namespace PL
 
             OptionButtun.IsEnabled = false ;
 
-            droneUp = new BackgroundWorker();
-            droneUp.DoWork += DroneUp_DoWork;
-            droneUp.ProgressChanged += DroneUp_ProgressChanged;
-            droneUp.RunWorkerCompleted += DroneUp_RunWorkerCompleted;
-            droneUp.WorkerSupportsCancellation = true;
-            droneUp.WorkerReportsProgress = true;
+            
         }
 
         private void DroneUp_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-//SHOW THE WINDOW UPDATED SOMEHOW
-                }
+            droneup.DataContext = PLdDrone;
+        }
 
         private void DroneUp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
@@ -95,16 +91,47 @@ namespace PL
 
         private void DroneUp_DoWork(object sender, DoWorkEventArgs e)
         {
+            double battery = PLdDrone.BatteryStatus;
             while (droneUp.CancellationPending != true)
             {
-                ibl.autoUpdate(PLdDrone);
-                droneUp.ReportProgress();
+                switch (PLdDrone.DroneStatus)
+                {
+                    case DroneStatuses.Available:
+                        ibl.autoUpdate(PLdDrone);
+                        droneUp.ReportProgress(1);
+
+                        Thread.Sleep(1000);
+                        break;
+                    case DroneStatuses.Delivery:
+                        ibl.autoUpdate(PLdDrone);
+                        droneUp.ReportProgress(1);
+
+                        Thread.Sleep(1000);
+                        break;
+                    case DroneStatuses.Maintenance:
+                        for (int i = 1; i <=5; i++)
+                        {
+                            PLdDrone.BatteryStatus += 10;
+                            droneUp.ReportProgress(i);
+                            Thread.Sleep(1000);
+                        }
+                        break;
+                    default:
+                        break;
+                }
+
             }
         }
 
         public DroneWindow(BLApi.IBL newIbl, Drone d)//update constructor
         {
             InitializeComponent();
+            droneUp = new BackgroundWorker();
+            droneUp.DoWork += DroneUp_DoWork;
+            droneUp.ProgressChanged += DroneUp_ProgressChanged;
+            droneUp.RunWorkerCompleted += DroneUp_RunWorkerCompleted;
+            droneUp.WorkerSupportsCancellation = true;
+            droneUp.WorkerReportsProgress = true;
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
@@ -113,7 +140,8 @@ namespace PL
             ibl = newIbl;
             PLdDrone = d;
             op = option.Update;
-            droneup.DataContext = PLdDrone ;
+            droneup.DataContext=PLdDrone;
+            
 
 
             this.Title = "Drone Update";
@@ -316,13 +344,12 @@ namespace PL
         {
             if (aU == autoUpdate.start)
             {
-                if (droneUp.IsBusy != true)
-                {
+               
                     this.Cursor = Cursors.Wait;
                     droneUp.RunWorkerAsync();
                     autoUp.Content = "Stop Auto Update";
                     aU = autoUpdate.stop;
-                }
+
             }
             else
                 droneUp.CancelAsync();

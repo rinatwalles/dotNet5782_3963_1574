@@ -48,5 +48,10 @@ namespace PL
         {
             new PL.ParcelToListWindow(ibl).Show();
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            new PL.customerMain(ibl).Show();
+        }
     }
 }

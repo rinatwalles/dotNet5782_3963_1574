@@ -30,6 +30,16 @@ namespace PL
             parcelToListDataGrid.ItemsSource = lst;
             parcelToListDataGrid.IsReadOnly = true;
         }
+        public ParcelToListWindow(BLApi.IBL newIbl,int id)
+        {
+            InitializeComponent();
+            ibl = newIbl;
+            IEnumerable<ParcelToList> lst = from pr in ibl.GetAllParcels()
+                                            where pr.Receiver.Id == id || pr.Sender.Id == id
+                                            select pr;
+            parcelToListDataGrid.ItemsSource = lst;
+            parcelToListDataGrid.IsReadOnly = true;
+        }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
