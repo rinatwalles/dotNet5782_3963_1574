@@ -37,9 +37,9 @@ namespace PL
             this.Title = "Customer Addition";
             OptionButtun.Content = "ADD The Customer";
 
-            parcelFromCustomerDataGrid.Visibility = Visibility.Collapsed;
-            parcelToCustomerDataGrid.Visibility = Visibility.Collapsed;
-
+            parcelFromCustomerDataGrid.Visibility= parcelsSentLabel.Visibility = Visibility.Collapsed;
+            parcelToCustomerDataGrid.Visibility = parcelsResivedLabel.Visibility= Visibility.Collapsed;
+            
             OptionButtun.IsEnabled = false;
         }
 

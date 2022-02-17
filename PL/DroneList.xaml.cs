@@ -30,6 +30,7 @@ namespace PL
             droneToListDataGrid.IsReadOnly = true;
             StatusSelector.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightSelector.ItemsSource = Enum.GetValues(typeof(WeightCategories));
+            //LatColunm.Binding.StringFormat = ibl.GetSexagesimalLatitude();
         }
 
         private void StatusSelector_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -65,6 +66,8 @@ namespace PL
             DroneToList d = droneToListDataGrid.SelectedItem as DroneToList;
             Drone dr = ibl.GetDrone(d.Id);
             new PL.DroneWindow(ibl, dr).Show();
+            droneToListDataGrid.ItemsSource = ibl.GetAllDrones();
+            filterListDrones();
         }
 
         private void Button_Click_Close(object sender, RoutedEventArgs e)

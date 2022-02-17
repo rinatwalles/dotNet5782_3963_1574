@@ -173,5 +173,13 @@ namespace Dal
                    where predicate(dr)
                    select dr;
         }
+        //public string ConvertLatitude(double value)
+        //{
+        //    return Sexagesimal.ConvertToSexagesimal(value) + 'E';
+        //}
+        //public string ConvertLongtitude(double value)
+        //{
+        //    return Sexagesimal.ConvertToSexagesimal(value) + 'S';
+        //}
     }
 }

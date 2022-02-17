@@ -35,7 +35,7 @@ namespace PL
 
             this.Title = "Station Addition";
             OptionButtun.Content = "ADD The Station";
-
+            droneChargingDataGrid.Visibility = Visibility.Collapsed;
             OptionButtun.IsEnabled = false;
         }
 
@@ -47,11 +47,13 @@ namespace PL
             PLStation = s;
             op = option.Update;
             stationGrid.DataContext = PLStation;
-            DataContext = ibl.GetDroneChargingPerStation(s.Id);
+         //   DataContext = ibl.GetDroneChargingPerStation(s.Id);
             droneChargingDataGrid.DataContext =ibl.GetDroneChargingPerStation(s.Id);
             droneChargingDataGrid.ItemsSource = ibl.GetDroneChargingPerStation(s.Id);
             droneChargingDataGrid.IsReadOnly = true;
             
+
+
             this.Title = "Station Update";
             OptionButtun.Content = "Update The Station";
 

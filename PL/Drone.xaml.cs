@@ -262,6 +262,7 @@ namespace PL
             {
                 worked = false;
                 MessageBox.Show(ex.Message, "problem", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+                /////
                 this.Close();
             }
 
@@ -278,7 +279,7 @@ namespace PL
             try
             {
                 if (up == update.charge)
-                    ibl.droneToCharge(PLd Drone.Id);
+                    ibl.droneToCharge(PLdDrone.Id);
                 else
                 {
                     string time = Microsoft.VisualBasic.Interaction.InputBox("Insert time (in minutes) of drone charging", "insert", "50");

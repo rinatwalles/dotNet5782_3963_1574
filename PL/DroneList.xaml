@@ -43,8 +43,8 @@
                 <DataGridTextColumn x:Name="modelColumn" Binding="{Binding Model}" Header="Model" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="parcelNumberColumn" Binding="{Binding ParcelNumber}" Header="Parcel Number" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="weightColumn" Binding="{Binding Weight}" Header="Weight" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="LatColunm" Binding="{Binding Location.Latitude}" Header="Latitude" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="LonColunm" Binding="{Binding Location.Longitude}" Header="Longitude" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="LatColunm" Binding="{Binding Location.Latitude  }" Header="Latitude" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="LonColunm" Binding="{Binding Location.Longitude }" Header="Longitude" Width="SizeToHeader"/>
 
             </DataGrid.Columns>
         </DataGrid>

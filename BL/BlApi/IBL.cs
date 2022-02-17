@@ -65,6 +65,8 @@ namespace BLApi
         //IEnumerable<ParcelAtCustomer> GetParcelsToCustomer(int id);
         //IEnumerable<DroneCharging> GetDroneChargingPerStation(int id);
         //IEnumerable<DroneInParcel> GetDroneInParcel(int id);
+        // string GetSexagesimalLatitude(double latitude);
+         //string GetSexagesimalLongtitude(double longtitude);
 
         #endregion
     }

@@ -7,6 +7,13 @@
         mc:Ignorable="d"
         Title="CustomerListWindow" Height="450" Width="900" Activated="Window_Activated"         Background="{StaticResource MyButtonBackground}">
     <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+        </Grid.ColumnDefinitions >
         <DataGrid x:Name="customerToListDataGrid" ItemsSource="{Binding}" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="0,113,0,107" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="customerToListDataGrid_MouseDoubleClick" SelectionChanged="customerToListDataGrid_SelectionChanged">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>

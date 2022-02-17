@@ -24,12 +24,14 @@ namespace DaLApi
             void DroneDelete(Drone d);
             void DroneUpdate(Drone d);
             double[] AskingElectricityUse();
-           // IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate);
-            #endregion
+     //    string ConvertLatitude(double value);
+      //   string ConvertLongtitude(double value);
+        // IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate);
+        #endregion
 
-            #region Customer
-            //CRUD Customer
-            bool CheckCustomer(int id);
+        #region Customer
+        //CRUD Customer
+        bool CheckCustomer(int id);
             void CustomerAddition(Customer c);
             Customer GetCustomer(int id);
             //void CustomerCollecting(int parcelId);

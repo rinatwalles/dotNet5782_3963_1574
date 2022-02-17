@@ -30,10 +30,11 @@
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="longitudeTextBox"  PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
         </Grid>
-        <DataGrid x:Name="droneChargingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="277,284,413,21"  ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
+
+        <DataGrid x:Name="droneChargingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="277,284,413,21" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn x:Name="batteryStatusColumn"   Binding="{Binding DronesCharging.BatteryStatus}" Header="Battery" Width="SizeToHeader"/>
-                <DataGridTextColumn x:Name="idColumn" Binding="{Binding DronesCharging.Id}" Header="Id" Width="SizeToHeader"/>
+                <DataGridTextColumn x:Name="batteryStatusColumn" Width="SizeToHeader" Header="Battery" Binding="{Binding BatteryStatus}"/>
+                <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="599,107,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click"/>

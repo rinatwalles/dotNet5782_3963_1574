@@ -335,7 +335,14 @@ namespace BL
         //{
         //    idal.GetDroneInParcelByPredicate(predicate);
         //}
-
+       //public string GetSexagesimalLatitude(double latitude)
+       // {
+       //     return idal.ConvertLatitude(latitude);
+       // }
+       // public string GetSexagesimalLongtitude(double longtitude)
+       // {
+       //     return idal.ConvertLongtitude(longtitude);
+       // }
     }
 
 }
