@@ -32,7 +32,7 @@ namespace PL
             int id = int.Parse(TxtId.Text);
             Customer cs = ibl.GetCustomer(id);
             bool manger = false;
-            new PL.CustomerWindow(ibl, cs).Show();
+            new PL.CustomerWindow(ibl, cs, manger).Show();
         }
     }
 }

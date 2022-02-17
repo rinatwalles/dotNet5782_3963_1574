@@ -127,13 +127,13 @@ namespace PL
         private void Button_Click_reciever(object sender, RoutedEventArgs e)
         {
             BO.Customer c = ibl.GetCustomer(PlParc.Receiver.Id);
-            new PL.CustomerWindow(ibl, c).Show();
+            new PL.CustomerWindow(ibl, c, true).Show();
         }
 
         private void Button_Click_sender(object sender, RoutedEventArgs e)
         {
             BO.Customer c = ibl.GetCustomer(PlParc.Sender.Id);
-            new PL.CustomerWindow(ibl, c).Show();
+            new PL.CustomerWindow(ibl, c, true).Show();
         }
     }
 }
