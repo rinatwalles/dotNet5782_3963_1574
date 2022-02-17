@@ -8,13 +8,6 @@
     <AvailableChargeSlots>5</AvailableChargeSlots>
   </Station>
   <Station>
-    <Id>1</Id>
-    <Name>YUU</Name>
-    <Longitude>30.8888522675209</Longitude>
-    <Latitude>34.382102389671886</Latitude>
-    <AvailableChargeSlots>0</AvailableChargeSlots>
-  </Station>
-  <Station>
     <Id>4</Id>
     <Name>Jsj</Name>
     <Longitude>33.156235479124</Longitude>
@@ -34,5 +27,12 @@
     <Longitude>31.54957760286032</Longitude>
     <Latitude>34.91855464010432</Latitude>
     <AvailableChargeSlots>-7</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>1</Id>
+    <Name>YUU</Name>
+    <Longitude>30.8888522675209</Longitude>
+    <Latitude>34.382102389671886</Latitude>
+    <AvailableChargeSlots>-1</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>
