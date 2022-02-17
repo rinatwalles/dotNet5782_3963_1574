@@ -25,4 +25,9 @@
     <Model>Xan</Model>
     <Weight>Heavy</Weight>
   </Drone>
+  <Drone>
+    <Id>6</Id>
+    <Model>ASD</Model>
+    <Weight>Medium</Weight>
+  </Drone>
 </ArrayOfDrone>

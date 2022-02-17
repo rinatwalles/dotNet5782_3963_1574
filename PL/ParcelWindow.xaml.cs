@@ -47,6 +47,7 @@ namespace PL
             DeliveredTimeLabel.Visibility = deliveredTimeDatePicker.Visibility = Visibility.Collapsed;
             DroneLabel.Visibility = idDroneTextBox1.Visibility = Visibility.Collapsed;
             idTextBox.IsEnabled = false;
+            senderButton.Visibility = recieverButton.Visibility = droneButton.Visibility = Visibility.Collapsed;
         }
         public ParcelWindow(BLApi.IBL newIbl, Parcel parc)//update constructor
         {
@@ -58,8 +59,8 @@ namespace PL
             op = option.Update;
             parcelup.DataContext = PlParc;
 
-
-
+            if(newIbl.getParcelState(parc.Id)!=ParcelStates.Scheduled && newIbl.getParcelState(parc.Id) != ParcelStates.PickedUp)
+                droneButton.Visibility = Visibility.Collapsed;
 
             this.Title = "Parcel Update";
             OptionButtun.Content = "Update The Parcel";
@@ -149,22 +150,29 @@ namespace PL
                 this.Close();
             }
         }
-        private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        {
-            int id =int.Parse(idDroneTextBox1.Text);
-            BO.Drone d= ibl.GetDrone(id);
-            new PL.DroneWindow(ibl,d);
-        }
 
             private void Button_Click_Close(object sender, RoutedEventArgs e)
             {
                 this.Close();
-            }
-        //}
+            } 
 
-       // private void DroneLabel_MouseDoubleClick(object sender, MouseButtonEventArgs e)
-        //{
+        private void Button_Click_Drone(object sender, RoutedEventArgs e)
+        {
+            //int id = int.Parse(idDroneTextBox1.Text);
+            BO.Drone d = ibl.GetDrone(PlParc.Id);
+            new PL.DroneWindow(ibl, d).Show();
+        }
 
-        //}
+        private void Button_Click_reciever(object sender, RoutedEventArgs e)
+        {
+            BO.Customer c = ibl.GetCustomer(PlParc.Receiver.Id);
+            new PL.CustomerWindow(ibl, c).Show();
+        }
+
+        private void Button_Click_sender(object sender, RoutedEventArgs e)
+        {
+            BO.Customer c = ibl.GetCustomer(PlParc.Sender.Id);
+            new PL.CustomerWindow(ibl, c).Show();
+        }
     }
 }

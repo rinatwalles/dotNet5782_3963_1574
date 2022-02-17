@@ -83,8 +83,11 @@
             </Grid>
 
         </Grid>
-        <Button x:Name="OptionButtun" Content="OButtun" HorizontalAlignment="Left" Margin="600,100,0,0" Grid.RowSpan="2" Grid.Row="6" VerticalAlignment="Top" Click="OptionButtun_Click"/>
-        <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="600,200,0,0" VerticalAlignment="Top" Click="Button_Click_Close" />
+        <Button x:Name="OptionButtun" Content="OButtun" HorizontalAlignment="Left" Margin="600,43,0,0" VerticalAlignment="Top" Click="OptionButtun_Click"/>
+        <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="600,268,0,0" VerticalAlignment="Top" Click="Button_Click_Close" />
+        <Button x:Name="senderButton" Content="sender" HorizontalAlignment="Left" Margin="600,156,0,0" VerticalAlignment="Top" Click="Button_Click_sender"/>
+        <Button x:Name="recieverButton" Content="reciever" HorizontalAlignment="Left" Margin="600,100,0,0" VerticalAlignment="Top" Click="Button_Click_reciever" />
+        <Button x:Name="droneButton" Content="drone" HorizontalAlignment="Left" Margin="600,209,0,0" VerticalAlignment="Top" Click="Button_Click_Drone"/>
 
     </Grid>
 </Window>

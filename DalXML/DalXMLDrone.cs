@@ -3,6 +3,7 @@ using DO;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Xml.Linq;
 
 namespace Dal
 {
@@ -16,6 +17,10 @@ namespace Dal
         private readonly string DronesPath = "Drones.xml";
         private readonly string StationsPath = "Stations.xml";
         private readonly string DroneChargesPath = "DroneCharges.xml";
+        private readonly string ConfigPath = "Config.xml";
+
+        //<ParcelId> 6 </ParcelId>
+
 
         /// <summary>
         /// function that checks if a drone is exists
@@ -147,11 +152,12 @@ namespace Dal
         public double[] AskingElectricityUse()
         {
             double[] arr = new double[5];
-            arr[0] = Config.Availavble;
-            arr[1] = Config.Light;
-            arr[2] = Config.Medium;
-            arr[3] = Config.Heavy;
-            arr[4] = Config.ChargePrecent;
+            XElement ConfigData = XElement.Load(ConfigPath);
+            arr[0] = Convert.ToDouble(ConfigData.Element("ElectricityUse").Element("Availavble").Value);
+            arr[1] = Convert.ToDouble(ConfigData.Element("ElectricityUse").Element("Light").Value); 
+            arr[2] = Convert.ToDouble(ConfigData.Element("ElectricityUse").Element("Medium").Value);
+            arr[3] = Convert.ToDouble(ConfigData.Element("ElectricityUse").Element("Heavy").Value);
+            arr[4] = Convert.ToDouble(ConfigData.Element("ElectricityUse").Element("ChargePrecent").Value);
             return arr;
         }
 

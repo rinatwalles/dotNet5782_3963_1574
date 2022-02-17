@@ -31,10 +31,12 @@ namespace Dal
                                   new XElement("Latitude", c.Latitude));
 
             customersRootElem.Add(personElem);
-
+            
             XMLTools.SaveListToXMLElement(customersRootElem, CustomersPath);
         }
-
+        //int x = 6;
+        //XElement ParcelId = new XElement("ParcelId", x);
+        //customersRootElem.Add(ParcelId);
         public Customer GetCustomer(int id)
         {
             if (!CheckCustomer(id))

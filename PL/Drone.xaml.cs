@@ -135,9 +135,9 @@ namespace PL
             StatusComboBox.ItemsSource = Enum.GetValues(typeof(DroneStatuses));
             WeightComboBox.ItemsSource = Enum.GetValues(typeof(WeightCategories));
             priorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
-           
+            weightComboBox1.ItemsSource=Enum.GetValues(typeof(WeightCategories));
 
-            ibl = newIbl;
+             ibl = newIbl;
             PLdDrone = d;
             op = option.Update;
             droneup.DataContext=PLdDrone;
@@ -201,10 +201,11 @@ namespace PL
             txtParcelID.IsEnabled = false;
             txtBattery.IsEnabled = false;
             WeightComboBox.IsEnabled = false;
+            weightComboBox1.IsEnabled = false;
             StatusComboBox.IsEnabled= false;
             longitudeTextBox.IsEnabled = false;
             latitudeTextBox.IsEnabled = false;
-
+            priorityComboBox.IsEnabled = false;
         }
 
 

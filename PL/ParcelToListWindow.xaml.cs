@@ -69,6 +69,9 @@ namespace PL
 
         }
 
-
+        private void Window_Activated(object sender, EventArgs e)
+        {
+            parcelToListDataGrid.ItemsSource = ibl.GetAllParcels();
+        }
     }
 }
