@@ -28,8 +28,8 @@ namespace PL
 
         private void TxtId_TextChanged(object sender, TextChangedEventArgs e)
         {
-            int id = int.Parse(TxtId.Text);
-            new ParcelToListWindow(ibl, id);
+           // int id = int.Parse(TxtId.Text);
+            new ParcelToListWindow(ibl, 4);
         }
     }
 }

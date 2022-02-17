@@ -278,7 +278,7 @@ namespace PL
             try
             {
                 if (up == update.charge)
-                    ibl.droneToCharge(PLdDrone.Id);
+                    ibl.droneToCharge(PLd Drone.Id);
                 else
                 {
                     string time = Microsoft.VisualBasic.Interaction.InputBox("Insert time (in minutes) of drone charging", "insert", "50");

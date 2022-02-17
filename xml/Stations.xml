@@ -33,6 +33,6 @@
     <Name>YUU</Name>
     <Longitude>30.8888522675209</Longitude>
     <Latitude>34.382102389671886</Latitude>
-    <AvailableChargeSlots>-1</AvailableChargeSlots>
+    <AvailableChargeSlots>-4</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>
