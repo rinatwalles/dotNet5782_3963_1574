@@ -44,7 +44,7 @@ namespace PL
         {
             CustomerToList c = customerToListDataGrid.SelectedItem as CustomerToList;
             Customer cs = ibl.GetCustomer(c.Id);
-            new PL.CustomerWindow(ibl, cs).Show();
+            new PL.CustomerWindow(ibl, cs,true).Show();
         }
 
         private void Window_Activated(object sender, EventArgs e)

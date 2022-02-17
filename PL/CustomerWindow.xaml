@@ -54,6 +54,7 @@
         <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="207,350,0,0" VerticalAlignment="Top" Click="Button_Click_Close"/>
         <Label Content="Parcels the customer sent:" HorizontalAlignment="Left" Margin="431,10,0,0" VerticalAlignment="Top" Width="244"/>
         <Label Content="Parcels the customer recieved:" HorizontalAlignment="Left" Margin="417,0,0,0" VerticalAlignment="Center" Width="244"/>
+        <Button x:Name="newParcel" Content="new parcel" HorizontalAlignment="Left" Margin="23,289,0,0" VerticalAlignment="Top" Click="Button_Click"/>
 
     </Grid>
 </Window>

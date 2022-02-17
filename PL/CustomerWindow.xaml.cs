@@ -43,7 +43,7 @@ namespace PL
             OptionButtun.IsEnabled = false;
         }
 
-        public CustomerWindow(BLApi.IBL newIbl, Customer c)//update constructor
+        public CustomerWindow(BLApi.IBL newIbl, Customer c,bool manager)//update constructor
         {
             InitializeComponent();
 
@@ -65,6 +65,10 @@ namespace PL
             longitudeTextBox.IsEnabled = false;
             latitudeTextBox.IsEnabled = false;
             phoneTextBox.IsEnabled = false;
+            if(manager)
+            {
+                newParcel.Visibility = Visibility.Collapsed;
+            }
 
         }
         private bool buttunEnabled()
@@ -171,6 +175,11 @@ namespace PL
             ParcelAtCustomer p = parcelToCustomerDataGrid.SelectedItem as ParcelAtCustomer;
             Parcel pc = ibl.GetParcel(p.Id);
             new PL.ParcelWindow(ibl, pc).Show();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

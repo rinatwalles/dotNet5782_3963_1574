@@ -91,21 +91,24 @@ namespace PL
 
         private void DroneUp_DoWork(object sender, DoWorkEventArgs e)
         {
-            double battery = PLdDrone.BatteryStatus;
             while (droneUp.CancellationPending != true)
             {
-                switch (PLdDrone.DroneStatus)
+                double battery = PLdDrone.BatteryStatus;
+                ibl.autoUpdate(PLdDrone.Id);
+                Drone newDrone = ibl.GetDrone(PLdDrone.Id);
+                switch (newDrone.DroneStatus)
                 {
                     case DroneStatuses.Available:
-                        ibl.autoUpdate(PLdDrone);
                         droneUp.ReportProgress(1);
 
                         Thread.Sleep(1000);
                         break;
                     case DroneStatuses.Delivery:
-                        ibl.autoUpdate(PLdDrone);
-                        droneUp.ReportProgress(1);
-
+                        while(PLdDrone.BatteryStatus>newDrone.BatteryStatus)
+                        {
+                            PLdDrone.BatteryStatus -= 7;
+                            droneUp.ReportProgress(1);
+                        }
                         Thread.Sleep(1000);
                         break;
                     case DroneStatuses.Maintenance:
@@ -119,7 +122,7 @@ namespace PL
                     default:
                         break;
                 }
-
+                PLdDrone = ibl.GetDrone(PLdDrone.Id);
             }
         }
 

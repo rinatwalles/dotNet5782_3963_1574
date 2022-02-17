@@ -5,9 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="customerMain" Height="450" Width="800"  Background="{StaticResource MyButtonBackground}">
+        Title="customerMain" Height="298" Width="297"  Background="{StaticResource MyButtonBackground}">
     <Grid>
-        <TextBox x:Name="TxtId" HorizontalAlignment="Center" Margin="0,199,0,0" Text="TextBox" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtId_TextChanged"/>
+        <TextBox x:Name="TxtId" HorizontalAlignment="Center" Margin="0,199,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="120" TextChanged="TxtId_TextChanged"/>
+        <Label Content="Enter Customer Id" HorizontalAlignment="Center" Margin="0,115,0,0" VerticalAlignment="Top"/>
 
     </Grid>
 </Window>
