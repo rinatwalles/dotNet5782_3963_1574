@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="DroneList" Height="450" Width="800" Activated="Window_Activated"         Background="{StaticResource MyButtonBackground}">
+        Title="DroneList" Height="550" Width="900" Activated="Window_Activated"         Background="{StaticResource MyButtonBackground}">
     <Grid Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="9*"/>
@@ -29,10 +29,10 @@
                 <ColumnDefinition Width="100*"/>
                 <ColumnDefinition Width="100*"/>
             </Grid.ColumnDefinitions >
-            <ComboBox x:Name="StatusSelector" Grid.Column="1" Width="120" SelectionChanged="StatusSelector_SelectionChanged" Margin="40,0,40,0" Grid.ColumnSpan="2"/>
-            <ComboBox x:Name="WeightSelector" Grid.Column="4" Margin="40,0,40,0" Width="120" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="WeightSelector_SelectionChanged"/>
-            <Label Content="Drone Status" HorizontalAlignment="Center" Margin="0,10,0,0" VerticalAlignment="Top" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Label Content="Drone Weight" Grid.Column="3" HorizontalAlignment="Center" Margin="0,6,0,0" VerticalAlignment="Top" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <ComboBox x:Name="StatusSelector" Grid.Column="1" Width="120" SelectionChanged="StatusSelector_SelectionChanged" Margin="52,25,53,-25" Grid.ColumnSpan="2"/>
+            <ComboBox x:Name="WeightSelector" Grid.Column="4" Margin="53,22,52,-22" Width="120" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="WeightSelector_SelectionChanged"/>
+            <Label Content="Drone Status" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Label Content="Drone Weight" Grid.Column="3" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
         </Grid>
         <DataGrid x:Name="droneToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="61,45,147,45" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" MouseDoubleClick="droneToListDataGrid_MouseDoubleClick" Background="#FFFAFAFA" OpacityMask="Black" Grid.Column="1">
             <DataGrid.Columns>
@@ -48,12 +48,12 @@
 
             </DataGrid.Columns>
         </DataGrid>
-        <Button Content="Add New Drone" HorizontalAlignment="Left" Margin="598,221,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"  Grid.ColumnSpan="3" Grid.Column="1" Width="169"/>
-        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="598,300,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Grid.ColumnSpan="3" Grid.Column="1" Width="169">
+        <Button Content="Add New Drone" HorizontalAlignment="Left" Margin="683,208,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click"  Grid.ColumnSpan="3" Grid.Column="1" Width="169"/>
+        <Button x:Name="closeButton" Content="Close" HorizontalAlignment="Left" Margin="683,288,0,0" Grid.Row="1" VerticalAlignment="Top" Click="Button_Click_Close" Grid.ColumnSpan="3" Grid.Column="1" Width="169">
 
         </Button>
-        <Button Content="Group List" HorizontalAlignment="Left" Margin="598,130,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="3" Click="Button_Click_1" Grid.Column="1" Width="169"/>
-        <Button x:Name="clearButtun" Content="clear" HorizontalAlignment="Left" Margin="598,72,0,0" VerticalAlignment="Top" Click="clearButtun_Click" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1" Width="169"/>
+        <Button Content="Group List" HorizontalAlignment="Left" Margin="683,136,0,0" Grid.Row="1" VerticalAlignment="Top" Grid.ColumnSpan="3" Click="Button_Click_1" Grid.Column="1" Width="169"/>
+        <Button x:Name="clearButtun" Content="clear" HorizontalAlignment="Left" Margin="680,70,0,0" VerticalAlignment="Top" Click="clearButtun_Click" Grid.ColumnSpan="3" Grid.Column="1" Grid.Row="1" Width="169"/>
 
     </Grid>
 </Window>

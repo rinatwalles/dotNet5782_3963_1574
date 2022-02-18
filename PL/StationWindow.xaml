@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="StationWindow" Height="450" Width="800"  Background="{StaticResource MyButtonBackground}">
+        Title="StationWindow" Height="550" Width="900"  Background="{StaticResource MyButtonBackground}">
     <Grid>
         <Grid x:Name="stationGrid"  HorizontalAlignment="Left" Margin="208,90,0,0" VerticalAlignment="Top" Height="167">
             <Grid.ColumnDefinitions>
@@ -30,13 +30,18 @@
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
             <TextBox x:Name="longitudeTextBox"  PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
         </Grid>
-
-        <DataGrid x:Name="droneChargingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="277,284,413,21" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
-            <DataGrid.Columns>
-                <DataGridTextColumn x:Name="batteryStatusColumn" Width="SizeToHeader" Header="Battery" Binding="{Binding BatteryStatus}"/>
-                <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
-            </DataGrid.Columns>
-        </DataGrid>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+            <DataGrid x:Name="droneChargingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="280,284,360,87" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
+                <DataGrid.Columns>
+                    <DataGridTextColumn x:Name="batteryStatusColumn" Width="SizeToHeader" Header="Battery" Binding="{Binding BatteryStatus, StringFormat={}{0:0.00}%}" />
+                    <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </Grid>
         <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="599,107,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click"/>
         <Button x:Name="CloseButtun" Content="Close" HorizontalAlignment="Left" Margin="599,174,0,0" VerticalAlignment="Top"  Click="CloseButtun_Click"/>
     </Grid>

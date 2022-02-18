@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
-        Title="ParcelWindow" Height="450" Width="800"  Background="{StaticResource MyButtonBackground}">
+        Title="ParcelWindow" Height="550" Width="900"  Background="{StaticResource MyButtonBackground}">
     <Grid x:Name="parcelup">
-        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="53,-6,0,0" VerticalAlignment="Top" Height="430" Width="440">
+        <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="52,25,0,0" VerticalAlignment="Top" Height="430" Width="440">
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
