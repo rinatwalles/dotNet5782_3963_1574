@@ -109,6 +109,7 @@ namespace PL
                         case DroneStatuses.Available:
                             if (drone.BatteryStatus < 40)
                             {
+                                PLdDrone.DroneStatus = DroneStatuses.Maintenance;
                                 while (PLdDrone.BatteryStatus + 5 < 100)
                                 {
                                     PLdDrone.BatteryStatus += 5;
@@ -117,14 +118,17 @@ namespace PL
                                 }
                                 PLdDrone.BatteryStatus = 100;
                                 droneUp.ReportProgress(0);
+                                Thread.Sleep(500);
                                 ibl.droneToCharge(drone.Id);
+                                PLdDrone = ibl.GetDrone(PLdDrone.Id);
                             }
                             else
                             {
-                                PLdDrone.DroneStatus = DroneStatuses.Delivery;
+                                
+                                ibl.joinParcelToDrone(drone.Id);
+                                PLdDrone = ibl.GetDrone(PLdDrone.Id);
                                 droneUp.ReportProgress(0);
                                 Thread.Sleep(500);
-                                ibl.joinParcelToDrone(drone.Id);
                             }
                             break;
                         case DroneStatuses.Delivery:
@@ -133,22 +137,57 @@ namespace PL
                             {
                                 case ParcelStates.Scheduled:
                                     ibl.PickedUpParcelByDrone(drone.Id);
+                                    drone = ibl.GetDrone(PLdDrone.Id);
                                     PLdDrone.DroneStatus = DroneStatuses.Delivery;
-                                    while (PLdDrone.BatteryStatus > drone.BatteryStatus)
+                                    double distanceLong = (drone.Location.Longitude - PLdDrone.Location.Longitude) / 15;
+                                    double distanceLant = (drone.Location.Latitude - PLdDrone.Location.Latitude) / 15;
+                                    double battery = (PLdDrone.BatteryStatus - drone.BatteryStatus) / 15;
+                                    Location locat = new Location();
+                                    locat.Latitude = PLdDrone.Location.Latitude;
+                                    locat.Longitude = PLdDrone.Location.Longitude;
+                                    for (int i = 1; i <= 15; i++)
                                     {
-                                        PLdDrone.BatteryStatus -= 7;
+                                        PLdDrone.BatteryStatus -= battery;
+                                        locat.Latitude += distanceLant;
+                                        locat.Longitude += distanceLong;
+                                        PLdDrone.Location = locat;
                                         droneUp.ReportProgress(0);
-                                        Thread.Sleep(50);
+                                        Thread.Sleep(500);
                                     }
+                                    //while (PLdDrone.BatteryStatus > drone.BatteryStatus)
+                                    //{
+                                    //    PLdDrone.BatteryStatus -= 7;
+                                    //    droneUp.ReportProgress(0);
+                                    //    Thread.Sleep(500);
+                                    //}
+                                    PLdDrone = ibl.GetDrone(PLdDrone.Id);
+
                                     break;
                                 case ParcelStates.PickedUp:
                                     ibl.supplyParceByDrone(drone.Id);
-                                    while (PLdDrone.BatteryStatus > drone.BatteryStatus)
+                                    drone = ibl.GetDrone(PLdDrone.Id);
+                                    double distanceLong1 = (drone.Location.Longitude - PLdDrone.Location.Longitude) / 15;
+                                    double distanceLant1 = (drone.Location.Latitude - PLdDrone.Location.Latitude) / 15;
+                                    double battery1 = (PLdDrone.BatteryStatus - drone.BatteryStatus) / 15;
+                                    Location locat1 = new Location();
+                                    locat1.Latitude = PLdDrone.Location.Latitude;
+                                    locat1.Longitude = PLdDrone.Location.Longitude;
+                                    for (int i = 1; i <= 15; i++)
                                     {
-                                        PLdDrone.BatteryStatus -= 7;
+                                        PLdDrone.BatteryStatus -= battery1;
+                                        locat1.Latitude += distanceLant1;
+                                        locat1.Longitude += distanceLong1;
+                                        PLdDrone.Location=locat1;
                                         droneUp.ReportProgress(0);
-                                        Thread.Sleep(50);
+                                        Thread.Sleep(500);
                                     }
+                                    //while (PLdDrone.BatteryStatus > drone.BatteryStatus)
+                                    //{
+                                    //    PLdDrone.BatteryStatus -= 7;
+                                    //    droneUp.ReportProgress(0);
+                                    //    Thread.Sleep(500);
+                                    //}
+                                    PLdDrone = ibl.GetDrone(PLdDrone.Id);
                                     break;
                                 default:
                                     break;
@@ -158,7 +197,7 @@ namespace PL
                             ibl.ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("1000"));
                             PLdDrone = ibl.GetDrone(PLdDrone.Id);
                             droneUp.ReportProgress(0);
-                            Thread.Sleep(50);
+                            Thread.Sleep(500);
                     break;
                         default:
                             break;
@@ -169,7 +208,6 @@ namespace PL
                 {
                     ibl.droneToCharge(drone.Id);
                 }
-                PLdDrone = ibl.GetDrone(PLdDrone.Id);
             }
         }
 
