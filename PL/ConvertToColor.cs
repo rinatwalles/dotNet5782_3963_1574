@@ -5,7 +5,11 @@ using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
+using BlApi;
+using BO;
 
 namespace PL
 {
@@ -13,16 +17,23 @@ namespace PL
     {
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-
-            double battery = (double)value;
-            if (battery < 20)
-                return Backround.Red;
-            else if (battery < 40)
-                return Background.Red;
-            else if (battery < 60)
-                return Visibility.Visible;
+            Drone d = new Drone();
+            double battery;
+            if (value.GetType() == d.GetType())
+            {
+                d = (Drone)value;
+               battery = (double)d.BatteryStatus;
+            }
             else
-                return Visibility.Visible;
+                battery= (double)value;
+            if (battery < 20)
+                return Brushes.Red;
+            else if (battery < 40)
+                return Brushes.Orange;
+            else if (battery < 60)
+                return Brushes.Yellow;
+            else
+                return Brushes.Green;
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
