@@ -183,7 +183,7 @@ namespace BL
                 foreach (DO.Parcel item in idal.GetParcelByPredicate(par => (int)par.Weight <= (int)boDrone.Weight))
                 {
                     droneToSender = getDistance(GetCustomer(item.SenderId).Location, boDrone.Location);
-                    senderToTarget = getDistance(GetCustomer(item.SenderId).Location, GetCustomer(item.TargetId).Location);
+                    senderToTarget = getDistance(GetCustomer(item.TargetId).Location, GetCustomer(item.SenderId).Location);
                     targetToStation = getDistance(minStationDistance(GetCustomer(item.TargetId).Location), GetCustomer(item.TargetId).Location);
                     if(item.ScheduledTime== DateTime.MinValue)
                         if (maxPriority <= (Priorities)item.Priority)
@@ -200,6 +200,7 @@ namespace BL
                 {
                     DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
                     dtl.DroneStatus = DroneStatuses.Delivery;
+                    dtl.ParcelNumber = chosenOne.Id;
                     //updating the BL list
                     ListBLDrones.RemoveAll(d => d.Id == id);
                     ListBLDrones.Add(dtl);
@@ -253,7 +254,7 @@ namespace BL
                 dron = ListBLDrones.Find(d => d.Id == droneId);
                 if (dron.DroneStatus != BO.DroneStatuses.Maintenance)   //cant be released
                     throw new DeliveryProblems(droneId, "Drone not in maintance status");
-                dron.BatteryStatus += array[1 + (int)dron.Weight] * (t.TotalMinutes / 60);  //time of charging
+                dron.BatteryStatus += array[4] * (t.TotalMinutes / 60);  //time of charging
                 if (dron.BatteryStatus > 100)
                     dron.BatteryStatus = 100;
                 dron.DroneStatus = BO.DroneStatuses.Available;
@@ -294,6 +295,7 @@ namespace BL
                 locat = dron.Location;              //current location of drone
 
                 DO.Customer sender = idal.GetCustomer(parc.SenderId);    //the location of the sender
+
                 dron.BatteryStatus = idal.DistanceCalculate(sender.Longitude, sender.Latitude, locat.Longitude, locat.Latitude) * array[1 + (int)dron.Weight]; //distance between the sender and the current location
                 locat.Latitude = sender.Latitude;
                 locat.Longitude = sender.Longitude;
@@ -330,7 +332,7 @@ namespace BL
                 //IBL.BO.Parcel boParcel = getParcel(doParcel.Id);
                 if (getParcelState(doParcel.Id) == ParcelStates.Delivered)
                     throw new DeliveryProblems(id, "The drone didn't picked up the parcel or alredy delivered it");
-                double senderToTarget = getDistance(GetCustomer(doParcel.SenderId).Location, GetCustomer(doParcel.TargetId).Location);
+                double senderToTarget = getDistance(GetCustomer(doParcel.TargetId).Location, GetCustomer(doParcel.SenderId).Location);
                 DroneToList dtl = ListBLDrones.Find(d => d.Id == id);
                 ListBLDrones.RemoveAll(d => d.Id == id);
                 dtl.BatteryStatus -= array[1 + (int)boDrone.Weight] * senderToTarget;
@@ -354,45 +356,45 @@ namespace BL
                 idal.ParcelDelete(id);
             throw new DeliveryProblems(id, "The parcel id delivered");
         }
-        public void autoUpdate (int drId)//לשנות שיקבל id?
-        {
-            Drone drone = GetDrone(drId);
-            try
-            {
-                switch (drone.DroneStatus)
-                {
-                    case DroneStatuses.Available:
-                        if (drone.BatteryStatus < 40)
-                            droneToCharge(drone.Id);
-                        else
-                            joinParcelToDrone(drone.Id);
-                        break;
-                    case DroneStatuses.Delivery:
-                        ParcelStates ps = getParcelState(drone.ParcelInDelivery.Id);
-                        switch (ps)
-                        {
-                            case ParcelStates.Scheduled:
-                                PickedUpParcelByDrone(drone.Id);
-                                break;
-                            case ParcelStates.PickedUp:
-                                supplyParceByDrone(drone.Id);
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case DroneStatuses.Maintenance:
-                        ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("1000"));
-                        break;
-                    default:
-                        break;
+        //public void autoUpdate (int drId)//לשנות שיקבל id?
+        //{
+        //    Drone drone = GetDrone(drId);
+        //    try
+        //    {
+        //        switch (drone.DroneStatus)
+        //        {
+        //            case DroneStatuses.Available:
+        //                if (drone.BatteryStatus < 40)
+        //                    droneToCharge(drone.Id);
+        //                else
+        //                    joinParcelToDrone(drone.Id);
+        //                break;
+        //            case DroneStatuses.Delivery:
+        //                ParcelStates ps = getParcelState(drone.ParcelInDelivery.Id);
+        //                switch (ps)
+        //                {
+        //                    case ParcelStates.Scheduled:
+        //                        PickedUpParcelByDrone(drone.Id);
+        //                        break;
+        //                    case ParcelStates.PickedUp:
+        //                        supplyParceByDrone(drone.Id);
+        //                        break;
+        //                    default:
+        //                        break;
+        //                }
+        //                break;
+        //            case DroneStatuses.Maintenance:
+        //                ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("1000"));
+        //                break;
+        //            default:
+        //                break;
 
-                }
-            }
-            catch (DeliveryProblems ex)
-            {
-                droneToCharge(drone.Id);
-            }
-        }
+        //        }
+        //    }
+        //    catch (DeliveryProblems ex)
+        //    {
+        //        droneToCharge(drone.Id);
+        //    }
+        //}
     }
 }
