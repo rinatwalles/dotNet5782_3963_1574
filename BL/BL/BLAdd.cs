@@ -191,7 +191,7 @@ namespace BL
                         double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
                         Location closeStation = MinDistanceOfSation(locat);
 
-                        calculate += idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+                        calculate += idal.DistanceCalculate( closeStation.Longitude, closeStation.Latitude, cust.Longitude, cust.Latitude) * array[1 + (int)item.Weight];
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
 
                     }
@@ -221,7 +221,7 @@ namespace BL
                         locat.Longitude = cust.Longitude;
                         Location closeStation = MinDistanceOfSation(locat);
                         item.Location = closeStation;
-                        double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
+                        double calculate = idal.DistanceCalculate(closeStation.Longitude, closeStation.Latitude,cust.Longitude, cust.Latitude ) * array[1 + (int)item.Weight];
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
                         countParc++;
                     }

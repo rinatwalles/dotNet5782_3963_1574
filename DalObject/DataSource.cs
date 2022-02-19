@@ -16,10 +16,10 @@ namespace Dal
         internal class Config
         {
             static public int ParcelId = 1;
-            static public double Availavble = 0.001;
-            static public double Light = 0.003;
-            static public double Medium = 0.004;
-            static public double Heavy = 0.005;
+            static public double Availavble = 0.01;
+            static public double Light = 0.03;
+            static public double Medium = 0.04;
+            static public double Heavy = 0.05;
             static public double ChargePrecent = 0.35;  //קצב טעינת רחפן
         }
 
