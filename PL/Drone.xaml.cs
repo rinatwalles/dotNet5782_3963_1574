@@ -81,12 +81,12 @@ namespace PL
 
         private void DroneUp_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
+            
             droneup.DataContext = PLdDrone;
         }
 
         private void DroneUp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
         {
-            throw new NotImplementedException();
         }
 
         private void DroneUp_DoWork(object sender, DoWorkEventArgs e)
@@ -99,24 +99,30 @@ namespace PL
                 switch (newDrone.DroneStatus)
                 {
                     case DroneStatuses.Available:
-                        droneUp.ReportProgress(1);
+                        PLdDrone = ibl.GetDrone(PLdDrone.Id);
+                        Thread.Sleep(50);
 
-                        Thread.Sleep(1000);
+                        droneUp.ReportProgress(0);
+
                         break;
                     case DroneStatuses.Delivery:
-                        while(PLdDrone.BatteryStatus>newDrone.BatteryStatus)
+                        PLdDrone.DroneStatus = DroneStatuses.Delivery;
+                        droneUp.ReportProgress(0);
+                        while (PLdDrone.BatteryStatus>newDrone.BatteryStatus)
                         {
                             PLdDrone.BatteryStatus -= 7;
-                            droneUp.ReportProgress(1);
+                            Thread.Sleep(50);
+                            droneUp.ReportProgress(0);
                         }
-                        Thread.Sleep(1000);
+                        Thread.Sleep(50);
                         break;
                     case DroneStatuses.Maintenance:
-                        for (int i = 1; i <=5; i++)
+                        PLdDrone.DroneStatus = DroneStatuses.Maintenance;
+                        while (PLdDrone.BatteryStatus < 100)
                         {
-                            PLdDrone.BatteryStatus += 10;
-                            droneUp.ReportProgress(i);
-                            Thread.Sleep(1000);
+                            PLdDrone.BatteryStatus += 5;
+                            Thread.Sleep(50);
+                            droneUp.ReportProgress(0);
                         }
                         break;
                     default:
@@ -349,15 +355,20 @@ namespace PL
         {
             if (aU == autoUpdate.start)
             {
-               
-                    this.Cursor = Cursors.Wait;
-                    droneUp.RunWorkerAsync();
-                    autoUp.Content = "Stop Auto Update";
-                    aU = autoUpdate.stop;
+
+                this.Cursor = Cursors.Wait;
+                droneUp.RunWorkerAsync();
+                autoUp.Content = "Stop Auto Update";
+                aU = autoUpdate.stop;
 
             }
             else
+            {
+                this.Cursor = Cursors.Arrow;
+                autoUp.Content = "Auto Update";
+                aU = autoUpdate.start;
                 droneUp.CancelAsync();
+            }
         }
     }
 }

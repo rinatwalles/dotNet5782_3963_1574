@@ -185,7 +185,7 @@ namespace BL
                     droneToSender = getDistance(GetCustomer(item.SenderId).Location, boDrone.Location);
                     senderToTarget = getDistance(GetCustomer(item.SenderId).Location, GetCustomer(item.TargetId).Location);
                     targetToStation = getDistance(minStationDistance(GetCustomer(item.TargetId).Location), GetCustomer(item.TargetId).Location);
-                    if(item.DeliveredTime== DateTime.MinValue)
+                    if(item.ScheduledTime== DateTime.MinValue)
                         if (maxPriority <= (Priorities)item.Priority)
                             if (droneToSender < minDistance)
                                 if (array[1 + (int)boDrone.Weight] * (droneToSender + targetToStation + senderToTarget) <= boDrone.BatteryStatus)
@@ -254,6 +254,8 @@ namespace BL
                 if (dron.DroneStatus != BO.DroneStatuses.Maintenance)   //cant be released
                     throw new DeliveryProblems(droneId, "Drone not in maintance status");
                 dron.BatteryStatus += array[1 + (int)dron.Weight] * (t.TotalMinutes / 60);  //time of charging
+                if (dron.BatteryStatus > 100)
+                    dron.BatteryStatus = 100;
                 dron.DroneStatus = BO.DroneStatuses.Available;
                 //updating the BL list
                 ListBLDrones.RemoveAll(d => d.Id == droneId);
@@ -309,6 +311,10 @@ namespace BL
             {
                 throw new MissingIdException(ex.ID, ex.EntityName);
             }
+            catch(DeliveryProblems ex)
+            {
+                throw new DeliveryProblems(droneId, "Drone already picked up");
+            }
         }
 
         /// <summary>
@@ -331,6 +337,7 @@ namespace BL
                 dtl.Location = GetCustomer(doParcel.TargetId).Location;
                 dtl.DroneStatus = DroneStatuses.Available;
                 doParcel.DeliveredTime = DateTime.Now;
+                doParcel.DroneId = 0;
                 idal.ParcelUpdate(doParcel);
                 //updating the BL list
                 ListBLDrones.Add(dtl);
@@ -375,14 +382,14 @@ namespace BL
                         }
                         break;
                     case DroneStatuses.Maintenance:
-                        ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("100"));
+                        ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("1000"));
                         break;
                     default:
                         break;
 
                 }
             }
-            catch (Exception ex)
+            catch (DeliveryProblems ex)
             {
                 droneToCharge(drone.Id);
             }

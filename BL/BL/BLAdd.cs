@@ -205,7 +205,6 @@ namespace BL
                         locat.Longitude = stat.Longitude;
                         locat.Latitude = stat.Latitude;
                         item.Location = locat;
-                        stat.AvailableChargeSlots--;
                         idal.StationUpdate(stat);
                     }
 

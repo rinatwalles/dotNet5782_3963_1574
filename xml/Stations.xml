@@ -15,13 +15,6 @@
     <AvailableChargeSlots>-37</AvailableChargeSlots>
   </Station>
   <Station>
-    <Id>3</Id>
-    <Name>Ihv</Name>
-    <Longitude>30.04161251231172</Longitude>
-    <Latitude>35.48804430635089</Latitude>
-    <AvailableChargeSlots>1</AvailableChargeSlots>
-  </Station>
-  <Station>
     <Id>5</Id>
     <Name>Ktq</Name>
     <Longitude>31.54957760286032</Longitude>
@@ -34,5 +27,12 @@
     <Longitude>30.8888522675209</Longitude>
     <Latitude>34.382102389671886</Latitude>
     <AvailableChargeSlots>-15</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>3</Id>
+    <Name>Ihv</Name>
+    <Longitude>30.04161251231172</Longitude>
+    <Latitude>35.48804430635089</Latitude>
+    <AvailableChargeSlots>1</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>

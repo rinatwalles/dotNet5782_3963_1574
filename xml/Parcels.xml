@@ -1,18 +1,6 @@
 <?xml version="1.0"?>
 <ArrayOfParcel xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Parcel>
-    <Id>8</Id>
-    <SenderId>5</SenderId>
-    <TargetId>2</TargetId>
-    <Weight>Light</Weight>
-    <Priority>Regular</Priority>
-    <DroneId>0</DroneId>
-    <RequestedTime>2022-02-15T18:35:38.9035681+02:00</RequestedTime>
-    <ScheduledTime>0001-01-01T00:00:00</ScheduledTime>
-    <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
-    <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
-  </Parcel>
-  <Parcel>
     <Id>9</Id>
     <SenderId>3</SenderId>
     <TargetId>2</TargetId>
