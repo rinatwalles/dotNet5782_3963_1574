@@ -354,45 +354,45 @@ namespace BL
                 idal.ParcelDelete(id);
             throw new DeliveryProblems(id, "The parcel id delivered");
         }
-        public void autoUpdate (int drId)//לשנות שיקבל id?
-        {
-            Drone drone = GetDrone(drId);
-            try
-            {
-                switch (drone.DroneStatus)
-                {
-                    case DroneStatuses.Available:
-                        if (drone.BatteryStatus < 40)
-                            droneToCharge(drone.Id);
-                        else
-                            joinParcelToDrone(drone.Id);
-                        break;
-                    case DroneStatuses.Delivery:
-                        ParcelStates ps = getParcelState(drone.ParcelInDelivery.Id);
-                        switch (ps)
-                        {
-                            case ParcelStates.Scheduled:
-                                PickedUpParcelByDrone(drone.Id);
-                                break;
-                            case ParcelStates.PickedUp:
-                                supplyParceByDrone(drone.Id);
-                                break;
-                            default:
-                                break;
-                        }
-                        break;
-                    case DroneStatuses.Maintenance:
-                        ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("1000"));
-                        break;
-                    default:
-                        break;
+        //public void autoUpdate (int drId)//לשנות שיקבל id?
+        //{
+        //    Drone drone = GetDrone(drId);
+        //    try
+        //    {
+        //        switch (drone.DroneStatus)
+        //        {
+        //            case DroneStatuses.Available:
+        //                if (drone.BatteryStatus < 40)
+        //                    droneToCharge(drone.Id);
+        //                else
+        //                    joinParcelToDrone(drone.Id);
+        //                break;
+        //            case DroneStatuses.Delivery:
+        //                ParcelStates ps = getParcelState(drone.ParcelInDelivery.Id);
+        //                switch (ps)
+        //                {
+        //                    case ParcelStates.Scheduled:
+        //                        PickedUpParcelByDrone(drone.Id);
+        //                        break;
+        //                    case ParcelStates.PickedUp:
+        //                        supplyParceByDrone(drone.Id);
+        //                        break;
+        //                    default:
+        //                        break;
+        //                }
+        //                break;
+        //            case DroneStatuses.Maintenance:
+        //                ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("1000"));
+        //                break;
+        //            default:
+        //                break;
 
-                }
-            }
-            catch (DeliveryProblems ex)
-            {
-                droneToCharge(drone.Id);
-            }
-        }
+        //        }
+        //    }
+        //    catch (DeliveryProblems ex)
+        //    {
+        //        droneToCharge(drone.Id);
+        //    }
+        //}
     }
 }

@@ -82,7 +82,11 @@ namespace PL
         private void DroneUp_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
             
-            droneup.DataContext = PLdDrone;
+            //droneup.DataContext = PLdDrone;
+            txtBattery.Text = string.Format("{0:P}",PLdDrone.BatteryStatus/100);
+            StatusComboBox.SelectedItem = PLdDrone.DroneStatus;
+            latitudeTextBox.Text = Convert.ToString(PLdDrone.Location.Latitude);
+            longitudeTextBox.Text = Convert.ToString(PLdDrone.Location.Longitude);
         }
 
         private void DroneUp_RunWorkerCompleted(object sender, RunWorkerCompletedEventArgs e)
@@ -91,42 +95,79 @@ namespace PL
 
         private void DroneUp_DoWork(object sender, DoWorkEventArgs e)
         {
+            Simolation();
+        }
+        public void Simolation()//לשנות שיקבל id?
+        {
             while (droneUp.CancellationPending != true)
             {
-                double battery = PLdDrone.BatteryStatus;
-                ibl.autoUpdate(PLdDrone.Id);
-                Drone newDrone = ibl.GetDrone(PLdDrone.Id);
-                switch (newDrone.DroneStatus)
+                Drone drone = ibl.GetDrone(PLdDrone.Id);
+                try
                 {
-                    case DroneStatuses.Available:
-                        PLdDrone = ibl.GetDrone(PLdDrone.Id);
-                        Thread.Sleep(50);
-
-                        droneUp.ReportProgress(0);
-
-                        break;
-                    case DroneStatuses.Delivery:
-                        PLdDrone.DroneStatus = DroneStatuses.Delivery;
-                        droneUp.ReportProgress(0);
-                        while (PLdDrone.BatteryStatus>newDrone.BatteryStatus)
-                        {
-                            PLdDrone.BatteryStatus -= 7;
-                            Thread.Sleep(50);
+                    switch (drone.DroneStatus)
+                    {
+                        case DroneStatuses.Available:
+                            if (drone.BatteryStatus < 40)
+                            {
+                                while (PLdDrone.BatteryStatus + 5 < 100)
+                                {
+                                    PLdDrone.BatteryStatus += 5;
+                                    droneUp.ReportProgress(0);
+                                    Thread.Sleep(500);
+                                }
+                                PLdDrone.BatteryStatus = 100;
+                                droneUp.ReportProgress(0);
+                                ibl.droneToCharge(drone.Id);
+                            }
+                            else
+                            {
+                                PLdDrone.DroneStatus = DroneStatuses.Delivery;
+                                droneUp.ReportProgress(0);
+                                Thread.Sleep(500);
+                                ibl.joinParcelToDrone(drone.Id);
+                            }
+                            break;
+                        case DroneStatuses.Delivery:
+                            ParcelStates ps = ibl.getParcelState(drone.ParcelInDelivery.Id);
+                            switch (ps)
+                            {
+                                case ParcelStates.Scheduled:
+                                    ibl.PickedUpParcelByDrone(drone.Id);
+                                    PLdDrone.DroneStatus = DroneStatuses.Delivery;
+                                    while (PLdDrone.BatteryStatus > drone.BatteryStatus)
+                                    {
+                                        PLdDrone.BatteryStatus -= 7;
+                                        droneUp.ReportProgress(0);
+                                        Thread.Sleep(50);
+                                    }
+                                    break;
+                                case ParcelStates.PickedUp:
+                                    ibl.supplyParceByDrone(drone.Id);
+                                    while (PLdDrone.BatteryStatus > drone.BatteryStatus)
+                                    {
+                                        PLdDrone.BatteryStatus -= 7;
+                                        droneUp.ReportProgress(0);
+                                        Thread.Sleep(50);
+                                    }
+                                    break;
+                                default:
+                                    break;
+                            }
+                            break;
+                        case DroneStatuses.Maintenance:
+                            ibl.ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("1000"));
+                            PLdDrone = ibl.GetDrone(PLdDrone.Id);
                             droneUp.ReportProgress(0);
-                        }
-                        Thread.Sleep(50);
-                        break;
-                    case DroneStatuses.Maintenance:
-                        PLdDrone.DroneStatus = DroneStatuses.Maintenance;
-                        while (PLdDrone.BatteryStatus < 100)
-                        {
-                            PLdDrone.BatteryStatus += 5;
                             Thread.Sleep(50);
-                            droneUp.ReportProgress(0);
-                        }
-                        break;
-                    default:
-                        break;
+                    break;
+                        default:
+                            break;
+
+                    }
+                }
+                catch 
+                {
+                    ibl.droneToCharge(drone.Id);
                 }
                 PLdDrone = ibl.GetDrone(PLdDrone.Id);
             }
