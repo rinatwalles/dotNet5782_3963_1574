@@ -18,11 +18,17 @@ namespace PL
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
             Drone d = new Drone();
+            DroneToList dt = new DroneToList();
             double battery;
             if (value.GetType() == d.GetType())
             {
                 d = (Drone)value;
                battery = (double)d.BatteryStatus;
+            }
+            else if(value.GetType() == dt.GetType())
+            {
+                dt = (DroneToList)value;
+                battery = (double)dt.BatteryStatus;
             }
             else
                 battery= (double)value;
