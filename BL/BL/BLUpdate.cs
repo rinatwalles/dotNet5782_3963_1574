@@ -278,7 +278,7 @@ namespace BL
         }
 
         /// <summary>
-        /// function that update the drone has picked up the parcel from the customer
+        /// function that update the drone to picked up the parcel from the customer
         /// </summary>
         /// <param name="droneId">id of a drone</param>
         public void PickedUpParcelByDrone(int droneId)

@@ -1,38 +1,45 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-	<Customer>
+  <Customer>
     <Id>1</Id>
-    <Name>Yfx</Name>
-    <Phone>054554627</Phone>
-    <Longitude>33.00084387124555</Longitude>
-    <Latitude>35.055348817703944</Latitude>
+    <Name>Tao</Name>
+    <Phone>054656000</Phone>
+    <Longitude>29.990767963645407</Longitude>
+    <Latitude>35.86585582874988</Latitude>
   </Customer>
   <Customer>
     <Id>2</Id>
-    <Name>Xsi</Name>
-    <Phone>054660364</Phone>
-    <Longitude>32.86272847445809</Longitude>
-    <Latitude>34.07081222551447</Latitude>
+    <Name>Gbe</Name>
+    <Phone>054820052</Phone>
+    <Longitude>32.369879356245455</Longitude>
+    <Latitude>34.226871525555325</Latitude>
   </Customer>
   <Customer>
     <Id>3</Id>
-    <Name>Pul</Name>
-    <Phone>054366846</Phone>
-    <Longitude>30.464206505457035</Longitude>
-    <Latitude>36.13537410266482</Latitude>
+    <Name>Myk</Name>
+    <Phone>054143628</Phone>
+    <Longitude>29.666653787701694</Longitude>
+    <Latitude>33.739858251456106</Latitude>
   </Customer>
   <Customer>
     <Id>4</Id>
-    <Name>yuu</Name>
-    <Phone>054566333</Phone>
-    <Longitude>33.31637409907597</Longitude>
-    <Latitude>34.99274690183473</Latitude>
+    <Name>Acy</Name>
+    <Phone>054570148</Phone>
+    <Longitude>29.37882849829217</Longitude>
+    <Latitude>33.83742719857834</Latitude>
   </Customer>
   <Customer>
     <Id>5</Id>
-    <Name>Fle</Name>
-    <Phone>054865627</Phone>
-    <Longitude>33.4361160838679</Longitude>
-    <Latitude>34.41664098366939</Latitude>
+    <Name>Amr</Name>
+    <Phone>054782553</Phone>
+    <Longitude>29.50254763467356</Longitude>
+    <Latitude>34.98137962011685</Latitude>
   </Customer>
+  <Person>
+    <Id>6</Id>
+    <Name>yael</Name>
+    <Phone>0543053887</Phone>
+    <Longitude>23</Longitude>
+    <Latitude>32</Latitude>
+  </Person>
 </ArrayOfCustomer>
