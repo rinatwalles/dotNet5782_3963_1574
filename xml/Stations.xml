@@ -8,13 +8,6 @@
     <AvailableChargeSlots>7</AvailableChargeSlots>
   </Station>
   <Station>
-    <Id>2</Id>
-    <Name>Kcm</Name>
-    <Longitude>30.138190909027212</Longitude>
-    <Latitude>33.71260744333855</Latitude>
-    <AvailableChargeSlots>4</AvailableChargeSlots>
-  </Station>
-  <Station>
     <Id>3</Id>
     <Name>Fdn</Name>
     <Longitude>31.081285849670547</Longitude>
@@ -34,5 +27,12 @@
     <Longitude>30.606279464767447</Longitude>
     <Latitude>34.16664153238136</Latitude>
     <AvailableChargeSlots>7</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>2</Id>
+    <Name>Kcm</Name>
+    <Longitude>30.138190909027212</Longitude>
+    <Latitude>33.71260744333855</Latitude>
+    <AvailableChargeSlots>4</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>
