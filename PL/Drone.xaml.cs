@@ -110,9 +110,9 @@ namespace PL
                             if (drone.BatteryStatus < 40)
                             {
                                 PLdDrone.DroneStatus = DroneStatuses.Maintenance;
-                                while (PLdDrone.BatteryStatus + 5 < 100)
+                                while (PLdDrone.BatteryStatus + 7 < 100)
                                 {
-                                    PLdDrone.BatteryStatus += 5;
+                                    PLdDrone.BatteryStatus += 7;
                                     droneUp.ReportProgress(0);
                                     Thread.Sleep(500);
                                 }
@@ -139,13 +139,13 @@ namespace PL
                                     ibl.PickedUpParcelByDrone(drone.Id);
                                     drone = ibl.GetDrone(PLdDrone.Id);
                                     PLdDrone.DroneStatus = DroneStatuses.Delivery;
-                                    double distanceLong = (drone.Location.Longitude - PLdDrone.Location.Longitude) / 10;
-                                    double distanceLant = (drone.Location.Latitude - PLdDrone.Location.Latitude) /10 ;
-                                    double battery = (PLdDrone.BatteryStatus - drone.BatteryStatus) / 10;
+                                    double distanceLong = (drone.Location.Longitude - PLdDrone.Location.Longitude) / 7;
+                                    double distanceLant = (drone.Location.Latitude - PLdDrone.Location.Latitude) /7 ;
+                                    double battery = (PLdDrone.BatteryStatus - drone.BatteryStatus) / 7;
                                     Location locat = new Location();
                                     locat.Latitude = PLdDrone.Location.Latitude;
                                     locat.Longitude = PLdDrone.Location.Longitude;
-                                    for (int i = 1; i <= 10; i++)
+                                    for (int i = 1; i <= 7; i++)
                                     {
                                         PLdDrone.BatteryStatus -= battery;
                                         locat.Latitude += distanceLant;
@@ -166,13 +166,13 @@ namespace PL
                                 case ParcelStates.PickedUp:
                                     ibl.supplyParceByDrone(drone.Id);
                                     drone = ibl.GetDrone(PLdDrone.Id);
-                                    double distanceLong1 = (drone.Location.Longitude - PLdDrone.Location.Longitude) / 10;
-                                    double distanceLant1 = (drone.Location.Latitude - PLdDrone.Location.Latitude) / 10;
-                                    double battery1 = (PLdDrone.BatteryStatus - drone.BatteryStatus) / 10;
+                                    double distanceLong1 = (drone.Location.Longitude - PLdDrone.Location.Longitude) / 7;
+                                    double distanceLant1 = (drone.Location.Latitude - PLdDrone.Location.Latitude) / 7;
+                                    double battery1 = (PLdDrone.BatteryStatus - drone.BatteryStatus) / 7;
                                     Location locat1 = new Location();
                                     locat1.Latitude = PLdDrone.Location.Latitude;
                                     locat1.Longitude = PLdDrone.Location.Longitude;
-                                    for (int i = 1; i <= 10; i++)
+                                    for (int i = 1; i <= 7; i++)
                                     {
                                         PLdDrone.BatteryStatus -= battery1;
                                         locat1.Latitude += distanceLant1;

@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Config>
-  <ParcelId>12</ParcelId>
+  <ParcelId>17</ParcelId>
   <ElectricityUse>
-    <Availavble>0.001</Availavble>
-    <Light>0.003</Light>
-    <Medium>0.004</Medium>
-    <Heavy>0.005</Heavy>
+    <Availavble>0.01</Availavble>
+    <Light>0.03</Light>
+    <Medium>0.04</Medium>
+    <Heavy>0.05</Heavy>
     <ChargePrecent>0.35</ChargePrecent>
   </ElectricityUse>
 </Config>

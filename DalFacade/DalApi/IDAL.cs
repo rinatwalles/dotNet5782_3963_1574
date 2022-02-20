@@ -29,7 +29,7 @@ namespace DaLApi
         // IEnumerable<Drone> GetDroneInParcelByPredicate(Predicate<Drone> predicate);
         #endregion
 
-        #region Customer
+            #region Customer
         //CRUD Customer
         bool CheckCustomer(int id);
             void CustomerAddition(Customer c);

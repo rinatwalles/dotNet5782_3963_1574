@@ -296,7 +296,7 @@ namespace BL
 
                 DO.Customer sender = idal.GetCustomer(parc.SenderId);    //the location of the sender
 
-                dron.BatteryStatus = idal.DistanceCalculate(sender.Longitude, sender.Latitude, locat.Longitude, locat.Latitude) * array[1 + (int)dron.Weight]; //distance between the sender and the current location
+                dron.BatteryStatus -= idal.DistanceCalculate(sender.Longitude, sender.Latitude, locat.Longitude, locat.Latitude) * array[1 + (int)dron.Weight]; //distance between the sender and the current location
                 locat.Latitude = sender.Latitude;
                 locat.Longitude = sender.Longitude;
                 dron.Location = locat;    //updating the place to the sender place

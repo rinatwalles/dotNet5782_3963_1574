@@ -75,7 +75,7 @@ namespace Dal
                 {
                     Id = i,
                     Name = "" + (char)rand.Next(65, 90) + (char)rand.Next(97, 122) + (char)rand.Next(97, 122),
-                    Phone = "054" + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57) + (char)rand.Next(48, 57),
+                    Phone = "054" + (char)rand.Next(1, 10) + (char)rand.Next(1, 10) + (char)rand.Next(1, 10) + (char)rand.Next(1, 10) + (char)rand.Next(1, 10) + (char)rand.Next(1, 10)+ (char)rand.Next(1, 10),
                     Longitude = rand.NextDouble() * (33.5 - 29.3) + 29.3,
                     Latitude = rand.NextDouble() * (36.3 - 33.7) + 33.7,
                 };

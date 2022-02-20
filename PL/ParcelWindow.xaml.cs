@@ -61,7 +61,17 @@ namespace PL
 
             if(newIbl.getParcelState(parc.Id)!=ParcelStates.Scheduled && newIbl.getParcelState(parc.Id) != ParcelStates.PickedUp)
                 droneButton.Visibility = Visibility.Collapsed;
-
+            if(parc.ScheduledTime==DateTime.MinValue||parc.DeliveredTime!=DateTime.MinValue)
+            {
+                LatitudeLabel.Visibility = Visibility.Collapsed;
+                latitudeTextBox.Visibility = Visibility.Collapsed;
+                LongitudeLabel.Visibility = Visibility.Collapsed;
+                longitudeTextBox.Visibility = Visibility.Collapsed;
+                DroneLabel.Visibility = Visibility.Collapsed;
+                idDroneTextBox1.Visibility = Visibility.Collapsed;
+                battaryStatusLabel.Visibility = Visibility.Collapsed;
+                battaryStatusTextBox.Visibility = Visibility.Collapsed;
+            }
             this.Title = "Parcel Update";
             OptionButtun.Content = "Update The Parcel";
             OptionButtun.Visibility = Visibility.Collapsed;
