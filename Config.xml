@@ -2,6 +2,7 @@
 <Config>
   <ParcelId>6</ParcelId>
   <ElectricityUse>
+	  
     <Availavble>0.01</Availavble>
     <Light>0.03</Light>
     <Medium>0.04</Medium>
