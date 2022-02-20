@@ -81,9 +81,9 @@ namespace PL
 
         private void DroneUp_ProgressChanged(object sender, ProgressChangedEventArgs e)
         {
-            
+
             //droneup.DataContext = PLdDrone;
-            txtBattery.Text = string.Format("{0:P}",PLdDrone.BatteryStatus/100);
+            txtBattery.Text = string.Format("{0:P}", PLdDrone.BatteryStatus / 100);
             StatusComboBox.SelectedItem = PLdDrone.DroneStatus;
             latitudeTextBox.Text = Convert.ToString(PLdDrone.Location.Latitude);
             longitudeTextBox.Text = Convert.ToString(PLdDrone.Location.Longitude);
@@ -194,6 +194,7 @@ namespace PL
                             }
                             break;
                         case DroneStatuses.Maintenance:
+
                             ibl.ReleaseDroneFromCharge(drone.Id, TimeSpan.Parse("1000"));
                             PLdDrone = ibl.GetDrone(PLdDrone.Id);
                             droneUp.ReportProgress(0);

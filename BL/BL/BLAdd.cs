@@ -182,16 +182,26 @@ namespace BL
                         item.Location = locat;
                         parc.ScheduledTime = DateTime.Now;
                         idal.ParcelUpdate(parc);
+                        double calculate = 0;
                         if (parc.PickedUpTime == DateTime.MinValue)  //parcel schduled but not PickedUp 
+                        {
                             item.Location = MinDistanceOfSation(locat);    //the location is the closest station
+                            calculate = getDistance(GetCustomer(parc.SenderId).Location, item.Location);
+
+                        }
 
                         else if (parc.DeliveredTime == DateTime.MinValue)    //the parcel not deliverd so the location is the sender location
                             item.Location = locat;
+                        double senderToTarget = getDistance(GetCustomer(parc.TargetId).Location, GetCustomer(parc.SenderId).Location);
+                        double targetToStation = getDistance(minStationDistance(GetCustomer(parc.TargetId).Location), GetCustomer(parc.TargetId).Location);
+                        calculate  += senderToTarget + targetToStation;
+                        calculate *= array[1 + (int)item.Weight];
+                        //double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight] ;
+                        //Location closeStation = MinDistanceOfSation(locat);
 
-                        double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, item.Location.Longitude, item.Location.Latitude) * array[1 + (int)item.Weight]; ;
-                        Location closeStation = MinDistanceOfSation(locat);
+                        //calculate += idal.DistanceCalculate( closeStation.Longitude, closeStation.Latitude, cust.Longitude, cust.Latitude) * array[1 + (int)item.Weight];
+                        //calculate+=  getDistance(GetCustomer(parc.TargetId).Location, GetCustomer(parc.SenderId).Location) * array[1 + (int)item.Weight];
 
-                        calculate += idal.DistanceCalculate( closeStation.Longitude, closeStation.Latitude, cust.Longitude, cust.Latitude) * array[1 + (int)item.Weight];
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
 
                     }
@@ -221,11 +231,11 @@ namespace BL
                         locat.Longitude = cust.Longitude;
                         Location closeStation = MinDistanceOfSation(locat);
                         item.Location = closeStation;
-                        double calculate = idal.DistanceCalculate(closeStation.Longitude, closeStation.Latitude,cust.Longitude, cust.Latitude ) * array[1 + (int)item.Weight];
+                        double calculate = idal.DistanceCalculate(cust.Longitude, cust.Latitude, closeStation.Longitude, closeStation.Latitude) * array[1 + (int)item.Weight];
                         item.BatteryStatus = rand.NextDouble() + rand.Next((int)calculate, 100);
                         countParc++;
                     }
-                    }
+                }
                 
             }
             catch (DO.MissingIdException ex)
