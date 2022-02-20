@@ -17,7 +17,7 @@ namespace PL
             val = val - degree;
             int minute = (int)(val * 60);
             double second = (val * 60 - minute) * 60;
-            string str = System.Convert.ToString(degree) + '^' + System.Convert.ToString(minute) + "'" + System.String.Format("{0:0.00}", second) + "''";
+            string str = System.Convert.ToString(degree) + " ^ "  + System.Convert.ToString(minute) + " ' " + System.String.Format("{0:0.00}", second) + " '' ";
             return str + 'S';
         }
 

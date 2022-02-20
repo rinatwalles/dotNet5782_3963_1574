@@ -73,7 +73,7 @@ namespace PL
             weightComboBox1Label.Visibility = weightComboBox1.Visibility = Visibility.Collapsed;
             UpdateButton.Visibility = Visibility.Collapsed;
             DeliveryButton.Visibility = Visibility.Collapsed;
-
+            parcelButton.Visibility = Visibility.Collapsed;
             OptionButtun.IsEnabled = false ;
 
             
@@ -265,6 +265,7 @@ namespace PL
                 priorityLabel.Visibility=priorityComboBox.Visibility = Visibility.Collapsed;
                 transportDistanceLabel.Visibility= transportDistanceTextBox.Visibility= Visibility.Collapsed;
                 weightComboBox1Label.Visibility= weightComboBox1.Visibility = Visibility.Collapsed;
+                parcelButton.Visibility = Visibility.Collapsed;
 
             }
             if (d.DroneStatus == DroneStatuses.Maintenance)
@@ -279,6 +280,8 @@ namespace PL
                 priorityLabel.Visibility = priorityComboBox.Visibility = Visibility.Collapsed;
                 transportDistanceLabel.Visibility = transportDistanceTextBox.Visibility = Visibility.Collapsed;
                 weightComboBox1Label.Visibility = weightComboBox1.Visibility = Visibility.Collapsed;
+                parcelButton.Visibility = Visibility.Collapsed;
+
             }
             if (d.DroneStatus == DroneStatuses.Delivery)
             {
@@ -463,6 +466,12 @@ namespace PL
                 aU = autoUpdate.start;
                 droneUp.CancelAsync();
             }
+        }
+
+        private void Button_Click_Parcel(object sender, RoutedEventArgs e)
+        {
+           Parcel pc = ibl.GetParcel(PLdDrone.ParcelInDelivery.Id);
+            new PL.ParcelWindow(ibl, pc).Show();
         }
     }
 }

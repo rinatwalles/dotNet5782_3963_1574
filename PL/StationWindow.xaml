@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="StationWindow" Height="550" Width="900"  Background="{StaticResource MyButtonBackground}">
+    <Window.Resources>
+        <local:ConvertLongtitude x:Key="longtitudeConverter" />
+        <local:ConvertLatitude x:Key="latitudeConverter" />
+    </Window.Resources>
     <Grid>
         <Grid x:Name="stationGrid"  HorizontalAlignment="Left" Margin="208,90,0,0" VerticalAlignment="Top" Height="167">
             <Grid.ColumnDefinitions>
@@ -26,16 +30,16 @@
             <Label Content="Name:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
             <TextBox x:Name="nameTextBox" PreviewTextInput="EnglishLettersValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding Name, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="nameTextBox_TextChanged"/>
             <Label Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="3" VerticalAlignment="Center"/>
-            <TextBox x:Name="latitudeTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="latitudeTextBox_TextChanged"/>
+            <TextBox x:Name="latitudeTextBox" PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="3" Text="{Binding Location.Latitude  ,Converter={StaticResource latitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="latitudeTextBox_TextChanged"/>
             <Label Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="4" VerticalAlignment="Center"/>
-            <TextBox x:Name="longitudeTextBox"  PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
+            <TextBox x:Name="longitudeTextBox"  PreviewTextInput="NumberValidationTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="4" Text="{Binding Location.Longitude  ,Converter={StaticResource longtitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" TextChanged="longitudeTextBox_TextChanged"/>
         </Grid>
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="Auto"/>
                 <ColumnDefinition Width="Auto"/>
             </Grid.ColumnDefinitions>
-            <DataGrid x:Name="droneChargingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="280,284,360,87" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False">
+            <DataGrid x:Name="droneChargingDataGrid" RowDetailsVisibilityMode="VisibleWhenSelected" Margin="280,284,360,87" ItemsSource="{Binding}" EnableRowVirtualization="True" AutoGenerateColumns="False" MouseDoubleClick="droneChargingDataGrid_MouseDoubleClick" >
                 <DataGrid.Columns>
                     <DataGridTextColumn x:Name="batteryStatusColumn" Width="SizeToHeader" Header="Battery" Binding="{Binding BatteryStatus, StringFormat={}{0:0.00}%}" />
                     <DataGridTextColumn x:Name="idColumn" Width="SizeToHeader" Header="Id" Binding="{Binding Id}"/>

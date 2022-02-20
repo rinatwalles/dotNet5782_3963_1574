@@ -25,6 +25,8 @@ namespace PL
         public ParcelToListWindow(BLApi.IBL newIbl)
         {
             InitializeComponent();
+            ParcelStateComboBox.ItemsSource = Enum.GetValues(typeof(ParcelStates));
+            PriorityComboBox.ItemsSource = Enum.GetValues(typeof(Priorities));
             ibl = newIbl;
             parcelToListDataGrid.ItemsSource = (from parcel in ibl.GetAllParcels()
                                                 orderby parcel.Id
@@ -72,6 +74,29 @@ namespace PL
             parcelToListDataGrid.ItemsSource = (from parcel in ibl.GetAllParcels()
                                                 orderby parcel.Id
                                                 select parcel);
+            filterListDrones();
+        }
+
+        private void ParcelStateComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterListDrones();
+        }
+
+        private void PriorityComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            filterListDrones();
+        }
+        private void filterListDrones()
+        {
+
+            if (ParcelStateComboBox.SelectedIndex == -1 && PriorityComboBox.SelectedIndex == -1)
+                parcelToListDataGrid.ItemsSource = ibl.GetAllParcels();
+            else if (ParcelStateComboBox.SelectedIndex == -1)
+                parcelToListDataGrid.ItemsSource = ibl.GetAllParcel(p => p.Priority == (Priorities)PriorityComboBox.SelectedItem);
+            else if (PriorityComboBox.SelectedIndex == -1)
+                parcelToListDataGrid.ItemsSource = ibl.GetAllParcel(p => p.ParcelState == (ParcelStates)ParcelStateComboBox.SelectedItem);
+            else
+                parcelToListDataGrid.ItemsSource = ibl.GetAllParcel(p => p.ParcelState == (ParcelStates)ParcelStateComboBox.SelectedItem && p.Priority == (Priorities)PriorityComboBox.SelectedItem);
         }
     }
 }

@@ -6,6 +6,7 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ParcelToListWindow" Height="550" Width="900"         Background="{StaticResource MyButtonBackground}" Activated="Window_Activated">
+   
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="auto"/>
@@ -17,7 +18,20 @@
             <ColumnDefinition Width="auto"/>
             <ColumnDefinition Width="auto"/>
         </Grid.ColumnDefinitions >
-        <DataGrid x:Name="parcelToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="28,77,263,143" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="parcelToListDataGrid_MouseDoubleClick" >
+        <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="5">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions >
+            <ComboBox x:Name="ParcelStateComboBox" Grid.Column="1" Width="120"  Margin="52,25,53,465" Grid.ColumnSpan="2" SelectionChanged="ParcelStateComboBox_SelectionChanged"/>
+            <ComboBox x:Name="PriorityComboBox" Grid.Column="4" Margin="53,22,52,465" Width="120" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="PriorityComboBox_SelectionChanged" />
+            <Label Content="Parcel State" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Label Content="Priority" Grid.Column="3" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+        </Grid>
+        <DataGrid x:Name="parcelToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True"  Margin="21,120,270,100" RowDetailsVisibilityMode="VisibleWhenSelected" MouseDoubleClick="parcelToListDataGrid_MouseDoubleClick" >
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="idReceiverColumn" Binding="{Binding Receiver.Id}" Header="Reciever Id" Width="SizeToHeader"/>

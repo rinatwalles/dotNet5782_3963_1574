@@ -108,7 +108,7 @@ namespace PL
 
         private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)///function that makes the user enters only numbers
         {
-            Regex regex = new Regex("[^0-9]+");
+            Regex regex = new Regex("[^0-9|^.|]");
             e.Handled = regex.IsMatch(e.Text);
         }
 
@@ -179,7 +179,7 @@ namespace PL
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-
+            new PL.ParcelWindow(ibl).Show();
         }
     }
 }

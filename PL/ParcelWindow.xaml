@@ -6,6 +6,10 @@
         xmlns:local="clr-namespace:PL"
         mc:Ignorable="d"
         Title="ParcelWindow" Height="550" Width="900"  Background="{StaticResource MyButtonBackground}">
+    <Window.Resources>
+        <local:ConvertLongtitude x:Key="longtitudeConverter" />
+        <local:ConvertLatitude x:Key="latitudeConverter" />
+    </Window.Resources>
     <Grid x:Name="parcelup">
         <Grid x:Name="grid1"  HorizontalAlignment="Left" Margin="52,25,0,0" VerticalAlignment="Top" Height="430" Width="440">
 
@@ -77,9 +81,9 @@
                     <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Label x:Name="LatitudeLabel" Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding ParcelDrones.Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding ParcelDrones.Location.Latitude ,Converter={StaticResource latitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 <Label x:Name="LongitudeLabel" Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-                <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding ParcelDrones.Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding ParcelDrones.Location.Longitude ,Converter={StaticResource longtitudeConverter} , Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
             </Grid>
 
         </Grid>

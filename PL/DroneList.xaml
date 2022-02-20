@@ -29,10 +29,7 @@
 
         <Grid Name="UpGrid" Height="auto" Grid.Row="0" Width="auto" Grid.ColumnSpan="5">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
-                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="150"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
                 <ColumnDefinition Width="auto"/>
@@ -41,9 +38,9 @@
             <ComboBox x:Name="StatusSelector" Grid.Column="1" Width="120" SelectionChanged="StatusSelector_SelectionChanged" Margin="52,25,53,-25" Grid.ColumnSpan="2"/>
             <ComboBox x:Name="WeightSelector" Grid.Column="4" Margin="53,22,52,-22" Width="120" VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" SelectionChanged="WeightSelector_SelectionChanged"/>
             <Label Content="Drone Status" HorizontalAlignment="Center" Margin="0,22,0,0" VerticalAlignment="Top" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Label Content="Drone Weight" Grid.Column="3" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Background="White" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Label Content="Drone Weight" Grid.Column="3" HorizontalAlignment="Center" Margin="0,25,0,0" VerticalAlignment="Top" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
         </Grid>
-        <DataGrid x:Name="droneToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="61,45,109,45" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" MouseDoubleClick="droneToListDataGrid_MouseDoubleClick"  OpacityMask="Black" Grid.Column="1" Background="#FFFAFAFA">
+        <DataGrid x:Name="droneToListDataGrid" AutoGenerateColumns="False" EnableRowVirtualization="True" ItemsSource="{Binding}" Margin="61,45,147,45" RowDetailsVisibilityMode="VisibleWhenSelected" Grid.Row="1" MouseDoubleClick="droneToListDataGrid_MouseDoubleClick"  OpacityMask="Black" Grid.Column="1" Background="#FFFAFAFA">
             <DataGrid.Columns>
                 <DataGridTextColumn x:Name="idColumn" Binding="{Binding Id}" Header="Id" Width="SizeToHeader"/>
                 <DataGridTextColumn x:Name="batteryStatusColumn"  Binding="{Binding BatteryStatus, StringFormat={}{0:0.00}%}"  Header="Battery Status" Width="SizeToHeader">
