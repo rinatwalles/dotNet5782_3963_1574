@@ -32,7 +32,7 @@
     <Priority>Emergency</Priority>
     <DroneId>4</DroneId>
     <RequestedTime>2022-02-15T18:27:45.9977578+02:00</RequestedTime>
-    <ScheduledTime>2022-02-20T01:55:14.5222625+02:00</ScheduledTime>
+    <ScheduledTime>2022-02-20T09:03:30.2580738+02:00</ScheduledTime>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
@@ -44,7 +44,7 @@
     <Priority>Fast</Priority>
     <DroneId>5</DroneId>
     <RequestedTime>2022-02-15T18:24:15.9952931+02:00</RequestedTime>
-    <ScheduledTime>2022-02-20T01:55:14.5326383+02:00</ScheduledTime>
+    <ScheduledTime>2022-02-20T09:03:30.2701818+02:00</ScheduledTime>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
@@ -56,7 +56,7 @@
     <Priority>Regular</Priority>
     <DroneId>1</DroneId>
     <RequestedTime>2022-01-14T12:24:32.7728431+02:00</RequestedTime>
-    <ScheduledTime>2022-02-20T02:02:53.3952735+02:00</ScheduledTime>
+    <ScheduledTime>2022-02-20T09:06:12.4774621+02:00</ScheduledTime>
     <PickedUpTime>0001-01-01T00:00:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
@@ -68,7 +68,7 @@
     <Priority>Fast</Priority>
     <DroneId>2</DroneId>
     <RequestedTime>2022-01-14T12:24:32.7733071+02:00</RequestedTime>
-    <ScheduledTime>2022-02-20T02:02:53.4603862+02:00</ScheduledTime>
+    <ScheduledTime>2022-02-20T09:06:12.5357593+02:00</ScheduledTime>
     <PickedUpTime>2022-02-17T21:51:58.6390822+02:00</PickedUpTime>
     <DeliveredTime>0001-01-01T00:00:00</DeliveredTime>
   </Parcel>
@@ -80,7 +80,7 @@
     <Priority>Fast</Priority>
     <DroneId>4</DroneId>
     <RequestedTime>2022-01-14T12:24:32.7733124+02:00</RequestedTime>
-    <ScheduledTime>2022-02-20T02:02:53.5023715+02:00</ScheduledTime>
+    <ScheduledTime>2022-02-20T09:06:12.5940518+02:00</ScheduledTime>
     <PickedUpTime>2022-01-15T00:24:32.773313+02:00</PickedUpTime>
     <DeliveredTime>2022-01-15T03:24:32.7733133+02:00</DeliveredTime>
   </Parcel>
@@ -92,7 +92,7 @@
     <Priority>Regular</Priority>
     <DroneId>5</DroneId>
     <RequestedTime>2022-01-14T12:24:32.7733138+02:00</RequestedTime>
-    <ScheduledTime>2022-02-20T02:02:53.5117511+02:00</ScheduledTime>
+    <ScheduledTime>2022-02-20T09:06:12.6050282+02:00</ScheduledTime>
     <PickedUpTime>2022-01-14T22:24:32.7733143+02:00</PickedUpTime>
     <DeliveredTime>2022-01-15T03:24:32.7733146+02:00</DeliveredTime>
   </Parcel>

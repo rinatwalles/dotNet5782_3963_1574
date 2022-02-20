@@ -80,7 +80,7 @@ namespace PL
                 };
                 int IdSend = int.Parse(idSenderTextBox3.Text);
                 int IdReceive = int.Parse(idReceiverTextBox2.Text);
-                //  ibl.AddParcel(parc, IdSend, IdReceive);
+                ibl.AddParcel(parc, IdSend, IdReceive);
                 try
                 {
                     ibl.AddParcel(parc, IdSend, IdReceive);
@@ -104,12 +104,12 @@ namespace PL
                     this.Close();
                 }
             }
-            else
-            {
-                //ibl.UpdateDrone(PLdDrone.Id, PLdDrone.Model);
-                MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
-                this.Close();
-            }
+            //else
+            //{
+            //    ibl.UpdateParcel();
+            //    MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
+            //    this.Close();
+            //}
         }
 
             private void Button_Click_Close(object sender, RoutedEventArgs e)
