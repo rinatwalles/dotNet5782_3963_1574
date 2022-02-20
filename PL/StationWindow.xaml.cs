@@ -47,8 +47,7 @@ namespace PL
             PLStation = s;
             op = option.Update;
             stationGrid.DataContext = PLStation;
-         //   DataContext = ibl.GetDroneChargingPerStation(s.Id);
-            droneChargingDataGrid.DataContext =ibl.GetDroneChargingPerStation(s.Id);
+            droneChargingDataGrid.DataContext= ibl.GetDroneChargingPerStation(s.Id);
             droneChargingDataGrid.ItemsSource = ibl.GetDroneChargingPerStation(s.Id);
             droneChargingDataGrid.IsReadOnly = true;
             
@@ -154,6 +153,13 @@ namespace PL
                 MessageBox.Show("Update Succeeded!", "very nice", MessageBoxButton.OKCancel, MessageBoxImage.Information);
                 this.Close();
             } 
+        }
+
+        private void droneChargingDataGrid_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            DroneCharging dc = droneChargingDataGrid.SelectedItem as DroneCharging;
+            Drone d = ibl.GetDrone(dc.Id);
+            new PL.DroneWindow(ibl,d).Show();
         }
     }
 }

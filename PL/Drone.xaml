@@ -8,8 +8,10 @@
         Title="Drone" Height="550" Width="900"  Background="{StaticResource MyButtonBackground}">
     <Window.Resources>
         <local:ConvertToColor x:Key="ColorConverter" />
+        <local:ConvertLongtitude x:Key="longtitudeConverter" />
+        <local:ConvertLatitude x:Key="latitudeConverter" />
     </Window.Resources>
-    
+
     <Grid Margin="50,32,0,-3">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="65*"/>
@@ -53,12 +55,11 @@
                 <ComboBox x:Name="WeightComboBox"  Text="{Binding Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" Margin="3" Grid.Row="4" VerticalAlignment="Center" Width="120" SelectionChanged="WeightComboBox_SelectionChanged" />
 
                 <Label x:Name="latitudeLabel" Content="Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="5" VerticalAlignment="Center"/>
-                <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Location.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
+                <TextBox x:Name="latitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="5" Text="{Binding Location.Latitude ,Converter={StaticResource latitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" />
                 <Label x:Name="longitudeLabel" Content="Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="6" VerticalAlignment="Center"/>
                 <Label x:Name ="ParcelIDLabel" Content="Parcel Id:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,0,0,0" Grid.Row="7" VerticalAlignment="Center" Height="36" RenderTransformOrigin="0.5,0.5"/>
                 <TextBox x:Name="txtParcelID" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="7" Text="{Binding ParcelInDelivery.Id, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 <Label x:Name="parcelStateLabel" Content="Parcel State:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="8" VerticalAlignment="Center"/>
-                <!--<ComboBox x:Name="parcelStateComboBox" Text="{Binding ParcelInDelivery.ParcelState, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="8" VerticalAlignment="Center" Width="120"/>-->
 
                 <Label x:Name="priorityLabel" Content="Priority:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="9" VerticalAlignment="Center"/>
                 <ComboBox x:Name="priorityComboBox" Text="{Binding ParcelInDelivery.Priority, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}"  Grid.Column="1"  HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}" Margin="3" Grid.Row="9" VerticalAlignment="Center" Width="120"/>
@@ -67,7 +68,7 @@
                 <TextBox x:Name="transportDistanceTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="10" Text="{Binding ParcelInDelivery.TransportDistance, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 <Label  x:Name="weightComboBox1Label" Content="Parcel Weight:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="11" VerticalAlignment="Center"/>
                 <ComboBox x:Name="weightComboBox1"  Text="{Binding ParcelInDelivery.Weight, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" HorizontalAlignment="Left" Height="Auto" ItemsSource="{Binding}"  Margin="3,0,0,10" VerticalAlignment="Bottom" Width="120" Grid.Column="1" Grid.Row="11"/>
-                <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Location.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                <TextBox x:Name="longitudeTextBox" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="6" Text="{Binding Location.Longitude ,Converter={StaticResource longtitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 <Grid x:Name="grid2" Grid.Column="1" HorizontalAlignment="Left" Margin="156,0,0,0" VerticalAlignment="Top" Grid.RowSpan="3">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition Width="Auto"/>
@@ -78,9 +79,9 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Content="Collecting Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="0" VerticalAlignment="Center"/>
-                    <TextBox x:Name="latitudeTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding ParcelInDelivery.CollectingPlace.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <TextBox x:Name="latitudeTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="0" Text="{Binding ParcelInDelivery.CollectingPlace.Latitude ,Converter={StaticResource latitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                     <Label Content="Collecting Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3" Grid.Row="1" VerticalAlignment="Center"/>
-                    <TextBox x:Name="longitudeTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding ParcelInDelivery.CollectingPlace.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
+                    <TextBox x:Name="longitudeTextBox1" Grid.Column="1" HorizontalAlignment="Left" Height="23" Margin="3" Grid.Row="1" Text="{Binding ParcelInDelivery.CollectingPlace.Longitude ,Converter={StaticResource longtitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120"/>
                 </Grid>
                 <Grid x:Name="grid3" Grid.Column="1" HorizontalAlignment="Left" Margin="156,6,0,0" Grid.Row="2" VerticalAlignment="Top" Grid.RowSpan="3">
                     <Grid.ColumnDefinitions>
@@ -93,18 +94,19 @@
                         <RowDefinition Height="Auto"/>
                     </Grid.RowDefinitions>
                     <Label Content="Destination Latitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="0" VerticalAlignment="Center"/>
-                    <TextBox x:Name="latitudeTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" Text="{Binding ParcelInDelivery.DestinationPlace.Latitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="latitudeTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="0" Text="{Binding ParcelInDelivery.DestinationPlace.Latitude ,Converter={StaticResource latitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
                     <Label Content="Destination Longitude:" Grid.Column="0" HorizontalAlignment="Left" Margin="3,3,0,3" Grid.Row="1" VerticalAlignment="Center"/>
-                    <TextBox x:Name="longitudeTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="1" Text="{Binding ParcelInDelivery.DestinationPlace.Longitude, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
+                    <TextBox x:Name="longitudeTextBox2" Grid.Column="1" HorizontalAlignment="Left" Height="24" Margin="3,4,0,4" Grid.Row="1" Text="{Binding ParcelInDelivery.DestinationPlace.Longitude ,Converter={StaticResource longtitudeConverter}, Mode=TwoWay, NotifyOnValidationError=true, ValidatesOnExceptions=true}" VerticalAlignment="Center" Width="120" Grid.ColumnSpan="2"/>
                 </Grid>
                 <CheckBox x:Name="parcelState" Content="in delivery" Grid.Column="1" HorizontalAlignment="Left" Margin="17,0,0,0" Grid.Row="8" VerticalAlignment="Center"/>
             </Grid>
             <ComboBox x:Name="stationComboBox"  HorizontalAlignment="Left" Margin="472,187,0,0" VerticalAlignment="Top" Width="120" SelectionChanged="stationComboBox_SelectionChanged"/>
             <Label x:Name="stationLabel" Content="Station" HorizontalAlignment="Left" Margin="345,187,0,0" VerticalAlignment="Top" RenderTransformOrigin="-0.891,-0.243"/>
-            <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="641,159,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Button x:Name="UpdateButton"  Content="Button" HorizontalAlignment="Left" Margin="641,215,0,0" VerticalAlignment="Top"  Click="UpdateButton_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Button x:Name="DeliveryButton" Content="Button" HorizontalAlignment="Left" Margin="641,273,0,0" VerticalAlignment="Top"  Click="Button_Click" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
-            <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="641,336,0,0" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="116" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="OptionButtun" Content="Button" HorizontalAlignment="Left" Margin="641,159,0,0" VerticalAlignment="Top"  Click="OptionButtun_Click" Height="39" Width="170" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="UpdateButton"  Content="Button" HorizontalAlignment="Left" Margin="641,215,0,0" VerticalAlignment="Top"  Click="UpdateButton_Click" Height="39" Width="170" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="DeliveryButton" Content="Button" HorizontalAlignment="Left" Margin="641,273,0,0" VerticalAlignment="Top"  Click="Button_Click" Height="39" Width="170" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="closeButton" Content="close" HorizontalAlignment="Left" Margin="641,336,0,0" VerticalAlignment="Top" Click="Button_Click_Close" Height="39" Width="170" Background="#FFDC2711" FontFamily="Arial Black" FontWeight="Normal"/>
+            <Button x:Name="parcelButton" Content="The parcel" HorizontalAlignment="Left" Margin="641,399,0,0" VerticalAlignment="Top" Click="Button_Click_Parcel"/>
 
 
 
