@@ -1,45 +1,38 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0"?>
 <ArrayOfCustomer xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Customer>
     <Id>1</Id>
-    <Name>Tao</Name>
-    <Phone>054656000</Phone>
-    <Longitude>29.990767963645407</Longitude>
-    <Latitude>35.86585582874988</Latitude>
+    <Name>Yok</Name>
+    <Phone>054&#x6;&#x5;&#x1;&#x4;&#x7;&#x3;&#x5;</Phone>
+    <Longitude>29.726491047826826</Longitude>
+    <Latitude>33.74367039261557</Latitude>
   </Customer>
   <Customer>
     <Id>2</Id>
-    <Name>Gbe</Name>
-    <Phone>054820052</Phone>
-    <Longitude>32.369879356245455</Longitude>
-    <Latitude>34.226871525555325</Latitude>
+    <Name>Jfy</Name>
+    <Phone>054&#x3;&#x3;&#x6;	&#x7;&#x8;&#x3;</Phone>
+    <Longitude>29.485094372921203</Longitude>
+    <Latitude>35.51865759567295</Latitude>
   </Customer>
   <Customer>
     <Id>3</Id>
-    <Name>Myk</Name>
-    <Phone>054143628</Phone>
-    <Longitude>29.666653787701694</Longitude>
-    <Latitude>33.739858251456106</Latitude>
+    <Name>Fli</Name>
+    <Phone>054&#x5;&#x4;&#x4;&#x7;&#x2;	&#x7;</Phone>
+    <Longitude>30.179361511803865</Longitude>
+    <Latitude>34.775907198654444</Latitude>
   </Customer>
   <Customer>
     <Id>4</Id>
-    <Name>Acy</Name>
-    <Phone>054570148</Phone>
-    <Longitude>29.37882849829217</Longitude>
-    <Latitude>33.83742719857834</Latitude>
+    <Name>Vpr</Name>
+    <Phone>054&#x5;	&#x1;&#x7;	&#x5;&#x4;</Phone>
+    <Longitude>32.23709379906631</Longitude>
+    <Latitude>35.40236768513097</Latitude>
   </Customer>
   <Customer>
     <Id>5</Id>
-    <Name>Amr</Name>
-    <Phone>054782553</Phone>
-    <Longitude>29.50254763467356</Longitude>
-    <Latitude>34.98137962011685</Latitude>
+    <Name>Did</Name>
+    <Phone>054&#x4;&#x4;&#x4;&#x8;&#x7;&#x5;&#x7;</Phone>
+    <Longitude>30.963734947733457</Longitude>
+    <Latitude>33.72336566300288</Latitude>
   </Customer>
-  <Person>
-    <Id>6</Id>
-    <Name>yael</Name>
-    <Phone>0543053887</Phone>
-    <Longitude>23</Longitude>
-    <Latitude>32</Latitude>
-  </Person>
 </ArrayOfCustomer>

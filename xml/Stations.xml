@@ -2,37 +2,37 @@
 <ArrayOfStation xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
   <Station>
     <Id>1</Id>
-    <Name>Yni</Name>
-    <Longitude>30.70338718285942</Longitude>
-    <Latitude>36.162821250717535</Latitude>
-    <AvailableChargeSlots>6</AvailableChargeSlots>
+    <Name>Mfo</Name>
+    <Longitude>33.38118835309576</Longitude>
+    <Latitude>35.804303496379546</Latitude>
+    <AvailableChargeSlots>7</AvailableChargeSlots>
   </Station>
   <Station>
     <Id>2</Id>
-    <Name>Cig</Name>
-    <Longitude>33.07049557053041</Longitude>
-    <Latitude>36.27522700651326</Latitude>
-    <AvailableChargeSlots>3</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>4</Id>
-    <Name>Fvt</Name>
-    <Longitude>32.5843313229663</Longitude>
-    <Latitude>36.29027162910917</Latitude>
-    <AvailableChargeSlots>9</AvailableChargeSlots>
-  </Station>
-  <Station>
-    <Id>5</Id>
-    <Name>Oro</Name>
-    <Longitude>29.356141055960276</Longitude>
-    <Latitude>34.540572296101864</Latitude>
-    <AvailableChargeSlots>3</AvailableChargeSlots>
+    <Name>Kcm</Name>
+    <Longitude>30.138190909027212</Longitude>
+    <Latitude>33.71260744333855</Latitude>
+    <AvailableChargeSlots>4</AvailableChargeSlots>
   </Station>
   <Station>
     <Id>3</Id>
-    <Name>Oqw</Name>
-    <Longitude>31.822912122832104</Longitude>
-    <Latitude>33.87078566205259</Latitude>
+    <Name>Fdn</Name>
+    <Longitude>31.081285849670547</Longitude>
+    <Latitude>35.791241386761534</Latitude>
     <AvailableChargeSlots>2</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>4</Id>
+    <Name>Lpi</Name>
+    <Longitude>29.554673563714452</Longitude>
+    <Latitude>35.95431854159307</Latitude>
+    <AvailableChargeSlots>2</AvailableChargeSlots>
+  </Station>
+  <Station>
+    <Id>5</Id>
+    <Name>Pka</Name>
+    <Longitude>30.606279464767447</Longitude>
+    <Latitude>34.16664153238136</Latitude>
+    <AvailableChargeSlots>7</AvailableChargeSlots>
   </Station>
 </ArrayOfStation>
